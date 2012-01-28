@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Nick0's Launcher:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Nick0_s_Launcher_jar</output-path>
+    <root id="archive" name="Nick0_s_Launcher.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Nick0's Launcher" />
+    </root>
+  </artifact>
+</component>
