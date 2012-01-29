@@ -8,7 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 
-public class Gui_MainFrame extends JFrame
+public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 {
 
     public Gui_Button Button_ConnectButton;
@@ -39,45 +39,11 @@ public class Gui_MainFrame extends JFrame
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
         setContentPane(createFrameContent());
+        addActionsListeners();
+
         setVisible(true);
-
-        DocumentListener textListener = new DocumentListener()
-        {
-            public void changedUpdate(DocumentEvent e) { verifyButtons(); }
-            public void removeUpdate(DocumentEvent e) { verifyButtons(); }
-            public void insertUpdate(DocumentEvent e) { verifyButtons(); }
-        };
-        Field_Password.getDocument().addDocumentListener(textListener);
-        Field_UserName.getDocument().addDocumentListener(textListener);
-        
-        ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
-        {
-            if ( Gui_PreferenceForm.CONFIG_jarSelector && !ComboBox_JarSelector.getSelectedItem().equals("minecraft.jar") )
-            {
-                System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
-            }
-            Main_RealLauncher.startLogin(Field_UserName.getText(), Field_Password.getText());
-        } };
-        Field_Password.addActionListener(loginListener);
-        Field_UserName.addActionListener(loginListener);                                                     
-        Button_ConnectButton.addActionListener(loginListener);
-        
-        ActionListener preferencesListener = new ActionListener() { public void actionPerformed(ActionEvent e)
-        {
-            setVisible(false);
-            Gui_PreferenceForm.newForm(true);
-        } };
-        Button_PrefsButton.addActionListener(preferencesListener);
-
-        ItemListener checkListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
-        {
-            Field_Password.setEnabled(!Check_Offline.isSelected());
-            if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
-            else { Button_ConnectButton.setEnabled(false); }
-            verifyButtons();
-        } };
-        Check_Offline.addItemListener(checkListener);
     }
 
     private JPanel createFrameContent()
@@ -214,6 +180,46 @@ public class Gui_MainFrame extends JFrame
         mainPanel.add(Label_actualRam, gbc);
 
         return mainPanel;
+    }
+
+    private void addActionsListeners()
+    {
+        DocumentListener textListener = new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent e) { verifyButtons(); }
+            public void removeUpdate(DocumentEvent e) { verifyButtons(); }
+            public void insertUpdate(DocumentEvent e) { verifyButtons(); }
+        };
+        Field_Password.getDocument().addDocumentListener(textListener);
+        Field_UserName.getDocument().addDocumentListener(textListener);
+
+        ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
+        {
+            if ( Gui_PreferenceForm.CONFIG_jarSelector && !ComboBox_JarSelector.getSelectedItem().equals("minecraft.jar") )
+            {
+                System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
+            }
+            Main_RealLauncher.startLogin(Field_UserName.getText(), Field_Password.getText());
+        } };
+        Field_Password.addActionListener(loginListener);
+        Field_UserName.addActionListener(loginListener);
+        Button_ConnectButton.addActionListener(loginListener);
+
+        ActionListener preferencesListener = new ActionListener() { public void actionPerformed(ActionEvent e)
+        {
+            setVisible(false);
+            Gui_PreferenceForm.newForm(true);
+        } };
+        Button_PrefsButton.addActionListener(preferencesListener);
+
+        ItemListener checkListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
+        {
+            Field_Password.setEnabled(!Check_Offline.isSelected());
+            if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
+            else { Button_ConnectButton.setEnabled(false); }
+            verifyButtons();
+        } };
+        Check_Offline.addItemListener(checkListener);
     }
     
     private void verifyButtons()

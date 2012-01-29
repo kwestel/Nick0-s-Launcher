@@ -10,7 +10,7 @@ public class Main_RealLauncher
     public static Applet minecraftInstance = null;
     public static String officialAddress = "nicnl25@gmail.com";
 
-    public static String configFileDir = System.getProperty("user.home") + "\\AppData\\Roaming\\.minecraft";
+    public static String configFileDir = System_UserHomeDefiner.returnConfigDirectory();
     public static String homeDir = configFileDir;
     public static String configFileName = "\\Nick0's_Launcher.mconf";
 
@@ -19,17 +19,6 @@ public class Main_RealLauncher
 
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
-
-        if ( !System.getProperty("os.name").toLowerCase().contains("win") )
-        {
-            System_ErrorHandler.openErrorWindow("Malgré le fait que votre OS soit bien meilleur que Windows,\n"+
-            "Nick0's Launcher V1 n'est compatible qu'avec lui.\n" +
-            "( Pour le moment, bien sûr... :D' )\n\n" +
-            "Nous sommes désolés pour le désagrément.\n" +
-            "Veuillez vous renseigner afin de savoir si une version compatible avec votre OS existe.\n\n" +
-            "Cordialement, Nicnl.\nnicnl25@gmail.com");
-            System.exit(0);
-        }
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 

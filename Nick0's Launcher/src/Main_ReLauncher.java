@@ -47,7 +47,7 @@ public class Main_ReLauncher
             }
             catch ( Exception e )
             {
-                System_ErrorHandler.handleError("Une erreur est survenue lors de la définition de la ram !");
+                System_ErrorHandler.handleError("Une erreur est survenue lors de la définition de la ram !", false);
                 Main_RealLauncher.main(args);
             }
         }

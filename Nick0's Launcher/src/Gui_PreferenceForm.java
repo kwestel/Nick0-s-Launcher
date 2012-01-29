@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.ParseException;
 
-public class Gui_PreferenceForm extends JFrame
+public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 {
 
     public static Gui_Panel mainPanel;
@@ -40,7 +40,7 @@ public class Gui_PreferenceForm extends JFrame
         
         loadAndSetPreferences();
         setContentPane(createFrameContent());
-        enableActionListeners();
+        addActionsListeners();
     }
 
     private JPanel createFrameContent()
@@ -188,7 +188,7 @@ public class Gui_PreferenceForm extends JFrame
         return mainPanel;
     }
 
-    public void enableActionListeners()
+    public void addActionsListeners()
     {
         ActionListener listenerMcReinstall = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
@@ -246,7 +246,7 @@ public class Gui_PreferenceForm extends JFrame
         try { CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )
         {
-            System_ErrorHandler.handleError("La RAM entrée est invalide : \"" + Field_RAMEntry.getValue().toString() + "\"");
+            System_ErrorHandler.handleError("La RAM entrée est invalide : \"" + Field_RAMEntry.getValue().toString() + "\"", false);
             CONFIG_selectedRam = 1024;
         }
 

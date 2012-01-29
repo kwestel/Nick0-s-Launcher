@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class Gui_UpdaterForm extends JFrame
+public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
 {
 
     private JLabel Label_Status;

@@ -12,7 +12,11 @@ public class System_ErrorHandler
         if ( fatalError ) { System.exit(0); }
     }
     
-    public static void handleError(String text) { openErrorWindow(text); }
+    public static void handleError(String text, boolean fatalError)
+    {
+        openErrorWindow(text);
+        if ( fatalError ) { System.exit(0); }
+    }
 
     public static void openErrorWindow(String errorText)
     {

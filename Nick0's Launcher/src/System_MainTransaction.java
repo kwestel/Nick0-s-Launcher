@@ -13,15 +13,15 @@ public class System_MainTransaction
 
         if ( result == null )
         {
-            System_ErrorHandler.handleError("Impossible de se connecter à Minecraft.net !");
+            System_ErrorHandler.handleError("Impossible de se connecter à Minecraft.net !", false);
             return;
         }
         
         if ( !result.contains(":") )
         {
-            if ( result.trim().equals("Bad login") ) { System_ErrorHandler.handleError("Nom d'utilisateur et/ou mot de passe incorrect !"); }
-            else if ( result.trim().equals("Old version") ) { System_ErrorHandler.handleError("Le launcher est périmé.\nContactez votre service client ;D\n\n" + Main_RealLauncher.officialAddress); }
-            else { System_ErrorHandler.handleError("Une erreur inconnue s'est produite.\nVeuillez me contacter à cette adresse :\n" + Main_RealLauncher.officialAddress + "\n\"" + result + "\""); }
+            if ( result.trim().equals("Bad login") ) { System_ErrorHandler.handleError("Nom d'utilisateur et/ou mot de passe incorrect !", false); }
+            else if ( result.trim().equals("Old version") ) { System_ErrorHandler.handleError("Le launcher est périmé.\nContactez votre service client ;D\n\n" + Main_RealLauncher.officialAddress, false); }
+            else { System_ErrorHandler.handleError("Une erreur inconnue s'est produite.\nVeuillez me contacter à cette adresse :\n" + Main_RealLauncher.officialAddress + "\n\"" + result + "\"", false); }
             return;
         }
         
@@ -37,7 +37,7 @@ public class System_MainTransaction
 
         Encrypter_StringEncrypter.encodeAndSavePassword(password);
 
-        Web_MinecraftUpdater.mainMinecraftUpdater(Main_RealLauncher.homeDir, "windows_natives.jar", loadedTextFile); // Grosse fonction de mise a jour du jeu
+        Web_MinecraftUpdater.mainMinecraftUpdater(Main_RealLauncher.homeDir, loadedTextFile); // Grosse fonction de mise a jour du jeu
     }
     
     public static void Main_OfflineLogin(String username)

@@ -10,8 +10,10 @@ import java.util.jar.JarFile;
 public class Web_MinecraftUpdater
 {
     
-    public static void mainMinecraftUpdater(String basePath, String nativesFile, String[] loadedConfFile)
+    public static void mainMinecraftUpdater(String basePath, String[] loadedConfFile)
     {
+        String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
+
         File basicMC_DIR_SysFile = new File(Main_RealLauncher.configFileDir);
         if ( !basicMC_DIR_SysFile.exists() ) { basicMC_DIR_SysFile.mkdir(); }
 
