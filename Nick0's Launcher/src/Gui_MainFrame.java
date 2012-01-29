@@ -35,7 +35,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         super();
 
         setTitle("Nick0's Launcher V1");
-        setSize(325, 275 + (Gui_PreferenceForm.CONFIG_jarSelector ? 30 : 0));
+        setSize(325, 275 + (Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0));
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -65,7 +65,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         Check_Offline = new Gui_CheckBox("Offline mode");
         Check_SaveLogin = new Gui_CheckBox("Sauvegarder MDP");
         
-        if ( Gui_PreferenceForm.CONFIG_jarSelector )
+        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
         {
             ComboBox_JarSelector = new Gui_JarSelector();
         }
@@ -115,7 +115,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         mainPanel.add(Field_Password, gbc);
 
         // ComboBox : JarSelector
-        if ( Gui_PreferenceForm.CONFIG_jarSelector )
+        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
         {
             gbc.gridx = 0;
             gbc.gridy = 5;
@@ -195,7 +195,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
-            if ( Gui_PreferenceForm.CONFIG_jarSelector && !ComboBox_JarSelector.getSelectedItem().equals("minecraft.jar") )
+            if ( Preferences_ConfigLoader.CONFIG_jarSelector && !ComboBox_JarSelector.getSelectedItem().equals("minecraft.jar") )
             {
                 System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
             }

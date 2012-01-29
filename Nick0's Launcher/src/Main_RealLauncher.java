@@ -16,19 +16,21 @@ public class Main_RealLauncher
 
     public static void main(String[] args)
     {
-
+        // Forcer le theme de l'OS hôte
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 
+        // Définition des variables systèmes importantes
         homeDir = getHomeDir();
+        Preferences_ConfigLoader.SYSTEM_LoadPreferences();
 
-        Gui_PreferenceForm.newForm(false);
+        // Création de la frame principale
         MainFrame = new Gui_MainFrame();
 
+        // Chargement des identifiants de connexion
         String[] loadedTextFile = System_ConfigFileWriter.loadConfigFile();
-
         if ( loadedTextFile != null )
         {
             if ( !loadedTextFile[0].equals("") )

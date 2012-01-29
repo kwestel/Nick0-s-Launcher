@@ -34,14 +34,14 @@ public class System_ConfigFileWriter
     {
         clear();
         /* Username */ addLine(System_DataStub.static_getParameter("username"));
-        /* LVersion */ addLine(Gui_PreferenceForm.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
+        /* LVersion */ addLine(Preferences_ConfigLoader.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
         /* Password */ addLine(Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() ? encodedPassword : "");
         /* PassHash */ addLine(Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() ? ""+encodedPassword.hashCode() : "");
-        /* UpdatOff */ addLine("DisableUpdates=" + (Gui_PreferenceForm.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-        /* JarSelec */ addLine("JarSelector=" + (Gui_PreferenceForm.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-        /* RamSelec */ addLine("RamSelector=" + (Gui_PreferenceForm.CONFIG_ramSelector ? "TRUE" : "FALSE"));
+        /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
+        /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
+        /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
         /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-        /* Ram: Int */ addLine("RAM=" + Gui_PreferenceForm.CONFIG_selectedRam);
+        /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -73,11 +73,11 @@ public class System_ConfigFileWriter
         /* LVersion */ addLine(oldConfigFile[1]);
         /* Password */ addLine(oldConfigFile[2]);
         /* PassHash */ addLine(oldConfigFile[3]);
-        /* UpdatOff */ addLine("DisableUpdates=" + (Gui_PreferenceForm.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-        /* JarSelec */ addLine("JarSelector=" + (Gui_PreferenceForm.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-        /* RamSelec */ addLine("RamSelector=" + (Gui_PreferenceForm.CONFIG_ramSelector ? "TRUE" : "FALSE"));
+        /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
+        /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
+        /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
         /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-        /* Ram: Int */ addLine("RAM=" + Gui_PreferenceForm.CONFIG_selectedRam);
+        /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }

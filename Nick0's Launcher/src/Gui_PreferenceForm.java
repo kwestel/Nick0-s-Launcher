@@ -37,8 +37,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         setResizable(false);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
-        
-        loadAndSetPreferences();
+
         setContentPane(createFrameContent());
         addActionsListeners();
     }
@@ -68,14 +67,14 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 
         FileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         
-        CheckBox_EnableJarSelector.setSelected(CONFIG_jarSelector);
-        CheckBox_DisableUpdate.setSelected(CONFIG_updatesDisabled);
-        CheckBox_RAMSelector.setSelected(CONFIG_ramSelector);
+        CheckBox_EnableJarSelector.setSelected(Preferences_ConfigLoader.CONFIG_jarSelector);
+        CheckBox_DisableUpdate.setSelected(Preferences_ConfigLoader.CONFIG_updatesDisabled);
+        CheckBox_RAMSelector.setSelected(Preferences_ConfigLoader.CONFIG_ramSelector);
         
         Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
 
-        Field_RAMEntry.setEnabled(CONFIG_ramSelector);
-        Field_RAMEntry.setValue(CONFIG_selectedRam);
+        Field_RAMEntry.setEnabled(Preferences_ConfigLoader.CONFIG_ramSelector);
+        Field_RAMEntry.setValue(Preferences_ConfigLoader.CONFIG_selectedRam);
 
         // Label : Main Title
         gbc.gridx = 0;
@@ -194,7 +193,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         {
             Button_ForceUpdate.setEnabled(false);
             Button_ForceUpdate.setText("Minecraft sera reinstallé !");
-            MinecraftReinstallForcer = true;
+            Preferences_ConfigLoader.MinecraftReinstallForcer = true;
         } };
         Button_ForceUpdate.addActionListener(listenerMcReinstall);
 
@@ -238,46 +237,25 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 
     public void saveNewPreferences()
     {
-        CONFIG_updatesDisabled = CheckBox_DisableUpdate.isSelected();
+        Preferences_ConfigLoader.CONFIG_updatesDisabled = CheckBox_DisableUpdate.isSelected();
         
-        CONFIG_jarSelector = CheckBox_EnableJarSelector.isSelected();
+        Preferences_ConfigLoader.CONFIG_jarSelector = CheckBox_EnableJarSelector.isSelected();
         
-        CONFIG_ramSelector = CheckBox_RAMSelector.isSelected();
-        try { CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
+        Preferences_ConfigLoader.CONFIG_ramSelector = CheckBox_RAMSelector.isSelected();
+        try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )
         {
             System_ErrorHandler.handleError("La RAM entrée est invalide : \"" + Field_RAMEntry.getValue().toString() + "\"", false);
-            CONFIG_selectedRam = 1024;
+            Preferences_ConfigLoader.CONFIG_selectedRam = 1024;
         }
 
         System_ConfigFileWriter.updateConfigFile();
     }
-
-    public void loadAndSetPreferences()
-    {
-        System.out.println("Nick0's Launcher - Chargement des préférences...");
-        
-        String[] loadedPreferences = System_ConfigFileWriter.loadConfigFile();
-        
-        if ( loadedPreferences == null ) { return; }
-        
-        CONFIG_updatesDisabled = loadedPreferences[4].split("=")[1].equals("TRUE");
-        CONFIG_jarSelector = loadedPreferences[5].split("=")[1].equals("TRUE");
-        CONFIG_ramSelector = loadedPreferences[6].split("=")[1].equals("TRUE");
-
-        CONFIG_selectedRam = Integer.parseInt(loadedPreferences[8].split("=")[1]);
-    }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Static Functions
-    
-    public static Gui_PreferenceForm preferenceForm = null;
-    public static boolean MinecraftReinstallForcer = false;
 
-    public static boolean CONFIG_updatesDisabled = false;
-    public static boolean CONFIG_jarSelector = false;
-    public static boolean CONFIG_ramSelector = false;
-    public static int CONFIG_selectedRam = 1024;
+    public static Gui_PreferenceForm preferenceForm = null;
     
     public static Gui_PreferenceForm newForm(boolean visible)
     {

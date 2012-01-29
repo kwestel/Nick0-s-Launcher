@@ -25,11 +25,11 @@ public class Web_MinecraftUpdater
         
         if ( loadedConfFile != null )
         {
-            boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.MCParameters_Values[7]) && !Gui_PreferenceForm.CONFIG_updatesDisabled;
+            boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.MCParameters_Values[7]) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
 
             System.out.println("Nick0's Launcher - Updater - " + ( needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour." ));
 
-            if ( loadedConfFile[1].equals("0") || Gui_PreferenceForm.MinecraftReinstallForcer )
+            if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
             {
                 Main_RealLauncher.MainFrame.setVisible(false);
                 new Gui_UpdaterForm(basePath, nativesFile, true);
