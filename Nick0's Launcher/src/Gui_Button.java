@@ -8,7 +8,8 @@ public class Gui_Button extends JButton
     {
         super(text);
         setOpaque(false);
-        setBorderPainted(false);
+
+        if ( !System_UserHomeDefiner.SystemOS.equals("macosx") ) { setBorderPainted(false); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

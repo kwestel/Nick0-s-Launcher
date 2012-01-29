@@ -181,8 +181,8 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         gbc.gridy = 8;
         gbc.gridheight = 1;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.PAGE_START;
-        gbc.insets = new Insets(0, 20, 0, 0);
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Field_RAMEntry, gbc);
 
         return mainPanel;

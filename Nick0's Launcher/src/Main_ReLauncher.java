@@ -28,7 +28,7 @@ public class Main_ReLauncher
                 
                 String[] newParameters = new String[]
                 {
-                    "javaw",
+                    "java" + ( System_UserHomeDefiner.SystemOS.equals("macosx") ? "" : "w"),
                     "-Xmx" + memoryToApply + "m",
                     "-Dsun.java2d.noddraw=true",
                     "-Dsun.java2d.d3d=false",
