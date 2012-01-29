@@ -20,7 +20,7 @@ public class Web_MinecraftUpdater
         File basicMC_DIR_GAME = new File(basePath);
         if ( !basicMC_DIR_GAME.exists() ) { basicMC_DIR_GAME.mkdir(); }
         
-        File basicBIN_DIR = new File(basePath + "\\bin");
+        File basicBIN_DIR = new File(basePath + File.separator + "bin");
         if ( !basicBIN_DIR.exists() ) { basicBIN_DIR.mkdir(); }
         
         if ( loadedConfFile != null )

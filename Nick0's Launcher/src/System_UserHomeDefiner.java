@@ -14,7 +14,7 @@ public class System_UserHomeDefiner
             String applicationData = System.getenv("APPDATA");
             if ( applicationData != null ) { configPath = applicationData; }
         }
-        else if ( SystemOS.equals("macosx") ) { configPath += "Library/Application Support/"; }
+        else if ( SystemOS.equals("macosx") ) { configPath += "Library" + File.separator + "Application Support"; }
         
         configPath += File.separator + ".minecraft";
         

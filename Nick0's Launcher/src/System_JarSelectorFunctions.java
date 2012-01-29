@@ -8,7 +8,7 @@ public class System_JarSelectorFunctions
     
     public static String[] getJarList()
     {
-        File jarDir = new File(Main_RealLauncher.homeDir + "\\bin");
+        File jarDir = new File(Main_RealLauncher.homeDir + File.separator + "bin");
         ArrayList<String> arrayFiles = new ArrayList<String>();
         
         String[] jarFileList = jarDir.list();

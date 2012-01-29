@@ -12,7 +12,7 @@ public class Main_RealLauncher
 
     public static String configFileDir = System_UserHomeDefiner.returnConfigDirectory();
     public static String homeDir = configFileDir;
-    public static String configFileName = "\\Nick0's_Launcher.mconf";
+    public static String configFileName = File.separator + "Nick0's_Launcher.mconf";
 
     public static void main(String[] args)
     {
@@ -91,7 +91,7 @@ public class Main_RealLauncher
 
         MainFrame = MainFrame.closeWindow(); // Le return est null = vide la variable MainFrame
 
-        try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(homeDir+"\\bin"); }
+        try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(homeDir + File.separator + "bin"); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
 
         System_GameFrame baseFrame = new System_GameFrame(System_DataStub.MCParameters_Values[0]);

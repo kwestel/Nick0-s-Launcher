@@ -23,7 +23,7 @@ public class System_MinecraftLoader extends ClassLoader
         URL[] urlList = transformPathFileToUrl(jarPath, jarList);
         MC_ClassLoader = new URLClassLoader(urlList);
 
-        if ( !jarPath.endsWith("\\") ) { jarPath += "\\"; }
+        if ( !jarPath.endsWith(File.separator) ) { jarPath += File.separator; }
   
         System.setProperty("org.lwjgl.librarypath", jarPath + "natives");
         System.setProperty("net.java.games.input.librarypath", jarPath + "natives");

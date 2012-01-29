@@ -20,10 +20,10 @@ public class Updater_SystemFunctions
         for ( String actualFile : System_MinecraftLoader.jarList )
         {
             formToUpdate.updateStatus(0, actualFile);
-            File verification = new File(destinationPath + "\\bin\\" + actualFile);
+            File verification = new File(destinationPath + File.separator + "bin" + File.separator + actualFile);
             if ( verification.exists() && !forceDownload ) { continue; }
             byte[] temp_data = downloadSingleJar(actualFile, formToUpdate);
-            writeByteArrayToFile(temp_data, destinationPath + "\\bin\\" + actualFile);
+            writeByteArrayToFile(temp_data, destinationPath + File.separator + "bin" + File.separator + actualFile);
         }
         formToUpdate.updateStatus(0, nativesFile);
         updateNatives(destinationPath, nativesFile, formToUpdate);
@@ -33,7 +33,7 @@ public class Updater_SystemFunctions
     public static void updateNatives(String destinationPath, String nativesFile, Gui_UpdaterForm formToUpdate) throws IOException
     {
         byte[] temp_natives = downloadSingleJar(nativesFile, formToUpdate);
-        writeByteArrayToFile(temp_natives, destinationPath + "\\bin\\" + nativesFile);
+        writeByteArrayToFile(temp_natives, destinationPath + File.separator + "bin" + File.separator + nativesFile);
         extractOSNatives(destinationPath, nativesFile);
     }
 
@@ -71,10 +71,10 @@ public class Updater_SystemFunctions
 
     private static void extractOSNatives(String outputPath, String nativesFile) throws IOException
     {
-        String nativesJarPath = outputPath + "\\bin\\" + nativesFile;
+        String nativesJarPath = outputPath + File.separator + "bin" + File.separator + nativesFile;
         File nativeJar = new File(nativesJarPath);
 
-        File nativesFolder = new File(outputPath + "\\bin\\natives");
+        File nativesFolder = new File(outputPath + File.separator + "bin" + File.separator + "natives");
         if ( !nativesFolder.exists() ) { nativesFolder.mkdir(); }
 
         JarFile jarFile = new JarFile(nativeJar, true);
@@ -92,11 +92,11 @@ public class Updater_SystemFunctions
             JarEntry thisFile = (JarEntry)contentFiles.nextElement();
             if ( thisFile.isDirectory() || thisFile.getName().indexOf('/') != -1 ) { continue; }
 
-            File newFile = new File(outputPath + "\\bin\\natives\\" + thisFile.getName());
+            File newFile = new File(outputPath + File.separator + "bin" + File.separator + "natives" + File.separator + thisFile.getName());
             if ( newFile.exists() ) { newFile.delete(); }
 
             InputStream jarInputStream = jarFile.getInputStream(jarFile.getEntry(thisFile.getName()));
-            OutputStream extractedFileOutput = new FileOutputStream(outputPath + "\\bin\\natives\\" + thisFile.getName());
+            OutputStream extractedFileOutput = new FileOutputStream(outputPath + File.separator + "bin" + File.separator + "natives" + File.separator + thisFile.getName());
 
             byte[] buffer = new byte[65536];
             int bufferSize;
