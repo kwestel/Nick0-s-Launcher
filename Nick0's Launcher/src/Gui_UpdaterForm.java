@@ -30,7 +30,7 @@ public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JLabel label_MainTitle = new JLabel("<html><B><U>Mise à jour de Minecraft en cours...</U></B></HTML>");
+        JLabel label_MainTitle = new JLabel("<html><b><u>Mise à jour de Minecraft en cours...</u></b></html>");
         Label_Status = new JLabel("minecraft.jar");
         ProgressBar = new JProgressBar();
 
