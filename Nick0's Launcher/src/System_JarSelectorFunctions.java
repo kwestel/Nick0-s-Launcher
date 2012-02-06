@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class System_JarSelectorFunctions
 {
     
-    private static String[] forbiddenFiles = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
+    private static String[] forbiddenFiles = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar" };
     
     public static String[] getJarList()
     {
@@ -12,7 +12,6 @@ public class System_JarSelectorFunctions
         ArrayList<String> arrayFiles = new ArrayList<String>();
         
         String[] jarFileList = jarDir.list();
-        arrayFiles.add("minecraft.jar");
         for ( String actualFile : jarFileList )
         {
             if ( isNotForbidden(actualFile) && actualFile.contains(".jar") ) { arrayFiles.add(actualFile); }

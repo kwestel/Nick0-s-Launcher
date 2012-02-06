@@ -195,7 +195,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
-            if ( Preferences_ConfigLoader.CONFIG_jarSelector && !ComboBox_JarSelector.getSelectedItem().equals("minecraft.jar") )
+            if ( Preferences_ConfigLoader.CONFIG_jarSelector )
             {
                 System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
             }
