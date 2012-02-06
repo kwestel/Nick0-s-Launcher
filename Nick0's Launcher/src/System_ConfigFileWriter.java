@@ -47,7 +47,7 @@ public class System_ConfigFileWriter
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
     }
 
-    public static void writeEmptyFile()
+    public static String[] writeEmptyFile()
     {
         clear();
         /* Username */ addLine("");
@@ -62,6 +62,8 @@ public class System_ConfigFileWriter
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
+        
+        return dataCache.toArray(new String[dataCache.size()]);
     }
     
     public static void updateConfigFile()
@@ -85,17 +87,15 @@ public class System_ConfigFileWriter
     
     public static String[] loadConfigFile()
     {
-        String[] loadedFile = null;
+        String[] loadedFile;
         try
         {
-            File NicnlConfigFile = new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
+            //File NicnlConfigFile = new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
             loadedFile = System_ConfigFileWriter.loadFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
-
-            for (int i=0;i<loadedFile.length;i++) { if ( loadedFile[i] == null) { loadedFile[i] = ""; } }
         }
         catch ( IOException e )
         {
-            writeEmptyFile();
+            loadedFile = writeEmptyFile();
             System.out.println("Nick0's Launcher - Saved Configuration Error !");
         }
         return loadedFile;

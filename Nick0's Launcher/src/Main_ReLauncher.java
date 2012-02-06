@@ -17,7 +17,11 @@ public class Main_ReLauncher
             loadedConfigFile = System_ConfigFileWriter.loadConfigFile();
             memoryToApply = Integer.parseInt(loadedConfigFile[8].split("=")[1]);
         }
-        else { memoryToApply = defaultMemory; }
+        else
+        {
+            Main_RealLauncher.main(args);
+            return;
+        } // Premier démarrage
 
         if ( allocatedMemory >= minimalAllocatedMemory && ( loadedConfigFile[6] != null && loadedConfigFile[6].contains("FALSE") ) ) { Main_RealLauncher.main(args); }
         else
