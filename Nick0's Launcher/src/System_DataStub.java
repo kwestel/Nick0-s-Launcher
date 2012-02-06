@@ -7,7 +7,7 @@ public class System_DataStub extends Applet implements AppletStub
 {
     
     public static String[] MCParameters_Index = new String[] { "username", "sessionid", "fullscreen", "mppass", "server", "port", "stand-alone", "latestVersion", "downloadTicket" };
-    public static String[] MCParameters_Values = new String[] { null, null, null, null, null, null, "true", null, null };
+    public static String[] MCParameters_Values = new String[MCParameters_Index.length];
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Applet's Stub Functions - Used by Minecraft.jar
@@ -16,7 +16,7 @@ public class System_DataStub extends Applet implements AppletStub
 
     public URL getDocumentBase()
     {
-      try { return new URL("http://www.cowmod.com/"); }
+      try { return new URL("http://www.minecraft.net/"); }
       catch ( MalformedURLException e ) { System_ErrorHandler.handleException(e, false); }
       return null;
     }

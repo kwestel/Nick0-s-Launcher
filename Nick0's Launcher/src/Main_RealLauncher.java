@@ -101,9 +101,14 @@ public class Main_RealLauncher
 
         baseFrame.setVisible(true);
 
+        // Fait apparaitre le bouton "Quit Minecraft"
+        System_DataStub.setParameter("stand-alone", "true");
+
+        // Definition du stub de données
         minecraftInstance.setStub(new System_DataStub());
         minecraftInstance.setSize(baseFrame.getSize());
 
+        // Démarrage de Minecraft
         minecraftInstance.init();
         minecraftInstance.start();
         minecraftInstance.validate();
