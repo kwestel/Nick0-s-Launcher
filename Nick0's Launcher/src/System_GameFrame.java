@@ -16,6 +16,7 @@ public class System_GameFrame extends Frame
         {
             Main_RealLauncher.minecraftInstance.stop();
             Main_RealLauncher.minecraftInstance.destroy();
+            System.exit(0);
         } });
     }
 
