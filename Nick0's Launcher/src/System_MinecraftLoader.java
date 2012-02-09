@@ -1,6 +1,8 @@
 import java.applet.Applet;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FilePermission;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
@@ -10,6 +12,7 @@ import java.net.URLClassLoader;
 import java.security.CodeSource;
 import java.security.PermissionCollection;
 import java.security.SecureClassLoader;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class System_MinecraftLoader extends ClassLoader
@@ -38,9 +41,29 @@ public class System_MinecraftLoader extends ClassLoader
 
     public static URL[] transformPathFileToUrl(String path, String[] files) throws MalformedURLException
     {
-        URL[] result = new URL[jarList.length];
-        for (int i=0;i<jarList.length;i++) { result[i] = new File(path, files[i]).toURI().toURL(); }
-        return result;
+        ArrayList<URL> URLList = new ArrayList<URL>();
+        
+        File modsFolder = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
+        if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
+        URLList.add(modsFolder.toURI().toURL());
+        
+        for ( String actualJar : files ) { URLList.add(new File(path, actualJar).toURI().toURL()); }
+        
+        return URLList.toArray(new URL[files.length+1]);
+    }
+
+    public static byte[] loadClassByteFromFileName(String filePath) throws IOException
+    {
+        FileInputStream class_inputStream = null;
+        try
+        {
+            File classFile = new File(filePath);
+            class_inputStream = new FileInputStream(classFile);
+            byte[] fileBArray = new byte[(int)classFile.length()];
+            class_inputStream.read(fileBArray);
+            return fileBArray;
+        }
+        finally { if ( class_inputStream != null ) { class_inputStream.close(); } }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

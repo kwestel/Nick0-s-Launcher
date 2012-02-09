@@ -15,13 +15,16 @@ public class Main_RealLauncher
     public static String configFileName = File.separator + "Nick0's_Launcher.mconf";
 
     public static boolean PasswordNotDisplayed = false;
-    public static String StoredPassword;
+    private static String StoredPassword;
 
     public static void main(String[] args)
     {
         // Forcer le theme de l'OS hôte
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
+        
+        File modsFolder = new File(homeDir + File.separator + "bin" + File.separator + "mods");
+        if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 
@@ -84,10 +87,20 @@ public class Main_RealLauncher
         else { System_MainTransaction.Main_OfflineLogin(username); }
     }
     
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // GetVariables
+    
     public static String getHomeDir()
     {
         String[] loadedPreferences = System_ConfigFileWriter.loadConfigFile();
         return loadedPreferences[7].split("=").length == 2 ? loadedPreferences[7].split("=")[1] : Main_RealLauncher.configFileDir;
+    }
+    
+    public static final String getStoredPassword()
+    {
+        String tempPass = StoredPassword;
+        StoredPassword = null;
+        return tempPass;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,7 +110,7 @@ public class Main_RealLauncher
     {
         if ( !MainFrame.Check_Offline.isSelected() )
         {
-            String TempSelectedItem = (String)MainFrame.ComboBox_JarSelector.getSelectedItem();
+            String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? (String)MainFrame.ComboBox_JarSelector.getSelectedItem() : null;
             Preferences_ConfigLoader.CONFIG_LastJarSaved = (TempSelectedItem == null) ? "" : TempSelectedItem;
             System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword());
         }
@@ -107,6 +120,7 @@ public class Main_RealLauncher
         MainFrame = MainFrame.closeWindow(); // Le return est null = vide la variable MainFrame
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(homeDir + File.separator + "bin"); }
+        catch ( SecurityException e ) { System_ErrorHandler.handleError("Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
 
         System_GameFrame baseFrame = new System_GameFrame(System_DataStub.MCParameters_Values[0]);

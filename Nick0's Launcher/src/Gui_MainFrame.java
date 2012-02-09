@@ -211,7 +211,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
                 System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
             }
 
-            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.StoredPassword : Field_Password.getText();
+            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : Field_Password.getText();
             Main_RealLauncher.startLogin(Field_UserName.getText(), temporaryPass);
         } };
         Field_Password.addActionListener(loginListener);
