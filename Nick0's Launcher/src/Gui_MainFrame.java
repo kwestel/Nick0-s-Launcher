@@ -68,6 +68,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         if ( Preferences_ConfigLoader.CONFIG_jarSelector )
         {
             ComboBox_JarSelector = new Gui_JarSelector();
+            ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
         }
 
         Button_ConnectButton.setEnabled(false);
@@ -182,16 +183,26 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         return mainPanel;
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Action Listeners - Main Function
+
     private void addActionsListeners()
     {
-        DocumentListener textListener = new DocumentListener()
+        DocumentListener usernameListener = new DocumentListener()
         {
             public void changedUpdate(DocumentEvent e) { verifyButtons(); }
             public void removeUpdate(DocumentEvent e) { verifyButtons(); }
             public void insertUpdate(DocumentEvent e) { verifyButtons(); }
         };
-        Field_Password.getDocument().addDocumentListener(textListener);
-        Field_UserName.getDocument().addDocumentListener(textListener);
+        Field_UserName.getDocument().addDocumentListener(usernameListener);
+
+        DocumentListener passwordListener = new DocumentListener()
+        {
+            public void changedUpdate(DocumentEvent e) { verifyBoxChanged(); }
+            public void removeUpdate(DocumentEvent e) { verifyBoxChanged(); }
+            public void insertUpdate(DocumentEvent e) { verifyBoxChanged(); }
+        };
+        Field_Password.getDocument().addDocumentListener(passwordListener);
 
         ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
@@ -199,7 +210,9 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             {
                 System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
             }
-            Main_RealLauncher.startLogin(Field_UserName.getText(), Field_Password.getText());
+
+            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.StoredPassword : Field_Password.getText();
+            Main_RealLauncher.startLogin(Field_UserName.getText(), temporaryPass);
         } };
         Field_Password.addActionListener(loginListener);
         Field_UserName.addActionListener(loginListener);
@@ -212,26 +225,66 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         } };
         Button_PrefsButton.addActionListener(preferencesListener);
 
-        ItemListener checkListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
+        ItemListener checkOfflineListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
         {
             Field_Password.setEnabled(!Check_Offline.isSelected());
             if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
             else { Button_ConnectButton.setEnabled(false); }
             verifyButtons();
         } };
-        Check_Offline.addItemListener(checkListener);
+        Check_Offline.addItemListener(checkOfflineListener);
+
+        ItemListener checkSavePassListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
+        {
+            if ( !Check_SaveLogin.isSelected() ) { Field_Password.setText(""); }
+        } };
+        Check_SaveLogin.addItemListener(checkSavePassListener);
     }
-    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Action Listener - Helpers
+
+    private boolean firstExecutionDone = false;
+
     private void verifyButtons()
     {
         if ( ( Field_Password.getText().equals("") && !Check_Offline.isSelected() ) || Field_UserName.getText().equals("") ) { Button_ConnectButton.setEnabled(false); }
         else { Button_ConnectButton.setEnabled(true); }
     }
+
+    private void verifyBoxChanged()
+    {
+        if ( Main_RealLauncher.PasswordNotDisplayed && firstExecutionDone ) { disableAntiDisplaying(); }
+        firstExecutionDone = true;
+
+        verifyButtons();
+    }
+    
+    private void disableAntiDisplaying()
+    {
+        Main_RealLauncher.PasswordNotDisplayed = false;
+        
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                Field_Password.setText("");
+                Check_SaveLogin.setSelected(false);
+            }
+        });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // SUPRA-Close Function
     
     public Gui_MainFrame closeWindow()
     {
         setVisible(false);
-        try { finalize(); }
+        try
+        {
+            finalize();
+            dispose();
+        }
         catch ( Throwable throwable ) { throwable.printStackTrace(); }
         return null;
     }

@@ -1,14 +1,10 @@
-import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.ByteArrayOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.security.InvalidKeyException;
 import java.security.Key;
-import java.security.NoSuchAlgorithmException;
+import java.util.Random;
 
 public class Encrypter_StringEncrypter
 {
@@ -22,44 +18,44 @@ public class Encrypter_StringEncrypter
     public static String encodeString(String originalString)
     {
         Cipher cipherInstance = null;
-        try { cipherInstance = Cipher.getInstance("RC4"); }
-        catch ( NoSuchAlgorithmException e ) { System_ErrorHandler.handleException(e, false); }
-        catch ( NoSuchPaddingException e ) { System_ErrorHandler.handleException(e, false); }
-
-        try { cipherInstance.init(Cipher.ENCRYPT_MODE, secretKey); }
-        catch ( InvalidKeyException e ) { System_ErrorHandler.handleException(e, false); }
-
         byte[] encryptedBytes = null;
-        try { encryptedBytes = cipherInstance.doFinal(originalString.getBytes()); }
-        catch ( IllegalBlockSizeException e ) { System_ErrorHandler.handleException(e, false); }
-        catch ( BadPaddingException e ) { System_ErrorHandler.handleException(e, false); }
-        
-        String finishedFile = "";
-        for ( byte actualByte : encryptedBytes ) { finishedFile += actualByte + " "; }
+        String finishedFile = null;
 
-        return finishedFile.trim();
+        try
+        {
+            cipherInstance = Cipher.getInstance("RC4");
+            cipherInstance.init(Cipher.ENCRYPT_MODE, secretKey);
+
+            encryptedBytes = cipherInstance.doFinal(originalString.getBytes());
+
+            finishedFile = "";
+            for ( byte actualByte : encryptedBytes ) { finishedFile += actualByte + " "; }
+            finishedFile = finishedFile.trim();
+        }
+        catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
+
+        return finishedFile;
     }
 
     public static String decodeString(String encodedString)
     {
         Cipher cipher = null;
-        try { cipher = Cipher.getInstance("RC4"); }
-        catch ( NoSuchAlgorithmException e ) { System_ErrorHandler.handleException(e, false); }
-        catch ( NoSuchPaddingException e ) { System_ErrorHandler.handleException(e, false); }
-
-        try { cipher.init(Cipher.DECRYPT_MODE, secretKey); }
-        catch ( InvalidKeyException e ) { System_ErrorHandler.handleException(e, false); }
-
-        ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
-        for ( String actualChar : encodedString.split(" ") ) { BAOS.write(Integer.parseInt(actualChar)); }
-        byte[] encodedArray = BAOS.toByteArray();
-
         byte[] decodedBytes = null;
-        try { decodedBytes = cipher.doFinal(encodedArray); }
-        catch (IllegalBlockSizeException e) { System_ErrorHandler.handleException(e, false); }
-        catch (BadPaddingException e) { System_ErrorHandler.handleException(e, false); }
 
-        return new String(decodedBytes);
+        try
+        {
+            cipher = Cipher.getInstance("RC4");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+
+            ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
+            for ( String actualChar : encodedString.split(" ") ) { BAOS.write(Integer.parseInt(actualChar)); }
+            byte[] encodedArray = BAOS.toByteArray();
+
+            decodedBytes = cipher.doFinal(encodedArray);
+        }
+        catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
+
+        return (new String(decodedBytes));
     }
     
     private static String getEncodeKey()
@@ -84,6 +80,20 @@ public class Encrypter_StringEncrypter
         }
         catch ( UnknownHostException e ) { }
         return null;
+    }
+    
+    public static String stringRandomizer(String originalText)
+    {
+        String newText = "";
+        Random randomizer = new Random();
+
+        for ( String actualChar : originalText.split("") )
+        {
+            char randomChar = (char)(randomizer.nextInt(26) + 'a');
+            newText += randomChar;
+        }
+
+        return newText.substring(0,newText.length()-1);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

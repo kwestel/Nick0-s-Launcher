@@ -25,5 +25,7 @@ public class System_JarSelectorFunctions
         for ( String actualFile : forbiddenFiles ) { if ( fileName.equals(actualFile) ) { return false; } }
         return true;
     }
-    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Nicnl - nicnl25@gmail.com
 }

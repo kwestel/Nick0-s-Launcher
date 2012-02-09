@@ -11,7 +11,7 @@ public class Main_ReLauncher
         
         int memoryToApply;
         File configFile = new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
-        String[] loadedConfigFile = new String[8];
+        String[] loadedConfigFile;
         if ( configFile.exists()  )
         {
             loadedConfigFile = System_ConfigFileWriter.loadConfigFile();
@@ -51,7 +51,7 @@ public class Main_ReLauncher
             }
             catch ( Exception e )
             {
-                System_ErrorHandler.handleError("Une erreur est survenue lors de la définition de la ram !", false);
+                System_ErrorHandler.handleError("Une erreur est survenue lors de la définition de la ram !", false, true);
                 Main_RealLauncher.main(args);
             }
         }

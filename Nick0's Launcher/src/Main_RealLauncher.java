@@ -14,6 +14,9 @@ public class Main_RealLauncher
     public static String homeDir = configFileDir;
     public static String configFileName = File.separator + "Nick0's_Launcher.mconf";
 
+    public static boolean PasswordNotDisplayed = false;
+    public static String StoredPassword;
+
     public static void main(String[] args)
     {
         // Forcer le theme de l'OS hôte
@@ -50,7 +53,14 @@ public class Main_RealLauncher
 
                 if ( recodedHashCode == Integer.parseInt(loadedTextFile[3]) )
                 {
-                    MainFrame.Field_Password.setText(decodedPassword);
+                    // Systeme de protection V2 :
+                    // Le MDP n'est plus foutu en clair dans le JPasswordField
+
+                    PasswordNotDisplayed = true;
+                    StoredPassword = decodedPassword;
+
+                    MainFrame.Field_Password.setText(Encrypter_StringEncrypter.stringRandomizer(StoredPassword));
+
                     MainFrame.Check_SaveLogin.setSelected(true);
                 }
                 else { System.out.println("Nick0's Launcher - Password decrypting fail !"); }
@@ -62,15 +72,16 @@ public class Main_RealLauncher
 
     public static void startLogin(String username, String password)
     {
-        if ( !(( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) || MainFrame.Field_UserName.getText().equals("")) )
+        if ( MainFrame.Field_UserName.getText().equals("") ) { return; }
+        else if ( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) { return; }
+        else if ( MainFrame.Field_Password.getText().equals("") && !PasswordNotDisplayed ) { return; }
+
+        if ( !MainFrame.Check_Offline.isSelected() )
         {
-            if ( !MainFrame.Check_Offline.isSelected() )
-            {
-                try { System_MainTransaction.Main_ClientTransactions(username, password); }
-                catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
-            }
-            else { System_MainTransaction.Main_OfflineLogin(username); }
+            try { System_MainTransaction.Main_ClientTransactions(username, password); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
         }
+        else { System_MainTransaction.Main_OfflineLogin(username); }
     }
     
     public static String getHomeDir()
@@ -86,6 +97,8 @@ public class Main_RealLauncher
     {
         if ( !MainFrame.Check_Offline.isSelected() )
         {
+            String TempSelectedItem = (String)MainFrame.ComboBox_JarSelector.getSelectedItem();
+            Preferences_ConfigLoader.CONFIG_LastJarSaved = (TempSelectedItem == null) ? "" : TempSelectedItem;
             System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword());
         }
 

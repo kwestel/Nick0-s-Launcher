@@ -42,6 +42,8 @@ public class System_ConfigFileWriter
         /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
         /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
         /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
+        /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
+        /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -59,6 +61,8 @@ public class System_ConfigFileWriter
         /* RamSelec */ addLine("RamSelector=FALSE");
         /* Home Dir */ addLine("HomeDir=");
         /* RamSelec */ addLine("RAM=1024");
+        /* SaveLJar */ addLine("SaveLastJar=FALSE");
+        /* JarSaved */ addLine("LastJarSaved=");
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -80,6 +84,8 @@ public class System_ConfigFileWriter
         /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
         /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
         /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
+        /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
+        /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }

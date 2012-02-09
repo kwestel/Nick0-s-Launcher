@@ -23,6 +23,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
     public Gui_CheckBox CheckBox_EnableJarSelector;
     public Gui_CheckBox CheckBox_DisableUpdate;
     public Gui_CheckBox CheckBox_RAMSelector;
+    public Gui_CheckBox CheckBox_SaveLastJar;
     
     public JSpinner Field_RAMEntry;
 
@@ -55,6 +56,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         Label_UpdateFunctions = new JLabel("<html><u>- Mises à jour Minecraft :</u></html>");
         Label_ActualHomeDir = new JLabel(Main_RealLauncher.homeDir);
         CheckBox_EnableJarSelector = new Gui_CheckBox("Activer le selectionneur de .jar");
+        CheckBox_SaveLastJar = new Gui_CheckBox("Sauvegarder le dernier .jar utilisé");
         CheckBox_DisableUpdate = new Gui_CheckBox("Désactiver les mises à jour");
         CheckBox_RAMSelector = new Gui_CheckBox("Modifier la RAM de Minecraft");
         Button_ForceUpdate = new Gui_Button("Réinstaller Minecraft !");
@@ -66,8 +68,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         Field_RAMEntry.setModel(new SpinnerNumberModel(1024, 128, 4096, 128));
 
         FileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        
-        CheckBox_EnableJarSelector.setSelected(Preferences_ConfigLoader.CONFIG_jarSelector);
+
         CheckBox_DisableUpdate.setSelected(Preferences_ConfigLoader.CONFIG_updatesDisabled);
         CheckBox_RAMSelector.setSelected(Preferences_ConfigLoader.CONFIG_ramSelector);
         
@@ -75,6 +76,10 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 
         Field_RAMEntry.setEnabled(Preferences_ConfigLoader.CONFIG_ramSelector);
         Field_RAMEntry.setValue(Preferences_ConfigLoader.CONFIG_selectedRam);
+
+        CheckBox_EnableJarSelector.setSelected(Preferences_ConfigLoader.CONFIG_jarSelector);
+        CheckBox_SaveLastJar.setSelected(Preferences_ConfigLoader.CONFIG_SaveLastJar);
+        CheckBox_SaveLastJar.setEnabled(Preferences_ConfigLoader.CONFIG_jarSelector);
 
         // Label : Main Title
         gbc.gridx = 0;
@@ -157,7 +162,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         gbc.insets = new Insets(20, 0, 5, 0);
         mainPanel.add(Label_JarSelectorText, gbc);
 
-        // Checkbox : JarSelector
+        // Checkbox : Jar Selector
         gbc.gridx = 0;
         gbc.gridy = 7;
         gbc.gridheight = 1;
@@ -165,6 +170,15 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(CheckBox_EnableJarSelector, gbc);
+
+        // Checkbox : Save Last Jar
+        gbc.gridx = 1;
+        gbc.gridy = 7;
+        gbc.gridheight = 1;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        mainPanel.add(CheckBox_SaveLastJar, gbc);
 
         // Checkbox : Enable RAM Selector
         gbc.gridx = 0;
@@ -224,6 +238,14 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         } };
         CheckBox_RAMSelector.addItemListener(ramSelectorListener);
 
+        ItemListener saveLastJarListener = new ItemListener() { public void itemStateChanged(ItemEvent e)
+        {
+            boolean selected = CheckBox_EnableJarSelector.isSelected();
+            CheckBox_SaveLastJar.setEnabled(selected);
+            if ( !selected ) { CheckBox_SaveLastJar.setSelected(false); }
+        } };
+        CheckBox_EnableJarSelector.addItemListener(saveLastJarListener);
+
         WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { formClosing(); } };
         addWindowListener(formListener);
     }
@@ -242,10 +264,13 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         Preferences_ConfigLoader.CONFIG_jarSelector = CheckBox_EnableJarSelector.isSelected();
         
         Preferences_ConfigLoader.CONFIG_ramSelector = CheckBox_RAMSelector.isSelected();
+
+        Preferences_ConfigLoader.CONFIG_SaveLastJar = CheckBox_SaveLastJar.isSelected();
+
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )
         {
-            System_ErrorHandler.handleError("La RAM entrée est invalide : \"" + Field_RAMEntry.getValue().toString() + "\"", false);
+            System_ErrorHandler.handleError("La RAM entrée est invalide : \"" + Field_RAMEntry.getValue().toString() + "\"", false, true);
             Preferences_ConfigLoader.CONFIG_selectedRam = 1024;
         }
 

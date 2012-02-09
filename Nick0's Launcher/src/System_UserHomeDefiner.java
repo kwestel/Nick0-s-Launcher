@@ -32,7 +32,7 @@ public class System_UserHomeDefiner
         else if ( OS.contains("solaris") || OS.contains("sunos") ) { OSReturned = "solaris"; }
         else { System_ErrorHandler.handleError("Votre OS n'est pas supporté par ce launcher." +
         "Veuillez vous renseigner afin de savoir si une version compatible avec votre OS existe.\n\n" +
-        "Cordialement, Nicnl.\nnicnl25@gmail.com", true); }
+        "Cordialement, Nicnl.\nnicnl25@gmail.com", true, true); }
         
         return OSReturned;
     }
