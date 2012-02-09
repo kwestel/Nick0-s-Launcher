@@ -4,6 +4,7 @@ public class Preferences_ConfigLoader
     public static boolean MinecraftReinstallForcer = false;
 
     public static boolean CONFIG_updatesDisabled = false;
+    public static boolean CONFIG_modsButtonChecked = false;
     
     public static boolean CONFIG_jarSelector = false;
     public static boolean CONFIG_SaveLastJar = false;
@@ -30,6 +31,8 @@ public class Preferences_ConfigLoader
 
             /* SaveLJar */ CONFIG_SaveLastJar = loadedPreferences[9].split("=")[1].equals("TRUE");
             /* JarSaved */ CONFIG_LastJarSaved = loadedPreferences[10].split("=").length == 2 ? loadedPreferences[10].split("=")[1] : "";
+
+            /* ModButt */ CONFIG_modsButtonChecked = loadedPreferences[11].split("=")[1].equals("TRUE");
         }
         catch ( ArrayIndexOutOfBoundsException e )
         {

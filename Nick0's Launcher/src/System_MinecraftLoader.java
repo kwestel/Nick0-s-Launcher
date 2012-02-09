@@ -19,7 +19,9 @@ public class System_MinecraftLoader extends ClassLoader
 {
 
     private static URLClassLoader MC_ClassLoader;
+    
     public static String[] jarList = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
+    public static boolean LoadMods = false;
     
     public static void updateClassPath(String jarPath) throws Exception
     {
@@ -45,25 +47,11 @@ public class System_MinecraftLoader extends ClassLoader
         
         File modsFolder = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
         if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
-        URLList.add(modsFolder.toURI().toURL());
+        if ( LoadMods ) { URLList.add(modsFolder.toURI().toURL()); }
         
         for ( String actualJar : files ) { URLList.add(new File(path, actualJar).toURI().toURL()); }
         
         return URLList.toArray(new URL[files.length+1]);
-    }
-
-    public static byte[] loadClassByteFromFileName(String filePath) throws IOException
-    {
-        FileInputStream class_inputStream = null;
-        try
-        {
-            File classFile = new File(filePath);
-            class_inputStream = new FileInputStream(classFile);
-            byte[] fileBArray = new byte[(int)classFile.length()];
-            class_inputStream.read(fileBArray);
-            return fileBArray;
-        }
-        finally { if ( class_inputStream != null ) { class_inputStream.close(); } }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

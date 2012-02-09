@@ -16,6 +16,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
     public Gui_CheckBox Check_Offline;
     public Gui_CheckBox Check_SaveLogin;
+    public Gui_CheckBox Check_EnableMods;
 
     public JLabel Label_MainTitle;
     public JLabel Label_UsernameLabel;
@@ -30,12 +31,20 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
     public Gui_Panel mainPanel;
 
+    private static boolean modsCanBeEnabled;
+
     public Gui_MainFrame()
     {
         super();
 
         setTitle("Nick0's Launcher V1");
-        setSize(325, 275 + (Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0));
+
+        int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
+        File ModsFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
+        modsCanBeEnabled = ModsFile.exists() && (ModsFile.list().length > 0);
+        YSizeToAdd += modsCanBeEnabled ? 30 : 0;
+        setSize(325, 285 + YSizeToAdd);
+
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -64,6 +73,12 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         Button_PrefsButton = new Gui_Button("Réglages...");
         Check_Offline = new Gui_CheckBox("Offline mode");
         Check_SaveLogin = new Gui_CheckBox("Sauvegarder MDP");
+
+        if ( modsCanBeEnabled )
+        {
+            Check_EnableMods = new Gui_CheckBox("Activer les mods");
+            Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked);
+        }
         
         if ( Preferences_ConfigLoader.CONFIG_jarSelector )
         {
@@ -153,10 +168,21 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             gbc.anchor = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_Offline, gbc);
         }
+        
+        // CheckBox : Enable Mods
+        if ( modsCanBeEnabled )
+        {
+            gbc.gridx = 0;
+            gbc.gridy = 8;
+            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            mainPanel.add(Check_EnableMods, gbc);
+        }
 
         // Button : Preferences
         gbc.gridx = 0;
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.insets = new Insets(10, 0, 5, 0);
         gbc.anchor = GridBagConstraints.CENTER;
@@ -165,7 +191,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         // Label : Copyright :P
         gbc.gridx = 0;
-        gbc.gridy = 9;
+        gbc.gridy = 10;
         gbc.gridwidth = GridBagConstraints.RELATIVE;
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.anchor = GridBagConstraints.LINE_END;
@@ -174,7 +200,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         // Label : RAM
         gbc.gridx = 1;
-        gbc.gridy = 9;
+        gbc.gridy = 11;
         gbc.gridwidth = GridBagConstraints.RELATIVE;
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.anchor = GridBagConstraints.PAGE_END;
@@ -210,6 +236,9 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             {
                 System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
             }
+
+            System_MinecraftLoader.LoadMods = modsCanBeEnabled ? Check_EnableMods.isSelected() : false;
+            Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
             String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : Field_Password.getText();
             Main_RealLauncher.startLogin(Field_UserName.getText(), temporaryPass);
