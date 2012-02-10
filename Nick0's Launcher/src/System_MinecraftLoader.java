@@ -51,7 +51,7 @@ public class System_MinecraftLoader extends ClassLoader
         
         for ( String actualJar : files ) { URLList.add(new File(path, actualJar).toURI().toURL()); }
         
-        return URLList.toArray(new URL[files.length+1]);
+        return URLList.toArray(new URL[URLList.size()]);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

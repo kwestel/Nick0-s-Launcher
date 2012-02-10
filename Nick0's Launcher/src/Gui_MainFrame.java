@@ -39,11 +39,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         setTitle("Nick0's Launcher V1");
 
-        int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
-        File ModsFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
-        modsCanBeEnabled = ModsFile.exists() && (ModsFile.list().length > 0);
-        YSizeToAdd += modsCanBeEnabled ? 30 : 0;
-        setSize(325, 285 + YSizeToAdd);
+        changeSize();
 
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,7 +196,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
         // Label : RAM
         gbc.gridx = 1;
-        gbc.gridy = 11;
+        gbc.gridy = 10;
         gbc.gridwidth = GridBagConstraints.RELATIVE;
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.anchor = GridBagConstraints.PAGE_END;
@@ -234,10 +230,11 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         {
             if ( Preferences_ConfigLoader.CONFIG_jarSelector )
             {
-                System_MinecraftLoader.jarList[3] = (String)ComboBox_JarSelector.getSelectedItem();
+                String selectedItem = (String)ComboBox_JarSelector.getSelectedItem();
+                System_MinecraftLoader.jarList[3] = ( selectedItem == null ) ? "" : selectedItem;
             }
 
-            System_MinecraftLoader.LoadMods = modsCanBeEnabled ? Check_EnableMods.isSelected() : false;
+            System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();
             Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
             String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : Field_Password.getText();
@@ -301,6 +298,161 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
                 Check_SaveLogin.setSelected(false);
             }
         });
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Interface - Helpers
+
+    public void resetInterface()
+    {
+        changeSize();
+        setContentPane(resetFrameContent());
+        mainPanel.updateUI();
+    }
+
+    private void changeSize()
+    {
+        File ModsFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
+        modsCanBeEnabled = ModsFile.exists() && (ModsFile.list().length > 0);
+
+        int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
+        YSizeToAdd += modsCanBeEnabled ? 30 : 0;
+        setSize(325, 290 + YSizeToAdd);
+    }
+
+    private JPanel resetFrameContent()
+    {
+        mainPanel.removeAll();
+        mainPanel.setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
+        {
+            ComboBox_JarSelector = new Gui_JarSelector();
+            ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
+        }
+        else { ComboBox_JarSelector = null; }
+
+        // Label : Main Title
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridheight = gbc.gridwidth = 1;
+        gbc.insets = new Insets(10, 0, 15, 0);
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        mainPanel.add(Label_MainTitle, gbc);
+
+        // Label : Username
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridheight = gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+        gbc.insets = new Insets(3, 0, 3, 0);
+        mainPanel.add(Label_UsernameLabel, gbc);
+
+        // Field : Username
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(3, 0, 3, 0);
+        mainPanel.add(Field_UserName, gbc);
+
+        // Label : Password
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.gridheight = gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+        gbc.insets = new Insets(3, 0, 3, 0);
+        mainPanel.add(Label_PASSLabel, gbc);
+
+        // Field : Password
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(3, 0, 3, 0);
+        mainPanel.add(Field_Password, gbc);
+
+        // ComboBox : JarSelector
+        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
+        {
+            gbc.gridx = 0;
+            gbc.gridy = 5;
+            gbc.gridwidth = GridBagConstraints.REMAINDER;
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.insets = new Insets(10, 0, 5, 0);
+            mainPanel.add(ComboBox_JarSelector, gbc);
+        }
+
+        // Button : Connect
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.LINE_END;
+        mainPanel.add(Button_ConnectButton, gbc);
+
+        // CheckBox : Save Logins
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        mainPanel.add(Check_SaveLogin, gbc);
+
+        // CheckBox : Offline Mode
+        if ( new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName).exists() )
+        {
+            gbc.gridx = 1;
+            gbc.gridy = 7;
+            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            mainPanel.add(Check_Offline, gbc);
+        }
+
+        // CheckBox : Enable Mods
+        if ( modsCanBeEnabled )
+        {
+            gbc.gridx = 0;
+            gbc.gridy = 8;
+            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            mainPanel.add(Check_EnableMods, gbc);
+        }
+
+        // Button : Preferences
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.insets = new Insets(10, 0, 5, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE;
+        mainPanel.add(Button_PrefsButton, gbc);
+
+        // Label : Copyright :P
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        mainPanel.add(Label_Copyright, gbc);
+
+        // Label : RAM
+        gbc.gridx = 1;
+        gbc.gridy = 10;
+        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.PAGE_END;
+        mainPanel.add(Label_actualRam, gbc);
+
+        return mainPanel;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

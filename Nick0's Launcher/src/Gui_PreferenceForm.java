@@ -252,7 +252,13 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 
     public void formClosing()
     {
+        boolean storedPref_JarSelector = Preferences_ConfigLoader.CONFIG_jarSelector;
+        
         saveNewPreferences();
+        
+        boolean interfaceConfigChanged = ( storedPref_JarSelector != Preferences_ConfigLoader.CONFIG_jarSelector );
+        if ( interfaceConfigChanged ) { Main_RealLauncher.MainFrame.resetInterface(); }
+        
         Main_RealLauncher.MainFrame.setLocationRelativeTo(null);
         Main_RealLauncher.MainFrame.setVisible(true);
     }

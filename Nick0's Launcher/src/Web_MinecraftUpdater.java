@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Enumeration;
@@ -32,14 +33,26 @@ public class Web_MinecraftUpdater
             if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
             {
                 Main_RealLauncher.MainFrame.setVisible(false);
-                new Gui_UpdaterForm(basePath, nativesFile, true);
+                new Gui_UpdaterForm(basePath, nativesFile, true, true);
+            }
+            else if ( checkCorruptedMinecraft() )
+            {
+                int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Votre installation Minecraft est corrompue.\n\nVoulez vous reinstaller Minecraft ?", "Installation corrompue", JOptionPane.YES_NO_OPTION);
+                Main_RealLauncher.MainFrame.setVisible(false);
+
+                if ( userResponse == 0 )
+                {
+                    System_MinecraftLoader.jarList[3] = "minecraft.jar";
+                    new Gui_UpdaterForm(basePath, nativesFile, false, true);
+                }
+                else { Main_RealLauncher.startMinecraft(); }
             }
             else if ( needToUpdate )
             {
                 int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
                 Main_RealLauncher.MainFrame.setVisible(false);
 
-                if ( userResponse == 0 ) { new Gui_UpdaterForm(basePath, nativesFile, true); }
+                if ( userResponse == 0 ) { new Gui_UpdaterForm(basePath, nativesFile, true, false); }
                 else
                 {
                     System_DataStub.MCParameters_Values[7] = loadedConfFile[1];
@@ -51,8 +64,19 @@ public class Web_MinecraftUpdater
         else
         {
             Main_RealLauncher.MainFrame.setVisible(false);
-            new Gui_UpdaterForm(basePath, nativesFile, true);
+            new Gui_UpdaterForm(basePath, nativesFile, true, true);
         }
+    }
+    
+    private static boolean checkCorruptedMinecraft()
+    {
+        for ( String actualJar : System_MinecraftLoader.jarList )
+        {
+            File actualJarFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + ( ( actualJar.equals("") ) ? "minecraft.jar" : actualJar ));
+            if ( !actualJarFile.exists() ) { return true; }
+        }
+
+        return false;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

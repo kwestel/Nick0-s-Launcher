@@ -5,10 +5,11 @@ import java.io.IOException;
 public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
 {
 
-    private JLabel Label_Status;
-    private JProgressBar ProgressBar;
+    public JLabel Label_Status;
+    public JLabel label_MainTitle;
+    public JProgressBar ProgressBar;
     
-    public Gui_UpdaterForm(String destinationPath, String nativesFile, boolean forceDownload)
+    public Gui_UpdaterForm(String destinationPath, String nativesFile, boolean forceDownload, boolean updateAllJars)
     {
         super();
         
@@ -20,7 +21,7 @@ public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
         setContentPane(createFrameContent());
         setVisible(true);
         
-        Thread_UpdateAllJars downloadThread = new Thread_UpdateAllJars(destinationPath, nativesFile, forceDownload, this);
+        Thread_UpdateAllJars downloadThread = updateAllJars ? new Thread_UpdateAllJars(destinationPath, nativesFile, forceDownload, this) : new Thread_UpdateAllJars(destinationPath, this);
         downloadThread.start();
     }
 
@@ -31,7 +32,7 @@ public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
 
         GridBagConstraints gbc = new GridBagConstraints();
 
-        JLabel label_MainTitle = new JLabel("<html><b><u>Mise à jour de Minecraft en cours...</u></b></html>");
+        label_MainTitle = new JLabel("<html><b><u>Mise à jour de Minecraft en cours...</u></b></html>");
         Label_Status = new JLabel("minecraft.jar");
         ProgressBar = new JProgressBar();
 

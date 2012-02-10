@@ -21,6 +21,7 @@
       <w>contacter</w>
       <w>contactez</w>
       <w>cordialement</w>
+      <w>corrompue</w>
       <w>cours</w>
       <w>crypte</w>
       <w>création</w>
@@ -30,6 +31,8 @@
       <w>d'utilisateur</w>
       <w>dernier</w>
       <w>deux</w>
+      <w>dispnonible</w>
+      <w>disponible</w>
       <w>données</w>
       <w>décodage</w>
       <w>décrypté</w>
@@ -46,10 +49,12 @@
       <w>existe</w>
       <w>fait</w>
       <w>fichier</w>
+      <w>fichiers</w>
       <w>fois</w>
       <w>fonction</w>
       <w>fonctionnel</w>
       <w>forcer</w>
+      <w>fullscreen</w>
       <w>grosse</w>
       <w>hashcode</w>
       <w>hôte</w>
@@ -68,12 +73,15 @@
       <w>lors</w>
       <w>lwjgl</w>
       <w>macosx</w>
+      <w>maintenant</w>
       <w>malgré</w>
+      <w>manquants</w>
       <w>mconf</w>
       <w>meilleur</w>
       <w>minecraft</w>
       <w>mise</w>
       <w>mises</w>
+      <w>mppass</w>
       <w>même</w>
       <w>n'est</w>
       <w>nicnl</w>
@@ -82,6 +90,7 @@
       <w>obtenez</w>
       <w>plein</w>
       <w>pmoffscreen</w>
+      <w>prefs</w>
       <w>principale</w>
       <w>produite</w>
       <w>préférences</w>
@@ -114,6 +123,7 @@
       <w>texte</w>
       <w>trololo</w>
       <w>trop</w>
+      <w>téléchager</w>
       <w>téléchargement</w>
       <w>télécharger</w>
       <w>uniquement</w>
@@ -122,6 +132,7 @@
       <w>vide</w>
       <w>vieux</w>
       <w>votre</w>
+      <w>voulez</w>
       <w>vous</w>
       <w>écran</w>
       <w>égaux</w>

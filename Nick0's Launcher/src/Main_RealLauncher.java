@@ -77,7 +77,6 @@ public class Main_RealLauncher
     {
         if ( MainFrame.Field_UserName.getText().equals("") ) { return; }
         else if ( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) { return; }
-        else if ( MainFrame.Field_Password.getText().equals("") && !PasswordNotDisplayed ) { return; }
 
         if ( !MainFrame.Check_Offline.isSelected() )
         {

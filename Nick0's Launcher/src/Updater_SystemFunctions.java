@@ -17,16 +17,33 @@ public class Updater_SystemFunctions
     public static void updateAllJars(String destinationPath, String nativesFile, boolean forceDownload, Gui_UpdaterForm formToUpdate) throws IOException
     {
         formToUpdate.updateStatus(0, "Démarrage...");
+
         for ( String actualFile : System_MinecraftLoader.jarList )
         {
             formToUpdate.updateStatus(0, actualFile);
+
             File verification = new File(destinationPath + File.separator + "bin" + File.separator + actualFile);
             if ( verification.exists() && !forceDownload ) { continue; }
+
             byte[] temp_data = downloadSingleJar(actualFile, formToUpdate);
             writeByteArrayToFile(temp_data, destinationPath + File.separator + "bin" + File.separator + actualFile);
         }
         formToUpdate.updateStatus(0, nativesFile);
+
         updateNatives(destinationPath, nativesFile, formToUpdate);
+
+        formToUpdate.downloadFinished();
+    }
+
+    public static void updateMinecraftJar(String destinationPath, Gui_UpdaterForm formToUpdate) throws IOException
+    {
+        String actualFile = "minecraft.jar";
+
+        formToUpdate.updateStatus(0, actualFile);
+
+        byte[] temp_data = downloadSingleJar(actualFile, formToUpdate);
+        writeByteArrayToFile(temp_data, destinationPath + File.separator + "bin" + File.separator + actualFile);
+
         formToUpdate.downloadFinished();
     }
 
