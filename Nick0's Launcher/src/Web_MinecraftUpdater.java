@@ -70,6 +70,8 @@ public class Web_MinecraftUpdater
     
     private static boolean checkCorruptedMinecraft()
     {
+        // Verifier si un jar est inexistant
+
         for ( String actualJar : System_MinecraftLoader.jarList )
         {
             File actualJarFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + ( ( actualJar.equals("") ) ? "minecraft.jar" : actualJar ));

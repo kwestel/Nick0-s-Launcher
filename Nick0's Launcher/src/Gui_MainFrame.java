@@ -423,6 +423,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             gbc.gridwidth = GridBagConstraints.RELATIVE;
             gbc.insets = new Insets(0, 0, 0, 0);
             gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            gbc.fill = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_EnableMods, gbc);
         }
 

@@ -12,6 +12,12 @@ public class System_ErrorHandler
         if ( fatalError ) { System.exit(0); }
     }
     
+    public static void handleExceptionWithText(Exception e, String text, boolean fatalError, boolean reportBug)
+    {
+        e.printStackTrace();
+        handleError(text, fatalError, reportBug);
+    }
+    
     public static void handleError(String text, boolean fatalError, boolean reportBug)
     {
         openErrorWindow(text, reportBug);

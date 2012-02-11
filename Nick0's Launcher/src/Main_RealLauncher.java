@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.net.URLClassLoader;
 
 public class Main_RealLauncher
 {
@@ -119,7 +122,7 @@ public class Main_RealLauncher
         MainFrame = MainFrame.closeWindow(); // Le return est null = vide la variable MainFrame
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(homeDir + File.separator + "bin"); }
-        catch ( SecurityException e ) { System_ErrorHandler.handleError("Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
+        catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
 
         System_GameFrame baseFrame = new System_GameFrame(System_DataStub.MCParameters_Values[0]);
@@ -135,9 +138,13 @@ public class Main_RealLauncher
         minecraftInstance.setSize(baseFrame.getSize());
 
         // Démarrage de Minecraft
-        minecraftInstance.init();
-        minecraftInstance.start();
-        minecraftInstance.validate();
+        try
+        {
+            minecraftInstance.init();
+            minecraftInstance.start();
+            minecraftInstance.validate();
+        }
+        catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

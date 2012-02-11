@@ -7,6 +7,8 @@ import java.text.ParseException;
 
 public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Default Vars
 
     public static Gui_Panel mainPanel;
     
@@ -26,8 +28,10 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
     public Gui_CheckBox CheckBox_SaveLastJar;
     
     public JSpinner Field_RAMEntry;
-
     public JFileChooser FileChooser;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constructor
 
     public Gui_PreferenceForm()
     {
@@ -42,6 +46,9 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         setContentPane(createFrameContent());
         addActionsListeners();
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Frame Creation
 
     private JPanel createFrameContent()
     {
@@ -201,7 +208,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         return mainPanel;
     }
 
-    public void addActionsListeners()
+    private void addActionsListeners()
     {
         ActionListener listenerMcReinstall = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
@@ -250,27 +257,45 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         addWindowListener(formListener);
     }
 
-    public void formClosing()
+    private void formClosing()
     {
         boolean storedPref_JarSelector = Preferences_ConfigLoader.CONFIG_jarSelector;
+        boolean storedPref_RamBool = Preferences_ConfigLoader.CONFIG_ramSelector;
+        int storedPref_RamInt = Preferences_ConfigLoader.CONFIG_selectedRam;
         
         saveNewPreferences();
-        
-        boolean interfaceConfigChanged = ( storedPref_JarSelector != Preferences_ConfigLoader.CONFIG_jarSelector );
-        if ( interfaceConfigChanged ) { Main_RealLauncher.MainFrame.resetInterface(); }
-        
+
+        if ( storedPref_JarSelector != Preferences_ConfigLoader.CONFIG_jarSelector ) { Main_RealLauncher.MainFrame.resetInterface(); }
+
+        if ( ( storedPref_RamInt != Preferences_ConfigLoader.CONFIG_selectedRam ) || ( storedPref_RamBool != Preferences_ConfigLoader.CONFIG_ramSelector ) )
+        {
+            // Demande de reboot ( ram changed )
+            String tempText = "Vous avez changé la ram allouée.\n" +
+            "Afin d'appliquer ces réglages, vous devez relancer le launcher.\n\n" +
+            "Voulez vous le relancer maintenant ?";
+            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), tempText, "Redémarrage requis", JOptionPane.YES_NO_OPTION);
+
+            if ( userResponse == 0 )
+            {
+                if ( Preferences_ConfigLoader.CONFIG_ramSelector ) { Main_ReLauncher.main(null); }
+                else { Main_ReLauncher.loadLauncher(true); }
+                System.exit(0);
+                return;
+            }
+        }
+
         Main_RealLauncher.MainFrame.setLocationRelativeTo(null);
         Main_RealLauncher.MainFrame.setVisible(true);
     }
 
-    public void saveNewPreferences()
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Sauvegarde Des Preferences
+
+    private void saveNewPreferences()
     {
         Preferences_ConfigLoader.CONFIG_updatesDisabled = CheckBox_DisableUpdate.isSelected();
-        
         Preferences_ConfigLoader.CONFIG_jarSelector = CheckBox_EnableJarSelector.isSelected();
-        
         Preferences_ConfigLoader.CONFIG_ramSelector = CheckBox_RAMSelector.isSelected();
-
         Preferences_ConfigLoader.CONFIG_SaveLastJar = CheckBox_SaveLastJar.isSelected();
 
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
@@ -286,7 +311,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Static Functions
 
-    public static Gui_PreferenceForm preferenceForm = null;
+    private static Gui_PreferenceForm preferenceForm = null;
     
     public static Gui_PreferenceForm newForm(boolean visible)
     {
