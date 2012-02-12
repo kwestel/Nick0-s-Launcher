@@ -11,11 +11,12 @@ public class Main_RealLauncher
 
     public static Gui_MainFrame MainFrame = null;
     public static Applet minecraftInstance = null;
-    public static String officialAddress = "nicnl25@gmail.com";
 
     public static String configFileDir = System_UserHomeDefiner.returnConfigDirectory();
     public static String homeDir = configFileDir;
-    public static String configFileName = File.separator + "Nick0's_Launcher.mconf";
+
+    public static String officialAddress = "nicnl25@gmail.com";
+    private static String configFileName = "Nick0's_Launcher.mconf";
 
     public static boolean PasswordNotDisplayed = false;
     private static String StoredPassword;
@@ -26,7 +27,7 @@ public class Main_RealLauncher
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
         
-        File modsFolder = new File(homeDir + File.separator + "bin" + File.separator + "mods");
+        File modsFolder = new File(getModsDirPath());
         if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
@@ -55,14 +56,8 @@ public class Main_RealLauncher
                 String decodedPassword = Encrypter_StringEncrypter.decodeString(loadedTextFile[2]);
                 int recodedHashCode = Encrypter_StringEncrypter.encodeString(decodedPassword).hashCode();
 
-                // Si pas d'erreur de décodage :
-                // le hashcode du mdp encrypté ET celui décrypté PUIS rencrypté sont égaux
-
                 if ( recodedHashCode == Integer.parseInt(loadedTextFile[3]) )
                 {
-                    // Systeme de protection V2 :
-                    // Le MDP n'est plus foutu en clair dans le JPasswordField
-
                     PasswordNotDisplayed = true;
                     StoredPassword = decodedPassword;
 
@@ -80,8 +75,7 @@ public class Main_RealLauncher
     public static void startLogin(String username, String password)
     {
         if ( MainFrame.Field_UserName.getText().equals("") ) { return; }
-        else if ( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) { System.out.println("test : 1"); return; }
-        //else if ( MainFrame.Field_Password.getText().equals("") && !Preferences_ConfigLoader.MinecraftReinstallForcer ) { System.out.println("test : 2"); return; }
+        else if ( ( new String(MainFrame.Field_Password.getPassword()) ).equals("") && !MainFrame.Check_Offline.isSelected() ) { return; }
 
         if ( !MainFrame.Check_Offline.isSelected() )
         {
@@ -94,7 +88,7 @@ public class Main_RealLauncher
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // GetVariables
     
-    public static String getHomeDir()
+    private static String getHomeDir()
     {
         String[] loadedPreferences = System_ConfigFileWriter.loadConfigFile();
         return loadedPreferences[7].split("=").length == 2 ? loadedPreferences[7].split("=")[1] : Main_RealLauncher.configFileDir;
@@ -106,6 +100,11 @@ public class Main_RealLauncher
         StoredPassword = null;
         return tempPass;
     }
+    
+    public static String getConfigFilePath() { return configFileDir + File.separator + configFileName; }
+    public static String getBinDirPath() { return homeDir + File.separator + "bin"; }
+    public static String getNativesDirPath() { return getBinDirPath() + File.separator + "natives"; }
+    public static String getModsDirPath() { return getBinDirPath() + File.separator + "mods"; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // System functions - DO NOT USE
@@ -124,7 +123,7 @@ public class Main_RealLauncher
 
         MainFrame = MainFrame.closeWindow(); // Le return est null = vide la variable MainFrame
 
-        try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(homeDir + File.separator + "bin"); }
+        try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
         catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
 

@@ -16,13 +16,13 @@ public class Web_MinecraftUpdater
         Updater_FileVerifications();
         
         if ( loadedConfFile != null ) { Updater_ConfigFileExists(loadedConfFile); }
-        else { Updater_NoInstallation(); }
+        else { Updater_NoInstallation(false); }
     }
     
     public static void mainOfflineUpdater()
     {
         Updater_FileVerifications();
-        
+
         if ( Preferences_ConfigLoader.MinecraftReinstallForcer ) { OfflineUpdater_ReinstallForced(); }
         else { Main_RealLauncher.startMinecraft(); }
     }
@@ -38,7 +38,7 @@ public class Web_MinecraftUpdater
 
         if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
         {
-            Updater_NoInstallation();
+            Updater_NoInstallation(Preferences_ConfigLoader.MinecraftReinstallForcer);
         }
         else if ( checkCorruptedMinecraft() )
         {
@@ -67,10 +67,10 @@ public class Web_MinecraftUpdater
         else { Main_RealLauncher.startMinecraft(); }
     }
     
-    private static void Updater_NoInstallation()
+    private static void Updater_NoInstallation(boolean forceUpdate)
     {
         Main_RealLauncher.MainFrame.setVisible(false);
-        new Gui_UpdaterForm(false, true);
+        new Gui_UpdaterForm(forceUpdate, true);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,7 @@ public class Web_MinecraftUpdater
 
         for ( String actualJar : System_MinecraftLoader.jarList )
         {
-            File actualJarFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + ( ( actualJar.equals("") ) ? "minecraft.jar" : actualJar ));
+            File actualJarFile = new File(Main_RealLauncher.getBinDirPath() + File.separator + ( ( actualJar.equals("") ) ? "minecraft.jar" : actualJar ));
             if ( !actualJarFile.exists() ) { return true; }
         }
 
@@ -117,7 +117,7 @@ public class Web_MinecraftUpdater
         File basicMC_DIR_GAME = new File(Main_RealLauncher.homeDir);
         if ( !basicMC_DIR_GAME.exists() ) { basicMC_DIR_GAME.mkdir(); }
         
-        File basicBIN_DIR = new File(Main_RealLauncher.homeDir + File.separator + "bin");
+        File basicBIN_DIR = new File(Main_RealLauncher.getBinDirPath());
         if ( !basicBIN_DIR.exists() ) { basicBIN_DIR.mkdir(); }
     }
 

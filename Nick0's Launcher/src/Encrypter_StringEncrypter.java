@@ -17,16 +17,14 @@ public class Encrypter_StringEncrypter
     
     public static String encodeString(String originalString)
     {
-        Cipher cipherInstance = null;
-        byte[] encryptedBytes = null;
         String finishedFile = null;
 
         try
         {
-            cipherInstance = Cipher.getInstance("RC4");
+            Cipher cipherInstance = Cipher.getInstance("RC4");
             cipherInstance.init(Cipher.ENCRYPT_MODE, secretKey);
 
-            encryptedBytes = cipherInstance.doFinal(originalString.getBytes());
+            byte[] encryptedBytes = cipherInstance.doFinal(originalString.getBytes());
 
             finishedFile = "";
             for ( byte actualByte : encryptedBytes ) { finishedFile += actualByte + " "; }
@@ -39,12 +37,11 @@ public class Encrypter_StringEncrypter
 
     public static String decodeString(String encodedString)
     {
-        Cipher cipher = null;
         byte[] decodedBytes = null;
 
         try
         {
-            cipher = Cipher.getInstance("RC4");
+            Cipher cipher = Cipher.getInstance("RC4");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
 
             ByteArrayOutputStream BAOS = new ByteArrayOutputStream();

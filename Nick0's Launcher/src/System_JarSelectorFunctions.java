@@ -8,13 +8,13 @@ public class System_JarSelectorFunctions
     
     public static String[] getJarList()
     {
-        File jarDir = new File(Main_RealLauncher.homeDir + File.separator + "bin");
+        File jarDir = new File(Main_RealLauncher.getBinDirPath());
         ArrayList<String> arrayFiles = new ArrayList<String>();
         
         String[] jarFileList = jarDir.list();
         for ( String actualFile : jarFileList )
         {
-            if ( isNotForbidden(actualFile) && actualFile.contains(".jar") ) { arrayFiles.add(actualFile); }
+            if ( isNotForbidden(actualFile) && actualFile.toLowerCase().trim().endsWith(".jar") ) { arrayFiles.add(actualFile); }
         }
         
         return arrayFiles.toArray(new String[arrayFiles.size()]);

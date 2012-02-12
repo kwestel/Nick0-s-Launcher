@@ -10,7 +10,7 @@ public class Main_ReLauncher
         float allocatedMemory = Runtime.getRuntime().maxMemory() / 1024L / 1024L;
         
         int memoryToApply;
-        File configFile = new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
+        File configFile = new File(Main_RealLauncher.getConfigFilePath());
         String[] loadedConfigFile;
         if ( configFile.exists()  )
         {

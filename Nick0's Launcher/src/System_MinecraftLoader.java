@@ -34,7 +34,7 @@ public class System_MinecraftLoader extends ClassLoader
         System.setProperty("net.java.games.input.librarypath", jarPath + "natives");
     }
 
-    public static Applet LoadMinecraft(String path) throws Exception
+    public static Applet LoadMinecraft(String path) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         updateClassPath(path);
         Class loadedAppletClass = MC_ClassLoader.loadClass("net.minecraft.client.MinecraftApplet");
@@ -45,7 +45,7 @@ public class System_MinecraftLoader extends ClassLoader
     {
         ArrayList<URL> URLList = new ArrayList<URL>();
         
-        File modsFolder = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
+        File modsFolder = new File(Main_RealLauncher.getModsDirPath());
         if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
         if ( LoadMods ) { URLList.add(modsFolder.toURI().toURL()); }
         

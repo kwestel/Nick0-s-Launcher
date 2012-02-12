@@ -156,7 +156,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         mainPanel.add(Check_SaveLogin, gbc);
 
         // CheckBox : Offline Mode
-        if ( new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName).exists() )
+        if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
         {
             gbc.gridx = 1;
             gbc.gridy = 7;
@@ -238,7 +238,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();
             Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
-            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : Field_Password.getText();
+            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : ( new String(Field_Password.getPassword()) );
             Main_RealLauncher.startLogin(Field_UserName.getText(), temporaryPass);
         } };
         Field_Password.addActionListener(loginListener);
@@ -275,7 +275,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
     private void verifyButtons()
     {
-        if ( ( Field_Password.getText().equals("") && !Check_Offline.isSelected() ) || Field_UserName.getText().equals("") ) { Button_ConnectButton.setEnabled(false); }
+        if ( ( ( new String(Field_Password.getPassword()) ).equals("") && !Check_Offline.isSelected() ) || Field_UserName.getText().equals("") ) { Button_ConnectButton.setEnabled(false); }
         else { Button_ConnectButton.setEnabled(true); }
     }
 
@@ -313,8 +313,8 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
 
     private void changeSize()
     {
-        File ModsFile = new File(Main_RealLauncher.homeDir + File.separator + "bin" + File.separator + "mods");
-        modsCanBeEnabled = ModsFile.exists() && (ModsFile.list().length > 0);
+        File ModsFolder = new File(Main_RealLauncher.getModsDirPath());
+        modsCanBeEnabled = ModsFolder.exists() && (ModsFolder.list().length > 0);
 
         int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
         YSizeToAdd += modsCanBeEnabled ? 30 : 0;
@@ -406,7 +406,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         mainPanel.add(Check_SaveLogin, gbc);
 
         // CheckBox : Offline Mode
-        if ( new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName).exists() )
+        if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
         {
             gbc.gridx = 1;
             gbc.gridy = 7;

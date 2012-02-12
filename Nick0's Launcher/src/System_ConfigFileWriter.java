@@ -46,7 +46,7 @@ public class System_ConfigFileWriter
         /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
         /* ModButt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
 
-        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
+        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
     }
 
@@ -66,7 +66,7 @@ public class System_ConfigFileWriter
         /* JarSaved */ addLine("LastJarSaved=");
         /* ModButt */ addLine("ModsButtonChecked=FALSE");
 
-        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
+        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
         
         return dataCache.toArray(new String[dataCache.size()]);
@@ -90,18 +90,14 @@ public class System_ConfigFileWriter
         /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
         /* ModButt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
 
-        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName); }
+        try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
     }
     
     public static String[] loadConfigFile()
     {
         String[] loadedFile;
-        try
-        {
-            //File NicnlConfigFile = new File(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
-            loadedFile = System_ConfigFileWriter.loadFile(Main_RealLauncher.configFileDir + Main_RealLauncher.configFileName);
-        }
+        try { loadedFile = System_ConfigFileWriter.loadFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e )
         {
             loadedFile = writeEmptyFile();
