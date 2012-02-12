@@ -5,10 +5,6 @@ import java.net.URL;
 
 public class System_DataStub extends Applet implements AppletStub
 {
-    
-    public static String[] MCParameters_Index = new String[] { "username", "sessionid", "fullscreen", "mppass", "server", "port", "stand-alone", "latestVersion", "downloadTicket" };
-    public static String[] MCParameters_Values = new String[MCParameters_Index.length];
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Applet's Stub Functions - Used by Minecraft.jar
     
@@ -25,14 +21,18 @@ public class System_DataStub extends Applet implements AppletStub
     public void appletResize(int width, int height) { }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Static Function - Array
+    // Static Function - Data Arrays
+
+    private static String[] MCParameters_Index = new String[]
+    { "username", "sessionid", "fullscreen", "mppass", "server", "port", "stand-alone", "latestVersion", "downloadTicket", "loadmap_id", "loadmap_user" };
+    private static String[] MCParameters_Values = new String[MCParameters_Index.length];
     
     private static int getIndexValue(String index)
     {
         int value = -1;
         for(int i=0;i<MCParameters_Index.length;i++)
         {
-            if ( MCParameters_Index[i].equals(index) )
+            if ( MCParameters_Index[i].toLowerCase().equals(index.toLowerCase()) )
             {
                 value = i;
                 break;

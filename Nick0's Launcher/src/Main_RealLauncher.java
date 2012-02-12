@@ -33,6 +33,7 @@ public class Main_RealLauncher
 
         // Définition des variables systèmes importantes
         homeDir = getHomeDir();
+        System_DataStub.setParameter("latestVersion","0");
         Preferences_ConfigLoader.SYSTEM_LoadPreferences();
 
         // Création de la frame principale
@@ -79,7 +80,8 @@ public class Main_RealLauncher
     public static void startLogin(String username, String password)
     {
         if ( MainFrame.Field_UserName.getText().equals("") ) { return; }
-        else if ( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) { return; }
+        else if ( MainFrame.Field_Password.getText().equals("") && !MainFrame.Check_Offline.isSelected() ) { System.out.println("test : 1"); return; }
+        //else if ( MainFrame.Field_Password.getText().equals("") && !Preferences_ConfigLoader.MinecraftReinstallForcer ) { System.out.println("test : 2"); return; }
 
         if ( !MainFrame.Check_Offline.isSelected() )
         {
@@ -110,12 +112,13 @@ public class Main_RealLauncher
 
     public static void startMinecraft()
     {
-        if ( !MainFrame.Check_Offline.isSelected() )
-        {
-            String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? (String)MainFrame.ComboBox_JarSelector.getSelectedItem() : null;
-            Preferences_ConfigLoader.CONFIG_LastJarSaved = (TempSelectedItem == null) ? "" : TempSelectedItem;
-            System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword());
-        }
+        String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? (String)MainFrame.ComboBox_JarSelector.getSelectedItem() : null;
+        Preferences_ConfigLoader.CONFIG_LastJarSaved = (TempSelectedItem == null) ? "" : TempSelectedItem;
+
+        String passwordToWrite = "";
+        if ( !MainFrame.Check_Offline.isSelected() ) { passwordToWrite = Encrypter_StringEncrypter.getLastPassword(); }
+        
+        System_ConfigFileWriter.writeConfigFile(passwordToWrite);
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
 
@@ -125,7 +128,7 @@ public class Main_RealLauncher
         catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
 
-        System_GameFrame baseFrame = new System_GameFrame(System_DataStub.MCParameters_Values[0]);
+        System_GameFrame baseFrame = new System_GameFrame(System_DataStub.static_getParameter("username"));
         baseFrame.add(minecraftInstance);
 
         baseFrame.setVisible(true);

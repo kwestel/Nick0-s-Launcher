@@ -14,8 +14,10 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download Main Functions
 
-    public static void updateAllJars(String destinationPath, String nativesFile, boolean forceDownload, Gui_UpdaterForm formToUpdate) throws IOException
+    public static void updateAllJars(boolean forceDownload, Gui_UpdaterForm formToUpdate) throws IOException
     {
+        String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
+        String destinationPath = Main_RealLauncher.homeDir;
         formToUpdate.updateStatus(0, "Démarrage...");
 
         for ( String actualFile : System_MinecraftLoader.jarList )
@@ -35,8 +37,9 @@ public class Updater_SystemFunctions
         formToUpdate.downloadFinished();
     }
 
-    public static void updateMinecraftJar(String destinationPath, Gui_UpdaterForm formToUpdate) throws IOException
+    public static void updateMinecraftJar(Gui_UpdaterForm formToUpdate) throws IOException
     {
+        String destinationPath = Main_RealLauncher.homeDir;
         String actualFile = "minecraft.jar";
 
         formToUpdate.updateStatus(0, actualFile);

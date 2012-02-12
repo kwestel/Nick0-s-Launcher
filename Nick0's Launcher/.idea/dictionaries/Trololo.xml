@@ -7,6 +7,8 @@
       <w>afin</w>
       <w>allouée</w>
       <w>apparaitre</w>
+      <w>applet's</w>
+      <w>aucun</w>
       <w>avancées</w>
       <w>avec</w>
       <w>avez</w>
@@ -19,9 +21,12 @@
       <w>cette</w>
       <w>changé</w>
       <w>chargement</w>
+      <w>complète</w>
+      <w>conf</w>
       <w>connecter</w>
       <w>contacter</w>
       <w>contactez</w>
+      <w>continuer</w>
       <w>cordialement</w>
       <w>corrompue</w>
       <w>cours</w>
@@ -35,15 +40,18 @@
       <w>demande</w>
       <w>dernier</w>
       <w>deux</w>
+      <w>devenir</w>
       <w>devez</w>
       <w>dispnonible</w>
       <w>disponible</w>
       <w>données</w>
       <w>dsun</w>
+      <w>dysfonctionner</w>
       <w>décodage</w>
       <w>décrypté</w>
       <w>définition</w>
       <w>démarrage</w>
+      <w>démarrer</w>
       <w>déplacer</w>
       <w>désactiver</w>
       <w>désagrément</w>
@@ -68,6 +76,7 @@
       <w>inattendue</w>
       <w>inconnue</w>
       <w>inexistant</w>
+      <w>instable</w>
       <w>installé</w>
       <w>introuvable</w>
       <w>invalide</w>
@@ -77,6 +86,7 @@
       <w>l'interface</w>
       <w>l'os</w>
       <w>librarypath</w>
+      <w>loadmap</w>
       <w>lors</w>
       <w>lwjgl</w>
       <w>macosx</w>
@@ -94,12 +104,14 @@
       <w>nicnl</w>
       <w>noddraw</w>
       <w>nouveau</w>
+      <w>nécéssaire</w>
       <w>obtenez</w>
       <w>opengl</w>
       <w>plein</w>
       <w>pmoffscreen</w>
       <w>prefs</w>
       <w>principale</w>
+      <w>problème</w>
       <w>produite</w>
       <w>préférences</w>
       <w>puis</w>
@@ -116,8 +128,12 @@
       <w>renseigner</w>
       <w>requis</w>
       <w>restaurer</w>
+      <w>risquent</w>
+      <w>risquée</w>
       <w>réglages</w>
+      <w>réinstallation</w>
       <w>réinstaller</w>
+      <w>réparer</w>
       <w>s'est</w>
       <w>sauvegarde</w>
       <w>sauvegarder</w>
@@ -132,6 +148,7 @@
       <w>supprimer</w>
       <w>survenue</w>
       <w>systeme</w>
+      <w>système</w>
       <w>systèmes</w>
       <w>texte</w>
       <w>trololo</w>

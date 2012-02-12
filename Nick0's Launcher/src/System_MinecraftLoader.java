@@ -23,7 +23,7 @@ public class System_MinecraftLoader extends ClassLoader
     public static String[] jarList = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
     public static boolean LoadMods = false;
     
-    public static void updateClassPath(String jarPath) throws Exception
+    public static void updateClassPath(String jarPath) throws MalformedURLException
     {
         URL[] urlList = transformPathFileToUrl(jarPath, jarList);
         MC_ClassLoader = new URLClassLoader(urlList);

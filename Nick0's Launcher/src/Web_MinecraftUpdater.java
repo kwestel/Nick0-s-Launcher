@@ -11,64 +11,92 @@ import java.util.jar.JarFile;
 public class Web_MinecraftUpdater
 {
     
-    public static void mainMinecraftUpdater(String basePath, String[] loadedConfFile)
+    public static void mainMinecraftUpdater(String[] loadedConfFile)
     {
-        String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
-
-        File basicMC_DIR_SysFile = new File(Main_RealLauncher.configFileDir);
-        if ( !basicMC_DIR_SysFile.exists() ) { basicMC_DIR_SysFile.mkdir(); }
-
-        File basicMC_DIR_GAME = new File(basePath);
-        if ( !basicMC_DIR_GAME.exists() ) { basicMC_DIR_GAME.mkdir(); }
+        Updater_FileVerifications();
         
-        File basicBIN_DIR = new File(basePath + File.separator + "bin");
-        if ( !basicBIN_DIR.exists() ) { basicBIN_DIR.mkdir(); }
+        if ( loadedConfFile != null ) { Updater_ConfigFileExists(loadedConfFile); }
+        else { Updater_NoInstallation(); }
+    }
+    
+    public static void mainOfflineUpdater()
+    {
+        Updater_FileVerifications();
         
-        if ( loadedConfFile != null )
+        if ( Preferences_ConfigLoader.MinecraftReinstallForcer ) { OfflineUpdater_ReinstallForced(); }
+        else { Main_RealLauncher.startMinecraft(); }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Updates Functions
+    
+    private static void Updater_ConfigFileExists(String[] loadedConfFile)
+    {
+        boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.static_getParameter("latestVersion")) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
+
+        System.out.println("Nick0's Launcher - Updater - " + ( needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour." ));
+
+        if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
         {
-            boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.MCParameters_Values[7]) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
+            Updater_NoInstallation();
+        }
+        else if ( checkCorruptedMinecraft() )
+        {
+            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Votre installation Minecraft est corrompue.\nVotre jeu risque de ne pas démarrer.\n\nVoulez vous réparer Minecraft ?", "Installation corrompue", JOptionPane.YES_NO_OPTION);
+            Main_RealLauncher.MainFrame.setVisible(false);
 
-            System.out.println("Nick0's Launcher - Updater - " + ( needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour." ));
-
-            if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
+            if ( userResponse == 0 )
             {
-                Main_RealLauncher.MainFrame.setVisible(false);
-                new Gui_UpdaterForm(basePath, nativesFile, true, true);
-            }
-            else if ( checkCorruptedMinecraft() )
-            {
-                int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Votre installation Minecraft est corrompue.\n\nVoulez vous reinstaller Minecraft ?", "Installation corrompue", JOptionPane.YES_NO_OPTION);
-                Main_RealLauncher.MainFrame.setVisible(false);
-
-                if ( userResponse == 0 )
-                {
-                    System_MinecraftLoader.jarList[3] = "minecraft.jar";
-                    new Gui_UpdaterForm(basePath, nativesFile, false, true);
-                }
-                else { Main_RealLauncher.startMinecraft(); }
-            }
-            else if ( needToUpdate )
-            {
-                int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
-                Main_RealLauncher.MainFrame.setVisible(false);
-
-                if ( userResponse == 0 ) { new Gui_UpdaterForm(basePath, nativesFile, true, false); }
-                else
-                {
-                    System_DataStub.MCParameters_Values[7] = loadedConfFile[1];
-                    Main_RealLauncher.startMinecraft();
-                }
+                System_MinecraftLoader.jarList[3] = "minecraft.jar";
+                new Gui_UpdaterForm(false, true);
             }
             else { Main_RealLauncher.startMinecraft(); }
         }
-        else
+        else if ( needToUpdate )
         {
+            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
             Main_RealLauncher.MainFrame.setVisible(false);
-            new Gui_UpdaterForm(basePath, nativesFile, true, true);
+
+            if ( userResponse == 0 ) { new Gui_UpdaterForm(true, false); }
+            else
+            {
+                System_DataStub.setParameter("latestVersion",loadedConfFile[1]);
+                Main_RealLauncher.startMinecraft();
+            }
         }
+        else { Main_RealLauncher.startMinecraft(); }
     }
     
-    private static boolean checkCorruptedMinecraft()
+    private static void Updater_NoInstallation()
+    {
+        Main_RealLauncher.MainFrame.setVisible(false);
+        new Gui_UpdaterForm(false, true);
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Offline Updater Function
+    
+    private static void OfflineUpdater_ReinstallForced()
+    {
+        String MSGText = "Vous voulez forcer une mise à jour du jeu,\n" +
+        "et ce sans vous connecter à Minecraft.net\n\n" +
+        "Aucun support technique ne sera disponible,\n" +
+        "car le launcher risque de devenir instable.\n\n" +
+        "Voulez-vous continuer ?";
+        int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), MSGText, "Mise à jour risquée", JOptionPane.YES_NO_OPTION);
+
+        if ( userResponse == 0 )
+        {
+            Main_RealLauncher.MainFrame.setVisible(false);
+            new Gui_UpdaterForm(false, true);
+        }
+        else { return; }
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // System Function
+    
+    public static boolean checkCorruptedMinecraft()
     {
         // Verifier si un jar est inexistant
 
@@ -79,6 +107,18 @@ public class Web_MinecraftUpdater
         }
 
         return false;
+    }
+    
+    private static void Updater_FileVerifications()
+    {
+        File basicMC_DIR_SysFile = new File(Main_RealLauncher.configFileDir);
+        if ( !basicMC_DIR_SysFile.exists() ) { basicMC_DIR_SysFile.mkdir(); }
+
+        File basicMC_DIR_GAME = new File(Main_RealLauncher.homeDir);
+        if ( !basicMC_DIR_GAME.exists() ) { basicMC_DIR_GAME.mkdir(); }
+        
+        File basicBIN_DIR = new File(Main_RealLauncher.homeDir + File.separator + "bin");
+        if ( !basicBIN_DIR.exists() ) { basicBIN_DIR.mkdir(); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

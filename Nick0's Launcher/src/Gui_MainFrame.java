@@ -82,6 +82,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
         }
 
+        Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
         Button_ConnectButton.setEnabled(false);
 
         // Label : Main Title
@@ -457,7 +458,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // SUPRA-Close Function
+    // SUPRA-Close/Open Function
     
     public Gui_MainFrame closeWindow()
     {
@@ -469,6 +470,15 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         }
         catch ( Throwable throwable ) { throwable.printStackTrace(); }
         return null;
+    }
+    
+    public void setVisible(boolean option)
+    {
+        if ( option )
+        {
+            Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
+        }
+        super.setVisible(option);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

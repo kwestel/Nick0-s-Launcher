@@ -9,7 +9,7 @@ public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
     public JLabel label_MainTitle;
     public JProgressBar ProgressBar;
     
-    public Gui_UpdaterForm(String destinationPath, String nativesFile, boolean forceDownload, boolean updateAllJars)
+    public Gui_UpdaterForm(boolean forceDownload, boolean updateAllJars)
     {
         super();
         
@@ -21,7 +21,7 @@ public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
         setContentPane(createFrameContent());
         setVisible(true);
         
-        Thread_UpdateAllJars downloadThread = updateAllJars ? new Thread_UpdateAllJars(destinationPath, nativesFile, forceDownload, this) : new Thread_UpdateAllJars(destinationPath, this);
+        Thread_UpdateAllJars downloadThread = updateAllJars ? ( new Thread_UpdateAllJars(forceDownload, this) ) : ( new Thread_UpdateAllJars(this) );
         downloadThread.start();
     }
 

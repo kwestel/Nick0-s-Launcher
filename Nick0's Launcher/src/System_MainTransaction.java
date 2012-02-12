@@ -32,7 +32,7 @@ public class System_MainTransaction
 
         Encrypter_StringEncrypter.encodeAndSavePassword(password);
 
-        Web_MinecraftUpdater.mainMinecraftUpdater(Main_RealLauncher.homeDir, loadedTextFile); // Grosse fonction de mise a jour du jeu
+        Web_MinecraftUpdater.mainMinecraftUpdater(loadedTextFile);
     }
     
     public static void Main_OfflineLogin(String username)
@@ -40,7 +40,7 @@ public class System_MainTransaction
         System_DataStub.setParameter("username", username);
         System_DataStub.setParameter("sessionid", "0");
 
-        Main_RealLauncher.startMinecraft();
+        Web_MinecraftUpdater.mainOfflineUpdater();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
