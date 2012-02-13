@@ -90,12 +90,20 @@ public class Web_MinecraftUpdater
     
     public static boolean checkCorruptedMinecraft()
     {
-        // Verifier si un jar est inexistant
-
         for ( String actualJar : System_MinecraftLoader.jarList )
         {
-            File actualJarFile = new File(Main_RealLauncher.getBinDirPath() + File.separator + ( ( actualJar.equals("") ) ? "minecraft.jar" : actualJar ));
-            if ( !actualJarFile.exists() ) { return true; }
+            actualJar = ( actualJar.equals("") ) ? "minecraft.jar" : actualJar;
+            
+            if ( Preferences_ConfigLoader.CONFIG_jarSelector && actualJar.equals("minecraft.jar") )
+            {
+                String[] jarList = System_JarSelectorFunctions.getJarList();
+
+                if ( jarList.length > 0 ) { actualJar = jarList[0]; }
+                else { return true; }
+            }
+
+            File actualJarFile = new File(Main_RealLauncher.getBinDirPath() + File.separator + actualJar);
+            if ( !(actualJarFile.exists() && actualJarFile.isFile()) ) { return true; }
         }
 
         return false;

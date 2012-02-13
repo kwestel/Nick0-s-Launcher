@@ -104,21 +104,18 @@ public class Main_RealLauncher
 
     public static void startMinecraft()
     {
-        String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? (String)MainFrame.ComboBox_JarSelector.getSelectedItem() : null;
-        Preferences_ConfigLoader.CONFIG_LastJarSaved = (TempSelectedItem == null) ? "" : TempSelectedItem;
-
-        String passwordToWrite = "";
-        if ( !MainFrame.Check_Offline.isSelected() ) { passwordToWrite = Encrypter_StringEncrypter.getLastPassword(); }
+        String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? MainFrame.ComboBox_JarSelector.getSelection() : null;
+        Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
         
-        System_ConfigFileWriter.writeConfigFile(passwordToWrite);
+        if ( !MainFrame.Check_Offline.isSelected() ) { System_ConfigFileWriter.updateConfigFile(true); }
+        else { System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
 
-        MainFrame.destroyWindow(); // Le return est null = vide la variable MainFrame
+        MainFrame.destroyWindow();
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
-        catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
-        catch ( Exception e ) { System_ErrorHandler.handleException(e, true); }
+        catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
 
         System_GameFrame baseFrame = new System_GameFrame(System_DataStub.static_getParameter("username"));
         baseFrame.add(minecraftInstance);
@@ -139,7 +136,8 @@ public class Main_RealLauncher
             minecraftInstance.start();
             minecraftInstance.validate();
         }
-        catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
+        catch ( SecurityException e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
+        catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

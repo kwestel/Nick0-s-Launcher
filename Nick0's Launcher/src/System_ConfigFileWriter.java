@@ -42,7 +42,7 @@ public class System_ConfigFileWriter
         /* Username */ addLine(System_DataStub.static_getParameter("username"));
         /* LVersion */ addLine(Preferences_ConfigLoader.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
         /* Password */ addLine(Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() ? encodedPassword : "");
-        /* PassHash */ addLine(Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() ? ""+encodedPassword.hashCode() : "");
+        /* PassHash */ addLine(Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() ? (""+encodedPassword.hashCode()) : "");
         /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
         /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
         /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
@@ -78,15 +78,15 @@ public class System_ConfigFileWriter
         return dataCache.toArray(new String[dataCache.size()]);
     }
     
-    public static void updateConfigFile()
+    public static void updateConfigFile(boolean forceSave)
     {
         String[] oldConfigFile = loadConfigFile();
         
         clear();
         /* Username */ addLine(oldConfigFile[0]);
         /* LVersion */ addLine(oldConfigFile[1]);
-        /* Password */ addLine(oldConfigFile[2]);
-        /* PassHash */ addLine(oldConfigFile[3]);
+        /* Password */ addLine((Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() || forceSave) ? oldConfigFile[2] : "");
+        /* PassHash */ addLine((Main_RealLauncher.MainFrame.Check_SaveLogin.isSelected() || forceSave) ? oldConfigFile[3] : "");
         /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
         /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
         /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));

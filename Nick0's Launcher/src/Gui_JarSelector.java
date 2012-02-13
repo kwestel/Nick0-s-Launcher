@@ -27,6 +27,8 @@ public class Gui_JarSelector extends JComboBox
             }
         }
     }
+    
+    public String getSelection() { return (String)getSelectedItem(); }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Nicnl - nicnl25@gmail.com

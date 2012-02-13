@@ -2,12 +2,14 @@ import javax.swing.*;
 
 public class System_ErrorHandler
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Error Handlers
+
     public static String officialAddress = "nicnl25@gmail.com";
     
     public static void handleException(Exception e, boolean fatalError)
     {
         String errorToPrint = "Exception inattendue :\n" + e;
-        if ( e.toString().contains("ClassNotFoundException") ) { errorToPrint += "\n\nMinecraft.jar introuvable ! Veuillez reinstaller Minecraft."; }
         e.printStackTrace();
         openErrorWindow(errorToPrint, true);
         if ( fatalError ) { System.exit(0); }
@@ -24,6 +26,18 @@ public class System_ErrorHandler
         openErrorWindow(text, reportBug);
         if ( fatalError ) { System.exit(0); }
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Specific Error
+
+    public static void handleMinecraftLoadingException(Exception e)
+    {
+        if ( e instanceof SecurityException ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
+        if ( e instanceof NullPointerException || e instanceof ClassNotFoundException ) { System_ErrorHandler.handleExceptionWithText(e, "Le jar sélectionné est introuvable.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
+        else { System_ErrorHandler.handleExceptionWithText(e, "Une erreur inconnue est survenue lors du lancement du jeu.\n\nUne reinstallation de Minecraft vous est conseillée.", true, true); }
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Private System Function
 
     private static void openErrorWindow(String errorText, boolean reportBogue)
     {

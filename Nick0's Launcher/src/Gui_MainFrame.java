@@ -2,10 +2,7 @@ import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.io.File;
 
 public class Gui_MainFrame extends Gui_BaseExtend_JFrame
@@ -231,15 +228,14 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         {
             if ( Preferences_ConfigLoader.CONFIG_jarSelector )
             {
-                String selectedItem = (String)ComboBox_JarSelector.getSelectedItem();
+                String selectedItem = ComboBox_JarSelector.getSelection();
                 System_MinecraftLoader.jarList[3] = ( selectedItem == null ) ? "" : selectedItem;
             }
 
             System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();
             Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
-            String temporaryPass = Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : ( new String(Field_Password.getPassword()) );
-            Main_RealLauncher.startLogin(Field_UserName.getText(), temporaryPass);
+            Main_RealLauncher.startLogin(Field_UserName.getText(), Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : ( new String(Field_Password.getPassword()) ));
         } };
         Field_Password.addActionListener(loginListener);
         Field_UserName.addActionListener(loginListener);
@@ -255,6 +251,7 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
         ItemListener checkOfflineListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
         {
             Field_Password.setEnabled(!Check_Offline.isSelected());
+            Check_SaveLogin.setEnabled(!Check_Offline.isSelected());
             if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
             else { Button_ConnectButton.setEnabled(false); }
             verifyButtons();
@@ -266,6 +263,9 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             if ( !Check_SaveLogin.isSelected() ) { Field_Password.setText(""); }
         } };
         Check_SaveLogin.addItemListener(checkSavePassListener);
+
+        WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { onClose(); } };
+        addWindowListener(formListener);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -474,6 +474,11 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
             Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
         }
         super.setVisible(option);
+    }
+
+    public void onClose()
+    {
+        System_ConfigFileWriter.updateConfigFile(Check_Offline.isSelected());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

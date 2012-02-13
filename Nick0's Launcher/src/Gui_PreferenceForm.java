@@ -221,7 +221,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
             Main_RealLauncher.homeDir = FileChooser.getSelectedFile().getAbsolutePath();
             Label_ActualHomeDir.setText(Main_RealLauncher.homeDir);
             Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
-            System_ConfigFileWriter.updateConfigFile();
+            System_ConfigFileWriter.updateConfigFile(false);
         } };
         Button_ChangeHomeDir.addActionListener(listenerChangeHomeDir);
 
@@ -230,7 +230,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
             Main_RealLauncher.homeDir = Main_RealLauncher.configFileDir;
             Label_ActualHomeDir.setText(Main_RealLauncher.homeDir);
             Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
-            System_ConfigFileWriter.updateConfigFile();
+            System_ConfigFileWriter.updateConfigFile(false);
         } };
         Button_RestoreHomeDir.addActionListener(listenerResetHomeDir);
 
@@ -250,11 +250,11 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
         } };
         CheckBox_EnableJarSelector.addItemListener(saveLastJarListener);
 
-        WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { formClosing(); } };
+        WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { onClose(); } };
         addWindowListener(formListener);
     }
 
-    private void formClosing()
+    private void onClose()
     {
         boolean storedPref_JarSelector = Preferences_ConfigLoader.CONFIG_jarSelector;
         boolean storedPref_RamBool = Preferences_ConfigLoader.CONFIG_ramSelector;
@@ -302,7 +302,7 @@ public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
             Preferences_ConfigLoader.CONFIG_selectedRam = 1024;
         }
 
-        System_ConfigFileWriter.updateConfigFile();
+        System_ConfigFileWriter.updateConfigFile(false);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
