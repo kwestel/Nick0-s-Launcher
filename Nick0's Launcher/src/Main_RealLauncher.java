@@ -107,7 +107,7 @@ public class Main_RealLauncher
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? MainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
         
-        if ( !MainFrame.Check_Offline.isSelected() ) { System_ConfigFileWriter.updateConfigFile(true); }
+        if ( MainFrame.Check_Offline.isSelected() ) { System_ConfigFileWriter.updateConfigFile(true); }
         else { System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
