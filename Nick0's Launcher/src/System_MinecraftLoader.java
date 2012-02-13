@@ -1,19 +1,9 @@
 import java.applet.Applet;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FilePermission;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.SocketPermission;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.CodeSource;
-import java.security.PermissionCollection;
-import java.security.SecureClassLoader;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class System_MinecraftLoader extends ClassLoader
 {
@@ -45,8 +35,7 @@ public class System_MinecraftLoader extends ClassLoader
     {
         ArrayList<URL> URLList = new ArrayList<URL>();
         
-        File modsFolder = new File(Main_RealLauncher.getModsDirPath());
-        if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
+        File modsFolder = System_FileManager.createFolder(Main_RealLauncher.getModsDirPath());
         if ( LoadMods ) { URLList.add(modsFolder.toURI().toURL()); }
         
         for ( String actualJar : files ) { URLList.add(new File(path, actualJar).toURI().toURL()); }

@@ -2,9 +2,6 @@ import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.net.URLClassLoader;
 
 public class Main_RealLauncher
 {
@@ -15,9 +12,6 @@ public class Main_RealLauncher
     public static String configFileDir = System_UserHomeDefiner.returnConfigDirectory();
     public static String homeDir = configFileDir;
 
-    public static String officialAddress = "nicnl25@gmail.com";
-    private static String configFileName = "Nick0's_Launcher.mconf";
-
     public static boolean PasswordNotDisplayed = false;
     private static String StoredPassword;
 
@@ -26,9 +20,8 @@ public class Main_RealLauncher
         // Forcer le theme de l'OS hôte
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
-        
-        File modsFolder = new File(getModsDirPath());
-        if ( !modsFolder.exists() ) { modsFolder.mkdir(); }
+
+        System_FileManager.createFolder(getModsDirPath());
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 
@@ -94,14 +87,14 @@ public class Main_RealLauncher
         return loadedPreferences[7].split("=").length == 2 ? loadedPreferences[7].split("=")[1] : Main_RealLauncher.configFileDir;
     }
     
-    public static final String getStoredPassword()
+    public static String getStoredPassword()
     {
         String tempPass = StoredPassword;
         StoredPassword = null;
         return tempPass;
     }
     
-    public static String getConfigFilePath() { return configFileDir + File.separator + configFileName; }
+    public static String getConfigFilePath() { return configFileDir + File.separator + "Nick0's_Launcher.mconf"; }
     public static String getBinDirPath() { return homeDir + File.separator + "bin"; }
     public static String getNativesDirPath() { return getBinDirPath() + File.separator + "natives"; }
     public static String getModsDirPath() { return getBinDirPath() + File.separator + "mods"; }
@@ -121,7 +114,7 @@ public class Main_RealLauncher
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
 
-        MainFrame = MainFrame.closeWindow(); // Le return est null = vide la variable MainFrame
+        MainFrame.destroyWindow(); // Le return est null = vide la variable MainFrame
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
         catch ( SecurityException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }

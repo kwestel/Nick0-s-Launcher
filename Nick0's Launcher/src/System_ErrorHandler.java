@@ -2,6 +2,7 @@ import javax.swing.*;
 
 public class System_ErrorHandler
 {
+    public static String officialAddress = "nicnl25@gmail.com";
     
     public static void handleException(Exception e, boolean fatalError)
     {
@@ -24,10 +25,10 @@ public class System_ErrorHandler
         if ( fatalError ) { System.exit(0); }
     }
 
-    public static void openErrorWindow(String errorText, boolean reportBogue)
+    private static void openErrorWindow(String errorText, boolean reportBogue)
     {
         System.out.println("Nick0's Launcher - Erreur : " + errorText);
-        if ( reportBogue ) { errorText += "\n\nMerci de reporter tout bogue à cette addresse :\nnicnl25@gmail.com"; }
+        if ( reportBogue ) { errorText += "\n\nMerci de reporter tout bogue à cette addresse :\n" + officialAddress; }
         JOptionPane.showMessageDialog(new JInternalFrame(), errorText, "Nick0's Launcher - Erreur", JOptionPane.ERROR_MESSAGE);
     }
     

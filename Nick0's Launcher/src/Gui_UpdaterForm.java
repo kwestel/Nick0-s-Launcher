@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class Gui_UpdaterForm extends Gui_BaseExtend_JFrame
 {

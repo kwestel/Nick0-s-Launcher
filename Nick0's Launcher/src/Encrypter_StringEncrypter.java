@@ -57,26 +57,24 @@ public class Encrypter_StringEncrypter
     
     private static String getEncodeKey()
     {
-        try
-        {
-            String a = InetAddress.getLocalHost().getHostName().substring(0,1);
-            String b = System.getProperty("user.name").substring(0,1);
-            String c = System.getProperty("user.home").substring(0,1);
-            String d = System.getProperty("os.name").substring(0,1);
-            String e = System.getProperty("os.arch").substring(0,1);
-            String f = System.getProperty("os.version").substring(0,1);
+        String a;
+        try { a = InetAddress.getLocalHost().getHostName().substring(0,1); }
+        catch (UnknownHostException e) { a = "AzErTyUiOp_1337"; }
 
-            String g = (""+f.hashCode()).substring(0,1);
-            String h = (""+e.hashCode()).substring(0,1);
-            String i = (""+d.hashCode()).substring(0,1);
-            String j = (""+c.hashCode()).substring(0,1);
-            String k = (""+b.hashCode()).substring(0,1);
-            String l = (""+a.hashCode()).substring(0,1);
+        String b = System.getProperty("user.name").substring(0,1);
+        String c = System.getProperty("user.home").substring(0,1);
+        String d = System.getProperty("os.name").substring(0,1);
+        String e = System.getProperty("os.arch").substring(0,1);
+        String f = System.getProperty("os.version").substring(0,1);
 
-            return a + l + b + k + c + j + d + i + e + h + f + g;
-        }
-        catch ( UnknownHostException e ) { }
-        return null;
+        String g = (""+f.hashCode()).substring(0,1);
+        String h = (""+e.hashCode()).substring(0,1);
+        String i = (""+d.hashCode()).substring(0,1);
+        String j = (""+c.hashCode()).substring(0,1);
+        String k = (""+b.hashCode()).substring(0,1);
+        String l = (""+a.hashCode()).substring(0,1);
+
+        return a + l + b + k + c + j + d + i + e + h + f + g;
     }
     
     public static String stringRandomizer(String originalText)
@@ -90,7 +88,7 @@ public class Encrypter_StringEncrypter
             newText += randomChar;
         }
 
-        return newText.substring(0,newText.length()-1);
+        return newText.substring(0,originalText.length());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

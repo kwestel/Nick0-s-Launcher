@@ -11,8 +11,7 @@ public class System_ConfigFileWriter
     
     public static void writeDataToFile(String outputFileName) throws IOException
     {
-        File configDir = new File(Main_RealLauncher.configFileDir);
-        if ( !configDir.exists() ) { configDir.mkdir(); }
+        System_FileManager.createFolder(Main_RealLauncher.configFileDir);
         
         FileWriter outputFileWriter = new FileWriter(new File(outputFileName));
         PrintWriter printFileWriter = new PrintWriter(outputFileWriter);
@@ -23,10 +22,17 @@ public class System_ConfigFileWriter
     
     public static String[] loadFile(String filePathInput) throws IOException
     {
-        BufferedReader Load_BufferedReader = new BufferedReader(new FileReader(filePathInput));
+        FileReader Load_FileReader = new FileReader(filePathInput);
+        BufferedReader Load_BufferedReader = new BufferedReader(Load_FileReader);
+        
         ArrayList<String> LoadedFile = new ArrayList<String>();
+        
         String actualLine;
         while ( (actualLine = Load_BufferedReader.readLine()) != null ) { LoadedFile.add(actualLine); }
+        
+        Load_BufferedReader.close();
+        Load_FileReader.close();
+
         return LoadedFile.toArray(new String[LoadedFile.size()]);
     }
     
@@ -44,7 +50,7 @@ public class System_ConfigFileWriter
         /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
         /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
         /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-        /* ModButt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+        /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -64,7 +70,7 @@ public class System_ConfigFileWriter
         /* RamSelec */ addLine("RAM=1024");
         /* SaveLJar */ addLine("SaveLastJar=FALSE");
         /* JarSaved */ addLine("LastJarSaved=");
-        /* ModButt */ addLine("ModsButtonChecked=FALSE");
+        /* Mod Butt */ addLine("ModsButtonChecked=FALSE");
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -88,7 +94,7 @@ public class System_ConfigFileWriter
         /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
         /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
         /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-        /* ModButt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+        /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
 
         try { System_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }

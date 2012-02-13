@@ -1,9 +1,6 @@
 import javax.swing.*;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 import java.awt.*;
 import java.awt.event.*;
-import java.text.ParseException;
 
 public class Gui_PreferenceForm extends Gui_BaseExtend_JFrame
 {

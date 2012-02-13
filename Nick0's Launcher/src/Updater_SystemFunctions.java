@@ -9,7 +9,7 @@ import java.util.jar.JarFile;
 public class Updater_SystemFunctions
 {
 
-    private static String minecraftDownloadServer = "http://s3.amazonaws.com/MinecraftDownload/";
+    public static String minecraftDownloadServer = "http://s3.amazonaws.com/MinecraftDownload/";
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download Main Functions
@@ -100,8 +100,7 @@ public class Updater_SystemFunctions
         String nativesJarPath = outputPath + File.separator + nativesFile;
         File nativeJar = new File(nativesJarPath);
 
-        File nativesFolder = new File(Main_RealLauncher.getNativesDirPath());
-        if ( !nativesFolder.exists() ) { nativesFolder.mkdir(); }
+        System_FileManager.createFolder(Main_RealLauncher.getNativesDirPath());
 
         JarFile jarFile = new JarFile(nativeJar, true);
         Enumeration contentFiles = jarFile.entries();
@@ -118,8 +117,7 @@ public class Updater_SystemFunctions
             JarEntry thisFile = (JarEntry)contentFiles.nextElement();
             if ( thisFile.isDirectory() || thisFile.getName().indexOf('/') != -1 ) { continue; }
 
-            File newFile = new File(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
-            if ( newFile.exists() ) { newFile.delete(); }
+            System_FileManager.removeFile(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
 
             InputStream jarInputStream = jarFile.getInputStream(jarFile.getEntry(thisFile.getName()));
             OutputStream extractedFileOutput = new FileOutputStream(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
@@ -134,8 +132,7 @@ public class Updater_SystemFunctions
 
         jarFile.close();
 
-        nativeJar = new File(nativesJarPath);
-        nativeJar.delete();
+        System_FileManager.removeFile(nativesJarPath);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

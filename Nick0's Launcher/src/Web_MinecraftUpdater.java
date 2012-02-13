@@ -1,12 +1,5 @@
 import javax.swing.*;
 import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 public class Web_MinecraftUpdater
 {
@@ -90,7 +83,6 @@ public class Web_MinecraftUpdater
             Main_RealLauncher.MainFrame.setVisible(false);
             new Gui_UpdaterForm(false, true);
         }
-        else { return; }
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -111,14 +103,9 @@ public class Web_MinecraftUpdater
     
     private static void Updater_FileVerifications()
     {
-        File basicMC_DIR_SysFile = new File(Main_RealLauncher.configFileDir);
-        if ( !basicMC_DIR_SysFile.exists() ) { basicMC_DIR_SysFile.mkdir(); }
-
-        File basicMC_DIR_GAME = new File(Main_RealLauncher.homeDir);
-        if ( !basicMC_DIR_GAME.exists() ) { basicMC_DIR_GAME.mkdir(); }
-        
-        File basicBIN_DIR = new File(Main_RealLauncher.getBinDirPath());
-        if ( !basicBIN_DIR.exists() ) { basicBIN_DIR.mkdir(); }
+        System_FileManager.createFolder(Main_RealLauncher.configFileDir);
+        System_FileManager.createFolder(Main_RealLauncher.homeDir);
+        System_FileManager.createFolder(Main_RealLauncher.getBinDirPath());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -460,16 +460,11 @@ public class Gui_MainFrame extends Gui_BaseExtend_JFrame
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // SUPRA-Close/Open Function
     
-    public Gui_MainFrame closeWindow()
+    public void destroyWindow()
     {
+        Main_RealLauncher.MainFrame = null;
         setVisible(false);
-        try
-        {
-            finalize();
-            dispose();
-        }
-        catch ( Throwable throwable ) { throwable.printStackTrace(); }
-        return null;
+        dispose();
     }
     
     public void setVisible(boolean option)

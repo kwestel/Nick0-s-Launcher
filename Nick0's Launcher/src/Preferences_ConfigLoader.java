@@ -32,7 +32,7 @@ public class Preferences_ConfigLoader
             /* SaveLJar */ CONFIG_SaveLastJar = loadedPreferences[9].split("=")[1].equals("TRUE");
             /* JarSaved */ CONFIG_LastJarSaved = loadedPreferences[10].split("=").length == 2 ? loadedPreferences[10].split("=")[1] : "";
 
-            /* ModButt */ CONFIG_modsButtonChecked = loadedPreferences[11].split("=")[1].equals("TRUE");
+            /* Mod Butt */ CONFIG_modsButtonChecked = loadedPreferences[11].split("=")[1].equals("TRUE");
         }
         catch ( ArrayIndexOutOfBoundsException e )
         {
