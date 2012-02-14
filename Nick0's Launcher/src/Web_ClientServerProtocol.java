@@ -3,11 +3,12 @@ import java.io.*;
 import java.net.URL;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
+import java.util.Arrays;
 
 public class Web_ClientServerProtocol
 {
 
-    public static String executePost(String string_serverURL, String serverArguments)
+    public static String connectToServer(String string_serverURL, String serverArguments)
     {
         HttpsURLConnection connectionToServer = null;
         try
@@ -15,26 +16,17 @@ public class Web_ClientServerProtocol
             URL serverURL = new URL(string_serverURL);
             connectionToServer = (HttpsURLConnection)serverURL.openConnection();
 
-            connectionToServer.setRequestMethod("POST");
-            connectionToServer.setRequestProperty("Content-Length", Integer.toString(serverArguments.getBytes().length));
-
             connectionToServer.setUseCaches(false);
             connectionToServer.setDoInput(true);
             connectionToServer.setDoOutput(true);
 
             connectionToServer.connect();
-            Certificate[] cerfificatsSSL = connectionToServer.getServerCertificates();
 
-            Certificate serverCertificate = cerfificatsSSL[0];
-            PublicKey PK_serverPublicKey = serverCertificate.getPublicKey();
-            byte[] serverPublicKey = PK_serverPublicKey.getEncoded();
-
-            for (int i=0;i<serverPublicKey.length;i++)
+            byte[] serverPublicKey = connectionToServer.getServerCertificates()[0].getPublicKey().getEncoded();
+            
+            if ( !Arrays.equals(serverPublicKey, DATA_MinecraftPublicKey.getPublicKey()) )
             {
-                if ( serverPublicKey[i] != DATA_MinecraftPublicKey.minecraftKey[i] )
-                {
-                    throw new RuntimeException("Erreur de la clef publique !");
-                }
+                System_ErrorHandler.handleError("La clef permettant une connexion sécurisée aux serveurs de Minecraft n'est pas valide.", true, true);
             }
 
             DataOutputStream serverOutputWriter = new DataOutputStream(connectionToServer.getOutputStream());
@@ -45,10 +37,10 @@ public class Web_ClientServerProtocol
             InputStream serverInputStream = connectionToServer.getInputStream();
             BufferedReader serverBufferedReader = new BufferedReader(new InputStreamReader(serverInputStream));
 
-            String response = "";
-            String line;
-            while ( (line = serverBufferedReader.readLine()) != null ) { response += line + "\r"; }
+            String response = serverBufferedReader.readLine();
+
             serverBufferedReader.close();
+            serverInputStream.close();
 
             return response;
         }

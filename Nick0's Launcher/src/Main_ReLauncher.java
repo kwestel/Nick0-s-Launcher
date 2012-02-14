@@ -14,7 +14,7 @@ public class Main_ReLauncher
         String[] loadedConfigFile;
         if ( configFile.exists()  )
         {
-            loadedConfigFile = System_ConfigFileWriter.loadConfigFile();
+            loadedConfigFile = Preferences_ConfigFileWriter.loadConfigFile();
             memoryToApply = Integer.parseInt(loadedConfigFile[8].split("=")[1]);
         }
         else

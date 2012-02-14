@@ -5,8 +5,6 @@ import java.io.IOException;
 
 public class Main_RealLauncher
 {
-
-    public static Gui_MainFrame MainFrame = null;
     public static Applet minecraftInstance = null;
 
     public static String configFileDir = System_UserHomeDefiner.returnConfigDirectory();
@@ -21,7 +19,7 @@ public class Main_RealLauncher
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
 
-        System_FileManager.createFolder(getModsDirPath());
+        System_FileManager.createFolder(homeDir);
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 
@@ -31,17 +29,17 @@ public class Main_RealLauncher
         Preferences_ConfigLoader.SYSTEM_LoadPreferences();
 
         // Création de la frame principale
-        MainFrame = new Gui_MainFrame();
+        GuiForm_MainFrame.newForm(true);
 
         // Chargement des identifiants de connexion
-        String[] loadedTextFile = System_ConfigFileWriter.loadConfigFile();
+        String[] loadedTextFile = Preferences_ConfigFileWriter.loadConfigFile();
         if ( loadedTextFile != null )
         {
             if ( !loadedTextFile[0].equals("") )
             {
                 String loadedUsername = loadedTextFile[0];
-                MainFrame.Field_UserName.setText(loadedUsername);
-                MainFrame.Field_UserName.setCaretPosition(loadedUsername.length());
+                GuiForm_MainFrame.mainFrame.Field_UserName.setText(loadedUsername);
+                GuiForm_MainFrame.mainFrame.Field_UserName.setCaretPosition(loadedUsername.length());
             }
 
             if ( !loadedTextFile[2].equals("") && !loadedTextFile[3].equals("") )
@@ -54,9 +52,9 @@ public class Main_RealLauncher
                     PasswordNotDisplayed = true;
                     StoredPassword = decodedPassword;
 
-                    MainFrame.Field_Password.setText(Encrypter_StringEncrypter.stringRandomizer(StoredPassword));
+                    GuiForm_MainFrame.mainFrame.Field_Password.setText(Encrypter_StringEncrypter.stringRandomizer(StoredPassword));
 
-                    MainFrame.Check_SaveLogin.setSelected(true);
+                    GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(true);
                 }
                 else { System.out.println("Nick0's Launcher - Password decrypting fail !"); }
             }
@@ -67,15 +65,15 @@ public class Main_RealLauncher
 
     public static void startLogin(String username, String password)
     {
-        if ( MainFrame.Field_UserName.getText().equals("") ) { return; }
-        else if ( ( new String(MainFrame.Field_Password.getPassword()) ).equals("") && !MainFrame.Check_Offline.isSelected() ) { return; }
+        if ( GuiForm_MainFrame.mainFrame.Field_UserName.getText().equals("") ) { return; }
+        else if ( GuiForm_MainFrame.mainFrame.Field_Password.getPassword().length == 0 && !GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { return; }
 
-        if ( !MainFrame.Check_Offline.isSelected() )
+        if ( !GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() )
         {
-            try { System_MainTransaction.Main_ClientTransactions(username, password); }
+            try { Web_MainTransaction.Main_ClientTransactions(username, password); }
             catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
         }
-        else { System_MainTransaction.Main_OfflineLogin(username); }
+        else { Web_MainTransaction.Main_OfflineLogin(username); }
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +81,7 @@ public class Main_RealLauncher
     
     private static String getHomeDir()
     {
-        String[] loadedPreferences = System_ConfigFileWriter.loadConfigFile();
+        String[] loadedPreferences = Preferences_ConfigFileWriter.loadConfigFile();
         return loadedPreferences[7].split("=").length == 2 ? loadedPreferences[7].split("=")[1] : Main_RealLauncher.configFileDir;
     }
     
@@ -104,20 +102,20 @@ public class Main_RealLauncher
 
     public static void startMinecraft()
     {
-        String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? MainFrame.ComboBox_JarSelector.getSelection() : null;
+        String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
         
-        if ( MainFrame.Check_Offline.isSelected() ) { System_ConfigFileWriter.updateConfigFile(true); }
-        else { System_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
+        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.updateConfigFile(true); }
+        else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
 
-        MainFrame.destroyWindow();
+        GuiForm_MainFrame.mainFrame.destroyWindow();
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
 
-        System_GameFrame baseFrame = new System_GameFrame(System_DataStub.static_getParameter("username"));
+        GuiForm_GameFrame baseFrame = new GuiForm_GameFrame(System_DataStub.static_getParameter("username"));
         baseFrame.add(minecraftInstance);
 
         baseFrame.setVisible(true);

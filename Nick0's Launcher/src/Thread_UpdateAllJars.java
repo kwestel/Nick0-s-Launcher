@@ -4,11 +4,11 @@ public class Thread_UpdateAllJars extends Thread
 {
 
     private boolean forceDownload;
-    private Gui_UpdaterForm formToUpdate;
+    private GuiForm_UpdaterForm formToUpdate;
 
     private boolean updateAllJars;
     
-    public Thread_UpdateAllJars(boolean arg_forceDownload, Gui_UpdaterForm form)
+    public Thread_UpdateAllJars(boolean arg_forceDownload, GuiForm_UpdaterForm form)
     {
         forceDownload = arg_forceDownload;
         formToUpdate = form;
@@ -16,7 +16,7 @@ public class Thread_UpdateAllJars extends Thread
         updateAllJars = true;
     }
 
-    public Thread_UpdateAllJars(Gui_UpdaterForm form)
+    public Thread_UpdateAllJars(GuiForm_UpdaterForm form)
     {
         formToUpdate = form;
 

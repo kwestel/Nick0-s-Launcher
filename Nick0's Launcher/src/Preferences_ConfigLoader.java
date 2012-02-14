@@ -17,7 +17,7 @@ public class Preferences_ConfigLoader
     {
         System.out.println("Nick0's Launcher - Chargement des préférences...");
 
-        String[] loadedPreferences = System_ConfigFileWriter.loadConfigFile();
+        String[] loadedPreferences = Preferences_ConfigFileWriter.loadConfigFile();
 
         if ( loadedPreferences == null ) { return; }
 
@@ -37,7 +37,7 @@ public class Preferences_ConfigLoader
         catch ( ArrayIndexOutOfBoundsException e )
         {
             e.printStackTrace();
-            System_ConfigFileWriter.updateConfigFile(false);
+            Preferences_ConfigFileWriter.updateConfigFile(false);
         }
     }
 

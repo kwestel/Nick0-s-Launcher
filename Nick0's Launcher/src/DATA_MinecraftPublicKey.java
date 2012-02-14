@@ -1,7 +1,7 @@
 public class DATA_MinecraftPublicKey
 {
 
-    public static byte[] minecraftKey = new byte[]
+    private static final byte[] minecraftKey = new byte[]
     {
         48, -126, 1, 34, 48,
         13, 6, 9, 42, -122,
@@ -63,6 +63,8 @@ public class DATA_MinecraftPublicKey
         -115, 35, 108, -17, 2,
         3, 1, 0, 1
     };
+
+    public static final byte[] getPublicKey() { return minecraftKey; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Nicnl - nicnl25@gmail.com

@@ -76,37 +76,46 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="13" selection-start="4595" selection-end="4595" vertical-scroll-proportion="0.33962265">
+            <state line="500" column="95" selection-start="18097" selection-end="18097" vertical-scroll-proportion="12.466981">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gui_MainFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Gui_MainFrame.java">
+      <file leaf-file-name="GuiForm_GameFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="18" selection-start="720" selection-end="720" vertical-scroll-proportion="0.0">
+            <state line="9" column="34" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Web_MinecraftUpdater.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
+      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="34" selection-start="4009" selection-end="4009" vertical-scroll-proportion="0.0">
+            <state line="40" column="16" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gui_JarSelector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Gui_JarSelector.java">
+      <file leaf-file-name="GuiForm_PreferenceFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="47" selection-start="278" selection-end="318" vertical-scroll-proportion="0.0">
+            <state line="50" column="75" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_FileManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="146" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -115,7 +124,25 @@
       <file leaf-file-name="System_ErrorHandler.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="133" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0">
+            <state line="23" column="23" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Updater_SystemFunctions.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="134" column="54" selection-start="5522" selection-end="5522" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="17" column="39" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,21 +163,21 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/Gui_Button.java" />
-        <option value="$PROJECT_DIR$/src/Gui_CheckBox.java" />
-        <option value="$PROJECT_DIR$/src/Gui_UpdaterForm.java" />
-        <option value="$PROJECT_DIR$/src/System_FolderCreator.java" />
-        <option value="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+        <option value="$PROJECT_DIR$/src/GuiElement_Button.java" />
+        <option value="$PROJECT_DIR$/src/Gui_BaseExtend_JFrame.java" />
+        <option value="$PROJECT_DIR$/src/GuiExtend_JFrame.java" />
+        <option value="$PROJECT_DIR$/src/System_GameFrame.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
+        <option value="$PROJECT_DIR$/src/System_MainTransaction.java" />
+        <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+        <option value="$PROJECT_DIR$/src/System_ConfigFileWriter.java" />
+        <option value="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" />
+        <option value="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" />
+        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
         <option value="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
         <option value="$PROJECT_DIR$/src/System_FileManager.java" />
-        <option value="$PROJECT_DIR$/src/System_MainTransaction.java" />
-        <option value="$PROJECT_DIR$/src/System_ConfigFileWriter.java" />
-        <option value="$PROJECT_DIR$/src/Gui_PreferenceForm.java" />
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
-        <option value="$PROJECT_DIR$/src/System_ErrorHandler.java" />
-        <option value="$PROJECT_DIR$/src/Gui_JarSelector.java" />
-        <option value="$PROJECT_DIR$/src/Gui_MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
-        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
       </list>
     </option>
   </component>
@@ -565,6 +592,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -599,8 +628,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="Favorites" />
     </panes>
   </component>
@@ -815,12 +842,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26910993" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -828,19 +856,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2680203" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2659686" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18958333" sideWeight="0.6921466" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3078534" sideWeight="0.99684143" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3078534" sideWeight="0.99684143" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26910993" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
@@ -935,86 +962,114 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Thread_UpdateAllJars.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiElement_JarSelector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="42" selection-end="42" vertical-scroll-proportion="0.0" />
+        <state line="2" column="16" selection-start="39" selection-end="39" vertical-scroll-proportion="0.055194806">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_UserHomeDefiner.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiElement_CheckBox.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0" />
+        <state line="2" column="16" selection-start="39" selection-end="39" vertical-scroll-proportion="0.055194806">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiElement_Button.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="44" selection-start="1480" selection-end="1480" vertical-scroll-proportion="0.0" />
+        <state line="2" column="30" selection-start="53" selection-end="53" vertical-scroll-proportion="0.05345912">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiExtend_JFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="82" selection-start="214" selection-end="214" vertical-scroll-proportion="0.20866774" />
+        <state line="8" column="34" selection-start="157" selection-end="157" vertical-scroll-proportion="0.16037735">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="8" selection-start="5444" selection-end="5444" vertical-scroll-proportion="1.2340425" />
+        <state line="4" column="16" selection-start="94" selection-end="94" vertical-scroll-proportion="0.05345912">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_JarSelectorFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.05345912" />
+        <state line="66" column="10" selection-start="1937" selection-end="1937" vertical-scroll-proportion="0.7374214">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_GameFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/Web_ClientServerProtocol.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="105" selection-end="105" vertical-scroll-proportion="0.05345912" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_MainTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="45" selection-start="2221" selection-end="2221" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_ConfigFileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="81" column="104" selection-start="4059" selection-end="4059" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="32" selection-start="1644" selection-end="1644" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui_PreferenceForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="246" column="102" selection-start="10019" selection-end="10019" vertical-scroll-proportion="0.017708333" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui_MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="18" selection-start="720" selection-end="720" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Gui_JarSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="47" selection-start="278" selection-end="318" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="133" selection-start="1517" selection-end="1517" vertical-scroll-proportion="0.0" />
+        <state line="16" column="80" selection-start="525" selection-end="525" vertical-scroll-proportion="0.29402515">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="34" selection-start="4009" selection-end="4009" vertical-scroll-proportion="0.0">
+        <state line="82" column="39" selection-start="3559" selection-end="3559" vertical-scroll-proportion="2.2102728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="134" column="54" selection-start="5522" selection-end="5522" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="23" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="146" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="50" column="75" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="34" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="16" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="13" selection-start="4595" selection-end="4595" vertical-scroll-proportion="0.33962265">
+        <state line="17" column="39" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="500" column="95" selection-start="18097" selection-end="18097" vertical-scroll-proportion="12.466981">
           <folding />
         </state>
       </provider>

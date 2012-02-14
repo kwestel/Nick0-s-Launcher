@@ -14,7 +14,7 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download Main Functions
 
-    public static void updateAllJars(boolean forceDownload, Gui_UpdaterForm formToUpdate) throws IOException
+    public static void updateAllJars(boolean forceDownload, GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
         String binDirPath = Main_RealLauncher.getBinDirPath();
@@ -38,7 +38,7 @@ public class Updater_SystemFunctions
         formToUpdate.downloadFinished();
     }
 
-    public static void updateMinecraftJar(Gui_UpdaterForm formToUpdate) throws IOException
+    public static void updateMinecraftJar(GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         String binDirPath = Main_RealLauncher.getBinDirPath();
         String actualFile = "minecraft.jar";
@@ -51,7 +51,7 @@ public class Updater_SystemFunctions
         formToUpdate.downloadFinished();
     }
 
-    public static void updateNatives(String destinationPath, String nativesFile, Gui_UpdaterForm formToUpdate) throws IOException
+    public static void updateNatives(String destinationPath, String nativesFile, GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         byte[] temp_natives = downloadSingleJar(nativesFile, formToUpdate);
         writeByteArrayToFile(temp_natives, destinationPath + File.separator + nativesFile);
@@ -61,7 +61,7 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download System Functions
 
-    private static byte[] downloadSingleJar(String fileToDownload, Gui_UpdaterForm formToUpdate) throws IOException
+    private static byte[] downloadSingleJar(String fileToDownload, GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         
         String DownloadTicket = System_DataStub.static_getParameter("downloadTicket");
@@ -117,7 +117,7 @@ public class Updater_SystemFunctions
             JarEntry thisFile = (JarEntry)contentFiles.nextElement();
             if ( thisFile.isDirectory() || thisFile.getName().indexOf('/') != -1 ) { continue; }
 
-            System_FileManager.removeFile(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
+            System_FileManager.removeFile(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName(), false);
 
             InputStream jarInputStream = jarFile.getInputStream(jarFile.getEntry(thisFile.getName()));
             OutputStream extractedFileOutput = new FileOutputStream(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
@@ -132,7 +132,7 @@ public class Updater_SystemFunctions
 
         jarFile.close();
 
-        System_FileManager.removeFile(nativesJarPath);
+        System_FileManager.removeFile(nativesJarPath, true);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

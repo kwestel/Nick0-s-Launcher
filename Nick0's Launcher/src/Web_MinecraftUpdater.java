@@ -36,21 +36,21 @@ public class Web_MinecraftUpdater
         else if ( checkCorruptedMinecraft() )
         {
             int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Votre installation Minecraft est corrompue.\nVotre jeu risque de ne pas démarrer.\n\nVoulez vous réparer Minecraft ?", "Installation corrompue", JOptionPane.YES_NO_OPTION);
-            Main_RealLauncher.MainFrame.setVisible(false);
+            GuiForm_MainFrame.mainFrame.setVisible(false);
 
             if ( userResponse == 0 )
             {
                 System_MinecraftLoader.jarList[3] = "minecraft.jar";
-                new Gui_UpdaterForm(false, true);
+                new GuiForm_UpdaterForm(false, true);
             }
             else { Main_RealLauncher.startMinecraft(); }
         }
         else if ( needToUpdate )
         {
             int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
-            Main_RealLauncher.MainFrame.setVisible(false);
+            GuiForm_MainFrame.mainFrame.setVisible(false);
 
-            if ( userResponse == 0 ) { new Gui_UpdaterForm(true, false); }
+            if ( userResponse == 0 ) { new GuiForm_UpdaterForm(true, false); }
             else
             {
                 System_DataStub.setParameter("latestVersion",loadedConfFile[1]);
@@ -62,8 +62,8 @@ public class Web_MinecraftUpdater
     
     private static void Updater_NoInstallation(boolean forceUpdate)
     {
-        Main_RealLauncher.MainFrame.setVisible(false);
-        new Gui_UpdaterForm(forceUpdate, true);
+        GuiForm_MainFrame.mainFrame.setVisible(false);
+        new GuiForm_UpdaterForm(forceUpdate, true);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -80,8 +80,8 @@ public class Web_MinecraftUpdater
 
         if ( userResponse == 0 )
         {
-            Main_RealLauncher.MainFrame.setVisible(false);
-            new Gui_UpdaterForm(false, true);
+            GuiForm_MainFrame.mainFrame.setVisible(false);
+            new GuiForm_UpdaterForm(false, true);
         }
     }
     

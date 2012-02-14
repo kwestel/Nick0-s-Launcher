@@ -12,27 +12,26 @@ public class System_FileManager
         {
             System_ErrorHandler.handleError("Error lors de la création du dossier \"" + dirName + "\"", true, true);
         }
-        else if ( directory.isFile() && (!removeFile(folderPath) || !directory.mkdir()) )
+        else if ( directory.isFile() && (!removeFile(folderPath, true) || !directory.mkdir()) )
         {
-            System_ErrorHandler.handleError("Error lors de la création du dossier \"" + dirName + "\"\nUn fichier du même nom existe déjà.", true, true);
+            System_ErrorHandler.handleError("Error lors de la création du dossier \"" + dirName + "\"\nUn fichier du même nom existe déjà.", false, true);
         }
         
         return directory;
     }
     
-    public static boolean removeFile(String filePath)
+    public static boolean removeFile(String filePath, boolean showError)
     {
         File fileToRemove = new File(filePath);
         String fileName = fileToRemove.getName();
-        
-        boolean result = fileToRemove.delete() && !fileToRemove.exists();
 
-        if ( !result )
+        if ( !fileToRemove.delete() || fileToRemove.exists() )
         {
-            System_ErrorHandler.handleError("Error lors de la suppression du fichier \"" + fileName + "\"", true, true);
+            if ( showError ) { System_ErrorHandler.handleError("Error lors de la suppression du fichier \"" + fileName + "\"", false, true); }
+            return false;
         }
 
-        return result;
+        return true;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
