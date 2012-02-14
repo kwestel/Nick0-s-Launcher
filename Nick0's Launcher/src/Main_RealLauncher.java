@@ -19,7 +19,7 @@ public class Main_RealLauncher
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
 
-        System_FileManager.createFolder(homeDir);
+        System_FileManager.createFolder(configFileDir);
 
         System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
 
@@ -105,12 +105,12 @@ public class Main_RealLauncher
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
         
-        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.updateConfigFile(true); }
+        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.updateConfigFileOfflineMode(); }
         else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
 
         System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
 
-        GuiForm_MainFrame.mainFrame.destroyWindow();
+        GuiForm_MainFrame.destroyWindow();
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }

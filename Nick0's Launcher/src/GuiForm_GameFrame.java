@@ -9,7 +9,7 @@ public class GuiForm_GameFrame extends Frame
     {
         super("Nick0's Launcher V1 - " + username + " - Minecraft");
 
-        setSize(900, 525);
+        setSize(950, 550);
         setLocationRelativeTo(null);
         
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent arg0)

@@ -76,64 +76,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="500" column="95" selection-start="18097" selection-end="18097" vertical-scroll-proportion="12.466981">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GuiForm_GameFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="34" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="16" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GuiForm_PreferenceFrame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="75" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_FileManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="146" selection-start="670" selection-end="670" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_ErrorHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="23" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Updater_SystemFunctions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="134" column="54" selection-start="5522" selection-end="5522" vertical-scroll-proportion="0.0">
+            <state line="223" column="41" selection-start="8942" selection-end="8942" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -142,8 +88,47 @@
       <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="39" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+            <state line="114" column="151" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.0">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiForm_GameFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="19" selection-start="281" selection-end="281" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Web_MinecraftUpdater.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="15" column="25" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="473" column="37" selection-start="17259" selection-end="17259" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="13" selection-start="851" selection-end="851" vertical-scroll-proportion="0.4009434">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1041#1049#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -162,21 +147,21 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Gui_Button.java" />
         <option value="$PROJECT_DIR$/src/GuiElement_Button.java" />
         <option value="$PROJECT_DIR$/src/Gui_BaseExtend_JFrame.java" />
         <option value="$PROJECT_DIR$/src/GuiExtend_JFrame.java" />
         <option value="$PROJECT_DIR$/src/System_GameFrame.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
         <option value="$PROJECT_DIR$/src/System_MainTransaction.java" />
         <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
         <option value="$PROJECT_DIR$/src/System_ConfigFileWriter.java" />
         <option value="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" />
         <option value="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" />
-        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
         <option value="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
         <option value="$PROJECT_DIR$/src/System_FileManager.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
+        <option value="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
         <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
       </list>
     </option>
@@ -842,7 +827,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -962,13 +947,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GuiElement_JarSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="16" selection-start="39" selection-end="39" vertical-scroll-proportion="0.055194806">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiElement_CheckBox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="16" selection-start="39" selection-end="39" vertical-scroll-proportion="0.055194806">
@@ -1011,13 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="39" selection-start="3559" selection-end="3559" vertical-scroll-proportion="2.2102728">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="134" column="54" selection-start="5522" selection-end="5522" vertical-scroll-proportion="0.0">
@@ -1039,38 +1010,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="75" selection-start="1654" selection-end="1654" vertical-scroll-proportion="0.0">
+        <state line="39" column="41" selection-start="1691" selection-end="1691" vertical-scroll-proportion="0.6716196">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="34" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+        <state line="11" column="19" selection-start="281" selection-end="281" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="16" selection-start="1467" selection-end="1467" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="39" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
+        <state line="223" column="41" selection-start="8942" selection-end="8942" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="500" column="95" selection-start="18097" selection-end="18097" vertical-scroll-proportion="12.466981">
+        <state line="473" column="37" selection-start="17259" selection-end="17259" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="25" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="114" column="151" selection-start="5161" selection-end="5161" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="13" selection-start="851" selection-end="851" vertical-scroll-proportion="0.4009434">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1041#1049#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
