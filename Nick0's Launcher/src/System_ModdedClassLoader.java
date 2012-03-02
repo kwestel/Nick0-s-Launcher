@@ -78,7 +78,7 @@ public class System_ModdedClassLoader extends URLClassLoader
 
     public static String[] l(String r) throws IOException
     {
-        FileReader s = new FileReader(r + File.separator + "bin" + File.separator + "Nicnl's Mods V2.launcher");
+        FileReader s = new FileReader(Main_RealLauncher.getBinDirPath() + File.separator + "Nicnl's Mods V2.launcher");
         BufferedReader t = new BufferedReader(s);
 
         ArrayList<String> u = new ArrayList<String>();

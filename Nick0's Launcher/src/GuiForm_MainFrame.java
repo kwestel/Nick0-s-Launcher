@@ -340,7 +340,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         File ModsFolder = new File(Main_RealLauncher.getModsDirPath());
         modsCanBeEnabled = ModsFolder.exists() && (ModsFolder.list().length > 0);
         
-        File NicnlModsFile = new File(Main_RealLauncher.configFileDir + File.separator + "bin" + File.separator + "Nicnl's Mods V2.launcher");
+        File NicnlModsFile = new File(Main_RealLauncher.getBinDirPath() + File.separator + "Nicnl's Mods V2.launcher");
         NicnlModsCanBeEnabled = NicnlModsFile.exists() && NicnlModsFile.isFile();
 
         int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
