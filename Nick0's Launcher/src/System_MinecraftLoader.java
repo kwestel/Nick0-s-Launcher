@@ -8,16 +8,16 @@ import java.util.ArrayList;
 public class System_MinecraftLoader extends ClassLoader
 {
 
-    private static URLClassLoader MC_ClassLoader;
+    private static System_ModdedClassLoader MC_ClassLoader;
     
     public static String[] jarList = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
     public static boolean LoadMods = false;
     
-    public static void updateClassPath(String jarPath) throws MalformedURLException
+    public static void updateClassPath(String jarPath, boolean LoadNicnlMod) throws MalformedURLException
     {
         URL[] urlList = transformPathFileToUrl(jarPath, jarList);
-        MC_ClassLoader = new URLClassLoader(urlList);
-
+        MC_ClassLoader = new System_ModdedClassLoader(urlList, LoadNicnlMod);
+        
         if ( !jarPath.endsWith(File.separator) ) { jarPath += File.separator; }
   
         System.setProperty("org.lwjgl.librarypath", jarPath + "natives");
@@ -26,8 +26,11 @@ public class System_MinecraftLoader extends ClassLoader
 
     public static Applet LoadMinecraft(String path) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        updateClassPath(path);
+        boolean EnableNicnlMods = ( GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods != null ) && GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods.isSelected();
+        updateClassPath(path, EnableNicnlMods);
+        
         Class loadedAppletClass = MC_ClassLoader.loadClass("net.minecraft.client.MinecraftApplet");
+
         return (Applet)loadedAppletClass.newInstance();
     }
 

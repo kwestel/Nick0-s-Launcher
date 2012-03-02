@@ -4,7 +4,9 @@ public class Preferences_ConfigLoader
     public static boolean MinecraftReinstallForcer = false;
 
     public static boolean CONFIG_updatesDisabled = false;
+
     public static boolean CONFIG_modsButtonChecked = false;
+    public static boolean CONFIG_NicnlModsButtonChecked = false;
     
     public static boolean CONFIG_jarSelector = false;
     public static boolean CONFIG_SaveLastJar = false;
@@ -15,7 +17,7 @@ public class Preferences_ConfigLoader
 
     public static void SYSTEM_LoadPreferences()
     {
-        System.out.println("Nick0's Launcher - Chargement des préférences...");
+        System_LogWriter.write("Chargement des préférences...");
 
         String[] loadedPreferences = Preferences_ConfigFileWriter.loadConfigFile();
 
@@ -33,9 +35,11 @@ public class Preferences_ConfigLoader
             /* JarSaved */ CONFIG_LastJarSaved = ( loadedPreferences[10].split("=").length == 2 ) ? ( loadedPreferences[10].split("=")[1] ) : "";
 
             /* Mod Butt */ CONFIG_modsButtonChecked = loadedPreferences[11].split("=")[1].equals("TRUE");
+            /* NicnlMod */ CONFIG_NicnlModsButtonChecked = loadedPreferences[12].split("=")[1].equals("TRUE");
         }
         catch ( ArrayIndexOutOfBoundsException e )
         {
+            System_LogWriter.write("Erreur lors du chargement des préférences ! Update simple du fichier...");
             e.printStackTrace();
             Preferences_ConfigFileWriter.updateConfigFile(false);
         }

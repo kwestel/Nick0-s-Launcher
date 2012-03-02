@@ -14,6 +14,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     public GuiElement_CheckBox Check_Offline;
     public GuiElement_CheckBox Check_SaveLogin;
     public GuiElement_CheckBox Check_EnableMods;
+    public GuiElement_CheckBox Check_EnableNicnlMods;
 
     public JLabel Label_MainTitle;
     public JLabel Label_UsernameLabel;
@@ -29,6 +30,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     public GuiElement_Panel mainPanel;
 
     private static boolean modsCanBeEnabled;
+    private static boolean NicnlModsCanBeEnabled;
 
     public GuiForm_MainFrame()
     {
@@ -42,7 +44,10 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+        System_LogWriter.write("Création du contenu de la fenêtre principale...");
         setContentPane(createFrameContent());
+
+        System_LogWriter.write("Ajout des Actions Listeners aux éléments GUIs...");
         addActionsListeners();
 
         setVisible(true);
@@ -73,8 +78,15 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked);
         }
         
+        if ( NicnlModsCanBeEnabled )
+        {
+            Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2");
+            Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked); 
+        }
+        
         if ( Preferences_ConfigLoader.CONFIG_jarSelector )
         {
+            System_LogWriter.write("Creation du selectionneur de jar...");
             ComboBox_JarSelector = new GuiElement_JarSelector();
             ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
         }
@@ -173,6 +185,16 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             gbc.anchor = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_EnableMods, gbc);
         }
+        
+        if ( NicnlModsCanBeEnabled )
+        {
+            gbc.gridx = 1;
+            gbc.gridy = 8;
+            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            mainPanel.add(Check_EnableNicnlMods, gbc);
+        }
 
         // Button : Preferences
         gbc.gridx = 0;
@@ -235,6 +257,8 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();
             Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
+            Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked = NicnlModsCanBeEnabled && Check_EnableNicnlMods.isSelected();
+
             Main_RealLauncher.startLogin(Field_UserName.getText(), Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : ( new String(Field_Password.getPassword()) ));
         } };
         Field_Password.addActionListener(loginListener);
@@ -287,7 +311,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         verifyButtons();
     }
     
-    private void disableAntiDisplaying()
+    public void disableAntiDisplaying()
     {
         Main_RealLauncher.PasswordNotDisplayed = false;
         
@@ -315,9 +339,12 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         File ModsFolder = new File(Main_RealLauncher.getModsDirPath());
         modsCanBeEnabled = ModsFolder.exists() && (ModsFolder.list().length > 0);
+        
+        File NicnlModsFile = new File(Main_RealLauncher.configFileDir + File.separator + "bin" + File.separator + "Nicnl's Mods V2.launcher");
+        NicnlModsCanBeEnabled = NicnlModsFile.exists() && NicnlModsFile.isFile();
 
         int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
-        YSizeToAdd += modsCanBeEnabled ? 30 : 0;
+        YSizeToAdd += ( modsCanBeEnabled || NicnlModsCanBeEnabled ) ? 30 : 0;
         setSize(325, 290 + YSizeToAdd);
     }
 

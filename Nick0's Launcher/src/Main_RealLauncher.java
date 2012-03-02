@@ -15,28 +15,35 @@ public class Main_RealLauncher
 
     public static void main(String[] args)
     {
-        // Forcer le theme de l'OS hôte
+        System_LogWriter.write("Initialisation du launcher...");
+
+        System_LogWriter.write("Chargement du thème du système d'exploitation hôte...");
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
 
-        System_FileManager.createFolder(configFileDir);
-
-        System.out.println("Nick0's Launcher - Initialisation de l'interface en cours...");
-
-        // Définition des variables systèmes importantes
+        System_LogWriter.write("Mise en place des variables système...");
         homeDir = getHomeDir();
         System_DataStub.setParameter("latestVersion","0");
+
+        System_LogWriter.write("Vérification des dossiers d'installation...");
+        System_FileManager.createFolder(configFileDir);
+        if ( !homeDir.equals(configFileDir) ) { System_FileManager.createFolder(homeDir); }
+        System_FileManager.createFolder(getBinDirPath());
+
+        System_LogWriter.write("Chargement des préférences...");
         Preferences_ConfigLoader.SYSTEM_LoadPreferences();
 
-        // Création de la frame principale
+        System_LogWriter.write("Initialisation de la fenêtre principale...");
         GuiForm_MainFrame.newForm(true);
 
-        // Chargement des identifiants de connexion
         String[] loadedTextFile = Preferences_ConfigFileWriter.loadConfigFile();
         if ( loadedTextFile != null )
         {
+            System_LogWriter.write("Chargement des données de connexion...");
+
             if ( !loadedTextFile[0].equals("") )
             {
+                System_LogWriter.write("Chargement de l'username...");
                 String loadedUsername = loadedTextFile[0];
                 GuiForm_MainFrame.mainFrame.Field_UserName.setText(loadedUsername);
                 GuiForm_MainFrame.mainFrame.Field_UserName.setCaretPosition(loadedUsername.length());
@@ -44,6 +51,7 @@ public class Main_RealLauncher
 
             if ( !loadedTextFile[2].equals("") && !loadedTextFile[3].equals("") )
             {
+                System_LogWriter.write("Décodage du mot de passe...");
                 String decodedPassword = Encrypter_StringEncrypter.decodeString(loadedTextFile[2]);
                 int recodedHashCode = Encrypter_StringEncrypter.encodeString(decodedPassword).hashCode();
 
@@ -56,11 +64,11 @@ public class Main_RealLauncher
 
                     GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(true);
                 }
-                else { System.out.println("Nick0's Launcher - Password decrypting fail !"); }
+                else { System_LogWriter.write("Password decrypting fail !"); }
             }
         }
 
-        System.out.println("Nick0's Launcher - Launcher fonctionnel !");
+        System_LogWriter.write("Launcher fonctionnel !");
     }
 
     public static void startLogin(String username, String password)
@@ -108,12 +116,12 @@ public class Main_RealLauncher
         if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.updateConfigFileOfflineMode(); }
         else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
 
-        System.out.println("Initialisation de minecraft !\n\n_____________________________________\n");
-
-        GuiForm_MainFrame.destroyWindow();
+        System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
 
         try { minecraftInstance = System_MinecraftLoader.LoadMinecraft(getBinDirPath()); }
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
+
+        GuiForm_MainFrame.destroyWindow();
 
         GuiForm_GameFrame baseFrame = new GuiForm_GameFrame(System_DataStub.static_getParameter("username"));
         baseFrame.add(minecraftInstance);

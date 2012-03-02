@@ -10,10 +10,11 @@ public class GuiElement_JarSelector extends JComboBox
         setOpaque(false);
         if ( !System_UserHomeDefiner.SystemOS.equals("macosx") ) { setBorder(null); }
 
+        System_LogWriter.write("Recuperation de la liste des jars");
         String[] jarList = System_JarSelectorFunctions.getJarList();
         setModel(new DefaultComboBoxModel(System_JarSelectorFunctions.getJarList()));
         
-        if ( jarList.length == 1 ) { setEnabled(false); }
+        if ( jarList.length < 2 ) { setEnabled(false); }
     }
     
     public void SelectStringEntry(String entry)

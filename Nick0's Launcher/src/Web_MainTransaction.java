@@ -13,7 +13,11 @@ public class Web_MainTransaction
         if ( result == null || !result.contains(":") )
         {
             if ( result == null ) { System_ErrorHandler.handleError("Impossible de se connecter à Minecraft.net !", false, false); }
-            else if ( result.toLowerCase().trim().equals("bad login") ) { System_ErrorHandler.handleError("Nom d'utilisateur et/ou mot de passe incorrect !", false, false); }
+            else if ( result.toLowerCase().trim().equals("bad login") )
+            {
+                System_ErrorHandler.handleError("Nom d'utilisateur et/ou mot de passe incorrect !", false, false);
+                GuiForm_MainFrame.mainFrame.disableAntiDisplaying();
+            }
             else if ( result.toLowerCase().trim().equals("old version") ) { System_ErrorHandler.handleError("Le launcher est périmé.", false, true); }
             else { System_ErrorHandler.handleError("Une erreur inconnue s'est produite lors de la connexion : \"" + result + "\"", false, true); }
             return;

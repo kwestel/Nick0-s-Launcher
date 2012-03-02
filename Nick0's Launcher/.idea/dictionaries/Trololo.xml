@@ -5,10 +5,12 @@
       <w>addresse</w>
       <w>adresse</w>
       <w>afin</w>
+      <w>ajout</w>
       <w>allouée</w>
       <w>apparaitre</w>
       <w>applet's</w>
       <w>aucun</w>
+      <w>avaivable</w>
       <w>avancées</w>
       <w>avec</w>
       <w>avez</w>
@@ -21,14 +23,19 @@
       <w>cette</w>
       <w>changé</w>
       <w>chargement</w>
+      <w>chargé</w>
+      <w>chargée</w>
+      <w>classe</w>
       <w>complète</w>
       <w>conf</w>
       <w>connecter</w>
       <w>conseillée</w>
       <w>contacter</w>
       <w>contactez</w>
+      <w>contenu</w>
       <w>continuer</w>
       <w>cordialement</w>
+      <w>corrompu</w>
       <w>corrompue</w>
       <w>cours</w>
       <w>crypte</w>
@@ -36,9 +43,13 @@
       <w>d'appliquer</w>
       <w>d'autres</w>
       <w>d'erreur</w>
+      <w>d'exploitation</w>
       <w>d'initialiser</w>
+      <w>d'installation</w>
+      <w>d'une</w>
       <w>d'utilisateur</w>
       <w>demande</w>
+      <w>demandée</w>
       <w>dernier</w>
       <w>deux</w>
       <w>devenir</w>
@@ -49,6 +60,7 @@
       <w>dsun</w>
       <w>dysfonctionner</w>
       <w>décodage</w>
+      <w>décompression</w>
       <w>décrypté</w>
       <w>définition</w>
       <w>déjà</w>
@@ -65,6 +77,8 @@
       <w>erreur</w>
       <w>existe</w>
       <w>fait</w>
+      <w>fatale</w>
+      <w>fenêtre</w>
       <w>fichier</w>
       <w>fichiers</w>
       <w>fois</w>
@@ -91,6 +105,7 @@
       <w>l'os</w>
       <w>lancement</w>
       <w>librarypath</w>
+      <w>liste</w>
       <w>loadmap</w>
       <w>lors</w>
       <w>lwjgl</w>
@@ -154,6 +169,7 @@
       <w>sont</w>
       <w>supporté</w>
       <w>supprimer</w>
+      <w>surement</w>
       <w>survenue</w>
       <w>systeme</w>
       <w>système</w>
@@ -161,6 +177,7 @@
       <w>sécurisée</w>
       <w>sélectionné</w>
       <w>texte</w>
+      <w>thème</w>
       <w>trololo</w>
       <w>trop</w>
       <w>téléchager</w>
@@ -176,8 +193,11 @@
       <w>votre</w>
       <w>voulez</w>
       <w>vous</w>
+      <w>vérification</w>
+      <w>yyyy</w>
       <w>écran</w>
       <w>égaux</w>
+      <w>éléments</w>
       <w>être</w>
     </words>
   </dictionary>

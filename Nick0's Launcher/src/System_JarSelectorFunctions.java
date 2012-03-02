@@ -12,9 +12,12 @@ public class System_JarSelectorFunctions
         ArrayList<String> arrayFiles = new ArrayList<String>();
         
         String[] jarFileList = jarDir.list();
-        for ( String actualFile : jarFileList )
+        if ( jarFileList != null && jarFileList.length > 0 )
         {
-            if ( isNotForbidden(actualFile) && actualFile.toLowerCase().trim().endsWith(".jar") ) { arrayFiles.add(actualFile); }
+            for ( String actualFile : jarFileList )
+            {
+                if ( isNotForbidden(actualFile) && actualFile.toLowerCase().trim().endsWith(".jar") ) { arrayFiles.add(actualFile); }
+            }
         }
         
         return arrayFiles.toArray(new String[arrayFiles.size()]);

@@ -38,19 +38,27 @@ public class Preferences_ConfigFileWriter
 
     public static void writeConfigFile(String encodedPassword)
     {
-        clear();
-        /* Username */ addLine(System_DataStub.static_getParameter("username"));
-        /* LVersion */ addLine(Preferences_ConfigLoader.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
-        /* Password */ addLine(GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected() ? encodedPassword : "");
-        /* PassHash */ addLine(GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected() ? (""+encodedPassword.hashCode()) : "");
-        /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-        /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-        /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-        /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-        /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-        /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-        /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-        /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+        try
+        {
+            clear();
+
+            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
+
+            /* Username */ addLine(System_DataStub.static_getParameter("username"));
+            /* LVersion */ addLine(Preferences_ConfigLoader.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
+            /* Password */ addLine(SaveLogin ? encodedPassword : "");
+            /* PassHash */ addLine(SaveLogin ? (""+encodedPassword.hashCode()) : "");
+            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
+            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
+            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
+            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
+            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
+            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
+            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
+            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
+        }
+        catch ( NullPointerException e ) { writeEmptyFile(); }
 
         try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -71,6 +79,7 @@ public class Preferences_ConfigFileWriter
         /* SaveLJar */ addLine("SaveLastJar=FALSE");
         /* JarSaved */ addLine("LastJarSaved=");
         /* Mod Butt */ addLine("ModsButtonChecked=FALSE");
+        /* NicnlMod */ addLine("NicnlModsButtonChecked=FALSE");
 
         try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -82,19 +91,27 @@ public class Preferences_ConfigFileWriter
     {
         String[] oldConfigFile = loadConfigFile();
 
-        clear();
-        /* Username */ addLine(oldConfigFile[0]);
-        /* LVersion */ addLine(oldConfigFile[1]);
-        /* Password */ addLine((GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected() || forceSave) ? oldConfigFile[2] : "");
-        /* PassHash */ addLine((GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected() || forceSave) ? oldConfigFile[3] : "");
-        /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-        /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-        /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-        /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-        /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-        /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-        /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-        /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+        try
+        {
+            clear();
+
+            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
+
+            /* Username */ addLine(oldConfigFile[0]);
+            /* LVersion */ addLine(oldConfigFile[1]);
+            /* Password */ addLine((SaveLogin || forceSave) ? oldConfigFile[2] : "");
+            /* PassHash */ addLine((SaveLogin || forceSave) ? oldConfigFile[3] : "");
+            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
+            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
+            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
+            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
+            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
+            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
+            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
+            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
+        }
+        catch ( NullPointerException e ) { writeEmptyFile(); }
 
         try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -104,19 +121,24 @@ public class Preferences_ConfigFileWriter
     {
         String[] oldConfigFile = loadConfigFile();
 
-        clear();
-        /* Username */ addLine(System_DataStub.static_getParameter("username"));
-        /* LVersion */ addLine(oldConfigFile[1]);
-        /* Password */ addLine(oldConfigFile[2]);
-        /* PassHash */ addLine(oldConfigFile[3]);
-        /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-        /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-        /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-        /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-        /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-        /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-        /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-        /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+        try
+        {
+            clear();
+            /* Username */ addLine(System_DataStub.static_getParameter("username"));
+            /* LVersion */ addLine(oldConfigFile[1]);
+            /* Password */ addLine(oldConfigFile[2]);
+            /* PassHash */ addLine(oldConfigFile[3]);
+            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
+            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
+            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
+            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
+            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
+            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
+            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
+            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
+            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
+        }
+        catch ( NullPointerException e ) { writeEmptyFile(); }
 
         try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
@@ -129,7 +151,7 @@ public class Preferences_ConfigFileWriter
         catch ( IOException e )
         {
             loadedFile = writeEmptyFile();
-            System.out.println("Nick0's Launcher - Saved Configuration Error !");
+            System_LogWriter.write("Saved Configuration Error !");
         }
         return loadedFile;
     }

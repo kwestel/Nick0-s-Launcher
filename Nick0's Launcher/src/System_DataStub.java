@@ -30,7 +30,7 @@ public class System_DataStub extends Applet implements AppletStub
     private static int getIndexValue(String index)
     {
         int value = -1;
-        for(int i=0;i<MCParameters_Index.length;i++)
+        for ( int i=0; i<MCParameters_Index.length; i++ )
         {
             if ( MCParameters_Index[i].toLowerCase().equals(index.toLowerCase()) )
             {

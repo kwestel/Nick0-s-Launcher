@@ -27,7 +27,7 @@ public class Web_MinecraftUpdater
     {
         boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.static_getParameter("latestVersion")) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
 
-        System.out.println("Nick0's Launcher - Updater - " + ( needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour." ));
+        System_LogWriter.write(needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour.");
 
         if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
         {

@@ -15,19 +15,28 @@ public class Encrypter_StringEncrypter
     public static void encodeAndSavePassword(String pass) { lastEncodedPassword = encodeString(pass); }
     public static String getLastPassword() { return lastEncodedPassword; }
     
-    public static String encodeString(String originalString)
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Encode/Decode Functions : Public Utilisation
+    
+    public static String encodeString(String originalString) { return encodeString(originalString, " ", secretKey); }
+    public static String decodeString(String encodedString) { return decodeString(encodedString, " ", secretKey); }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Encode/Decode Functions : System
+    
+    public static String encodeString(String originalString, String parseCharacter, Key secretKeySpec)
     {
         String finishedFile = null;
 
         try
         {
             Cipher cipherInstance = Cipher.getInstance("RC4");
-            cipherInstance.init(Cipher.ENCRYPT_MODE, secretKey);
+            cipherInstance.init(Cipher.ENCRYPT_MODE, secretKeySpec);
 
             byte[] encryptedBytes = cipherInstance.doFinal(originalString.getBytes());
 
             finishedFile = "";
-            for ( byte actualByte : encryptedBytes ) { finishedFile += actualByte + " "; }
+            for ( byte actualByte : encryptedBytes ) { finishedFile += actualByte + parseCharacter; }
             finishedFile = finishedFile.trim();
         }
         catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
@@ -35,17 +44,17 @@ public class Encrypter_StringEncrypter
         return finishedFile;
     }
 
-    public static String decodeString(String encodedString)
+    public static String decodeString(String encodedString, String parseCharacter, Key secretKeySpec)
     {
         byte[] decodedBytes = null;
 
         try
         {
             Cipher cipher = Cipher.getInstance("RC4");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
 
             ByteArrayOutputStream BAOS = new ByteArrayOutputStream();
-            for ( String actualChar : encodedString.split(" ") ) { BAOS.write(Integer.parseInt(actualChar)); }
+            for ( String actualChar : encodedString.split(parseCharacter) ) { BAOS.write(Integer.parseInt(actualChar)); }
             byte[] encodedArray = BAOS.toByteArray();
 
             decodedBytes = cipher.doFinal(encodedArray);
@@ -54,6 +63,9 @@ public class Encrypter_StringEncrypter
 
         return (new String(decodedBytes));
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Encode Key : Semi-Unique
     
     private static String getEncodeKey()
     {
@@ -76,6 +88,9 @@ public class Encrypter_StringEncrypter
 
         return a + l + b + k + c + j + d + i + e + h + f + g;
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // String Randomizer ( Better Password Protection )
     
     public static String stringRandomizer(String originalText)
     {
