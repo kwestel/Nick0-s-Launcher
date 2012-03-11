@@ -6,16 +6,25 @@ import java.io.IOException;
 public class GuiElement_Panel extends JPanel
 {
 
-    private Image background_image;
+    public Image background_image;
+    public String background_path;
 
     public GuiElement_Panel(String background)
     {
-        try
+        background_path = background;
+
+        new Thread()
         {
-            Image temp_loaded = ImageIO.read(GuiForm_MainFrame.class.getResource("backgrounds/" + background));
-            background_image = temp_loaded.getScaledInstance(temp_loaded.getWidth(null), temp_loaded.getHeight(null), 16);
-        }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
+            public void run()
+            {
+                try
+                {
+                    Image temp_loaded = ImageIO.read(GuiForm_MainFrame.class.getResource("backgrounds/" + background_path));
+                    background_image = temp_loaded.getScaledInstance(temp_loaded.getWidth(null), temp_loaded.getHeight(null), 16);
+                }
+                catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
+            }
+        }.start();
     }
 
     public void paintComponent(Graphics g)

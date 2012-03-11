@@ -1,159 +1,198 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class Preferences_ConfigFileWriter
+public final class Preferences_ConfigFileWriter
 {
-
-    private static ArrayList<String> dataCache;
-
-    public static void clear() { dataCache = new ArrayList<String>(); }
-    public static void addLine(String line) { dataCache.add(line); }
-
-    public static void writeDataToFile(String outputFileName) throws IOException
+    
+    private static ArrayList<String> loadedFile = new ArrayList<String>();
+    private static boolean reloadFile = true;
+    private static final String[] parameterList = new String[]
     {
-        System_FileManager.createFolder(Main_RealLauncher.configFileDir);
+        "Username",
+        "Version",
+        "EncP",
+        "EncH",
 
-        FileWriter outputFileWriter = new FileWriter(new File(outputFileName));
-        PrintWriter printFileWriter = new PrintWriter(outputFileWriter);
-        for ( String dataLine : dataCache ) { printFileWriter.println(dataLine); }
-        printFileWriter.close();
-        outputFileWriter.close();
+        "DisableUpdates",
+        "JarSelector",
+        "RamSelector",
+        "HomeDir",
+        "RAM",
+        "SaveLastJar",
+        "LastJarSaved",
+        "ModsButtonChecked",
+        "NicnlModsButtonChecked"
+    };
+    private static final String[] parameterData = new String[] { "", "0", "", "", "false", "false", "RamSelector", "", "1024", "false", "", "false", "false" };
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Basic Write Functions
+    
+    public static final String getParameter(String index)
+    {
+        loadConfigFile();
+
+        for ( String actualIndex : loadedFile )
+        {
+            String[] splitString = actualIndex.split("=");
+            try
+            {
+                if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+                {
+                    if ( splitString.length > 1 ) { return splitString[1]; }
+                    else { return ""; }
+                }
+            }
+            catch ( Exception e ) { return ""; }
+        }
+
+        writeEmptyFile();
+        loadConfigFile();
+
+        for ( String actualIndex : loadedFile )
+        {
+            String[] splitString = actualIndex.split("=");
+            try
+            {
+                if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+                {
+                    if ( splitString.length > 1 ) { return splitString[1]; }
+                    else { return ""; }
+                }
+            }
+            catch ( Exception e ) { return ""; }
+        }
+
+        System_ErrorHandler.handleError("Erreur lors de la récupération de : " + index, false, true);
+        return null;
+    }
+    
+    public static final void setParameter(String index, boolean data) { setParameter(index, data+""); }
+    public static final void setParameter(String index, int data) { setParameter(index, data+""); }
+    
+    public static final void setParameter(String index, String data)
+    {
+        loadConfigFile();
+
+        for ( int i=0; i<loadedFile.size(); i++ )
+        {
+            String[] splitString = loadedFile.get(i).split("=");
+            if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+            {
+                loadedFile.set(i, index + "=" + data);
+                writeFile();
+                return;
+            }
+        }
+
+        writeEmptyFile();
+        loadConfigFile();
+
+        for ( int i=0; i<loadedFile.size(); i++ )
+        {
+            String[] splitString = loadedFile.get(i).split("=");
+            if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+            {
+                loadedFile.set(i, index + "=" + data);
+                writeFile();
+                return;
+            }
+        }
+
+        System_ErrorHandler.handleError("Erreur lors de la définition de : " + index, false, true);
     }
 
-    public static String[] loadFile(String filePathInput) throws IOException
+    public static void writeConfigFile(String encodedPassword, boolean writeLogin, boolean erasePassword)
+    {
+        if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("username")); }
+        
+        if ( !encodedPassword.equals("") && !erasePassword )
+        {
+            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
+
+            if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
+            setParameter("EncP", SaveLogin ? encodedPassword : "");
+            setParameter("EncH", SaveLogin ? encodedPassword.hashCode()+"" : "");
+        }
+
+        if ( erasePassword )
+        {
+            if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
+            setParameter("EncP", "");
+            setParameter("EncH", "");
+        }
+
+        setParameter("DisableUpdates", Preferences_ConfigLoader.CONFIG_updatesDisabled);
+        setParameter("JarSelector", Preferences_ConfigLoader.CONFIG_jarSelector);
+        setParameter("RamSelector", Preferences_ConfigLoader.CONFIG_ramSelector);
+        if ( !Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ) { setParameter("HomeDir", Main_RealLauncher.homeDir); }
+        setParameter("RAM", Preferences_ConfigLoader.CONFIG_selectedRam);
+        setParameter("SaveLastJar", Preferences_ConfigLoader.CONFIG_SaveLastJar);
+        if ( Preferences_ConfigLoader.CONFIG_SaveLastJar ) { setParameter("LastJarSaved", Preferences_ConfigLoader.CONFIG_LastJarSaved); }
+        setParameter("ModsButtonChecked", Preferences_ConfigLoader.CONFIG_modsButtonChecked);
+        setParameter("NicnlModsButtonChecked", Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Raw Loading File
+
+    private static final ArrayList<String> loadFileRaw(String filePathInput) throws IOException
     {
         FileReader Load_FileReader = new FileReader(filePathInput);
         BufferedReader Load_BufferedReader = new BufferedReader(Load_FileReader);
 
-        ArrayList<String> LoadedFile = new ArrayList<String>();
+        ArrayList<String> newLoadedFile = new ArrayList<String>();
 
         String actualLine;
-        while ( (actualLine = Load_BufferedReader.readLine()) != null ) { LoadedFile.add(actualLine); }
+        while ( (actualLine = Load_BufferedReader.readLine()) != null ) { newLoadedFile.add(actualLine); }
 
         Load_BufferedReader.close();
         Load_FileReader.close();
 
-        return LoadedFile.toArray(new String[LoadedFile.size()]);
+        return newLoadedFile;
     }
 
-    public static void writeConfigFile(String encodedPassword)
+    private static final void loadConfigFile()
     {
-        try
-        {
-            clear();
+        if ( !reloadFile ) { return; }
+        else { reloadFile = false; }
 
-            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
-
-            /* Username */ addLine(System_DataStub.static_getParameter("username"));
-            /* LVersion */ addLine(Preferences_ConfigLoader.CONFIG_updatesDisabled ? loadConfigFile()[1] : System_DataStub.static_getParameter("latestVersion") );
-            /* Password */ addLine(SaveLogin ? encodedPassword : "");
-            /* PassHash */ addLine(SaveLogin ? (""+encodedPassword.hashCode()) : "");
-            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
-            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
-        }
-        catch ( NullPointerException e ) { writeEmptyFile(); }
-
-        try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
-    }
-
-    public static String[] writeEmptyFile()
-    {
-        clear();
-        /* Username */ addLine("");
-        /* LVersion */ addLine("0");
-        /* Password */ addLine("");
-        /* PassHash */ addLine("");
-        /* UpdatOff */ addLine("DisableUpdates=FALSE");
-        /* JarSelec */ addLine("JarSelector=FALSE");
-        /* RamSelec */ addLine("RamSelector=FALSE");
-        /* Home Dir */ addLine("HomeDir=");
-        /* RamSelec */ addLine("RAM=1024");
-        /* SaveLJar */ addLine("SaveLastJar=FALSE");
-        /* JarSaved */ addLine("LastJarSaved=");
-        /* Mod Butt */ addLine("ModsButtonChecked=FALSE");
-        /* NicnlMod */ addLine("NicnlModsButtonChecked=FALSE");
-
-        try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
-
-        return dataCache.toArray(new String[dataCache.size()]);
-    }
-
-    public static void updateConfigFile(boolean forceSave)
-    {
-        String[] oldConfigFile = loadConfigFile();
-
-        try
-        {
-            clear();
-
-            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
-
-            /* Username */ addLine(oldConfigFile[0]);
-            /* LVersion */ addLine(oldConfigFile[1]);
-            /* Password */ addLine((SaveLogin || forceSave) ? oldConfigFile[2] : "");
-            /* PassHash */ addLine((SaveLogin || forceSave) ? oldConfigFile[3] : "");
-            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
-            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
-        }
-        catch ( NullPointerException e ) { writeEmptyFile(); }
-
-        try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
-    }
-
-    public static void updateConfigFileOfflineMode()
-    {
-        String[] oldConfigFile = loadConfigFile();
-
-        try
-        {
-            clear();
-            /* Username */ addLine(System_DataStub.static_getParameter("username"));
-            /* LVersion */ addLine(oldConfigFile[1]);
-            /* Password */ addLine(oldConfigFile[2]);
-            /* PassHash */ addLine(oldConfigFile[3]);
-            /* UpdatOff */ addLine("DisableUpdates=" + (Preferences_ConfigLoader.CONFIG_updatesDisabled ? "TRUE" : "FALSE"));
-            /* JarSelec */ addLine("JarSelector=" + (Preferences_ConfigLoader.CONFIG_jarSelector ? "TRUE" : "FALSE"));
-            /* RamSelec */ addLine("RamSelector=" + (Preferences_ConfigLoader.CONFIG_ramSelector ? "TRUE" : "FALSE"));
-            /* Home Dir */ addLine("HomeDir=" + (Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir) ? "" : Main_RealLauncher.homeDir));
-            /* Ram: Int */ addLine("RAM=" + Preferences_ConfigLoader.CONFIG_selectedRam);
-            /* SaveLJar */ addLine("SaveLastJar=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? "TRUE" : "FALSE"));
-            /* JarSaved */ addLine("LastJarSaved=" + (Preferences_ConfigLoader.CONFIG_SaveLastJar ? Preferences_ConfigLoader.CONFIG_LastJarSaved : ""));
-            /* Mod Butt */ addLine("ModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_modsButtonChecked ? "TRUE" : "FALSE"));
-            /* NicnlMod */ addLine("NicnlModsButtonChecked=" + (Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked ? "TRUE" : "FALSE"));
-        }
-        catch ( NullPointerException e ) { writeEmptyFile(); }
-
-        try { Preferences_ConfigFileWriter.writeDataToFile(Main_RealLauncher.getConfigFilePath()); }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
-    }
-
-    public static String[] loadConfigFile()
-    {
-        String[] loadedFile;
-        try { loadedFile = Preferences_ConfigFileWriter.loadFile(Main_RealLauncher.getConfigFilePath()); }
+        try { loadedFile = Preferences_ConfigFileWriter.loadFileRaw(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e )
         {
-            loadedFile = writeEmptyFile();
+            writeEmptyFile();
             System_LogWriter.write("Saved Configuration Error !");
         }
-        return loadedFile;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Raw Writing Functions
+
+    private static final void writeEmptyFile()
+    {
+        loadedFile = new ArrayList<String>();
+        for ( int i=0; i<parameterList.length; i++ ) { loadedFile.add(parameterList[i] + "=" + parameterData[i]); }
+
+        writeFile();
+    }
+
+    private static final void writeFile()
+    {
+        try
+        {
+            System_FileManager.createFolder(Main_RealLauncher.configFileDir);
+
+            FileWriter outputFileWriter = new FileWriter(new File(Main_RealLauncher.getConfigFilePath()));
+            PrintWriter printFileWriter = new PrintWriter(outputFileWriter);
+
+            for ( String dataLine : loadedFile ) { printFileWriter.println(dataLine); }
+
+            printFileWriter.close();
+            outputFileWriter.close();
+        }
+        catch ( Exception e ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors de l'écriture du fichier.", false, true); }
+
+        reloadFile = true;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

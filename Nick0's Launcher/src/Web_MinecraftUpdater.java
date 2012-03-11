@@ -4,12 +4,14 @@ import java.io.*;
 public class Web_MinecraftUpdater
 {
     
-    public static void mainMinecraftUpdater(String[] loadedConfFile)
+    public static void mainMinecraftUpdater()
     {
         Updater_FileVerifications();
         
-        if ( loadedConfFile != null ) { Updater_ConfigFileExists(loadedConfFile); }
-        else { Updater_NoInstallation(false); }
+        boolean haveInstallation = new File(Main_RealLauncher.getConfigFilePath()).exists();
+        
+        if ( !haveInstallation ) { Updater_NoInstallation(false); }
+        else { Updater_ConfigFileExists(); }
     }
     
     public static void mainOfflineUpdater()
@@ -23,13 +25,14 @@ public class Web_MinecraftUpdater
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Updates Functions
     
-    private static void Updater_ConfigFileExists(String[] loadedConfFile)
+    private static void Updater_ConfigFileExists()
     {
-        boolean needToUpdate = !loadedConfFile[1].equals(System_DataStub.static_getParameter("latestVersion")) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
+        String latestVersion = Preferences_ConfigFileWriter.getParameter("Version");
+        boolean needToUpdate = !latestVersion.equals(System_DataStub.static_getParameter("latestVersion")) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
 
         System_LogWriter.write(needToUpdate ? "Mise a jour de Minecraft disponible !" : "Minecraft est a jour.");
 
-        if ( loadedConfFile[1].equals("0") || Preferences_ConfigLoader.MinecraftReinstallForcer )
+        if ( ( latestVersion.equals("0") || latestVersion.equals("") ) || Preferences_ConfigLoader.MinecraftReinstallForcer )
         {
             Updater_NoInstallation(Preferences_ConfigLoader.MinecraftReinstallForcer);
         }
@@ -53,7 +56,7 @@ public class Web_MinecraftUpdater
             if ( userResponse == 0 ) { new GuiForm_UpdaterForm(true, false); }
             else
             {
-                System_DataStub.setParameter("latestVersion",loadedConfFile[1]);
+                System_DataStub.setParameter("latestVersion", latestVersion);
                 Main_RealLauncher.startMinecraft();
             }
         }

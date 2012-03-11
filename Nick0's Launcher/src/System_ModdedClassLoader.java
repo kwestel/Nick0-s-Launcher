@@ -47,7 +47,7 @@ public class System_ModdedClassLoader extends URLClassLoader
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Basic Surcharge
 
-    public Class findClass(String i) throws ClassNotFoundException
+    public Class findClass(String i)
     {
         if ( a )
         {
@@ -66,14 +66,18 @@ public class System_ModdedClassLoader extends URLClassLoader
         return m;
     }
     
-    public Class k(String o) throws ClassNotFoundException { return super.findClass(o); }
+    public Class k(String o)
+    {
+        try { return super.findClass(o); }
+        catch ( Exception e ) { return null; }
+    }
 
     private Class g() throws Exception
     {
-        String[] loadedFile = l(Main_RealLauncher.configFileDir);
-        byte[] p = n(o(loadedFile[1].substring(1, loadedFile[1].length())));
-        if ( !q(p).equals((new String(o(loadedFile[2].substring(1, loadedFile[2].length()))))) ) { throw new Exception(); }
-        return defineClass(new String(o(loadedFile[0].substring(1, loadedFile[0].length()))), p, 0, p.length);
+        String[] v = l(Main_RealLauncher.configFileDir);
+        byte[] p = n(o(v[1].substring(1, v[1].length())));
+        if ( !q(p).equals((new String(o(v[2].substring(1, v[2].length()))))) ) { throw new Exception(); }
+        return defineClass(new String(o(v[0].substring(1, v[0].length()))), p, 0, p.length);
     }
 
     public static String[] l(String r) throws IOException

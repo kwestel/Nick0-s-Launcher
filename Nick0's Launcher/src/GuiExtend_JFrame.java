@@ -8,8 +8,15 @@ public class GuiExtend_JFrame extends JFrame
     GuiExtend_JFrame()
     {
         super();
-        try { setIconImage(ImageIO.read(GuiExtend_JFrame.class.getResource("icons/Icon_Original.png"))); }
-        catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
+        
+        new Thread()
+        {
+            public void run()
+            {
+                try { setIconImage(ImageIO.read(GuiExtend_JFrame.class.getResource("icons/Icon_Original.png"))); }
+                catch ( IOException e ) { System_ErrorHandler.handleException(e, false); }
+            }
+        }.start();
     }
 
     public void setSize(int width, int height)

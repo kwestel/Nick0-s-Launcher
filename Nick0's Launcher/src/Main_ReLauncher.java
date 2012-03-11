@@ -11,11 +11,11 @@ public class Main_ReLauncher
         
         int memoryToApply;
         File configFile = new File(Main_RealLauncher.getConfigFilePath());
-        String[] loadedConfigFile;
+        
         if ( configFile.exists()  )
         {
-            loadedConfigFile = Preferences_ConfigFileWriter.loadConfigFile();
-            memoryToApply = Integer.parseInt(loadedConfigFile[8].split("=")[1]);
+            try { memoryToApply = Integer.parseInt(Preferences_ConfigFileWriter.getParameter("RAM")); }
+            catch ( Exception e ) { memoryToApply = 1024; }
         }
         else
         {
@@ -23,7 +23,7 @@ public class Main_ReLauncher
             return;
         } // Premier démarrage
 
-        if ( allocatedMemory >= minimalAllocatedMemory && ( loadedConfigFile[6] != null && loadedConfigFile[6].contains("FALSE") ) ) { loadLauncher(false); }
+        if ( allocatedMemory >= minimalAllocatedMemory && Preferences_ConfigFileWriter.getParameter("RamSelector").equals("false") ) { loadLauncher(false); }
         else { loadLauncher(memoryToApply); }
     }
 

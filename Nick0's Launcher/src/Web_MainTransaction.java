@@ -30,12 +30,9 @@ public class Web_MainTransaction
         System_DataStub.setParameter("username", serverResults[2].trim());
         System_DataStub.setParameter("sessionid", serverResults[3].trim());
 
-        File NicnlConfigFile = new File(Main_RealLauncher.getConfigFilePath());
-        String[] loadedTextFile = NicnlConfigFile.exists() ? Preferences_ConfigFileWriter.loadFile(Main_RealLauncher.getConfigFilePath()) : null;
-
         Encrypter_StringEncrypter.encodeAndSavePassword(password);
 
-        Web_MinecraftUpdater.mainMinecraftUpdater(loadedTextFile);
+        Web_MinecraftUpdater.mainMinecraftUpdater();
     }
 
     public static void Main_OfflineLogin(String username)

@@ -455,6 +455,16 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             mainPanel.add(Check_EnableMods, gbc);
         }
 
+        if ( NicnlModsCanBeEnabled )
+        {
+            gbc.gridx = 1;
+            gbc.gridy = 8;
+            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.insets = new Insets(0, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            mainPanel.add(Check_EnableNicnlMods, gbc);
+        }
+
         // Button : Preferences
         gbc.gridx = 0;
         gbc.gridy = 9;
@@ -498,7 +508,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
     public void onClose()
     {
-        Preferences_ConfigFileWriter.updateConfigFile(Check_Offline.isSelected());
+        Preferences_ConfigFileWriter.writeConfigFile("", false, !Main_RealLauncher.PasswordNotDisplayed);
     }
     
     

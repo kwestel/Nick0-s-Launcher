@@ -3,7 +3,7 @@ import java.applet.Applet;
 import java.io.File;
 import java.io.IOException;
 
-public class Main_RealLauncher
+public final class Main_RealLauncher
 {
     public static Applet minecraftInstance = null;
 
@@ -11,7 +11,7 @@ public class Main_RealLauncher
     public static String homeDir = configFileDir;
 
     public static boolean PasswordNotDisplayed = false;
-    private static String StoredPassword;
+    protected static String StoredPassword;
 
     public static void main(String[] args)
     {
@@ -31,42 +31,11 @@ public class Main_RealLauncher
         System_FileManager.createFolder(getBinDirPath());
 
         System_LogWriter.write("Chargement des préférences...");
-        Preferences_ConfigLoader.SYSTEM_LoadPreferences();
+        new Thread() { public void run() { Preferences_ConfigLoader.SYSTEM_LoadPreferences(); } }.start();
 
         System_LogWriter.write("Initialisation de la fenêtre principale...");
         GuiForm_MainFrame.newForm(true);
-
-        String[] loadedTextFile = Preferences_ConfigFileWriter.loadConfigFile();
-        if ( loadedTextFile != null )
-        {
-            System_LogWriter.write("Chargement des données de connexion...");
-
-            if ( !loadedTextFile[0].equals("") )
-            {
-                System_LogWriter.write("Chargement de l'username...");
-                String loadedUsername = loadedTextFile[0];
-                GuiForm_MainFrame.mainFrame.Field_UserName.setText(loadedUsername);
-                GuiForm_MainFrame.mainFrame.Field_UserName.setCaretPosition(loadedUsername.length());
-            }
-
-            if ( !loadedTextFile[2].equals("") && !loadedTextFile[3].equals("") )
-            {
-                System_LogWriter.write("Décodage du mot de passe...");
-                String decodedPassword = Encrypter_StringEncrypter.decodeString(loadedTextFile[2]);
-                int recodedHashCode = Encrypter_StringEncrypter.encodeString(decodedPassword).hashCode();
-
-                if ( recodedHashCode == Integer.parseInt(loadedTextFile[3]) )
-                {
-                    PasswordNotDisplayed = true;
-                    StoredPassword = decodedPassword;
-
-                    GuiForm_MainFrame.mainFrame.Field_Password.setText(Encrypter_StringEncrypter.stringRandomizer(StoredPassword));
-
-                    GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(true);
-                }
-                else { System_LogWriter.write("Password decrypting fail !"); }
-            }
-        }
+        new Thread() { public void run() { loadPassword(); } }.start();
 
         System_LogWriter.write("Launcher fonctionnel !");
     }
@@ -89,8 +58,8 @@ public class Main_RealLauncher
     
     private static String getHomeDir()
     {
-        String[] loadedPreferences = Preferences_ConfigFileWriter.loadConfigFile();
-        return loadedPreferences[7].split("=").length == 2 ? loadedPreferences[7].split("=")[1] : Main_RealLauncher.configFileDir;
+        String loadedHomeDir = Preferences_ConfigFileWriter.getParameter("HomeDir");
+        return loadedHomeDir.equals("") ? configFileDir : loadedHomeDir;
     }
     
     public static String getStoredPassword()
@@ -104,6 +73,47 @@ public class Main_RealLauncher
     public static String getBinDirPath() { return homeDir + File.separator + "bin"; }
     public static String getNativesDirPath() { return getBinDirPath() + File.separator + "natives"; }
     public static String getModsDirPath() { return getBinDirPath() + File.separator + "mods"; }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Load Password
+    
+    private static final void loadPassword()
+    {
+        if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
+        {
+            System_LogWriter.write("Chargement des données de connexion...");
+            
+            String UserName = Preferences_ConfigFileWriter.getParameter("Username");
+            String EncP = Preferences_ConfigFileWriter.getParameter("EncP");
+            String EncH = Preferences_ConfigFileWriter.getParameter("EncH");
+
+            if ( !UserName.equals("") )
+            {
+                System_LogWriter.write("Chargement de l'UserName...");
+
+                GuiForm_MainFrame.mainFrame.Field_UserName.setText(UserName);
+                GuiForm_MainFrame.mainFrame.Field_UserName.setCaretPosition(UserName.length());
+            }
+
+            if ( !EncP.equals("") && !EncH.equals("") )
+            {
+                System_LogWriter.write("Décodage du mot de passe...");
+                String decodedPassword = Encrypter_StringEncrypter.decodeString(EncP);
+                int recodedHashCode = Encrypter_StringEncrypter.encodeString(decodedPassword).hashCode();
+
+                if ( recodedHashCode == Integer.parseInt(EncH) )
+                {
+                    PasswordNotDisplayed = true;
+                    StoredPassword = decodedPassword;
+
+                    GuiForm_MainFrame.mainFrame.Field_Password.setText(Encrypter_StringEncrypter.stringRandomizer(StoredPassword));
+
+                    GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(true);
+                }
+                else { System_LogWriter.write("Password decrypting fail !"); }
+            }
+        }
+    }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // System functions - DO NOT USE
@@ -113,8 +123,8 @@ public class Main_RealLauncher
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
         
-        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.updateConfigFileOfflineMode(); }
-        else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword()); }
+        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false); }
+        else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword(), true, false); }
 
         System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
 

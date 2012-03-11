@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class System_MinecraftLoader extends ClassLoader
 {
 
-    private static System_ModdedClassLoader MC_ClassLoader;
+    private static URLClassLoader MC_ClassLoader;
     
     public static String[] jarList = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar", "minecraft.jar" };
     public static boolean LoadMods = false;
@@ -16,7 +16,7 @@ public class System_MinecraftLoader extends ClassLoader
     public static void updateClassPath(String jarPath, boolean LoadNicnlMod) throws MalformedURLException
     {
         URL[] urlList = transformPathFileToUrl(jarPath, jarList);
-        MC_ClassLoader = new System_ModdedClassLoader(urlList, LoadNicnlMod);
+        MC_ClassLoader = LoadNicnlMod ? new System_ModdedClassLoader(urlList, true) : new URLClassLoader(urlList);
         
         if ( !jarPath.endsWith(File.separator) ) { jarPath += File.separator; }
   
@@ -29,9 +29,16 @@ public class System_MinecraftLoader extends ClassLoader
         boolean EnableNicnlMods = ( GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods != null ) && GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods.isSelected();
         updateClassPath(path, EnableNicnlMods);
         
-        Class loadedAppletClass = MC_ClassLoader.loadClass("net.minecraft.client.MinecraftApplet");
+        Applet loadedApplet = null;
 
-        return (Applet)loadedAppletClass.newInstance();
+        try
+        {
+            Class loadedAppletClass = MC_ClassLoader.loadClass("net.minecraft.client.MinecraftApplet");
+            loadedApplet = (Applet)loadedAppletClass.newInstance();
+        }
+        catch ( NoClassDefFoundError e ) { System_ErrorHandler.handleError("Erreur fatale lors du chargement de Minecraft !\nDes classes systèmes ne sont pas chargées.\nVerifiez votre dossier META-INF.", true, true); }
+
+        return loadedApplet;
     }
 
     public static URL[] transformPathFileToUrl(String path, String[] files) throws MalformedURLException

@@ -76,37 +76,37 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="System_FileManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
+      <file leaf-file-name="Updater_SystemFunctions.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="41" column="12" selection-start="1431" selection-end="1431" vertical-scroll-proportion="0.0">
+            <state line="8" column="13" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="System_ModdedClassLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_ModdedClassLoader.java">
+      <file leaf-file-name="Web_ClientServerProtocol.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web_ClientServerProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="38" selection-start="2708" selection-end="2787" vertical-scroll-proportion="0.0">
+            <state line="7" column="13" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main_ReLauncher.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
+      <file leaf-file-name="Encrypter_StringEncrypter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Encrypter_StringEncrypter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="13" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0">
+            <state line="83" column="74" selection-start="3470" selection-end="3470" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
+      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="354" column="97" selection-start="13500" selection-end="13500" vertical-scroll-proportion="0.64036417">
+            <state line="100" column="8" selection-start="3147" selection-end="3147" vertical-scroll-proportion="2.55">
               <folding />
             </state>
           </provider>
@@ -115,43 +115,52 @@
       <file leaf-file-name="System_MinecraftLoader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="0" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0">
+            <state line="38" column="192" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+      <file leaf-file-name="System_ModdedClassLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ModdedClassLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="25" selection-start="4452" selection-end="4452" vertical-scroll-proportion="0.0">
+            <state line="66" column="82" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Web_MainTransaction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
+      <file leaf-file-name="System_JarSelectorFunctions.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_JarSelectorFunctions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="57" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0">
+            <state line="3" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiExtend_JFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiExtend_JFrame.java">
+      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0">
+            <state line="355" column="94" selection-start="13559" selection-end="13559" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="System_ErrorHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
+      <file leaf-file-name="URLClassLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/src.zip!/java/net/URLClassLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="34" selection-start="773" selection-end="784" vertical-scroll-proportion="0.0">
+            <state line="194" column="30" selection-start="7529" selection-end="7529" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_DataStub.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_DataStub.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="52" column="0" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -171,22 +180,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/GuiElement_JarSelector.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" />
-        <option value="$PROJECT_DIR$/src/System_LogWriter.java" />
-        <option value="$PROJECT_DIR$/src/System_JarSelectorFunctions.java" />
-        <option value="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
-        <option value="$PROJECT_DIR$/src/System_ErrorHandler.java" />
-        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
         <option value="$PROJECT_DIR$/src/System_DataStub.java" />
         <option value="$PROJECT_DIR$/src/Encrypter_StringEncrypter.java" />
-        <option value="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
         <option value="$PROJECT_DIR$/src/System_FileManager.java" />
+        <option value="$PROJECT_DIR$/src/Thread_LoadPassword.java" />
+        <option value="$PROJECT_DIR$/src/GuiExtend_JFrame.java" />
+        <option value="$PROJECT_DIR$/src/Main_ReLauncher.java" />
+        <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
         <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
-        <option value="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
+        <option value="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
+        <option value="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+        <option value="$PROJECT_DIR$/src/GuiElement_Panel.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+        <option value="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
+        <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
       </list>
     </option>
   </component>
@@ -654,17 +663,17 @@
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="nick0's_launcher" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.Main_ReLauncher">
     <configuration default="false" name="SmoothMoveExample" type="Application" factoryName="Application" temporary="true">
@@ -857,7 +866,6 @@
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26806283" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -865,18 +873,19 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26282722" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2617801" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17708333" sideWeight="0.7371728" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46387434" sideWeight="0.99684143" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24791667" sideWeight="0.7382199" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2816754" sideWeight="0.99684143" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26806283" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
@@ -971,90 +980,86 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Encrypter_StringEncrypter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="100" selection-start="1749" selection-end="1749" vertical-scroll-proportion="0.87540984" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="755" selection-end="1328" vertical-scroll-proportion="0.026984127" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_LogWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="94" selection-end="94" vertical-scroll-proportion="-0.14285715" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="0" selection-start="2541" selection-end="2541" vertical-scroll-proportion="0.21393842" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/src.zip!/java/net/URLClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="185" column="23" selection-start="7184" selection-end="7184" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/src.zip!/java/lang/ClassLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="306" column="0" selection-start="11597" selection-end="11597" vertical-scroll-proportion="0.33264887" />
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/jre/lib/rt.jar!/sun/reflect/DelegatingMethodAccessorImpl.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="670" selection-end="670" vertical-scroll-proportion="0.41889116" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="12" selection-start="1431" selection-end="1431" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="71" selection-end="71" vertical-scroll-proportion="0.0" />
+        <state line="12" column="53" selection-start="369" selection-end="369" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiElement_Panel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="0" selection-start="636" selection-end="636" vertical-scroll-proportion="0.0" />
+        <state line="7" column="79" selection-start="147" selection-end="147" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiExtend_JFrame.java">
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="175" selection-end="175" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="34" selection-start="773" selection-end="784" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="57" selection-start="959" selection-end="959" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="73" selection-start="963" selection-end="963" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="25" selection-start="4452" selection-end="4452" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="17" column="64" selection-start="544" selection-end="544" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="0" selection-start="2684" selection-end="2684" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="315" column="44" selection-start="13686" selection-end="13686" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="210" selection-end="210" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_ClientServerProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="13" selection-start="190" selection-end="190" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="38" column="192" selection-start="1811" selection-end="1811" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/System_ModdedClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="80" column="38" selection-start="2708" selection-end="2787" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="66" column="82" selection-start="2049" selection-end="2049" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_JarSelectorFunctions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="354" column="97" selection-start="13500" selection-end="13500" vertical-scroll-proportion="0.64036417">
+        <state line="355" column="94" selection-start="13559" selection-end="13559" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/src.zip!/java/net/URLClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="194" column="30" selection-start="7529" selection-end="7529" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_DataStub.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="52" column="0" selection-start="1922" selection-end="1922" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Encrypter_StringEncrypter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="83" column="74" selection-start="3470" selection-end="3470" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="100" column="8" selection-start="3147" selection-end="3147" vertical-scroll-proportion="2.55">
           <folding />
         </state>
       </provider>

@@ -221,7 +221,8 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
             Main_RealLauncher.homeDir = FileChooser.getSelectedFile().getAbsolutePath();
             Label_ActualHomeDir.setText(Main_RealLauncher.homeDir);
             Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
-            Preferences_ConfigFileWriter.updateConfigFile(false);
+
+            Preferences_ConfigFileWriter.setParameter("HomeDir", Main_RealLauncher.homeDir);
         } };
         Button_ChangeHomeDir.addActionListener(listenerChangeHomeDir);
 
@@ -230,7 +231,8 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
             Main_RealLauncher.homeDir = Main_RealLauncher.configFileDir;
             Label_ActualHomeDir.setText(Main_RealLauncher.homeDir);
             Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
-            Preferences_ConfigFileWriter.updateConfigFile(false);
+
+            Preferences_ConfigFileWriter.setParameter("HomeDir", Main_RealLauncher.homeDir);
         } };
         Button_RestoreHomeDir.addActionListener(listenerResetHomeDir);
 
@@ -302,7 +304,11 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
             Preferences_ConfigLoader.CONFIG_selectedRam = 1024;
         }
 
-        Preferences_ConfigFileWriter.updateConfigFile(false);
+        Preferences_ConfigFileWriter.setParameter("DisableUpdates", Preferences_ConfigLoader.CONFIG_updatesDisabled);
+        Preferences_ConfigFileWriter.setParameter("JarSelector", Preferences_ConfigLoader.CONFIG_jarSelector);
+        Preferences_ConfigFileWriter.setParameter("RamSelector", Preferences_ConfigLoader.CONFIG_ramSelector);
+        Preferences_ConfigFileWriter.setParameter("SaveLastJar", Preferences_ConfigLoader.CONFIG_SaveLastJar);
+        Preferences_ConfigFileWriter.setParameter("RAM", Preferences_ConfigLoader.CONFIG_selectedRam);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

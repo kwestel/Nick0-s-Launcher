@@ -19,30 +19,17 @@ public class Preferences_ConfigLoader
     {
         System_LogWriter.write("Chargement des préférences...");
 
-        String[] loadedPreferences = Preferences_ConfigFileWriter.loadConfigFile();
+        CONFIG_updatesDisabled = Preferences_ConfigFileWriter.getParameter("DisableUpdates").equals("true");
+        CONFIG_jarSelector = Preferences_ConfigFileWriter.getParameter("JarSelector").equals("true");
+        CONFIG_ramSelector = Preferences_ConfigFileWriter.getParameter("RamSelector").equals("true");
 
-        if ( loadedPreferences == null ) { return; }
+        CONFIG_selectedRam = Integer.parseInt(Preferences_ConfigFileWriter.getParameter("RAM"));
 
-        try
-        {
-            /* UpdatOff */ CONFIG_updatesDisabled = loadedPreferences[4].split("=")[1].equals("TRUE");
-            /* JarSelec */ CONFIG_jarSelector = loadedPreferences[5].split("=")[1].equals("TRUE");
-            /* RamSelec */ CONFIG_ramSelector = loadedPreferences[6].split("=")[1].equals("TRUE");
+        CONFIG_SaveLastJar = Preferences_ConfigFileWriter.getParameter("SaveLastJar").equals("true");
+        CONFIG_LastJarSaved = Preferences_ConfigFileWriter.getParameter("LastJarSaved");
 
-            /* Ram: Int */ CONFIG_selectedRam = Integer.parseInt(loadedPreferences[8].split("=")[1]);
-
-            /* SaveLJar */ CONFIG_SaveLastJar = loadedPreferences[9].split("=")[1].equals("TRUE");
-            /* JarSaved */ CONFIG_LastJarSaved = ( loadedPreferences[10].split("=").length == 2 ) ? ( loadedPreferences[10].split("=")[1] ) : "";
-
-            /* Mod Butt */ CONFIG_modsButtonChecked = loadedPreferences[11].split("=")[1].equals("TRUE");
-            /* NicnlMod */ CONFIG_NicnlModsButtonChecked = loadedPreferences[12].split("=")[1].equals("TRUE");
-        }
-        catch ( ArrayIndexOutOfBoundsException e )
-        {
-            System_LogWriter.write("Erreur lors du chargement des préférences ! Update simple du fichier...");
-            e.printStackTrace();
-            Preferences_ConfigFileWriter.updateConfigFile(false);
-        }
+        CONFIG_modsButtonChecked = Preferences_ConfigFileWriter.getParameter("ModsButtonChecked").equals("true");
+        CONFIG_NicnlModsButtonChecked = Preferences_ConfigFileWriter.getParameter("NicnlModsButtonChecked").equals("true");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
