@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.applet.Applet;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public final class Main_RealLauncher
 {
@@ -31,7 +32,7 @@ public final class Main_RealLauncher
         System_FileManager.createFolder(getBinDirPath());
 
         System_LogWriter.write("Chargement des préférences...");
-        new Thread() { public void run() { Preferences_ConfigLoader.SYSTEM_LoadPreferences(); } }.start();
+        Preferences_ConfigLoader.SYSTEM_LoadPreferences();
 
         System_LogWriter.write("Initialisation de la fenêtre principale...");
         GuiForm_MainFrame.newForm(true);
@@ -122,8 +123,8 @@ public final class Main_RealLauncher
     {
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
-        
-        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false); }
+
+        if ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_Offline != null && GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false); }
         else { Preferences_ConfigFileWriter.writeConfigFile(Encrypter_StringEncrypter.getLastPassword(), true, false); }
 
         System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
@@ -155,6 +156,13 @@ public final class Main_RealLauncher
         catch ( SecurityException e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Revision
+    
+    private static final int LauncherRevision = 22;
+    
+    public static final int getLauncherRevision() { return LauncherRevision; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Nicnl - nicnl25@gmail.com

@@ -28,7 +28,7 @@ public class Thread_UpdateAllJars extends Thread
         try
         {
             if ( updateAllJars ) { Updater_SystemFunctions.updateAllJars(forceDownload, formToUpdate); }
-            else  { Updater_SystemFunctions.updateMinecraftJar(formToUpdate); }
+            else  { Updater_SystemFunctions.updateMinecraftJar(formToUpdate, forceDownload); }
         }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
     }

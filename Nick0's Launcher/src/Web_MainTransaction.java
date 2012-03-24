@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.IOException;
 import java.net.URLEncoder;
 
@@ -8,7 +7,7 @@ public class Web_MainTransaction
     public static void Main_ClientTransactions(String username, String password) throws IOException
     {
         String serverArgs = "user=" + URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + 1337; // For you, notch ;)
-        String result = Web_ClientServerProtocol.connectToServer("https://login.minecraft.net/", serverArgs);
+        String result = Web_ClientServerProtocol.connectToServerWithKey("https://login.minecraft.net/", serverArgs, DATA_MinecraftPublicKey.getPublicKey());
 
         if ( result == null || !result.contains(":") )
         {

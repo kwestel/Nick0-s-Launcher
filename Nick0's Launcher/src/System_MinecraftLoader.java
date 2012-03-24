@@ -26,7 +26,7 @@ public class System_MinecraftLoader extends ClassLoader
 
     public static Applet LoadMinecraft(String path) throws MalformedURLException, ClassNotFoundException, InstantiationException, IllegalAccessException
     {
-        boolean EnableNicnlMods = ( GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods != null ) && GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods.isSelected();
+        boolean EnableNicnlMods = ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods != null ) && GuiForm_MainFrame.mainFrame.Check_EnableNicnlMods.isSelected();
         updateClassPath(path, EnableNicnlMods);
         
         Applet loadedApplet = null;

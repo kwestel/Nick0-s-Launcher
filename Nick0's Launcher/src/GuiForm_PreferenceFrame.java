@@ -14,15 +14,18 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
     public JLabel Label_HomeDir;
     public JLabel Label_ActualHomeDir;
     public JLabel Label_UpdateFunctions;
+    public JLabel Label_LWJGL;
 
     public GuiElement_Button Button_ForceUpdate;
     public GuiElement_Button Button_ChangeHomeDir;
     public GuiElement_Button Button_RestoreHomeDir;
+    public GuiElement_Button Button_LWJGLMenu;
 
     public GuiElement_CheckBox CheckBox_EnableJarSelector;
     public GuiElement_CheckBox CheckBox_DisableUpdate;
     public GuiElement_CheckBox CheckBox_RAMSelector;
     public GuiElement_CheckBox CheckBox_SaveLastJar;
+    public GuiElement_CheckBox CheckBox_LWJGLSelector;
     
     public JSpinner Field_RAMEntry;
     public JFileChooser FileChooser;
@@ -35,7 +38,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         super();
 
         setTitle("Nick0's Launcher - Préférences - By Nicnl");
-        setSize(425, 300);
+        setSize(425, 400);
         setResizable(false);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -57,15 +60,18 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Label_MainTitle = new JLabel("<html><h1><b><u>Nick0's Launcher - Préférences</u></b></h1></html>");
         Label_HomeDir = new JLabel("<html><u>- Emplacement de téléchargement :</u></html>");
         Label_JarSelectorText = new JLabel("<html><u>- Options avancées :</u></html>");
-        Label_UpdateFunctions = new JLabel("<html><u>- Mises à jour Minecraft :</u></html>");
+        Label_UpdateFunctions = new JLabel("<html><u>- Mises à jour de Minecraft :</u></html>");
         Label_ActualHomeDir = new JLabel(Main_RealLauncher.homeDir);
+        Label_LWJGL = new JLabel("<html><u>- LWJGL Selector :</u></html>");
         CheckBox_EnableJarSelector = new GuiElement_CheckBox("Activer le selectionneur de .jar");
         CheckBox_SaveLastJar = new GuiElement_CheckBox("Sauvegarder le dernier .jar utilisé");
         CheckBox_DisableUpdate = new GuiElement_CheckBox("Désactiver les mises à jour");
         CheckBox_RAMSelector = new GuiElement_CheckBox("Modifier la RAM de Minecraft");
+        CheckBox_LWJGLSelector = new GuiElement_CheckBox("Libraries LWJWL officielles");
         Button_ForceUpdate = new GuiElement_Button("Réinstaller Minecraft !");
         Button_ChangeHomeDir = new GuiElement_Button("Déplacer le dossier .minecraft");
         Button_RestoreHomeDir = new GuiElement_Button("Restaurer l'emplacement original");
+        Button_LWJGLMenu = new GuiElement_Button("LWJGL Selector Menu");
         FileChooser = new JFileChooser("Emplacement du dossier .minecraft");
         Field_RAMEntry = new JSpinner();
 
@@ -76,7 +82,9 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_DisableUpdate.setSelected(Preferences_ConfigLoader.CONFIG_updatesDisabled);
         CheckBox_RAMSelector.setSelected(Preferences_ConfigLoader.CONFIG_ramSelector);
         
-        Button_RestoreHomeDir.setEnabled(!Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
+        Button_RestoreHomeDir.setEnabled(! Main_RealLauncher.homeDir.equals(Main_RealLauncher.configFileDir));
+
+        Button_LWJGLMenu.setEnabled(Preferences_ConfigLoader.CONFIG_LWJGLSelector);
 
         Field_RAMEntry.setEnabled(Preferences_ConfigLoader.CONFIG_ramSelector);
         Field_RAMEntry.setValue(Preferences_ConfigLoader.CONFIG_selectedRam);
@@ -84,75 +92,71 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_EnableJarSelector.setSelected(Preferences_ConfigLoader.CONFIG_jarSelector);
         CheckBox_SaveLastJar.setSelected(Preferences_ConfigLoader.CONFIG_SaveLastJar);
         CheckBox_SaveLastJar.setEnabled(Preferences_ConfigLoader.CONFIG_jarSelector);
+        CheckBox_LWJGLSelector.setSelected(Preferences_ConfigLoader.CONFIG_LWJGLSelector);
+
+        // GridBagLayout Default Value
+        gbc.gridheight = 1;
 
         // Label : Main Title
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 25, 0);
         mainPanel.add(Label_MainTitle, gbc);
 
         // Label : Mises à jour
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 5, 0);
         mainPanel.add(Label_UpdateFunctions, gbc);
 
         // Button : Force Update
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Button_ForceUpdate, gbc);
 
         // CheckBox : Disable Update
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(CheckBox_DisableUpdate, gbc);
 
         // Label : HomeDir
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(20, 0, 5, 0);
         mainPanel.add(Label_HomeDir, gbc);
 
         // Button : Change HomeDir
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Button_ChangeHomeDir, gbc);
 
         // Button : Reset HomeDir
         gbc.gridx = 1;
         gbc.gridy = 4;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Button_RestoreHomeDir, gbc);
 
         // Label : Actual HomeDir
         gbc.gridx = 0;
         gbc.gridy = 5;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 0, 0, 0);
         mainPanel.add(Label_ActualHomeDir, gbc);
@@ -160,8 +164,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         // Label : JarSelector
         gbc.gridx = 0;
         gbc.gridy = 6;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         gbc.insets = new Insets(20, 0, 5, 0);
         mainPanel.add(Label_JarSelectorText, gbc);
@@ -169,38 +172,58 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         // Checkbox : Jar Selector
         gbc.gridx = 0;
         gbc.gridy = 7;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(CheckBox_EnableJarSelector, gbc);
 
         // Checkbox : Save Last Jar
         gbc.gridx = 1;
         gbc.gridy = 7;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_END;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(CheckBox_SaveLastJar, gbc);
 
         // Checkbox : Enable RAM Selector
         gbc.gridx = 0;
         gbc.gridy = 8;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(CheckBox_RAMSelector, gbc);
 
         // Field : RAM Selector
         gbc.gridx = 1;
         gbc.gridy = 8;
-        gbc.gridheight = 1;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Field_RAMEntry, gbc);
+
+        // Label : LWJGL Selector
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(20, 0, 5, 0);
+        mainPanel.add(Label_LWJGL, gbc);
+
+        // Checkbox : LWJGL Selector
+        gbc.gridx = 0;
+        gbc.gridy = 10;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        mainPanel.add(CheckBox_LWJGLSelector, gbc);
+
+        // Button : LWJGL Selector Menu
+        gbc.gridx = 1;
+        gbc.gridy = 10;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        mainPanel.add(Button_LWJGLMenu, gbc);
 
         return mainPanel;
     }
@@ -252,6 +275,20 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         } };
         CheckBox_EnableJarSelector.addItemListener(saveLastJarListener);
 
+        ItemListener LWJGLSelectorEnablerListener = new ItemListener() { public void itemStateChanged(ItemEvent e)
+        {
+            Button_LWJGLMenu.setEnabled(CheckBox_LWJGLSelector.isSelected());
+        } };
+        CheckBox_LWJGLSelector.addItemListener(LWJGLSelectorEnablerListener);
+
+        ActionListener LWJGLMenuButton = new ActionListener() { public void actionPerformed(ActionEvent arg0)
+        {
+            GuiForm_LWJGLForm.newForm(true);
+            setVisible(false);
+        } };
+        Button_LWJGLMenu.addActionListener(LWJGLMenuButton);
+
+
         WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { onClose(); } };
         addWindowListener(formListener);
     }
@@ -268,7 +305,6 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         if ( ( storedPref_RamInt != Preferences_ConfigLoader.CONFIG_selectedRam ) || ( storedPref_RamBool != Preferences_ConfigLoader.CONFIG_ramSelector ) )
         {
-            // Demande de reboot ( ram changed )
             String tempText = "Vous avez changé la ram allouée.\n" +
             "Afin d'appliquer ces réglages, vous devez relancer le launcher.\n\n" +
             "Voulez vous le relancer maintenant ?";
@@ -283,8 +319,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
             }
         }
 
-        GuiForm_MainFrame.mainFrame.setLocationRelativeTo(null);
-        GuiForm_MainFrame.mainFrame.setVisible(true);
+        GuiForm_MainFrame.newForm(true);
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -296,6 +331,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigLoader.CONFIG_jarSelector = CheckBox_EnableJarSelector.isSelected();
         Preferences_ConfigLoader.CONFIG_ramSelector = CheckBox_RAMSelector.isSelected();
         Preferences_ConfigLoader.CONFIG_SaveLastJar = CheckBox_SaveLastJar.isSelected();
+        Preferences_ConfigLoader.CONFIG_LWJGLSelector = CheckBox_LWJGLSelector.isSelected();
 
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )
@@ -308,7 +344,9 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigFileWriter.setParameter("JarSelector", Preferences_ConfigLoader.CONFIG_jarSelector);
         Preferences_ConfigFileWriter.setParameter("RamSelector", Preferences_ConfigLoader.CONFIG_ramSelector);
         Preferences_ConfigFileWriter.setParameter("SaveLastJar", Preferences_ConfigLoader.CONFIG_SaveLastJar);
+        Preferences_ConfigFileWriter.setParameter("LWJGLSelector", Preferences_ConfigLoader.CONFIG_LWJGLSelector);
         Preferences_ConfigFileWriter.setParameter("RAM", Preferences_ConfigLoader.CONFIG_selectedRam);
+        if ( !Preferences_ConfigLoader.CONFIG_LWJGLSelector ) { Preferences_ConfigFileWriter.setParameter("LWJGLAddress", ""); }
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

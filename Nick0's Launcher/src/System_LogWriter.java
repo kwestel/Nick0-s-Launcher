@@ -42,6 +42,10 @@ public class System_LogWriter
         {
             if ( logsFile.exists() ) { logsFile.delete(); }
 
+            System_FileManager.createFolder(Main_RealLauncher.configFileDir);
+            try { logsFile.createNewFile(); }
+            catch ( IOException e ) { e.printStackTrace(); }
+
             try
             {
                 BW = new BufferedWriter(new FileWriter(logsFile, true));

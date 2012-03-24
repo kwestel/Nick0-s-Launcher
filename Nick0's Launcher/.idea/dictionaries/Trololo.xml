@@ -59,9 +59,11 @@
       <w>données</w>
       <w>dsun</w>
       <w>dysfonctionner</w>
+      <w>début</w>
       <w>décodage</w>
       <w>décompression</w>
       <w>décrypté</w>
+      <w>défaut</w>
       <w>définition</w>
       <w>déjà</w>
       <w>démarrage</w>
@@ -95,7 +97,9 @@
       <w>inconnue</w>
       <w>inexistant</w>
       <w>instable</w>
+      <w>installe</w>
       <w>installé</w>
+      <w>installées</w>
       <w>introuvable</w>
       <w>invalide</w>
       <w>jinput</w>
@@ -105,11 +109,13 @@
       <w>l'os</w>
       <w>l'écriture</w>
       <w>lancement</w>
+      <w>lfrom</w>
       <w>librarypath</w>
       <w>liste</w>
       <w>loadmap</w>
       <w>lors</w>
       <w>lwjgl</w>
+      <w>lwjwl</w>
       <w>macosx</w>
       <w>maintenant</w>
       <w>malgré</w>
@@ -119,25 +125,35 @@
       <w>minecraft</w>
       <w>mise</w>
       <w>mises</w>
+      <w>mojang</w>
       <w>mppass</w>
       <w>même</w>
       <w>n'est</w>
       <w>nicnl</w>
       <w>noddraw</w>
       <w>nouveau</w>
+      <w>npas</w>
       <w>nécéssaire</w>
       <w>obtenez</w>
+      <w>officiel</w>
+      <w>officielles</w>
+      <w>officiels</w>
       <w>opengl</w>
+      <w>performante</w>
+      <w>performantes</w>
       <w>permettant</w>
+      <w>peuvent</w>
       <w>plein</w>
       <w>pmoffscreen</w>
       <w>prefs</w>
       <w>principale</w>
       <w>problème</w>
       <w>produite</w>
+      <w>provenant</w>
       <w>préférences</w>
       <w>puis</w>
       <w>périmé</w>
+      <w>périmée</w>
       <w>qu'avec</w>
       <w>randomizer</w>
       <w>redémarrage</w>
@@ -152,6 +168,7 @@
       <w>restaurer</w>
       <w>risquent</w>
       <w>risquée</w>
+      <w>récentes</w>
       <w>récupération</w>
       <w>réglages</w>
       <w>réinstallation</w>
@@ -180,6 +197,7 @@
       <w>sélectionné</w>
       <w>texte</w>
       <w>thème</w>
+      <w>toutes</w>
       <w>trololo</w>
       <w>trop</w>
       <w>téléchager</w>
@@ -189,6 +207,8 @@
       <w>updat</w>
       <w>utilisé</w>
       <w>valide</w>
+      <w>valider</w>
+      <w>venant</w>
       <w>veuillez</w>
       <w>vide</w>
       <w>vieux</w>

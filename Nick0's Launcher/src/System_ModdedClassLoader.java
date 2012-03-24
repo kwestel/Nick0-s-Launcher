@@ -114,7 +114,7 @@ public class System_ModdedClassLoader extends URLClassLoader
         byte[] ad = MessageDigest.getInstance("MD5").digest(ab);
 
         String ae = "";
-        for ( int i=0; i<ad.length; i++ ) { ae += Integer.toString( ( ad[i] & 0xff ) + 0x100, 16).substring(1); }
+        for ( byte anAd : ad ) { ae += Integer.toString((anAd & 0xff) + 0x100, 16).substring(1); }
 
         return ae;
     }

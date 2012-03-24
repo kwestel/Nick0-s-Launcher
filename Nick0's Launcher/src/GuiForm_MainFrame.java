@@ -36,7 +36,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         super();
 
-        setTitle("Nick0's Launcher V1");
+        setTitle("Nick0's Launcher - Revision " + Main_RealLauncher.getLauncherRevision());
 
         changeSize();
 
@@ -45,7 +45,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         setLocationRelativeTo(null);
 
         System_LogWriter.write("Création du contenu de la fenêtre principale...");
-        setContentPane(createFrameContent());
+        setContentPane(createFrameContent(true));
 
         System_LogWriter.write("Ajout des Actions Listeners aux éléments GUIs...");
         addActionsListeners();
@@ -53,9 +53,10 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         setVisible(true);
     }
 
-    private JPanel createFrameContent()
+    private JPanel createFrameContent(boolean createPanel)
     {
-        mainPanel = new GuiElement_Panel("main.jpg");
+        if ( createPanel ) { mainPanel = new GuiElement_Panel("main.jpg"); }
+        else { mainPanel.removeAll(); }
         mainPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
@@ -63,7 +64,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         Label_MainTitle = new JLabel("<html><b><u>Accès à votre compte minecraft :</u></b></html>");
         Label_UsernameLabel = new JLabel("<html><b>Pseudo :</b></html>");
         Label_PASSLabel = new JLabel("<html><b>Mot de passe :</b></html>");
-        Label_Copyright = new JLabel("<html><u>By Nicnl</u></html>");
+        Label_Copyright = new JLabel("<html><u>Nick0's Launcher - R" + Main_RealLauncher.getLauncherRevision() + " - By Nicnl</u></html>");
         Label_actualRam = new JLabel("<html><u>RAM allouée : " + ( Runtime.getRuntime().maxMemory() / 1024 / 1024 ) + " Mb" + "</u></html>");
         Field_UserName = new JTextField(20);
         Field_Password = new JPasswordField(20);
@@ -94,27 +95,32 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
         Button_ConnectButton.setEnabled(false);
 
+        // Default Value
+        gbc.gridheight = 1;
+
         // Label : Main Title
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridheight = gbc.gridwidth = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(10, 0, 15, 0);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         mainPanel.add(Label_MainTitle, gbc);
 
         // Label : Username
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.gridheight = gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(3, 0, 3, 0);
         mainPanel.add(Label_UsernameLabel, gbc);
 
         // Field : Username
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(3, 0, 3, 0);
         mainPanel.add(Field_UserName, gbc);
@@ -122,16 +128,17 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         // Label : Password
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.gridheight = gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-        gbc.insets = new Insets(3, 0, 3, 0);
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new Insets(15, 0, 3, 0);
         mainPanel.add(Label_PASSLabel, gbc);
 
         // Field : Password
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(3, 0, 3, 0);
         mainPanel.add(Field_Password, gbc);
@@ -141,8 +148,8 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         {
             gbc.gridx = 0;
             gbc.gridy = 5;
-            gbc.gridwidth = GridBagConstraints.REMAINDER;
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+            gbc.gridwidth = 2;
+            gbc.anchor = GridBagConstraints.LINE_START;
             gbc.fill = GridBagConstraints.HORIZONTAL;
             gbc.insets = new Insets(10, 0, 5, 0);
             mainPanel.add(ComboBox_JarSelector, gbc);
@@ -151,17 +158,19 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         // Button : Connect
         gbc.gridx = 0;
         gbc.gridy = 6;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(10, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.LINE_END;
         mainPanel.add(Button_ConnectButton, gbc);
 
         // CheckBox : Save Logins
         gbc.gridx = 0;
         gbc.gridy = 7;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         mainPanel.add(Check_SaveLogin, gbc);
 
         // CheckBox : Offline Mode
@@ -169,9 +178,10 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         {
             gbc.gridx = 1;
             gbc.gridy = 7;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.gridwidth = 1;
+            gbc.anchor = GridBagConstraints.LINE_START;
+            gbc.fill = GridBagConstraints.NONE;
             gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_Offline, gbc);
         }
         
@@ -180,9 +190,10 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         {
             gbc.gridx = 0;
             gbc.gridy = 8;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.gridwidth = 1;
+            gbc.anchor = GridBagConstraints.LINE_START;
+            gbc.fill = GridBagConstraints.NONE;
             gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_EnableMods, gbc);
         }
         
@@ -190,36 +201,38 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         {
             gbc.gridx = 1;
             gbc.gridy = 8;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
+            gbc.gridwidth = 1;
+            gbc.anchor = GridBagConstraints.LINE_START;
+            gbc.fill = GridBagConstraints.NONE;
             gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
             mainPanel.add(Check_EnableNicnlMods, gbc);
         }
 
         // Button : Preferences
         gbc.gridx = 0;
         gbc.gridy = 9;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(10, 0, 5, 0);
+        gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new Insets(10, 0, 5, 0);
         mainPanel.add(Button_PrefsButton, gbc);
 
         // Label : Copyright :P
         gbc.gridx = 0;
         gbc.gridy = 10;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.LINE_END;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(Label_Copyright, gbc);
 
         // Label : RAM
         gbc.gridx = 1;
         gbc.gridy = 10;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_END;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.PAGE_END;
         mainPanel.add(Label_actualRam, gbc);
 
         return mainPanel;
@@ -331,7 +344,8 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     public void resetInterface()
     {
         changeSize();
-        setContentPane(resetFrameContent());
+        setContentPane(createFrameContent(false));
+        addActionsListeners();
         mainPanel.updateUI();
     }
 
@@ -346,152 +360,6 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
         YSizeToAdd += ( modsCanBeEnabled || NicnlModsCanBeEnabled ) ? 30 : 0;
         setSize(325, 290 + YSizeToAdd);
-    }
-
-    private JPanel resetFrameContent()
-    {
-        mainPanel.removeAll();
-        mainPanel.setLayout(new GridBagLayout());
-
-        GridBagConstraints gbc = new GridBagConstraints();
-
-        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
-        {
-            ComboBox_JarSelector = new GuiElement_JarSelector();
-            ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
-        }
-        else { ComboBox_JarSelector = null; }
-
-        // Label : Main Title
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridheight = gbc.gridwidth = 1;
-        gbc.insets = new Insets(10, 0, 15, 0);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        mainPanel.add(Label_MainTitle, gbc);
-
-        // Label : Username
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.gridheight = gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-        gbc.insets = new Insets(3, 0, 3, 0);
-        mainPanel.add(Label_UsernameLabel, gbc);
-
-        // Field : Username
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(3, 0, 3, 0);
-        mainPanel.add(Field_UserName, gbc);
-
-        // Label : Password
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.gridheight = gbc.gridwidth = 1;
-        gbc.anchor = GridBagConstraints.BASELINE_LEADING;
-        gbc.insets = new Insets(3, 0, 3, 0);
-        mainPanel.add(Label_PASSLabel, gbc);
-
-        // Field : Password
-        gbc.gridx = 0;
-        gbc.gridy = 4;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(3, 0, 3, 0);
-        mainPanel.add(Field_Password, gbc);
-
-        // ComboBox : JarSelector
-        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
-        {
-            gbc.gridx = 0;
-            gbc.gridy = 5;
-            gbc.gridwidth = GridBagConstraints.REMAINDER;
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-            gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.insets = new Insets(10, 0, 5, 0);
-            mainPanel.add(ComboBox_JarSelector, gbc);
-        }
-
-        // Button : Connect
-        gbc.gridx = 0;
-        gbc.gridy = 6;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(10, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.LINE_END;
-        mainPanel.add(Button_ConnectButton, gbc);
-
-        // CheckBox : Save Logins
-        gbc.gridx = 0;
-        gbc.gridy = 7;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-        mainPanel.add(Check_SaveLogin, gbc);
-
-        // CheckBox : Offline Mode
-        if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
-        {
-            gbc.gridx = 1;
-            gbc.gridy = 7;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
-            gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-            mainPanel.add(Check_Offline, gbc);
-        }
-
-        // CheckBox : Enable Mods
-        if ( modsCanBeEnabled )
-        {
-            gbc.gridx = 0;
-            gbc.gridy = 8;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
-            gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-            gbc.fill = GridBagConstraints.FIRST_LINE_START;
-            mainPanel.add(Check_EnableMods, gbc);
-        }
-
-        if ( NicnlModsCanBeEnabled )
-        {
-            gbc.gridx = 1;
-            gbc.gridy = 8;
-            gbc.gridwidth = GridBagConstraints.RELATIVE;
-            gbc.insets = new Insets(0, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-            mainPanel.add(Check_EnableNicnlMods, gbc);
-        }
-
-        // Button : Preferences
-        gbc.gridx = 0;
-        gbc.gridy = 9;
-        gbc.gridwidth = GridBagConstraints.REMAINDER;
-        gbc.insets = new Insets(10, 0, 5, 0);
-        gbc.anchor = GridBagConstraints.CENTER;
-        gbc.fill = GridBagConstraints.NONE;
-        mainPanel.add(Button_PrefsButton, gbc);
-
-        // Label : Copyright :P
-        gbc.gridx = 0;
-        gbc.gridy = 10;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.LINE_END;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(Label_Copyright, gbc);
-
-        // Label : RAM
-        gbc.gridx = 1;
-        gbc.gridy = 10;
-        gbc.gridwidth = GridBagConstraints.RELATIVE;
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.PAGE_END;
-        mainPanel.add(Label_actualRam, gbc);
-
-        return mainPanel;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -519,6 +387,8 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
     public static void destroyWindow()
     {
+        if ( mainFrame == null ) { return; }
+
         mainFrame.setVisible(false);
         mainFrame.dispose();
         mainFrame = null;

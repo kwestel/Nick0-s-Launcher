@@ -11,6 +11,9 @@ public class Preferences_ConfigLoader
     public static boolean CONFIG_jarSelector = false;
     public static boolean CONFIG_SaveLastJar = false;
     public static String CONFIG_LastJarSaved = "";
+
+    public static boolean CONFIG_LWJGLSelector = false;
+    public static String CONFIG_LWJGLAddress = "";
     
     public static boolean CONFIG_ramSelector = false;
     public static int CONFIG_selectedRam = 1024;
@@ -30,6 +33,9 @@ public class Preferences_ConfigLoader
 
         CONFIG_modsButtonChecked = Preferences_ConfigFileWriter.getParameter("ModsButtonChecked").equals("true");
         CONFIG_NicnlModsButtonChecked = Preferences_ConfigFileWriter.getParameter("NicnlModsButtonChecked").equals("true");
+
+        CONFIG_LWJGLSelector = Preferences_ConfigFileWriter.getParameter("LWJGLSelector").equals("true");
+        CONFIG_LWJGLAddress = Preferences_ConfigFileWriter.getParameter("LWJGLAddress");
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

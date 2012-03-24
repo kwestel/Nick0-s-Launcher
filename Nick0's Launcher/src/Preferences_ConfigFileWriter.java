@@ -21,9 +21,12 @@ public final class Preferences_ConfigFileWriter
         "SaveLastJar",
         "LastJarSaved",
         "ModsButtonChecked",
-        "NicnlModsButtonChecked"
+        "NicnlModsButtonChecked",
+
+        "LWJGLSelector",
+        "LWJGLAddress"
     };
-    private static final String[] parameterData = new String[] { "", "0", "", "", "false", "false", "RamSelector", "", "1024", "false", "", "false", "false" };
+    private static final String[] parameterData = new String[] { "", "0", "", "", "false", "false", "RamSelector", "", "1024", "false", "", "false", "false", "false", "" };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Basic Write Functions
