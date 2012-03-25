@@ -4,7 +4,9 @@ import java.io.InputStream;
 
 public class System_ErrorPlayer
 {
-    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Error Message Player
+
     public static void playErrorMessage()
     {
         if ( !Preferences_ConfigLoader.CONFIG_erreurSonore ) { return; }
@@ -22,5 +24,7 @@ public class System_ErrorPlayer
         }
         catch ( Exception e ) { e.printStackTrace(); }
     }
-    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Nicnl - nicnl25@gmail.com
 }

@@ -399,6 +399,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         mainFrame = ( mainFrame == null ) ? ( new GuiForm_MainFrame() ) : mainFrame;
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(visible);
+        if ( visible && Preferences_ConfigLoader.CONFIG_jarSelector ) { mainFrame.ComboBox_JarSelector.updateJars(); }
         return mainFrame;
     }
 

@@ -430,7 +430,9 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         ActionListener JarDownloaderButton = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
-            System_ErrorHandler.handleError("Fonction temporairement indisponible.\nVeuillez attendre une prochaine mise à jour.", false, false);
+            //System_ErrorHandler.handleError("Fonction temporairement indisponible.\nVeuillez attendre une prochaine mise à jour.", false, false);
+            newForm(false);
+            GuiForm_AlternativeJar.newForm(true);
         } };
         Button_OpenJarDownloader.addActionListener(JarDownloaderButton);
 

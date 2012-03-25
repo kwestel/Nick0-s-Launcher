@@ -3,10 +3,15 @@ import java.awt.*;
 
 public class GuiForm_UpdaterForm extends GuiExtend_JFrame
 {
-
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Vars
+    
     public JLabel Label_Status;
     public JLabel label_MainTitle;
     public JProgressBar ProgressBar;
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Constructors
     
     public GuiForm_UpdaterForm(boolean forceDownload, boolean updateAllJars, boolean startGame)
     {
@@ -24,6 +29,26 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
         downloadThread = (new Thread_UpdateMinecraft(forceDownload, updateAllJars, startGame, this));
         downloadThread.start();
     }
+    
+    public GuiForm_UpdaterForm(String downloadURL, String jarFileName)
+    {
+        super();
+        
+        setTitle("Nick0's Updater");
+        setSize(275, 125);
+        setResizable(false);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setContentPane(createFrameContent());
+        setVisible(true);
+        
+        Thread_UpdateMinecraft downloadThread;
+        downloadThread = (new Thread_UpdateMinecraft(downloadURL, jarFileName, this));
+        downloadThread.start();
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // System Functions
 
     private JPanel createFrameContent()
     {

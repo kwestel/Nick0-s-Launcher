@@ -56,6 +56,9 @@ public class GuiForm_LWJGLForm extends GuiExtend_JFrame
 
         Button_Validate.setEnabled(false);
 
+        // Default GridBagLayout Value
+        gbc.gridheight = 1;
+
         // Label : Main Title
         gbc.gridx = 0;
         gbc.gridy = 0;

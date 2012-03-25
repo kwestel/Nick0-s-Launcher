@@ -160,7 +160,7 @@ public final class Main_RealLauncher
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Master Values
     
-    private static final int LauncherRevision = 23;
+    private static final int LauncherRevision = 24;
     
     public static final int getLauncherRevision() { return LauncherRevision; }
     

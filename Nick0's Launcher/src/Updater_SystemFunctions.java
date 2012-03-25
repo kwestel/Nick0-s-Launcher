@@ -49,21 +49,38 @@ public class Updater_SystemFunctions
 
         formToUpdate.updateStatus(0, actualFile);
 
-        byte[] temp_data = downloadFile(actualFile, formToUpdate, true);
-        writeByteArrayToFile(temp_data, binDirPath + File.separator + actualFile);
+        byte[] downloadedData = downloadFile(actualFile, formToUpdate, true);
+        writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
         if ( startGame ) { formToUpdate.downloadFinished(); }
     }
 
-    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate, GuiForm_AlternativeJar formToOpen, String downloadURL) throws IOException
+    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate , String downloadURL, String jarFileName) throws IOException
     {
+        System_LogWriter.write("UPDATER - Démarrage du téléchargement d'un Minecraft alternatif : " + jarFileName);
+
+        String binDirPath = Main_RealLauncher.getBinDirPath();
+        String alternativeJarDestination = binDirPath + File.separator + jarFileName;
+
+        System_FileManager.removeFile(alternativeJarDestination, false);
+
+        formToUpdate.updateStatus(0, jarFileName);
+
+        byte[] downloadedData = downloadFile(downloadURL, formToUpdate, false);
+        writeByteArrayToFile(downloadedData, alternativeJarDestination);
+
+        System_LogWriter.write("UPDATER - Fin du téléchargement de : " + jarFileName);
+
+        formToUpdate.setVisible(false);
+        formToUpdate.dispose();
+        GuiForm_AlternativeJar.newForm(true);
     }
 
     private static void updateNatives(String destinationPath, String nativesFile, GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         System_LogWriter.write("UPDATER - Téléchargement des natives / " + nativesFile);
-        byte[] temp_natives = downloadFile(nativesFile, formToUpdate, true);
-        writeByteArrayToFile(temp_natives, destinationPath + File.separator + nativesFile);
+        byte[] downloadedData = downloadFile(nativesFile, formToUpdate, true);
+        writeByteArrayToFile(downloadedData, destinationPath + File.separator + nativesFile);
         System_LogWriter.write("UPDATER - Extraction des natives...");
         extractOSNatives(destinationPath, nativesFile);
     }
@@ -84,8 +101,8 @@ public class Updater_SystemFunctions
             File verification = new File(binDirPath + File.separator + actualFile);
             if ( verification.exists() && !forceDownload ) { continue; }
 
-            byte[] temp_data = downloadFile(actualFile, formToUpdate, true);
-            writeByteArrayToFile(temp_data, binDirPath + File.separator + actualFile);
+            byte[] downloadedData = downloadFile(actualFile, formToUpdate, true);
+            writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
             System_LogWriter.write("UPDATER - Fin du téléchargement du fichier : " + actualFile);
         }
@@ -104,8 +121,8 @@ public class Updater_SystemFunctions
 
         formToUpdate.updateStatus(0, LWJGLFileName);
 
-        byte[] temp_data = downloadFile(LWJGLFileAddress, formToUpdate, false);
-        writeByteArrayToFile(temp_data, binDirPath + File.separator + LWJGLFileName);
+        byte[] downloadedData = downloadFile(LWJGLFileAddress, formToUpdate, false);
+        writeByteArrayToFile(downloadedData, binDirPath + File.separator + LWJGLFileName);
 
         System_LogWriter.write("UPDATER - Fin du téléchargement des libraries LWJGL : " + LWJGLFileName);
         formToUpdate.updateStatus(0, "Extraction...");
@@ -121,9 +138,8 @@ public class Updater_SystemFunctions
         
         String DownloadTicket = System_DataStub.static_getParameter("downloadTicket");
         String Username = System_DataStub.static_getParameter("username");
-        String DownloadArguments = ( DownloadTicket.equals("0") ) ? ( "" ) : ( "?user=" + Username + "&ticket=" + DownloadTicket );
         
-        String finalUrlAddress = useDefaultServer ? minecraftDownloadServer + fileToDownload + DownloadArguments : fileToDownload; 
+        String finalUrlAddress = useDefaultServer ? minecraftDownloadServer + fileToDownload + (( DownloadTicket.equals("0") ) ? ( "" ) : ( "?user=" + Username + "&ticket=" + DownloadTicket )) : fileToDownload;
 
         URL fileUrl = new URL(finalUrlAddress);
         URLConnection fileConnection = fileUrl.openConnection();
