@@ -24,11 +24,12 @@ public class Thread_UpdateMinecraft extends Thread
         downloadURL = "";
     }
 
-    public Thread_UpdateMinecraft(String arg_downloadURL, String arg_jarFileName, GuiForm_UpdaterForm arg_formToUpdate)
+    public Thread_UpdateMinecraft(String arg_downloadURL, String arg_jarFileName, boolean arg_startGame, GuiForm_UpdaterForm arg_formToUpdate)
     {
         downloadURL = arg_downloadURL;
         jarFileName = arg_jarFileName;
 
+        startGame = arg_startGame;
         formToUpdate = arg_formToUpdate;
     }
     
@@ -41,7 +42,7 @@ public class Thread_UpdateMinecraft extends Thread
                 if ( updateAllJars ) { Updater_SystemFunctions.updateGame(forceDownload, formToUpdate, startGame); }
                 else  { Updater_SystemFunctions.updateMinecraftJar(formToUpdate, forceDownload, startGame); }
             }
-            else { Updater_SystemFunctions.updateAlternativeJar(formToUpdate, downloadURL, jarFileName); }
+            else { Updater_SystemFunctions.updateAlternativeJar(formToUpdate, downloadURL, jarFileName, startGame); }
         }
         catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
     }

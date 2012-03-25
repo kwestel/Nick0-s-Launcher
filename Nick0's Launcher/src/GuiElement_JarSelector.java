@@ -6,6 +6,7 @@ public class GuiElement_JarSelector extends GuiElement_BaseComboBox
     public GuiElement_JarSelector()
     {
         super();
+        System_LogWriter.write("Creation du selectionneur de jar...");
         updateJars();
     }
 
@@ -16,6 +17,7 @@ public class GuiElement_JarSelector extends GuiElement_BaseComboBox
         setModel(new DefaultComboBoxModel(System_JarSelectorFunctions.getJarList()));
 
         if ( jarList.length < 2 ) { setEnabled(false); }
+        else if ( Preferences_ConfigLoader.CONFIG_SaveLastJar ) { selectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

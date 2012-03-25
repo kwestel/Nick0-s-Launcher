@@ -1,5 +1,6 @@
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -7,6 +8,8 @@ import java.util.Arrays;
 
 public class Web_ClientServerProtocol
 {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Connect to Minecraft Login Server
 
     public static String connectToServerWithKey(String stringServerURL, String serverArguments, byte[] storedPublicKey)
     {
@@ -52,6 +55,9 @@ public class Web_ClientServerProtocol
         finally { if ( connectionToServer != null ) { connectionToServer.disconnect(); } }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Lire une page web ( LWJGL Update )
+
     public static String[] readServerWebPage(String stringServerURL)
     {
         URLConnection connectionToServer = null;
@@ -75,6 +81,34 @@ public class Web_ClientServerProtocol
             System_ErrorHandler.handleException(e, true);
             return null;
         }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Download File
+
+    public static byte[] downloadFile(String fileToDownload)
+    {
+        try
+        {
+            URL fileUrl = new URL(fileToDownload);
+            URLConnection fileConnection = fileUrl.openConnection();
+
+            if ( fileConnection instanceof HttpURLConnection )
+            {
+                fileConnection.setRequestProperty("Cache-Control", "no-cache");
+                fileConnection.connect();
+            }
+
+            InputStream serverInputStream = fileConnection.getInputStream();
+            int fileLength = fileConnection.getContentLength();
+
+            byte[] outputData = new byte[fileLength];
+
+            for ( int i=0; i<fileLength; i++ ) { outputData[i] = (byte)serverInputStream.read(); }
+
+            return outputData;
+        }
+        catch ( Exception e ) { return null; }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

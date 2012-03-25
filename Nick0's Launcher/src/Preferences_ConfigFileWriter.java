@@ -78,7 +78,7 @@ public final class Preferences_ConfigFileWriter
             catch ( Exception e ) { return ""; }
         }
 
-        writeEmptyFile();
+        addParameterToCurrentFile(index);
         loadConfigFile();
 
         for ( String actualIndex : loadedFile )
@@ -117,7 +117,7 @@ public final class Preferences_ConfigFileWriter
             }
         }
 
-        writeEmptyFile();
+        addParameterToCurrentFile(index);
         loadConfigFile();
 
         for ( int i=0; i<loadedFile.size(); i++ )
@@ -205,6 +205,18 @@ public final class Preferences_ConfigFileWriter
         loadedFile = new ArrayList<String>();
         for ( int i=0; i<parameterList.length; i++ ) { loadedFile.add(parameterList[i] + "=" + parameterData[i]); }
 
+        writeFile();
+    }
+    
+    private static final void addParameterToCurrentFile(String newParameter)
+    {
+        String newParameterData = "";
+        for ( int i=0; i<parameterList.length; i++ )
+        {
+            if ( parameterList[i].toLowerCase().trim().equals(newParameter.toLowerCase().trim())) { newParameterData = parameterData[i]; }
+        }
+        
+        loadedFile.add(newParameter + "=" + newParameterData);
         writeFile();
     }
 

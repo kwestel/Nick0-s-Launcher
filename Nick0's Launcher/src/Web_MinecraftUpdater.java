@@ -48,9 +48,35 @@ public class Web_MinecraftUpdater
             }
             else { Main_RealLauncher.startMinecraft(); }
         }
+        else if ( Preferences_ConfigLoader.CONFIG_jarSelector && GuiForm_MainFrame.mainFrame.ComboBox_JarSelector != null && System_AlternativeJar.isAlternativeMinecraft(GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection()) )
+        {
+            String alternativeGameFileName = GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection();
+            String alternativeGameName = System_AlternativeJar.alternativeJarList[System_AlternativeJar.getAltMinID_FromJarFileName(alternativeGameFileName)];
+
+            System_LogWriter.write("Chargement d'un Minecraft Alternatif : " + alternativeGameName);
+
+            if ( !System_AlternativeJar.alternativeGameNeedUpdate(alternativeGameFileName) )
+            {
+                System_LogWriter.write("Pas de mise à jour disponible : " + alternativeGameName);
+                Main_RealLauncher.startMinecraft();
+                return;
+            }
+
+            System_LogWriter.write("Mise à jour disponible : " + alternativeGameName);
+
+            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de " + alternativeGameName + " est disponible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
+            GuiForm_MainFrame.mainFrame.setVisible(false);
+
+            if ( userResponse == 0 ) { System_AlternativeJar.downloadAlternativeGame(alternativeGameFileName, true, true); }
+            else
+            {
+                System_DataStub.setParameter("latestVersion", latestVersion);
+                Main_RealLauncher.startMinecraft();
+            }
+        }
         else if ( needToUpdate )
         {
-            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
+            int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est disponible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
             GuiForm_MainFrame.mainFrame.setVisible(false);
 
             if ( userResponse == 0 ) { new GuiForm_UpdaterForm(true, false, true); }

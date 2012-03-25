@@ -30,7 +30,7 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
         downloadThread.start();
     }
     
-    public GuiForm_UpdaterForm(String downloadURL, String jarFileName)
+    public GuiForm_UpdaterForm(String downloadURL, String jarFileName, boolean startGame)
     {
         super();
         
@@ -43,7 +43,7 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
         setVisible(true);
         
         Thread_UpdateMinecraft downloadThread;
-        downloadThread = (new Thread_UpdateMinecraft(downloadURL, jarFileName, this));
+        downloadThread = (new Thread_UpdateMinecraft(downloadURL, jarFileName, startGame, this));
         downloadThread.start();
     }
     

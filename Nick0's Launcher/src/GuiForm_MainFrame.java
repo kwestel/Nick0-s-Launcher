@@ -57,43 +57,42 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         if ( createPanel ) { mainPanel = new GuiElement_Panel("main.jpg"); }
         else { mainPanel.removeAll(); }
+
         mainPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
+        if ( createPanel )
+        {
+            Label_MainTitle = new JLabel("<html><b><u>Accès à votre compte minecraft :</u></b></html>");
+            Label_UsernameLabel = new JLabel("<html><b>Pseudo :</b></html>");
+            Label_PASSLabel = new JLabel("<html><b>Mot de passe :</b></html>");
+            Label_Copyright = new JLabel("<html><u>Nick0's Launcher - R" + Main_RealLauncher.getLauncherRevision() + " - By Nicnl</u></html>");
+            Label_actualRam = new JLabel("<html><u>RAM allouée : " + ( Runtime.getRuntime().maxMemory() / 1024 / 1024 ) + " Mb" + "</u></html>");
+            Field_UserName = new JTextField(20);
+            Field_Password = new JPasswordField(20);
+            Button_ConnectButton = new GuiElement_Button("<html><b>Connexion</b></html>");
+            Button_PrefsButton = new GuiElement_Button("Réglages...");
+            Check_Offline = new GuiElement_CheckBox("Offline mode");
+            Check_SaveLogin = new GuiElement_CheckBox("Sauvegarder MDP");
 
-        Label_MainTitle = new JLabel("<html><b><u>Accès à votre compte minecraft :</u></b></html>");
-        Label_UsernameLabel = new JLabel("<html><b>Pseudo :</b></html>");
-        Label_PASSLabel = new JLabel("<html><b>Mot de passe :</b></html>");
-        Label_Copyright = new JLabel("<html><u>Nick0's Launcher - R" + Main_RealLauncher.getLauncherRevision() + " - By Nicnl</u></html>");
-        Label_actualRam = new JLabel("<html><u>RAM allouée : " + ( Runtime.getRuntime().maxMemory() / 1024 / 1024 ) + " Mb" + "</u></html>");
-        Field_UserName = new JTextField(20);
-        Field_Password = new JPasswordField(20);
-        Button_ConnectButton = new GuiElement_Button("<html><b>Connexion</b></html>");
-        Button_PrefsButton = new GuiElement_Button("Réglages...");
-        Check_Offline = new GuiElement_CheckBox("Offline mode");
-        Check_SaveLogin = new GuiElement_CheckBox("Sauvegarder MDP");
+            if ( modsCanBeEnabled ) { Check_EnableMods = new GuiElement_CheckBox("Activer les mods"); }
+            if ( NicnlModsCanBeEnabled ) { Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2"); }
 
-        if ( modsCanBeEnabled )
-        {
-            Check_EnableMods = new GuiElement_CheckBox("Activer les mods");
-            Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked);
+            if ( Preferences_ConfigLoader.CONFIG_jarSelector ) { ComboBox_JarSelector = new GuiElement_JarSelector(); }
+            Button_ConnectButton.setEnabled(false);
         }
-        
-        if ( NicnlModsCanBeEnabled )
+        else
         {
-            Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2");
-            Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked); 
-        }
-        
-        if ( Preferences_ConfigLoader.CONFIG_jarSelector )
-        {
-            System_LogWriter.write("Creation du selectionneur de jar...");
-            ComboBox_JarSelector = new GuiElement_JarSelector();
-            ComboBox_JarSelector.SelectStringEntry(Preferences_ConfigLoader.CONFIG_LastJarSaved);
+            if ( Preferences_ConfigLoader.CONFIG_jarSelector )
+            {
+                if ( ComboBox_JarSelector == null ) { ComboBox_JarSelector = new GuiElement_JarSelector(); }
+                else { ComboBox_JarSelector.updateJars(); }
+            }
         }
 
+        if ( modsCanBeEnabled ) { Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked); }
+        if ( NicnlModsCanBeEnabled ) { Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);  }
         Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
-        Button_ConnectButton.setEnabled(false);
 
         // Default Value
         gbc.gridheight = 1;

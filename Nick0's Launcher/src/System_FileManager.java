@@ -34,15 +34,6 @@ public class System_FileManager
         return true;
     }
 
-    /*public static byte[] loadFileByte(String filePathInput) throws IOException
-    {
-        File fileToLoad = new File(filePathInput);
-        byte[] loadedFile = new byte[(int)fileToLoad.length()];
-        FileInputStream fileLoader = new FileInputStream(fileToLoad);
-        fileLoader.read(loadedFile);
-        return loadedFile;
-    }*/
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Nicnl - nicnl25@gmail.com
 }

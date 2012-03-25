@@ -4,11 +4,12 @@ import java.io.ByteArrayOutputStream;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.security.Key;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
 public class Encrypter_StringEncrypter
 {
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // System Functions + Vars
     
@@ -107,6 +108,23 @@ public class Encrypter_StringEncrypter
         }
 
         return newText.substring(0,originalText.length());
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Create MD5 Digest
+
+    public static String MD5Digest(byte[] originalByteArray)
+    {
+        MessageDigest messageDigest;
+        try { messageDigest = MessageDigest.getInstance("MD5"); }
+        catch ( NoSuchAlgorithmException e ) { return "MD5_DIGEST_ERROR"; }
+
+        byte[] rawDigest = messageDigest.digest(originalByteArray);
+
+        String finalDigest = "";
+        for ( byte anAd : rawDigest ) { finalDigest += Integer.toString((anAd & 0xff) + 0x100, 16).substring(1); }
+
+        return finalDigest;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

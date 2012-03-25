@@ -49,13 +49,13 @@ public class Updater_SystemFunctions
 
         formToUpdate.updateStatus(0, actualFile);
 
-        byte[] downloadedData = downloadFile(actualFile, formToUpdate, true);
+        byte[] downloadedData = downloadFile(actualFile, formToUpdate, true, "");
         writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
         if ( startGame ) { formToUpdate.downloadFinished(); }
     }
 
-    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate , String downloadURL, String jarFileName) throws IOException
+    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate , String downloadURL, String jarFileName, boolean startGame) throws IOException
     {
         System_LogWriter.write("UPDATER - Démarrage du téléchargement d'un Minecraft alternatif : " + jarFileName);
 
@@ -66,20 +66,25 @@ public class Updater_SystemFunctions
 
         formToUpdate.updateStatus(0, jarFileName);
 
-        byte[] downloadedData = downloadFile(downloadURL, formToUpdate, false);
+        byte[] downloadedData = downloadFile(downloadURL, formToUpdate, false, jarFileName);
         writeByteArrayToFile(downloadedData, alternativeJarDestination);
 
         System_LogWriter.write("UPDATER - Fin du téléchargement de : " + jarFileName);
 
-        formToUpdate.setVisible(false);
-        formToUpdate.dispose();
-        GuiForm_AlternativeJar.newForm(true);
+        if ( startGame ) { formToUpdate.downloadFinished(); }
+        else
+        {
+            formToUpdate.setVisible(false);
+            formToUpdate.dispose();
+            GuiForm_AlternativeJar.newForm(true);
+        }
+
     }
 
     private static void updateNatives(String destinationPath, String nativesFile, GuiForm_UpdaterForm formToUpdate) throws IOException
     {
         System_LogWriter.write("UPDATER - Téléchargement des natives / " + nativesFile);
-        byte[] downloadedData = downloadFile(nativesFile, formToUpdate, true);
+        byte[] downloadedData = downloadFile(nativesFile, formToUpdate, true, "");
         writeByteArrayToFile(downloadedData, destinationPath + File.separator + nativesFile);
         System_LogWriter.write("UPDATER - Extraction des natives...");
         extractOSNatives(destinationPath, nativesFile);
@@ -101,7 +106,7 @@ public class Updater_SystemFunctions
             File verification = new File(binDirPath + File.separator + actualFile);
             if ( verification.exists() && !forceDownload ) { continue; }
 
-            byte[] downloadedData = downloadFile(actualFile, formToUpdate, true);
+            byte[] downloadedData = downloadFile(actualFile, formToUpdate, true, "");
             writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
             System_LogWriter.write("UPDATER - Fin du téléchargement du fichier : " + actualFile);
@@ -121,7 +126,7 @@ public class Updater_SystemFunctions
 
         formToUpdate.updateStatus(0, LWJGLFileName);
 
-        byte[] downloadedData = downloadFile(LWJGLFileAddress, formToUpdate, false);
+        byte[] downloadedData = downloadFile(LWJGLFileAddress, formToUpdate, false, "");
         writeByteArrayToFile(downloadedData, binDirPath + File.separator + LWJGLFileName);
 
         System_LogWriter.write("UPDATER - Fin du téléchargement des libraries LWJGL : " + LWJGLFileName);
@@ -133,7 +138,7 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download System Functions
 
-    private static byte[] downloadFile(String fileToDownload, GuiForm_UpdaterForm formToUpdate, boolean useDefaultServer) throws IOException
+    private static byte[] downloadFile(String fileToDownload, GuiForm_UpdaterForm formToUpdate, boolean useDefaultServer, String alternativeName) throws IOException
     {
         
         String DownloadTicket = System_DataStub.static_getParameter("downloadTicket");
@@ -158,7 +163,7 @@ public class Updater_SystemFunctions
         for ( int i=0; i<fileLength; i++ )
         {
             outputData[i] = (byte)serverInputStream.read();
-            String finalFileName = useDefaultServer ? fileToDownload : fileToDownload.substring(fileToDownload.lastIndexOf("/")+1, fileToDownload.length());
+            String finalFileName = (alternativeName.equals("")) ? (useDefaultServer ? fileToDownload : fileToDownload.substring(fileToDownload.lastIndexOf("/")+1, fileToDownload.length())) : alternativeName;
             formToUpdate.updateStatus(i * 100 / fileLength, finalFileName);
         }
 

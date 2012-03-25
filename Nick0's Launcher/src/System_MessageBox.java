@@ -11,5 +11,7 @@ public class System_MessageBox
         
         JOptionPane.showMessageDialog(new JInternalFrame(), textToEcho, messageTitle, JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Nicnl - nicnl25@gmail.com
 }

@@ -2,7 +2,6 @@ import javax.swing.*;
 
 public class GuiElement_BaseComboBox extends JComboBox
 {
-
     public GuiElement_BaseComboBox()
     {
         super();
@@ -13,7 +12,7 @@ public class GuiElement_BaseComboBox extends JComboBox
 
     public String getSelection() { return (String)getSelectedItem(); }
 
-    public void SelectStringEntry(String entry)
+    public void selectStringEntry(String entry)
     {
         for (int i=0; i<getItemCount(); i++)
         {
@@ -25,4 +24,6 @@ public class GuiElement_BaseComboBox extends JComboBox
         }
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Nicnl - nicnl25@gmail.com
 }

@@ -53,8 +53,6 @@ public class Preferences_ConfigLoader
 
             CONFIG_WindowSize = Preferences_ConfigFileWriter.getParameter("GameSizeXY");
             String[] splitSize = CONFIG_WindowSize.split(",");
-            
-            System.out.println("test : " + splitSize[0] + Integer.parseInt(splitSize[0]));
 
             CONFIG_WindowSizeX = Integer.parseInt(splitSize[0]);
             CONFIG_WindowSizeY = Integer.parseInt(splitSize[1]);

@@ -10,9 +10,10 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
     public static GuiElement_Panel mainPanel;
     
     public JLabel Label_MainTitle;
+    public JLabel Label_JarSelectorNeeded;
     public GuiElement_Button Button_DownloadButton;
     public GuiElement_Button Button_CloseButton;
-    public GuiElement_AlternativeJarSelector ComboBox_JarSelector;
+    public GuiElement_AlternativeJarSelector ComboBox_AlternativeJarSelector;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Constructor
@@ -23,7 +24,7 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
 
         setTitle("Minecraft Alternatifs");
 
-        setSize(300, 200);
+        setSize(300, 250);
         setResizable(false);
 
         setContentPane(createFrameContent());
@@ -41,7 +42,8 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
         GridBagConstraints gbc = new GridBagConstraints();
 
         Label_MainTitle = new JLabel("<html><h1><b><u>Minecraft Alternatifs</u></b></h1></html>");
-        ComboBox_JarSelector = new GuiElement_AlternativeJarSelector();
+        Label_JarSelectorNeeded = new JLabel("<html><b><i>Afin d'utiliser ces versions, vous devez<br/><u>impérativement</u> activer le selectionneur de jar.</i></b></html>");
+        ComboBox_AlternativeJarSelector = new GuiElement_AlternativeJarSelector();
         Button_DownloadButton = new GuiElement_Button("<html><b>Télécharger</b></html>");
         Button_CloseButton = new GuiElement_Button("Fermer");
 
@@ -50,7 +52,7 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
 
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -58,15 +60,15 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 6, 0);
-        mainPanel.add(ComboBox_JarSelector, gbc);
+        mainPanel.add(ComboBox_AlternativeJarSelector, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 6, 0);
@@ -74,11 +76,19 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.gridwidth = 2;
+        gbc.gridwidth = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(20, 0, 0, 0);
         mainPanel.add(Button_CloseButton, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(20, 0, 0, 0);
+        mainPanel.add(Label_JarSelectorNeeded, gbc);
 
         return mainPanel;
     }
@@ -88,7 +98,9 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
         ActionListener downloadButtonListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
             newForm(false);
-            new GuiForm_UpdaterForm(ComboBox_JarSelector.getSelectedJarURL(), ComboBox_JarSelector.getSelectedJarFileName());
+
+            //String jarFileName = System_AlternativeJar.alternativeJarList[System_AlternativeJar.getAltMinID_FromGameName(ComboBox_AlternativeJarSelector.getSelection())+3];
+            System_AlternativeJar.downloadAlternativeGame(ComboBox_AlternativeJarSelector.getSelection(), false, false);
         } };
         Button_DownloadButton.addActionListener(downloadButtonListener);
 
