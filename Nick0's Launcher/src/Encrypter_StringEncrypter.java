@@ -8,6 +8,9 @@ import java.util.Random;
 
 public class Encrypter_StringEncrypter
 {
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // System Functions + Vars
     
     private static String lastEncodedPassword;
     private final static Key secretKey = new SecretKeySpec(getEncodeKey().getBytes(), "RC4");

@@ -44,7 +44,7 @@ public class Web_MinecraftUpdater
             if ( userResponse == 0 )
             {
                 System_MinecraftLoader.jarList[3] = "minecraft.jar";
-                new GuiForm_UpdaterForm(false, true);
+                new GuiForm_UpdaterForm(false, true, true);
             }
             else { Main_RealLauncher.startMinecraft(); }
         }
@@ -53,7 +53,7 @@ public class Web_MinecraftUpdater
             int userResponse = JOptionPane.showConfirmDialog(new JInternalFrame(), "Une mise à jour de Minecraft est dispnonible.\nVoulez-vous la téléchager maintenant ?", "Mise à jour disponible", JOptionPane.YES_NO_OPTION);
             GuiForm_MainFrame.mainFrame.setVisible(false);
 
-            if ( userResponse == 0 ) { new GuiForm_UpdaterForm(true, false); }
+            if ( userResponse == 0 ) { new GuiForm_UpdaterForm(true, false, true); }
             else
             {
                 System_DataStub.setParameter("latestVersion", latestVersion);
@@ -66,7 +66,7 @@ public class Web_MinecraftUpdater
     private static void Updater_NoInstallation(boolean forceUpdate)
     {
         GuiForm_MainFrame.mainFrame.setVisible(false);
-        new GuiForm_UpdaterForm(forceUpdate, true);
+        new GuiForm_UpdaterForm(forceUpdate, true, true);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ public class Web_MinecraftUpdater
         if ( userResponse == 0 )
         {
             GuiForm_MainFrame.mainFrame.setVisible(false);
-            new GuiForm_UpdaterForm(false, true);
+            new GuiForm_UpdaterForm(false, true, true);
         }
     }
     

@@ -158,11 +158,16 @@ public final class Main_RealLauncher
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Revision
+    // Master Values
     
-    private static final int LauncherRevision = 22;
+    private static final int LauncherRevision = 23;
     
     public static final int getLauncherRevision() { return LauncherRevision; }
+    
+    public static final int defaultWindowSizeX = 950;
+    public static final int defaultWindowSizeY = 550;
+    
+    public static final String getDefaultWindowSize() { return defaultWindowSizeX + "," + defaultWindowSizeY; }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Nicnl - nicnl25@gmail.com

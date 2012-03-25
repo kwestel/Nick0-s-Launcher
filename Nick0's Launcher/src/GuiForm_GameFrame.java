@@ -7,9 +7,9 @@ public class GuiForm_GameFrame extends Frame
 
     public GuiForm_GameFrame(String username)
     {
-        super("Nick0's Launcher V1 - " + username + " - Minecraft");
+        super("Nick0's Launcher - Minecraft - " + username + " - Revision " + Main_RealLauncher.getLauncherRevision());
 
-        setSize(950, 550);
+        setSize(Preferences_ConfigLoader.CONFIG_WindowSizeX, Preferences_ConfigLoader.CONFIG_WindowSizeY);
         setLocationRelativeTo(null);
         
         addWindowListener(new WindowAdapter() { public void windowClosing(WindowEvent arg0)

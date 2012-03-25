@@ -131,7 +131,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(15, 0, 3, 0);
+        gbc.insets = new Insets(10, 0, 3, 0);
         mainPanel.add(Label_PASSLabel, gbc);
 
         // Field : Password
@@ -214,7 +214,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.NONE;
-        gbc.insets = new Insets(10, 0, 5, 0);
+        gbc.insets = new Insets(10, 0, 15, 0);
         mainPanel.add(Button_PrefsButton, gbc);
 
         // Label : Copyright :P

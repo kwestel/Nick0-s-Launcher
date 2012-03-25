@@ -8,7 +8,7 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
     public JLabel label_MainTitle;
     public JProgressBar ProgressBar;
     
-    public GuiForm_UpdaterForm(boolean forceDownload, boolean updateAllJars)
+    public GuiForm_UpdaterForm(boolean forceDownload, boolean updateAllJars, boolean startGame)
     {
         super();
         
@@ -20,13 +20,14 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
         setContentPane(createFrameContent());
         setVisible(true);
         
-        Thread_UpdateAllJars downloadThread = updateAllJars ? ( new Thread_UpdateAllJars(forceDownload, this) ) : ( new Thread_UpdateAllJars(this) );
+        Thread_UpdateMinecraft downloadThread;
+        downloadThread = (new Thread_UpdateMinecraft(forceDownload, updateAllJars, startGame, this));
         downloadThread.start();
     }
 
     private JPanel createFrameContent()
     {
-        JPanel mainPanel = new JPanel();
+        JPanel mainPanel = new GuiElement_Panel("updater.jpg");
         mainPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();

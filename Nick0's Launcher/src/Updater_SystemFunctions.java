@@ -18,7 +18,7 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Download Main Functions
 
-    public static void updateAllJars(boolean forceDownload, GuiForm_UpdaterForm formToUpdate) throws IOException
+    public static void updateGame(boolean forceDownload, GuiForm_UpdaterForm formToUpdate, boolean startGame) throws IOException
     {
         System_LogWriter.write("UPDATER - Démarrage d'une mise à jour des JARs / ForceDownload = " + forceDownload);
         formToUpdate.updateStatus(0, "Démarrage...");
@@ -28,12 +28,12 @@ public class Updater_SystemFunctions
         if ( Preferences_ConfigLoader.CONFIG_LWJGLSelector && !Preferences_ConfigLoader.CONFIG_LWJGLAddress.equals("") ) { downloadLWJGLfromServer(formToUpdate, binDirPath); }
         else { downloadLWJGLfromMojang(formToUpdate, binDirPath, forceDownload); }
 
-        updateMinecraftJar(formToUpdate, forceDownload);
+        updateMinecraftJar(formToUpdate, forceDownload, false);
 
-        formToUpdate.downloadFinished();
+        if ( startGame ) { formToUpdate.downloadFinished(); }
     }
 
-    public static void updateMinecraftJar(GuiForm_UpdaterForm formToUpdate, boolean forceDownload) throws IOException
+    public static void updateMinecraftJar(GuiForm_UpdaterForm formToUpdate, boolean forceDownload, boolean startGame) throws IOException
     {
         System_LogWriter.write("UPDATER - Démarrage d'une mise à jour du Minecraft.jar");
 
@@ -41,12 +41,22 @@ public class Updater_SystemFunctions
         String actualFile = "minecraft.jar";
         
         File minecraftJarFile = new File(binDirPath + File.separator + actualFile);
-        if ( !forceDownload && minecraftJarFile.exists() ) { return; }
+        if ( !forceDownload && minecraftJarFile.exists() )
+        {
+            if ( startGame ) { formToUpdate.downloadFinished(); }
+            return;
+        }
 
         formToUpdate.updateStatus(0, actualFile);
 
         byte[] temp_data = downloadFile(actualFile, formToUpdate, true);
         writeByteArrayToFile(temp_data, binDirPath + File.separator + actualFile);
+
+        if ( startGame ) { formToUpdate.downloadFinished(); }
+    }
+
+    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate, GuiForm_AlternativeJar formToOpen, String downloadURL) throws IOException
+    {
     }
 
     private static void updateNatives(String destinationPath, String nativesFile, GuiForm_UpdaterForm formToUpdate) throws IOException
@@ -99,8 +109,7 @@ public class Updater_SystemFunctions
 
         System_LogWriter.write("UPDATER - Fin du téléchargement des libraries LWJGL : " + LWJGLFileName);
         formToUpdate.updateStatus(0, "Extraction...");
-
-        System_LogWriter.write("UPDATER - Décompression des libraries LWJGL...");
+        
         extractLWJGLFromArchive(binDirPath, LWJGLFileName);
     }
 
@@ -165,7 +174,7 @@ public class Updater_SystemFunctions
             JarEntry thisFile = (JarEntry)contentFiles.nextElement();
             if ( thisFile.isDirectory() || thisFile.getName().indexOf('/') != -1 ) { continue; }
 
-            System_FileManager.removeFile(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName(), false);
+            // System_FileManager.removeFile(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName(), false);
 
             InputStream jarInputStream = jarFile.getInputStream(jarFile.getEntry(thisFile.getName()));
             OutputStream extractedFileOutput = new FileOutputStream(Main_RealLauncher.getNativesDirPath() + File.separator + thisFile.getName());
@@ -188,6 +197,8 @@ public class Updater_SystemFunctions
 
     private static void extractLWJGLFromArchive(String outputPath, String nativesFile) throws IOException
     {
+        System_LogWriter.write("UPDATER - Préparation de la décompression des libraries LWJGL...");
+        
         // Basic Preparation
         System_FileManager.createFolder(Main_RealLauncher.getNativesDirPath());
         
@@ -208,13 +219,18 @@ public class Updater_SystemFunctions
             ZipEntry actualZipEntry = LWJGLZipEntries.nextElement();
             if ( actualZipEntry.toString().contains(nativesDir) && !actualZipEntry.isDirectory() ) { nativesFiles.add(actualZipEntry); }
         }
+        
+        System_LogWriter.write("UPDATER - Début de la décompression des libraries LWJGL...");
 
         // Final Extract :
         
         // Jar Files Extract
         for ( String actualJarFile : fileToDownload )
         {
-            ZipEntry actualZipEntry = LWJGLZipFile.getEntry(jarDir + "/" + actualJarFile);
+            String zipEntryName = jarDir + "/" + actualJarFile;
+            System_LogWriter.write("UPDATER - LWJGL Décompression de : " + zipEntryName);
+            
+            ZipEntry actualZipEntry = LWJGLZipFile.getEntry(zipEntryName);
             
             ByteArrayOutputStream temporaryByteArray = new ByteArrayOutputStream();
             InputStream temporaryInputStream = LWJGLZipFile.getInputStream(actualZipEntry);
@@ -230,6 +246,8 @@ public class Updater_SystemFunctions
         // Natives Extract
         for ( ZipEntry actualZipEntry : nativesFiles )
         {
+            System_LogWriter.write("UPDATER - LWJGL Décompression de : " + actualZipEntry.getName());
+            
             ByteArrayOutputStream temporaryByteArray = new ByteArrayOutputStream();
             InputStream temporaryInputStream = LWJGLZipFile.getInputStream(actualZipEntry);
             

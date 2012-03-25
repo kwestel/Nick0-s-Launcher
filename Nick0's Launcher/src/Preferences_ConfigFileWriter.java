@@ -24,9 +24,38 @@ public final class Preferences_ConfigFileWriter
         "NicnlModsButtonChecked",
 
         "LWJGLSelector",
-        "LWJGLAddress"
+        "LWJGLAddress",
+
+        "GameSizeEnabled",
+        "GameSizeXY",
+
+        "ErreurSonore"
     };
-    private static final String[] parameterData = new String[] { "", "0", "", "", "false", "false", "RamSelector", "", "1024", "false", "", "false", "false", "false", "" };
+    private static final String[] parameterData = new String[]
+    {
+        "",
+        "0",
+        "",
+        "",
+
+        "false",
+        "false",
+        "RamSelector",
+        "",
+        "1024",
+        "false",
+        "",
+        "false",
+        "false",
+
+        "false",
+        "",
+
+        "false",
+        Main_RealLauncher.getDefaultWindowSize(),
+
+        "true"
+    };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Basic Write Functions

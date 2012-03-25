@@ -6,6 +6,7 @@
         <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="Nick0's Launcher" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../light_jl1.0.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

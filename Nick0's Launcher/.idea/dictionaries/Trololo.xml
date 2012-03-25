@@ -4,12 +4,17 @@
       <w>activer</w>
       <w>addresse</w>
       <w>adresse</w>
+      <w>afficher</w>
       <w>afin</w>
       <w>ajout</w>
       <w>allouée</w>
+      <w>anciennes</w>
       <w>apparaitre</w>
+      <w>appelées</w>
       <w>applet's</w>
+      <w>attendre</w>
       <w>aucun</w>
+      <w>autre</w>
       <w>avaivable</w>
       <w>avancées</w>
       <w>avec</w>
@@ -18,6 +23,7 @@
       <w>bien</w>
       <w>bogue</w>
       <w>bouton</w>
+      <w>c'est</w>
       <w>celui</w>
       <w>cerfificats</w>
       <w>cette</w>
@@ -26,6 +32,7 @@
       <w>chargé</w>
       <w>chargée</w>
       <w>classe</w>
+      <w>comme</w>
       <w>complète</w>
       <w>conf</w>
       <w>connecter</w>
@@ -40,6 +47,7 @@
       <w>cours</w>
       <w>crypte</w>
       <w>création</w>
+      <w>crée</w>
       <w>d'appliquer</w>
       <w>d'autres</w>
       <w>d'erreur</w>
@@ -48,14 +56,19 @@
       <w>d'installation</w>
       <w>d'une</w>
       <w>d'utilisateur</w>
+      <w>datant</w>
       <w>demande</w>
       <w>demandée</w>
+      <w>depuis</w>
       <w>dernier</w>
+      <w>dernière</w>
       <w>deux</w>
       <w>devenir</w>
       <w>devez</w>
+      <w>directement</w>
       <w>dispnonible</w>
       <w>disponible</w>
+      <w>donc</w>
       <w>données</w>
       <w>dsun</w>
       <w>dysfonctionner</w>
@@ -86,6 +99,7 @@
       <w>fois</w>
       <w>fonction</w>
       <w>fonctionnel</w>
+      <w>fonctionnera</w>
       <w>forcer</w>
       <w>fullscreen</w>
       <w>grosse</w>
@@ -95,25 +109,31 @@
       <w>importantes</w>
       <w>inattendue</w>
       <w>inconnue</w>
+      <w>indisponible</w>
       <w>inexistant</w>
       <w>instable</w>
       <w>installe</w>
       <w>installé</w>
       <w>installées</w>
+      <w>intallez</w>
       <w>introuvable</w>
       <w>invalide</w>
+      <w>janvier</w>
       <w>jinput</w>
       <w>jour</w>
       <w>l'emplacement</w>
       <w>l'interface</w>
+      <w>l'ont</w>
       <w>l'os</w>
       <w>l'écriture</w>
       <w>lancement</w>
+      <w>largeur</w>
       <w>lfrom</w>
       <w>librarypath</w>
       <w>liste</w>
       <w>loadmap</w>
       <w>lors</w>
+      <w>lorsque</w>
       <w>lwjgl</w>
       <w>lwjwl</w>
       <w>macosx</w>
@@ -133,6 +153,7 @@
       <w>noddraw</w>
       <w>nouveau</w>
       <w>npas</w>
+      <w>nveuillez</w>
       <w>nécéssaire</w>
       <w>obtenez</w>
       <w>officiel</w>
@@ -141,21 +162,29 @@
       <w>opengl</w>
       <w>performante</w>
       <w>performantes</w>
+      <w>permet</w>
       <w>permettant</w>
+      <w>personnes</w>
       <w>peuvent</w>
       <w>plein</w>
       <w>pmoffscreen</w>
+      <w>pouvez</w>
       <w>prefs</w>
       <w>principale</w>
       <w>problème</w>
+      <w>prochaine</w>
       <w>produite</w>
       <w>provenant</w>
       <w>préférences</w>
+      <w>préparation</w>
       <w>puis</w>
       <w>périmé</w>
       <w>périmée</w>
       <w>qu'avec</w>
+      <w>qu'est</w>
+      <w>qu'une</w>
       <w>randomizer</w>
+      <w>rapidement</w>
       <w>redémarrage</w>
       <w>redémarrer</w>
       <w>reinstallation</w>
@@ -185,6 +214,7 @@
       <w>sessionid</w>
       <w>soit</w>
       <w>sommes</w>
+      <w>sonore</w>
       <w>sont</w>
       <w>supporté</w>
       <w>supprimer</w>
@@ -195,6 +225,8 @@
       <w>systèmes</w>
       <w>sécurisée</w>
       <w>sélectionné</w>
+      <w>taille</w>
+      <w>temporairement</w>
       <w>texte</w>
       <w>thème</w>
       <w>toutes</w>
@@ -203,6 +235,7 @@
       <w>téléchager</w>
       <w>téléchargement</w>
       <w>télécharger</w>
+      <w>téléchargez</w>
       <w>uniquement</w>
       <w>updat</w>
       <w>utilisé</w>

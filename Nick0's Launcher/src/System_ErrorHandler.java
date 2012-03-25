@@ -9,9 +9,13 @@ public class System_ErrorHandler
     
     public static void handleException(Exception e, boolean fatalError)
     {
+
+        System_ErrorPlayer.playErrorMessage();
         String errorToPrint = "Exception inattendue :\n" + e;
         e.printStackTrace();
+
         openErrorWindow(errorToPrint, true);
+
         if ( fatalError ) { System.exit(0); }
     }
     
@@ -37,11 +41,14 @@ public class System_ErrorHandler
         else if ( e instanceof NullPointerException ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors du chargement de \"" + System_MinecraftLoader.jarList[3] + "\"\nLe jar sélectionné est introuvable.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
         else { System_ErrorHandler.handleExceptionWithText(e, "Une erreur inconnue est survenue lors du lancement du jeu.\n\nUne reinstallation de Minecraft vous est conseillée.", true, true); }
     }
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Private System Function
 
     private static void openErrorWindow(String errorText, boolean reportBogue)
     {
+        System_ErrorPlayer.playErrorMessage();
+
         System_LogWriter.write("Erreur : " + errorText);
         if ( reportBogue ) { errorText += "\n\nMerci de reporter tout bogue à cette addresse :\n" + officialAddress; }
         JOptionPane.showMessageDialog(new JInternalFrame(), errorText, "Erreur", JOptionPane.ERROR_MESSAGE);
