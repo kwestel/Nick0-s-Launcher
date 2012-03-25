@@ -263,7 +263,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             if ( Preferences_ConfigLoader.CONFIG_jarSelector )
             {
                 String selectedItem = ComboBox_JarSelector.getSelection();
-                System_MinecraftLoader.jarList[3] = ( selectedItem == null ) ? "" : selectedItem;
+                System_MinecraftLoader.jarList[3] = ( selectedItem == null || selectedItem.equals("") ) ? "minecraft.jar" : selectedItem;
             }
 
             System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();

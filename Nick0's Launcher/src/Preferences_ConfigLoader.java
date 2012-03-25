@@ -25,6 +25,8 @@ public class Preferences_ConfigLoader
 
     public static boolean CONFIG_erreurSonore = false;
 
+    public static boolean CONFIG_RemoveMETAINF = false;
+
     public static void SYSTEM_LoadPreferences()
     {
         System_LogWriter.write("Chargement des préférences...");
@@ -45,6 +47,8 @@ public class Preferences_ConfigLoader
         CONFIG_LWJGLAddress = Preferences_ConfigFileWriter.getParameter("LWJGLAddress");
 
         CONFIG_erreurSonore = Preferences_ConfigFileWriter.getParameter("ErreurSonore").equals("true");
+
+        CONFIG_RemoveMETAINF = Preferences_ConfigFileWriter.getParameter("RemoveMETAINF").equals("true");
 
         CONFIG_ModifyWindowSize = Preferences_ConfigFileWriter.getParameter("GameSizeEnabled").equals("true");
         try

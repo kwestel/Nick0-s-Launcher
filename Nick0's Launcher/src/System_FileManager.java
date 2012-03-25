@@ -1,4 +1,7 @@
 import java.io.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class System_FileManager
 {
@@ -32,6 +35,41 @@ public class System_FileManager
         }
 
         return true;
+    }
+    
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // 
+    
+    public static void rewriteJar(String zipFilePath) throws IOException
+    {
+        File zipFile = new File(zipFilePath);
+        File temporaryJar = File.createTempFile(zipFile.getName(), null);
+    
+        if ( !temporaryJar.delete() ) { throw new IOException("Impossible de renommer le jar. " + zipFile.getPath()); }
+        temporaryJar.deleteOnExit();
+    
+        if ( !zipFile.renameTo(temporaryJar) ) { throw new IOException("Impossible de renommer le jar. " + zipFile.getPath()); }
+    
+        byte[] buf = new byte[1024];
+    
+        ZipInputStream zipInputStream = new ZipInputStream(new FileInputStream(temporaryJar));
+        ZipOutputStream zipOutputStream = new ZipOutputStream(new FileOutputStream(zipFile));
+    
+    
+        ZipEntry actualEntry;
+        while ( (actualEntry=zipInputStream.getNextEntry()) != null )
+        {
+            String entryName = actualEntry.getName();
+            if ( entryName.contains("META-INF") ) { continue; }
+    
+            zipOutputStream.putNextEntry(new ZipEntry(entryName));
+            int len;
+            while ( (len=zipInputStream.read(buf)) > 0 ) { zipOutputStream.write(buf, 0, len); }
+        }
+    
+        zipInputStream.close();
+        zipOutputStream.close();
+        temporaryJar.delete();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

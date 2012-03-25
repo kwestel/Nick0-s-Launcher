@@ -29,7 +29,9 @@ public final class Preferences_ConfigFileWriter
         "GameSizeEnabled",
         "GameSizeXY",
 
-        "ErreurSonore"
+        "ErreurSonore",
+
+        "RemoveMETAINF"
     };
     private static final String[] parameterData = new String[]
     {
@@ -53,6 +55,8 @@ public final class Preferences_ConfigFileWriter
 
         "false",
         Main_RealLauncher.getDefaultWindowSize(),
+
+        "true",
 
         "true"
     };

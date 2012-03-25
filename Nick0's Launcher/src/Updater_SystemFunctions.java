@@ -52,6 +52,8 @@ public class Updater_SystemFunctions
         byte[] downloadedData = downloadFile(actualFile, formToUpdate, true, "");
         writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
+        if ( Preferences_ConfigLoader.CONFIG_RemoveMETAINF ) { System_FileManager.rewriteJar(binDirPath + File.separator + actualFile); }
+
         if ( startGame ) { formToUpdate.downloadFinished(); }
     }
 

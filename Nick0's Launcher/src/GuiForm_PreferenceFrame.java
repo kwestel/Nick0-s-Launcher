@@ -30,6 +30,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
     public GuiElement_CheckBox CheckBox_EnableJarSelector;
     public GuiElement_CheckBox CheckBox_DisableUpdate;
     public GuiElement_CheckBox CheckBox_RAMSelector;
+    public GuiElement_CheckBox CheckBox_RemoveMETAINF;
     public GuiElement_CheckBox CheckBox_SaveLastJar;
     public GuiElement_CheckBox CheckBox_LWJGLSelector;
     public GuiElement_CheckBox CheckBox_ModifySize;
@@ -49,7 +50,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         super();
 
         setTitle("Nick0's Launcher - Préférences - By Nicnl");
-        setSize(425, 590);
+        setSize(450, 615);
         setResizable(false);
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setLocationRelativeTo(null);
@@ -82,6 +83,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_SaveLastJar = new GuiElement_CheckBox("Sauvegarder le dernier .jar utilisé");
         CheckBox_DisableUpdate = new GuiElement_CheckBox("Désactiver les mises à jour");
         CheckBox_RAMSelector = new GuiElement_CheckBox("Modifier la RAM de Minecraft");
+        CheckBox_RemoveMETAINF = new GuiElement_CheckBox("Automatiquement supprimer le META-INF");
         CheckBox_LWJGLSelector = new GuiElement_CheckBox("Libraries LWJGL officielles");
         CheckBox_ModifySize = new GuiElement_CheckBox("Modifier la taille de la fenêtre de jeu");
         CheckBox_ErreurSonore = new GuiElement_CheckBox("Message d'erreur sonore");
@@ -123,6 +125,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Field_ModifySizeY.setModel(new SpinnerNumberModel(Preferences_ConfigLoader.CONFIG_WindowSizeY, 128, System_ScreenResolution.getMaximumScreenY(), 1));
 
         CheckBox_ErreurSonore.setSelected(Preferences_ConfigLoader.CONFIG_erreurSonore);
+        CheckBox_RemoveMETAINF.setSelected(Preferences_ConfigLoader.CONFIG_RemoveMETAINF);
 
         // GridBagLayout Default Value
         gbc.gridheight = 1;
@@ -131,7 +134,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.gridwidth = 2;
-        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 25, 0);
         mainPanel.add(Label_MainTitle, gbc);
 
@@ -231,9 +234,17 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         gbc.insets = new Insets(0, 0, 0, 0);
         mainPanel.add(Field_RAMEntry, gbc);
 
-        // Button : Jar Downloader
+        // Checkbox : Automatic META-INF Remove
         gbc.gridx = 0;
         gbc.gridy = 9;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        mainPanel.add(CheckBox_RemoveMETAINF, gbc);
+
+        // Button : Jar Downloader
+        gbc.gridx = 0;
+        gbc.gridy = 10;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(5, 0, 0, 0);
@@ -241,7 +252,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Label : LWJGL Selector
         gbc.gridx = 0;
-        gbc.gridy = 10;
+        gbc.gridy = 11;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(20, 0, 5, 0);
@@ -249,7 +260,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Button : LWJGL Help
         gbc.gridx = 0;
-        gbc.gridy = 11;
+        gbc.gridy = 12;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 7, 0);
@@ -257,7 +268,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : LWJGL Selector
         gbc.gridx = 0;
-        gbc.gridy = 12;
+        gbc.gridy = 13;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -265,7 +276,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Button : LWJGL Selector Menu
         gbc.gridx = 1;
-        gbc.gridy = 12;
+        gbc.gridy = 13;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -273,7 +284,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Label : Minecraft Window Size
         gbc.gridx = 0;
-        gbc.gridy = 13;
+        gbc.gridy = 14;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(20, 0, 5, 0);
@@ -281,7 +292,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : Modify Game Size
         gbc.gridx = 0;
-        gbc.gridy = 14;
+        gbc.gridy = 15;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -289,7 +300,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : SizeX
         gbc.gridx = 0;
-        gbc.gridy = 15;
+        gbc.gridy = 16;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -297,7 +308,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : SizeY
         gbc.gridx = 1;
-        gbc.gridy = 15;
+        gbc.gridy = 16;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -305,7 +316,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : SizeX
         gbc.gridx = 0;
-        gbc.gridy = 16;
+        gbc.gridy = 17;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -313,7 +324,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : SizeY
         gbc.gridx = 1;
-        gbc.gridy = 16;
+        gbc.gridy = 17;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -321,7 +332,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Label : Autre
         gbc.gridx = 0;
-        gbc.gridy = 17;
+        gbc.gridy = 18;
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(10, 0, 5, 0);
@@ -329,7 +340,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         // Checkbox : Erreur Sonore
         gbc.gridx = 0;
-        gbc.gridy = 18;
+        gbc.gridy = 19;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.LINE_START;
         gbc.insets = new Insets(0, 0, 0, 0);
@@ -480,6 +491,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigLoader.CONFIG_SaveLastJar = CheckBox_SaveLastJar.isSelected();
         Preferences_ConfigLoader.CONFIG_LWJGLSelector = CheckBox_LWJGLSelector.isSelected();
         Preferences_ConfigLoader.CONFIG_erreurSonore = CheckBox_ErreurSonore.isSelected();
+        Preferences_ConfigLoader.CONFIG_RemoveMETAINF = CheckBox_RemoveMETAINF.isSelected();
 
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )
@@ -495,6 +507,8 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigFileWriter.setParameter("LWJGLSelector", Preferences_ConfigLoader.CONFIG_LWJGLSelector);
         Preferences_ConfigFileWriter.setParameter("RAM", Preferences_ConfigLoader.CONFIG_selectedRam);
         Preferences_ConfigFileWriter.setParameter("ErreurSonore", Preferences_ConfigLoader.CONFIG_erreurSonore);
+        Preferences_ConfigFileWriter.setParameter("RemoveMETAINF", Preferences_ConfigLoader.CONFIG_RemoveMETAINF);
+
         if ( !Preferences_ConfigLoader.CONFIG_LWJGLSelector ) { Preferences_ConfigFileWriter.setParameter("LWJGLAddress", ""); }
 
         boolean modifySize = CheckBox_ModifySize.isSelected();

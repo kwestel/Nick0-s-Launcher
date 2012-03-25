@@ -36,7 +36,7 @@ public class System_MinecraftLoader extends ClassLoader
             Class loadedAppletClass = MC_ClassLoader.loadClass("net.minecraft.client.MinecraftApplet");
             loadedApplet = (Applet)loadedAppletClass.newInstance();
         }
-        catch ( NoClassDefFoundError e ) { System_ErrorHandler.handleError("Erreur fatale lors du chargement de Minecraft !\nDes classes systèmes ne sont pas chargées.\nVerifiez votre dossier META-INF.", true, true); }
+        catch ( NoClassDefFoundError e ) { System_ErrorHandler.handleError("Erreur fatale lors du chargement de Minecraft !\nDes classes systèmes ne sont pas chargées.\nVérifiez votre dossier META-INF.", true, true); }
 
         return loadedApplet;
     }

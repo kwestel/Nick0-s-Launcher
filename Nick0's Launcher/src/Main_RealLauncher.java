@@ -121,6 +121,12 @@ public final class Main_RealLauncher
 
     public static void startMinecraft()
     {
+        if ( Preferences_ConfigLoader.CONFIG_RemoveMETAINF )
+        {
+            try { System_FileManager.rewriteJar(getBinDirPath() + File.separator + System_MinecraftLoader.jarList[3]); }
+            catch ( IOException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible de supprimer le META-INF de votre jeu.", false, true); }
+        }
+
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
 
@@ -160,7 +166,7 @@ public final class Main_RealLauncher
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Master Values
     
-    private static final int LauncherRevision = 25;
+    private static final int LauncherRevision = 26;
     
     public static final int getLauncherRevision() { return LauncherRevision; }
     
