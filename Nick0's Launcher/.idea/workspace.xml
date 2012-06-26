@@ -19,7 +19,71 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="" />
+    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/autre/72.mp3" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/alternativeJar.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/lwjgl.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/main.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/modsSelector.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/prefs.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/backgrounds/updater.jpg" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/icons/Icon_Original.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiElement_JTable.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiForm_InstallNewMod.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiForm_MinecraftConsole.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiForm_ModsSelector.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_AES.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_DataInputStream.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_DataOutputStream.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_Digest.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_LauncherUpdater.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_Mods.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_PrintStream.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_Reflection.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_ResourceHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_ServerConnexion.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_StringEncrypter.java" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\artifacts\Nick0_s_Launcher_jar\Nick0_s_Launcher.jar" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\production\Nick0's Launcher\Encrypter_StringEncrypter.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\production\Nick0's Launcher\Main_RealLauncher$1.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\production\Nick0's Launcher\Thread_UpdateMinecraft.class" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\Encrypter_StringEncrypter.java" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\Thread_UpdateMinecraft.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" afterPath="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_AlternativeJarSelector.java" afterPath="$PROJECT_DIR$/src/GuiElement_AlternativeJarSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiExtend_JFrame.java" afterPath="$PROJECT_DIR$/src/GuiExtend_JFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" afterPath="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_GameFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" afterPath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" afterPath="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_ReLauncher.java" afterPath="$PROJECT_DIR$/src/Main_ReLauncher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_RealLauncher.java" afterPath="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_AlternativeJar.java" afterPath="$PROJECT_DIR$/src/System_AlternativeJar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_DataStub.java" afterPath="$PROJECT_DIR$/src/System_DataStub.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ErrorHandler.java" afterPath="$PROJECT_DIR$/src/System_ErrorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ErrorPlayer.java" afterPath="$PROJECT_DIR$/src/System_ErrorPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_FileManager.java" afterPath="$PROJECT_DIR$/src/System_FileManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_JarSelectorFunctions.java" afterPath="$PROJECT_DIR$/src/System_JarSelectorFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_LogWriter.java" afterPath="$PROJECT_DIR$/src/System_LogWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_MinecraftLoader.java" afterPath="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" afterPath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_NativesHelper.java" afterPath="$PROJECT_DIR$/src/System_NativesHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_UserHomeDefiner.java" afterPath="$PROJECT_DIR$/src/System_UserHomeDefiner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Updater_SystemFunctions.java" afterPath="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" afterPath="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_MainTransaction.java" afterPath="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" afterPath="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
+    </list>
     <ignored path="Nick0's Launcher.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,6 +93,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="Commander">
+    <leftPanel />
+    <rightPanel />
+    <splitter proportion="0.5" />
+  </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
@@ -76,21 +145,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="System_FileManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
+      <file leaf-file-name="System_ResourceHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ResourceHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="53" selection-start="2339" selection-end="2339" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="36" column="170" selection-start="1727" selection-end="1727" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences_ConfigLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
+      <file leaf-file-name="System_LauncherUpdater.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/System_LauncherUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="50" column="87" selection-start="2427" selection-end="2440" vertical-scroll-proportion="0.0">
+            <state line="29" column="0" selection-start="897" selection-end="897" vertical-scroll-proportion="0.01920904">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_ServerConnexion.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ServerConnexion.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="40" column="18" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -99,25 +175,43 @@
       <file leaf-file-name="GuiForm_PreferenceFrame.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="127" column="43" selection-start="6525" selection-end="6570" vertical-scroll-proportion="0.0">
+            <state line="461" column="93" selection-start="17041" selection-end="17041" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Updater_SystemFunctions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
+      <file leaf-file-name="Main_ReLauncher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="8" selection-start="2309" selection-end="2438" vertical-scroll-proportion="0.0">
+            <state line="93" column="29" selection-start="3539" selection-end="3539" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+      <file leaf-file-name="System_UserHomeDefiner.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_UserHomeDefiner.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="168" column="50" selection-start="7598" selection-end="7598" vertical-scroll-proportion="0.9576547">
+            <state line="42" column="39" selection-start="1607" selection-end="1614" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_ModdedClassLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ModdedClassLoader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="31" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_ErrorHandler.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="13" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -126,7 +220,16 @@
       <file leaf-file-name="System_MinecraftLoader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="34" selection-start="310" selection-end="317" vertical-scroll-proportion="-4.76">
+            <state line="43" column="41" selection-start="2113" selection-end="2113" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_MessageBox.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_MessageBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="48" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -140,28 +243,30 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
-    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitLogSettings">
+    <option name="myStructureFilterPaths" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/System_MessageBox.java" />
-        <option value="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
-        <option value="$PROJECT_DIR$/src/System_NativesHelper.java" />
-        <option value="$PROJECT_DIR$/src/System_ScreenResolution.java" />
-        <option value="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" />
-        <option value="$PROJECT_DIR$/src/GuiElement_JarSelector.java" />
+        <option value="$PROJECT_DIR$/src/System_StringEncrypter.java" />
+        <option value="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
         <option value="$PROJECT_DIR$/src/System_AlternativeJar.java" />
-        <option value="$PROJECT_DIR$/src/System_FileManager.java" />
-        <option value="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+        <option value="$PROJECT_DIR$/src/System_ErrorHandler.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
-        <option value="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_InstallNewMod.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_ModsSelector.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" />
+        <option value="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+        <option value="$PROJECT_DIR$/src/System_ResourceHelper.java" />
+        <option value="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
         <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+        <option value="$PROJECT_DIR$/src/Main_ReLauncher.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
       </list>
     </option>
   </component>
@@ -173,10 +278,10 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-503" />
-    <option name="y" value="289" />
-    <option name="width" value="1918" />
-    <option name="height" value="1029" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -548,7 +653,7 @@
       </profile-state>
     </entry>
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -576,8 +681,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -612,34 +715,91 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="376" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="384" />
     <property name="project.structure.proportion" value="0.15" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
-    <property name="recentsLimit" value="5" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="383" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="MemberChooser.sorted" value="false" />
-    <property name="options.lastSelected" value="project.scopes" />
+    <property name="recentsLimit" value="5" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="386" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="696" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="698" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="384" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="381" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="nick0's_launcher" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder2" value="2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder3" value="3" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
+    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
+    <property name="last.edited.regexp" value="Minecraft Minecraft Beta 1.2" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\icons" />
+      <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src" />
+      <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\autre" />
+    </key>
+    <key name="MoveMembersDialog.RECENTS_KEY">
+      <recent name="A" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src" />
+    </key>
   </component>
   <component name="RunManager" selected="Application.Main_ReLauncher">
     <configuration default="false" name="SmoothMoveExample" type="Application" factoryName="Application" temporary="true">
@@ -676,6 +836,40 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="System_EncryptKeyGenerator" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="System_EncryptKeyGenerator" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Nick0's Launcher" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="WindowsLookAndFeelDemo" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="WindowsLookAndFeelDemo" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Nick0's Launcher" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
@@ -689,7 +883,17 @@
         <option name="PhingTarget" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="false" scope="Class" socket_policy_port="0" url_to_launch="http://">
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" class_name="" method_name="" output_log_level="" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browserFamily" value="FIREFOX" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -788,10 +992,12 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Application.SmoothMoveExample" />
       <item index="1" class="java.lang.String" itemvalue="Application.System_JarSelectorFunctions" />
-      <item index="2" class="java.lang.String" itemvalue="Application.Main_ReLauncher" />
+      <item index="2" class="java.lang.String" itemvalue="Application.System_EncryptKeyGenerator" />
+      <item index="3" class="java.lang.String" itemvalue="Application.WindowsLookAndFeelDemo" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Main_ReLauncher" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -799,7 +1005,12 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
     <option name="mySSHConnectionTimeout" value="30000" />
@@ -825,35 +1036,57 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-503" y="289" width="1918" height="1029" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39462367" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2671674" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39914164" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.78817207" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39892474" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2816754" sideWeight="0.053645834" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296875" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27419356" sideWeight="0.24386339" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19210246" sideWeight="0.2172043" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27150837" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31875" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19263607" sideWeight="0.1860215" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1411638" sideWeight="0.7284916" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2811159" sideWeight="0.9427083" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.67096776" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17449306" sideWeight="0.75376344" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24623656" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="7" side_tool="false" content_ui="combo" />
+      <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2795699" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27204302" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39914164" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -889,7 +1122,10 @@
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -946,110 +1182,84 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="13" selection-start="2290" selection-end="2290" vertical-scroll-proportion="0.88754135" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_UpdaterForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="47" selection-start="1565" selection-end="1565" vertical-scroll-proportion="0.0" />
+        <state line="26" column="21" selection-start="764" selection-end="764" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Thread_UpdateMinecraft.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="50" selection-start="1370" selection-end="1370" vertical-scroll-proportion="0.0" />
+        <state line="39" column="34" selection-start="1074" selection-end="1074" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_JarSelectorFunctions.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="13" selection-start="63" selection-end="63" vertical-scroll-proportion="0.052713178">
-          <folding />
-        </state>
+        <state line="7" column="13" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_AlternativeJar.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_InstallNewMod.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="44" selection-start="1197" selection-end="1197" vertical-scroll-proportion="-0.6852713">
-          <folding />
-        </state>
+        <state line="43" column="36" selection-start="1276" selection-end="1276" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_AlternativeJar.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.6.0_24/src.zip!/java/awt/Window.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="83" column="29" selection-start="2984" selection-end="2984" vertical-scroll-proportion="0.026356589">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="265" column="120" selection-start="9880" selection-end="9880" vertical-scroll-proportion="0.43410853">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiElement_JarSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="70" selection-start="227" selection-end="227" vertical-scroll-proportion="0.21085271">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="93" selection-start="2190" selection-end="2190" vertical-scroll-proportion="0.32911393">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="60" column="13" selection-start="1153" selection-end="1153" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="50" column="87" selection-start="2427" selection-end="2440" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="127" column="43" selection-start="6525" selection-end="6570" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Updater_SystemFunctions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="8" selection-start="2309" selection-end="2438" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="53" selection-start="2339" selection-end="2339" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="34" selection-start="310" selection-end="317" vertical-scroll-proportion="-4.76">
-          <folding />
-        </state>
+        <state line="811" column="9" selection-start="29268" selection-end="29268" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="168" column="50" selection-start="7598" selection-end="7598" vertical-scroll-proportion="0.9576547">
+        <state line="187" column="58" selection-start="8385" selection-end="8385" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ResourceHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="170" selection-start="1727" selection-end="1727" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ServerConnexion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="18" selection-start="1602" selection-end="1602" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="461" column="93" selection-start="17041" selection-end="17041" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="29" selection-start="3539" selection-end="3539" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_UserHomeDefiner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="42" column="39" selection-start="1607" selection-end="1614" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ModdedClassLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="31" selection-start="448" selection-end="448" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="13" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_MinecraftLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="43" column="41" selection-start="2113" selection-end="2113" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_MessageBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="48" selection-start="511" selection-end="511" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_LauncherUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="0" selection-start="897" selection-end="897" vertical-scroll-proportion="0.01920904">
           <folding />
         </state>
       </provider>

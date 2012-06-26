@@ -11,40 +11,28 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
     public JProgressBar ProgressBar;
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Constructors
-    
-    public GuiForm_UpdaterForm(boolean forceDownload, boolean updateAllJars, boolean startGame)
+    // Constructor
+
+    public GuiForm_UpdaterForm()
     {
         super();
-        
+
         setTitle("Nick0's Updater");
-        setSize(275, 125);
+
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
         setContentPane(createFrameContent());
         setVisible(true);
-        
-        Thread_UpdateMinecraft downloadThread;
-        downloadThread = (new Thread_UpdateMinecraft(forceDownload, updateAllJars, startGame, this));
-        downloadThread.start();
+
+        changeSize();
+        setLocationRelativeTo(null);
     }
-    
-    public GuiForm_UpdaterForm(String downloadURL, String jarFileName, boolean startGame)
+
+    private void changeSize()
     {
-        super();
-        
-        setTitle("Nick0's Updater");
-        setSize(275, 125);
-        setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
-        setContentPane(createFrameContent());
-        setVisible(true);
-        
-        Thread_UpdateMinecraft downloadThread;
-        downloadThread = (new Thread_UpdateMinecraft(downloadURL, jarFileName, startGame, this));
-        downloadThread.start();
+        pack();
+        setSize(getWidth()+20, getHeight()+10);
+        validate();
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,8 +87,14 @@ public class GuiForm_UpdaterForm extends GuiExtend_JFrame
     
     public void downloadFinished()
     {
-        setVisible(false);
+        destroyWindow();
         Main_RealLauncher.startMinecraft();
+    }
+
+    public void destroyWindow()
+    {
+        setVisible(false);
+        dispose();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

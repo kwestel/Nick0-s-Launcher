@@ -7,7 +7,6 @@ import java.io.File;
 
 public class GuiForm_MainFrame extends GuiExtend_JFrame
 {
-
     public GuiElement_Button Button_ConnectButton;
     public GuiElement_Button Button_PrefsButton;
 
@@ -30,19 +29,24 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     public GuiElement_Panel mainPanel;
 
     private static boolean modsCanBeEnabled;
-    private static boolean NicnlModsCanBeEnabled;
+
+    public boolean ignoreNextEntry = false;
+    public static boolean formInitialized = false;
+    private static boolean autoLoginStarted = false;
 
     public GuiForm_MainFrame()
     {
         super();
+        formInitialized = false;
 
         setTitle("Nick0's Launcher - Revision " + Main_RealLauncher.getLauncherRevision());
 
-        changeSize();
-
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        File ModsFolder = new File(Main_RealLauncher.getModsDirPath());
+        modsCanBeEnabled = ModsFolder.exists() && (ModsFolder.list().length>0);
 
         System_LogWriter.write("Création du contenu de la fenêtre principale...");
         setContentPane(createFrameContent(true));
@@ -50,7 +54,11 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         System_LogWriter.write("Ajout des Actions Listeners aux éléments GUIs...");
         addActionsListeners();
 
+        verifyButtons();
+        changeSize();
         setVisible(true);
+
+        formInitialized = true;
     }
 
     private JPanel createFrameContent(boolean createPanel)
@@ -70,13 +78,13 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             Label_actualRam = new JLabel("<html><u>RAM allouée : " + ( Runtime.getRuntime().maxMemory() / 1024 / 1024 ) + " Mb" + "</u></html>");
             Field_UserName = new JTextField(20);
             Field_Password = new JPasswordField(20);
-            Button_ConnectButton = new GuiElement_Button("<html><b>Connexion</b></html>");
+            Button_ConnectButton = new GuiElement_Button("<html><b><span style='color:gray'>Connexion</span></b></html>");
             Button_PrefsButton = new GuiElement_Button("Réglages...");
             Check_Offline = new GuiElement_CheckBox("Offline mode");
             Check_SaveLogin = new GuiElement_CheckBox("Sauvegarder MDP");
 
             if ( modsCanBeEnabled ) { Check_EnableMods = new GuiElement_CheckBox("Activer les mods"); }
-            if ( NicnlModsCanBeEnabled ) { Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2"); }
+            Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2");
 
             if ( Preferences_ConfigLoader.CONFIG_jarSelector ) { ComboBox_JarSelector = new GuiElement_JarSelector(); }
             Button_ConnectButton.setEnabled(false);
@@ -91,8 +99,16 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         }
 
         if ( modsCanBeEnabled ) { Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked); }
-        if ( NicnlModsCanBeEnabled ) { Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);  }
-        Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
+        Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
+
+        Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft());
+        Check_Offline.setSelected(Check_Offline.isEnabled() && Preferences_ConfigLoader.CONFIG_OfflineSelected);
+
+        Field_Password.setEnabled(!Check_Offline.isSelected());
+        Check_SaveLogin.setEnabled(!Check_Offline.isSelected());
+
+        if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
+        else { Button_ConnectButton.setEnabled(false); }
 
         // Default Value
         gbc.gridheight = 1;
@@ -195,17 +211,14 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
             gbc.insets = new Insets(0, 0, 0, 0);
             mainPanel.add(Check_EnableMods, gbc);
         }
-        
-        if ( NicnlModsCanBeEnabled )
-        {
-            gbc.gridx = 1;
-            gbc.gridy = 8;
-            gbc.gridwidth = 1;
-            gbc.anchor = GridBagConstraints.LINE_START;
-            gbc.fill = GridBagConstraints.NONE;
-            gbc.insets = new Insets(0, 0, 0, 0);
-            mainPanel.add(Check_EnableNicnlMods, gbc);
-        }
+
+        gbc.gridx = 1;
+        gbc.gridy = 8;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        mainPanel.add(Check_EnableNicnlMods, gbc);
 
         // Button : Preferences
         gbc.gridx = 0;
@@ -252,26 +265,33 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
         DocumentListener passwordListener = new DocumentListener()
         {
-            public void changedUpdate(DocumentEvent e) { verifyBoxChanged(); }
-            public void removeUpdate(DocumentEvent e) { verifyBoxChanged(); }
-            public void insertUpdate(DocumentEvent e) { verifyBoxChanged(); }
+            public void changedUpdate(DocumentEvent e) { passwordBoxChanged(); }
+            public void removeUpdate(DocumentEvent e) { passwordBoxChanged(); }
+            public void insertUpdate(DocumentEvent e) { passwordBoxChanged(); }
         };
         Field_Password.getDocument().addDocumentListener(passwordListener);
 
         ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
+            if ( autoLoginStarted )
+            {
+                autoLoginStarted = false;
+                verifyButtons();
+                return;
+            }
+
             if ( Preferences_ConfigLoader.CONFIG_jarSelector )
             {
                 String selectedItem = ComboBox_JarSelector.getSelection();
-                System_MinecraftLoader.jarList[3] = ( selectedItem == null || selectedItem.equals("") ) ? "minecraft.jar" : selectedItem;
+                System_MinecraftLoader.minecraftJarToLoad = ( selectedItem == null || selectedItem.equals("") ) ? "minecraft.jar" : selectedItem;
             }
 
-            System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods.isSelected();
+            System_MinecraftLoader.LoadMods = modsCanBeEnabled && Check_EnableMods != null && Check_EnableMods.isSelected();
             Preferences_ConfigLoader.CONFIG_modsButtonChecked = System_MinecraftLoader.LoadMods;
 
-            Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked = NicnlModsCanBeEnabled && Check_EnableNicnlMods.isSelected();
+            Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked = Check_EnableNicnlMods.isSelected();
 
-            Main_RealLauncher.startLogin(Field_UserName.getText(), Main_RealLauncher.PasswordNotDisplayed ? Main_RealLauncher.getStoredPassword() : ( new String(Field_Password.getPassword()) ));
+            new Thread() { public void run() { Main_RealLauncher.startLogin(Field_UserName.getText(), Main_RealLauncher.a ? Main_RealLauncher.getB() : ( new String(Field_Password.getPassword()) )); } }.start();
         } };
         Field_Password.addActionListener(loginListener);
         Field_UserName.addActionListener(loginListener);
@@ -279,6 +299,9 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
         ActionListener preferencesListener = new ActionListener() { public void actionPerformed(ActionEvent e)
         {
+            autoLoginStarted = false;
+            verifyButtons();
+
             setVisible(false);
             GuiForm_PreferenceFrame.newForm(true);
         } };
@@ -286,17 +309,23 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
         ItemListener checkOfflineListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
         {
+            autoLoginStarted = false;
             Field_Password.setEnabled(!Check_Offline.isSelected());
             Check_SaveLogin.setEnabled(!Check_Offline.isSelected());
+
             if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
             else { Button_ConnectButton.setEnabled(false); }
+
+            Preferences_ConfigLoader.CONFIG_OfflineSelected = Check_Offline.isSelected();
+
             verifyButtons();
         } };
         Check_Offline.addItemListener(checkOfflineListener);
 
         ItemListener checkSavePassListener = new ItemListener() { public void itemStateChanged(ItemEvent  e)
         {
-            if ( !Check_SaveLogin.isSelected() && Main_RealLauncher.PasswordNotDisplayed ) { Field_Password.setText(""); }
+            autoLoginStarted = false;
+            if ( !Check_SaveLogin.isSelected() && Main_RealLauncher.a) { Field_Password.setText(""); }
         } };
         Check_SaveLogin.addItemListener(checkSavePassListener);
 
@@ -307,32 +336,38 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Action Listener - Helpers
 
-    private boolean firstExecutionDone = false;
-
     private void verifyButtons()
     {
+        autoLoginStarted = false;
+
         if ( ( ( new String(Field_Password.getPassword()) ).equals("") && !Check_Offline.isSelected() ) || Field_UserName.getText().equals("") ) { Button_ConnectButton.setEnabled(false); }
         else { Button_ConnectButton.setEnabled(true); }
+
+        Button_ConnectButton.setText("<html><b><span style='color:" + (Button_ConnectButton.isEnabled() ? "black" : "gray") + "'>Connexion</span></b></html>");
     }
 
-    private void verifyBoxChanged()
+    private void passwordBoxChanged()
     {
-        if ( Main_RealLauncher.PasswordNotDisplayed && firstExecutionDone ) { disableAntiDisplaying(); }
-        firstExecutionDone = true;
+        if ( ignoreNextEntry )
+        {
+            ignoreNextEntry = false;
+            return;
+        }
 
+        if ( Main_RealLauncher.a) { disableAntiDisplaying(); }
         verifyButtons();
     }
     
     public void disableAntiDisplaying()
     {
-        Main_RealLauncher.PasswordNotDisplayed = false;
+        Main_RealLauncher.a = false;
         
         SwingUtilities.invokeLater(new Runnable()
         {
             public void run()
             {
-                Field_Password.setText("");
-                Check_SaveLogin.setSelected(false);
+            Field_Password.setText("");
+            Check_SaveLogin.setSelected(false);
             }
         });
     }
@@ -344,21 +379,22 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         changeSize();
         setContentPane(createFrameContent(false));
-        addActionsListeners();
         mainPanel.updateUI();
     }
 
     private void changeSize()
     {
-        File ModsFolder = new File(Main_RealLauncher.getModsDirPath());
-        modsCanBeEnabled = ModsFolder.exists() && (ModsFolder.list().length > 0);
-        
-        File NicnlModsFile = new File(Main_RealLauncher.getBinDirPath() + File.separator + "Nicnl's Mods V2.launcher");
-        NicnlModsCanBeEnabled = NicnlModsFile.exists() && NicnlModsFile.isFile();
+        /*
+        int sizeX = 325;
+        int sizeY = 290 + 30 + (Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0);
 
-        int YSizeToAdd = Preferences_ConfigLoader.CONFIG_jarSelector ? 30 : 0;
-        YSizeToAdd += ( modsCanBeEnabled || NicnlModsCanBeEnabled ) ? 30 : 0;
-        setSize(325, 290 + YSizeToAdd);
+        setSize(sizeX, sizeY);
+        validate();
+        */
+
+        pack();
+        setSize(getWidth()+20, getHeight()+10);
+        validate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -366,19 +402,16 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     
     public void setVisible(boolean option)
     {
-        if ( option )
-        {
-            Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft() || Preferences_ConfigLoader.MinecraftReinstallForcer);
-        }
+        if ( option ) { Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft()); }
         super.setVisible(option);
     }
 
     public void onClose()
     {
-        Preferences_ConfigFileWriter.writeConfigFile("", false, !Main_RealLauncher.PasswordNotDisplayed);
+        Preferences_ConfigFileWriter.writeConfigFile("", false, !Main_RealLauncher.a, true);
+        formInitialized = false;
     }
-    
-    
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Static Functions
 
@@ -400,6 +433,121 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         mainFrame.setVisible(visible);
         if ( visible && Preferences_ConfigLoader.CONFIG_jarSelector ) { mainFrame.ComboBox_JarSelector.updateJars(); }
         return mainFrame;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Automatic Launcher Functions
+
+    public static void setRandomPasswordString(final String randomPasswordString) { SwingUtilities.invokeLater(new Runnable() { public void run()
+    {
+        mainFrame.ignoreNextEntry = true;
+        mainFrame.Field_Password.setText(randomPasswordString);
+        mainFrame.Check_SaveLogin.setSelected(true);
+
+        mainFrame.verifyButtons();
+
+        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && !Preferences_ConfigLoader.CONFIG_OfflineSelected ) { startAutoLogin(); }
+    } }); }
+
+    public static void setUsername(final String UserName) { SwingUtilities.invokeLater(new Runnable() { public void run()
+    {
+        mainFrame.Field_UserName.setText(UserName);
+        mainFrame.Field_UserName.setCaretPosition(UserName.length());
+
+        mainFrame.verifyButtons();
+
+        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && Preferences_ConfigLoader.CONFIG_OfflineSelected ) { startAutoLogin(); }
+    } }); }
+
+    private static void startAutoLogin() { new Thread() { public void run()
+    {
+        autoLoginStarted = true;
+        String bulletState = "•••";
+        int autoLogin = 3;
+
+        while ( mainFrame != null && mainFrame.isVisible() && autoLoginStarted )
+        {
+            if ( autoLogin == -1 )
+            {
+                autoLoginStarted = false;
+                mainFrame.Button_ConnectButton.doClick();
+                break;
+            }
+
+            bulletState = bulletState.substring(0, autoLogin);
+            mainFrame.Button_ConnectButton.setText("<html><b><span style='color:green'>" + bulletState + " Annuler - Auto Login : " + autoLogin + " " + bulletState + "</span></b></html>");
+
+            try { Thread.currentThread().sleep(600); }
+            catch ( InterruptedException e ) { }
+            autoLogin--;
+        }
+    } }.start(); }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Disable/Enable Interface ( While Launcher Login )
+
+    public static boolean[] savedGuiElementsStates;
+    private static boolean isConnecting = false;
+    public static String customText = null;
+
+    public static void disableLoginWindow(final boolean offlineMode)
+    {
+        isConnecting = true;
+
+        savedGuiElementsStates = new boolean[]
+        {
+            mainFrame.Button_ConnectButton.isEnabled(), mainFrame.Button_PrefsButton.isEnabled(), mainFrame.Check_Offline.isEnabled(),
+            mainFrame.Check_SaveLogin.isEnabled(), (mainFrame.Check_EnableMods != null && mainFrame.Check_EnableMods.isEnabled()), (mainFrame.Check_EnableNicnlMods != null && mainFrame.Check_EnableNicnlMods.isEnabled()),
+            mainFrame.Field_UserName.isEnabled(), mainFrame.Field_Password.isEnabled(), (mainFrame.ComboBox_JarSelector != null && mainFrame.ComboBox_JarSelector.isEnabled())
+        };
+
+        mainFrame.Button_ConnectButton.setEnabled(false);
+        mainFrame.Button_PrefsButton.setEnabled(false);
+        mainFrame.Check_Offline.setEnabled(false);
+
+        mainFrame.Check_SaveLogin.setEnabled(false);
+        if ( mainFrame.Check_EnableMods != null ) { mainFrame.Check_EnableMods.setEnabled(false); }
+        if ( mainFrame.Check_EnableNicnlMods != null ) { mainFrame.Check_EnableNicnlMods.setEnabled(false); }
+
+        mainFrame.Field_UserName.setEnabled(false);
+        mainFrame.Field_Password.setEnabled(false);
+        if ( mainFrame.ComboBox_JarSelector != null ) { mainFrame.ComboBox_JarSelector.setEnabled(false); }
+
+        mainFrame.Button_ConnectButton.setText("<html><b>" + ((customText == null) ? (offlineMode ? "Démarrage de Minecraft" : "Connexion en cours") : customText) + "</b></html>");
+
+        new Thread() { public void run()
+        {
+            String bulletState = "";
+
+            while ( mainFrame != null && mainFrame.isVisible() && isConnecting )
+            {
+                mainFrame.Button_ConnectButton.setText("<html><b><span style='color:gray'>" + bulletState + " " + ((customText == null) ? (offlineMode ? "Démarrage de Minecraft" : "Connexion en cours") : customText) + " " + bulletState + "</span></b></html>");
+
+                try { Thread.currentThread().sleep(offlineMode ? 333 : 1000); }
+                catch ( InterruptedException e ) { }
+
+                bulletState = bulletState.length() == 3 ? "" : bulletState+"•";
+            }
+        } }.start();
+    }
+
+    public static void enableLoginWindow()
+    {
+        isConnecting = false;
+
+        mainFrame.Button_ConnectButton.setEnabled(savedGuiElementsStates[0]);
+        mainFrame.Button_PrefsButton.setEnabled(savedGuiElementsStates[1]);
+        mainFrame.Check_Offline.setEnabled(savedGuiElementsStates[2]);
+
+        mainFrame.Check_SaveLogin.setEnabled(savedGuiElementsStates[3]);
+        if ( mainFrame.Check_EnableMods != null ) { mainFrame.Check_EnableMods.setEnabled(savedGuiElementsStates[4]); }
+        if ( mainFrame.Check_EnableNicnlMods != null ) { mainFrame.Check_EnableNicnlMods.setEnabled(savedGuiElementsStates[5]); }
+
+        mainFrame.Field_UserName.setEnabled(savedGuiElementsStates[6]);
+        mainFrame.Field_Password.setEnabled(savedGuiElementsStates[7]);
+        if ( mainFrame.ComboBox_JarSelector != null ) { mainFrame.ComboBox_JarSelector.setEnabled(savedGuiElementsStates[8]); }
+
+        mainFrame.verifyButtons();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

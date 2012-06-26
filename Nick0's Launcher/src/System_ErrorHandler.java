@@ -1,16 +1,18 @@
 import javax.swing.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class System_ErrorHandler
 {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Error Handlers
 
-    public static String officialAddress = "nicnl25@gmail.com";
+    public static final String officialAddress = "nicnl25@gmail.com";
     
     public static void handleException(Exception e, boolean fatalError)
     {
-
         System_ErrorPlayer.playErrorMessage();
+
         String errorToPrint = "Exception inattendue :\n" + e;
         e.printStackTrace();
 
@@ -36,9 +38,9 @@ public class System_ErrorHandler
 
     public static void handleMinecraftLoadingException(Exception e)
     {
-        if ( e instanceof ClassNotFoundException ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors du chargement de \"" + System_MinecraftLoader.jarList[3] + "\"\nLa classe Java demandée n'est pas chargée.\nVotre jar est surement corrompu.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
+        if ( e instanceof ClassNotFoundException ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors du chargement de \"" + System_MinecraftLoader.minecraftJarToLoad + "\"\nLa classe Java demandée n'est pas chargée.\nVotre jar est surement corrompu.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
         else if ( e instanceof SecurityException ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible d'initialiser les mods que vous avez installé.\n\nVeuillez supprimer le dossier META-INF de votre jeu.", true, false); }
-        else if ( e instanceof NullPointerException ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors du chargement de \"" + System_MinecraftLoader.jarList[3] + "\"\nLe jar sélectionné est introuvable.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
+        else if ( e instanceof NullPointerException ) { System_ErrorHandler.handleExceptionWithText(e, "Erreur lors du chargement de \"" + System_MinecraftLoader.minecraftJarToLoad + "\"\nLe jar sélectionné est introuvable.\n\nUne réinstallation de Minecraft vous est conseillée.", true, false); }
         else { System_ErrorHandler.handleExceptionWithText(e, "Une erreur inconnue est survenue lors du lancement du jeu.\n\nUne reinstallation de Minecraft vous est conseillée.", true, true); }
     }
 
@@ -52,6 +54,17 @@ public class System_ErrorHandler
         System_LogWriter.write("Erreur : " + errorText);
         if ( reportBogue ) { errorText += "\n\nMerci de reporter tout bogue à cette addresse :\n" + officialAddress; }
         JOptionPane.showMessageDialog(new JInternalFrame(), errorText, "Erreur", JOptionPane.ERROR_MESSAGE);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Exception Manager
+
+    public static String convertExceptionToString(Exception e)
+    {
+        StringWriter stringWriter = new StringWriter();
+        PrintWriter printWriter = new PrintWriter(stringWriter);
+        e.printStackTrace(printWriter);
+        return stringWriter.toString();
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

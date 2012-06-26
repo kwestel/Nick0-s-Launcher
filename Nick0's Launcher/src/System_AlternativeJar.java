@@ -10,7 +10,9 @@ public class System_AlternativeJar
         "Minefield", "http://www.minefield.fr/java/minefield.jar", "Minefield.jar", "http://www.minefield.fr/java/version_minefield.txt" ,
         "Caldera", "http://caldera-minecraft.fr/launcher/caldera.jar", "Caldera.jar", "http://caldera-minecraft.fr/launcher/version_caldera.txt",
         "NoyalKub", "http://launcher.noyalkub.com/java/noyalkub.jar", "NoyalKub.jar", "http://launcher.noyalkub.com/java/version.txt",
-        "BomberCraft - coldknife2", "http://dl.dropbox.com/u/62495291/minecraft.jar", "BomberCraft_coldknife2.jar", "http://dl.dropbox.com/u/62495291/version.txt"
+        "Arkador", "www.arkador.fr/java/arkador.jar", "Arkador.jar", "http://www.arkador.fr/java/version_arkador.txt",
+        "BomberCraft - coldknife2", "http://dl.dropbox.com/u/62495291/minecraft.jar", "BomberCraft_coldknife2.jar", "http://dl.dropbox.com/u/62495291/version.txt",
+        "RealityCraft", "http://www.realitycraft.fr/launcher/realitycraft.jar", "RealityCraft.jar", "http://www.realitycraft.fr/launcher/cversion.txt"
     };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -83,28 +85,28 @@ public class System_AlternativeJar
         }
 
         byte[] downloadedVersionFile = Web_ClientServerProtocol.downloadFile(alternativeJarList[alternativeID+3]);
-        String MD5Digest = Encrypter_StringEncrypter.MD5Digest(downloadedVersionFile);
-        Preferences_ConfigFileWriter.setParameter("AlternativeMinecraftMD5-" + alternativeJarList[alternativeID], MD5Digest);
+        String SHA512Digest = System_Digest.generateSHA512Digest(downloadedVersionFile);
+        Preferences_ConfigFileWriter.setParameter("AlternativeMinecraftMD5-" + alternativeJarList[alternativeID], SHA512Digest);
 
-        System_LogWriter.write("Ajout d'un Minecraft Alternatif dans la base de données : " + alternativeJarList[alternativeID] + " / " + MD5Digest);
+        System_LogWriter.write("Ajout d'un Minecraft Alternatif dans la base de données : " + alternativeJarList[alternativeID] + " / " + SHA512Digest);
 
-        new GuiForm_UpdaterForm(alternativeJarList[alternativeID+1], alternativeJarList[alternativeID+2], startGame);
+        Updater_SystemFunctions.updateAlternativeJar(alternativeJarList[alternativeID+1], alternativeJarList[alternativeID+2], startGame);
     }
     
-    public static boolean alternativeGameNeedUpdate(String jarFileName)
+    public static boolean alternativeGameNoNeedUpdate(String jarFileName)
     {
         int alternativeID = getAltMinID_FromJarFileName(jarFileName);
         if ( alternativeID == -1 )
         {
             System_ErrorHandler.handleError("ERREUR INTERNE DU SYSTEME !\nL'ID du Minecraft Alternatif est introuvable dans la base de donnée !", true, true);
-            return false;
+            return true;
         }
         
         byte[] downloadedVersionFile = Web_ClientServerProtocol.downloadFile(alternativeJarList[alternativeID+3]);
-        String latestMD5Digest = Encrypter_StringEncrypter.MD5Digest(downloadedVersionFile);
-        String savedMD5Digest = Preferences_ConfigFileWriter.getParameter("AlternativeMinecraftMD5-" + alternativeJarList[alternativeID]);
+        String latestSHA512Digest = System_Digest.generateSHA512Digest(downloadedVersionFile);
+        String savedSHA512Digest = Preferences_ConfigFileWriter.getParameter("AlternativeMinecraftMD5-" + alternativeJarList[alternativeID]);
         
-        return !latestMD5Digest.toLowerCase().trim().equals(savedMD5Digest.toLowerCase().trim());
+        return latestSHA512Digest.toLowerCase().trim().equals(savedSHA512Digest.toLowerCase().trim());
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

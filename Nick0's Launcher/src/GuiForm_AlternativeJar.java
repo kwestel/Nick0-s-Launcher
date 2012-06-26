@@ -24,11 +24,20 @@ public class GuiForm_AlternativeJar extends GuiExtend_JFrame
 
         setTitle("Minecraft Alternatifs");
 
-        setSize(300, 250);
         setResizable(false);
 
         setContentPane(createFrameContent());
         addActionsListeners();
+
+        changeSize();
+        setLocationRelativeTo(null);
+    }
+
+    private void changeSize()
+    {
+        pack();
+        setSize(getWidth()+20, getHeight()+10);
+        validate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

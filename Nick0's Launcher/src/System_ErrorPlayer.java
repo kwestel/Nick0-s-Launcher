@@ -1,5 +1,4 @@
 import javazoom.jl.player.Player;
-
 import java.io.InputStream;
 
 public class System_ErrorPlayer

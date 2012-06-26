@@ -20,6 +20,8 @@ public class GuiForm_LWJGLForm extends GuiExtend_JFrame
 
     public GuiElement_LWJGLSelector ComboBox_LWJGLSelector;
 
+    private boolean versionValidated = false;
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Constructor
 
@@ -29,11 +31,20 @@ public class GuiForm_LWJGLForm extends GuiExtend_JFrame
 
         setTitle("Nick0's Launcher - LWJGL");
 
-        setSize(225, 275);
         setResizable(false);
 
         setContentPane(createFrameContent());
         addActionsListeners();
+
+        changeSize();
+        setLocationRelativeTo(null);
+    }
+
+    private void changeSize()
+    {
+        pack();
+        setSize(getWidth()+20, getHeight()+10);
+        validate();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -138,12 +149,18 @@ public class GuiForm_LWJGLForm extends GuiExtend_JFrame
 
         ActionListener validateButton = new ActionListener() { public void actionPerformed(ActionEvent arg0)
         {
-            onClose();
             String LWJGLVersion = ComboBox_LWJGLSelector.getSelection();
+
             String LWJGLAddress = "http://heanet.dl.sourceforge.net/project/java-game-lib/Official%20Releases/LWJGL%20" + LWJGLVersion + "/lwjgl-" + LWJGLVersion + ".zip";
-            
             Preferences_ConfigLoader.CONFIG_LWJGLAddress = LWJGLAddress;
             Preferences_ConfigFileWriter.setParameter("LWJGLAddress", LWJGLAddress);
+
+            Preferences_ConfigLoader.CONFIG_LWJGLSelector = true;
+
+            newForm(false);
+
+            Updater_SystemFunctions.updateOnlyNatives();
+            versionValidated = true;
         } };
         Button_Validate.addActionListener(validateButton);
 
@@ -160,7 +177,13 @@ public class GuiForm_LWJGLForm extends GuiExtend_JFrame
     
     private void onClose()
     {
-        GuiForm_PreferenceFrame.newForm(true);
+        GuiForm_PreferenceFrame preferenceFrame = GuiForm_PreferenceFrame.newForm(true);
+        if ( !versionValidated )
+        {
+            Preferences_ConfigLoader.CONFIG_LWJGLSelector = false;
+            Preferences_ConfigLoader.CONFIG_LWJGLAddress = "";
+            preferenceFrame.CheckBox_LWJGLSelector.setSelected(false);
+        }
         newForm(false);
     }
     

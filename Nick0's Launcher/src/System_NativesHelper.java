@@ -18,7 +18,7 @@ public class System_NativesHelper
             
             if ( m.find() )
             {
-                String result = m.group().replace("%20", " ").replace("<a href=\"LWJGL ", "").replace("\">", "").replace("/", "");
+                String result = m.group().replace("%20", " ").replace("<d href=\"LWJGL ", "").replace("\">", "").replace("/", "");
                 
                 if ( result.toLowerCase().contains("rc") && !showRC ) { continue; }
                 if ( result.toLowerCase().contains("beta") && !showBeta ) { continue; }

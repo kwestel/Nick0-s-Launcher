@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class GuiElement_AlternativeJarSelector extends GuiElement_BaseComboBox
 {

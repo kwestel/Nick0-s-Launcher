@@ -1,65 +1,52 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public final class Preferences_ConfigFileWriter
 {
     
     private static ArrayList<String> loadedFile = new ArrayList<String>();
     private static boolean reloadFile = true;
-    private static final String[] parameterList = new String[]
+    private static final String[] configurationParameters = new String[]
     {
         "Username",
-        "Version",
+        "Version=0",
         "EncP",
         "EncH",
 
-        "DisableUpdates",
-        "JarSelector",
-        "RamSelector",
+        "DisableUpdates=false",
+        "JarSelector=false",
+        "RamSelector=false",
         "HomeDir",
-        "RAM",
-        "SaveLastJar",
+        "RAM=1024",
+        "SaveLastJar=false",
         "LastJarSaved",
-        "ModsButtonChecked",
-        "NicnlModsButtonChecked",
+        "ModsButtonChecked=false",
+        "NicnlModsButtonChecked=false",
 
-        "LWJGLSelector",
+        "OfflineSelected=false",
+
+        "LWJGLSelector=false",
         "LWJGLAddress",
 
-        "GameSizeEnabled",
-        "GameSizeXY",
+        "GameSizeEnabled=false",
+        "GameSizeXY=" + Main_RealLauncher.getDefaultWindowSize(),
 
-        "ErreurSonore",
+        "ErreurSonore=true",
 
-        "RemoveMETAINF"
+        "RemoveMETAINF=true",
+
+        "AutomaticRenameJar=true",
+        "DisabledMods",
+
+        "ShowConsoleOnStartup=false",
+        "ShowTrayIcon=true",
+        "AutoLogin=false",
+        "AutoUpdate=false",
+        "ShowErrorNotifications=true"
     };
-    private static final String[] parameterData = new String[]
-    {
-        "",
-        "0",
-        "",
-        "",
 
-        "false",
-        "false",
-        "RamSelector",
-        "",
-        "1024",
-        "false",
-        "",
-        "false",
-        "false",
-
-        "false",
-        "",
-
-        "false",
-        Main_RealLauncher.getDefaultWindowSize(),
-
-        "true",
-
-        "true"
-    };
+    public static String d;
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Basic Write Functions
@@ -82,7 +69,7 @@ public final class Preferences_ConfigFileWriter
             catch ( Exception e ) { return ""; }
         }
 
-        addParameterToCurrentFile(index);
+        addDefaultParameterToIndex(index);
         loadConfigFile();
 
         for ( String actualIndex : loadedFile )
@@ -121,7 +108,7 @@ public final class Preferences_ConfigFileWriter
             }
         }
 
-        addParameterToCurrentFile(index);
+        addDefaultParameterToIndex(index);
         loadConfigFile();
 
         for ( int i=0; i<loadedFile.size(); i++ )
@@ -138,22 +125,20 @@ public final class Preferences_ConfigFileWriter
         System_ErrorHandler.handleError("Erreur lors de la définition de : " + index, false, true);
     }
 
-    public static void writeConfigFile(String encodedPassword, boolean writeLogin, boolean erasePassword)
+    public static void writeConfigFile(String encodedPassword, boolean writeLogin, boolean erasePassword, boolean offlineMode)
     {
-        if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("username")); }
+        if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("loginusr")); }
+        if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled && !offlineMode ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
         
         if ( !encodedPassword.equals("") && !erasePassword )
         {
             boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
-
-            if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
             setParameter("EncP", SaveLogin ? encodedPassword : "");
-            setParameter("EncH", SaveLogin ? encodedPassword.hashCode()+"" : "");
+            setParameter("EncH", SaveLogin ?d: "");
         }
 
         if ( erasePassword )
         {
-            if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
             setParameter("EncP", "");
             setParameter("EncH", "");
         }
@@ -167,6 +152,7 @@ public final class Preferences_ConfigFileWriter
         if ( Preferences_ConfigLoader.CONFIG_SaveLastJar ) { setParameter("LastJarSaved", Preferences_ConfigLoader.CONFIG_LastJarSaved); }
         setParameter("ModsButtonChecked", Preferences_ConfigLoader.CONFIG_modsButtonChecked);
         setParameter("NicnlModsButtonChecked", Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
+        setParameter("OfflineSelected", Preferences_ConfigLoader.CONFIG_OfflineSelected);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,20 +193,18 @@ public final class Preferences_ConfigFileWriter
     private static final void writeEmptyFile()
     {
         loadedFile = new ArrayList<String>();
-        for ( int i=0; i<parameterList.length; i++ ) { loadedFile.add(parameterList[i] + "=" + parameterData[i]); }
+        Collections.addAll(loadedFile, configurationParameters);
 
         writeFile();
     }
     
-    private static final void addParameterToCurrentFile(String newParameter)
+    private static final void addDefaultParameterToIndex(String newParameter)
     {
-        String newParameterData = "";
-        for ( int i=0; i<parameterList.length; i++ )
+        for (String configurationParameter : configurationParameters)
         {
-            if ( parameterList[i].toLowerCase().trim().equals(newParameter.toLowerCase().trim())) { newParameterData = parameterData[i]; }
+            String parameterName = configurationParameter.contains("=") ? configurationParameter.split("=")[0] : configurationParameter;
+            if ( parameterName.toLowerCase().trim().equals(newParameter.toLowerCase().trim()) ) { loadedFile.add(configurationParameter + (configurationParameter.contains("=") ? "" : "=")); break; }
         }
-        
-        loadedFile.add(newParameter + "=" + newParameterData);
         writeFile();
     }
 

@@ -13,51 +13,125 @@ public class Updater_SystemFunctions
 {
 
     private static final String minecraftDownloadServer = "http://s3.amazonaws.com/MinecraftDownload/";
-    private static final String[] fileToDownload = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar" };
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Download Main Functions
+    // Public Functions - Main Download
 
-    public static void updateGame(boolean forceDownload, GuiForm_UpdaterForm formToUpdate, boolean startGame) throws IOException
+    public static void updateGame(final boolean forceDownload, final boolean startGame)
+    {
+        final GuiForm_UpdaterForm formToUpdate = new GuiForm_UpdaterForm();
+
+        new Thread() { public void run() {
+            try { SYSTEM_updateGame(formToUpdate, forceDownload, startGame); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
+        } }.start();
+    }
+
+    public static void reinstallGameFromPreferences()
+    {
+        GuiForm_PreferenceFrame.newForm(false);
+        final GuiForm_UpdaterForm formToUpdate = new GuiForm_UpdaterForm();
+
+        new Thread() { public void run() {
+            try { SYSTEM_updateGame(formToUpdate, true, false); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
+            finally { GuiForm_PreferenceFrame.newForm(true); }
+        } }.start();
+    }
+
+    public static void updateMinecraftJar(final boolean forceDownload, final boolean startGame)
+    {
+        final GuiForm_UpdaterForm formToUpdate = new GuiForm_UpdaterForm();
+
+        new Thread() { public void run() {
+            try { SYSTEM_updateMinecraftJar(formToUpdate, forceDownload, startGame); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
+        } }.start();
+    }
+    public static void updateAlternativeJar(final String downloadURL, final String jarFileName, final boolean startGame)
+    {
+        final GuiForm_UpdaterForm formToUpdate = new GuiForm_UpdaterForm();
+
+        new Thread() { public void run() {
+            try { SYSTEM_updateAlternativeJar(formToUpdate, downloadURL, jarFileName, startGame); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
+        } }.start();
+    }
+    public static void updateOnlyNatives()
+    {
+        final GuiForm_UpdaterForm formToUpdate = new GuiForm_UpdaterForm();
+
+        new Thread() { public void run() {
+            try { SYSTEM_updateOnlyNatives(formToUpdate); }
+            catch ( IOException e ) { System_ErrorHandler.handleException(e, true); }
+        } }.start();
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Private System Functions
+
+    private static void  SYSTEM_updateGame(GuiForm_UpdaterForm formToUpdate, boolean forceDownload, boolean startGame) throws IOException
     {
         System_LogWriter.write("UPDATER - Démarrage d'une mise à jour des JARs / ForceDownload = " + forceDownload);
         formToUpdate.updateStatus(0, "Démarrage...");
         
         String binDirPath = Main_RealLauncher.getBinDirPath();
-        
-        if ( Preferences_ConfigLoader.CONFIG_LWJGLSelector && !Preferences_ConfigLoader.CONFIG_LWJGLAddress.equals("") ) { downloadLWJGLfromServer(formToUpdate, binDirPath); }
-        else { downloadLWJGLfromMojang(formToUpdate, binDirPath, forceDownload); }
 
-        updateMinecraftJar(formToUpdate, forceDownload, false);
+        if ( Preferences_ConfigLoader.CONFIG_LWJGLSelector && !Preferences_ConfigLoader.CONFIG_LWJGLAddress.equals("") ) { installLWJGLfromOfficialServer(formToUpdate, binDirPath, forceDownload); }
+        else { installLWJGLfromMojang(formToUpdate, binDirPath, forceDownload); }
+
+        SYSTEM_updateMinecraftJar(formToUpdate, forceDownload, false);
 
         if ( startGame ) { formToUpdate.downloadFinished(); }
+        else { formToUpdate.destroyWindow(); }
     }
 
-    public static void updateMinecraftJar(GuiForm_UpdaterForm formToUpdate, boolean forceDownload, boolean startGame) throws IOException
+    private static void SYSTEM_updateMinecraftJar(GuiForm_UpdaterForm formToUpdate, boolean forceDownload, boolean startGame) throws IOException
     {
+        if ( !forceDownload && System_JarSelectorFunctions.getJarList().length > 0 )
+        {
+            System.out.println("UPDATER - Downloaded not forced && Valid Minecraft Jar Already Exist");
+            if ( startGame ) { formToUpdate.downloadFinished(); }
+            else { formToUpdate.destroyWindow(); }
+
+            return;
+        }
+
         System_LogWriter.write("UPDATER - Démarrage d'une mise à jour du Minecraft.jar");
 
         String binDirPath = Main_RealLauncher.getBinDirPath();
         String actualFile = "minecraft.jar";
-        
-        File minecraftJarFile = new File(binDirPath + File.separator + actualFile);
-        if ( !forceDownload && minecraftJarFile.exists() )
-        {
-            if ( startGame ) { formToUpdate.downloadFinished(); }
-            return;
-        }
 
         formToUpdate.updateStatus(0, actualFile);
 
         byte[] downloadedData = downloadFile(actualFile, formToUpdate, true, "");
-        writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
+
+        if ( Preferences_ConfigLoader.CONFIG_AutomaticJarRename )
+        {
+            byte[] minecraftClass = System_FileManager.extractMinecraftClassFromBytes(downloadedData);
+            String rawMinecraftVersion = System_FileManager.analyzeMinecraftName(minecraftClass);
+
+            if ( rawMinecraftVersion != null && !rawMinecraftVersion.equals("") )
+            {
+                String newJarName = rawMinecraftVersion.replace("Minecraft Minecraft ", "").replace(" ", "_").toLowerCase();
+                newJarName = "minecraft_" + newJarName + ".jar";
+
+                System_FileManager.writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
+
+                actualFile = newJarName;
+                if ( Preferences_ConfigLoader.CONFIG_jarSelector ) { System_MinecraftLoader.minecraftJarToLoad = newJarName; }
+            }
+        }
+
+        System_FileManager.writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
         if ( Preferences_ConfigLoader.CONFIG_RemoveMETAINF ) { System_FileManager.rewriteJar(binDirPath + File.separator + actualFile); }
 
         if ( startGame ) { formToUpdate.downloadFinished(); }
+        else { formToUpdate.destroyWindow(); }
     }
 
-    public static void updateAlternativeJar(GuiForm_UpdaterForm formToUpdate , String downloadURL, String jarFileName, boolean startGame) throws IOException
+    private static void SYSTEM_updateAlternativeJar(GuiForm_UpdaterForm formToUpdate, String downloadURL, String jarFileName, boolean startGame) throws IOException
     {
         System_LogWriter.write("UPDATER - Démarrage du téléchargement d'un Minecraft alternatif : " + jarFileName);
 
@@ -69,25 +143,44 @@ public class Updater_SystemFunctions
         formToUpdate.updateStatus(0, jarFileName);
 
         byte[] downloadedData = downloadFile(downloadURL, formToUpdate, false, jarFileName);
-        writeByteArrayToFile(downloadedData, alternativeJarDestination);
+        System_FileManager.writeByteArrayToFile(downloadedData, alternativeJarDestination);
 
         System_LogWriter.write("UPDATER - Fin du téléchargement de : " + jarFileName);
 
         if ( startGame ) { formToUpdate.downloadFinished(); }
         else
         {
-            formToUpdate.setVisible(false);
-            formToUpdate.dispose();
+            formToUpdate.destroyWindow();
             GuiForm_AlternativeJar.newForm(true);
         }
 
     }
 
-    private static void updateNatives(String destinationPath, String nativesFile, GuiForm_UpdaterForm formToUpdate) throws IOException
+    private static void SYSTEM_updateOnlyNatives(GuiForm_UpdaterForm formToUpdate) throws IOException
     {
+        String binDirPath = Main_RealLauncher.getBinDirPath();
+
+        if ( Preferences_ConfigLoader.CONFIG_LWJGLSelector && !Preferences_ConfigLoader.CONFIG_LWJGLAddress.equals("") ) { installLWJGLfromOfficialServer(formToUpdate, binDirPath, true); }
+        else { installLWJGLfromMojang(formToUpdate, binDirPath, true); }
+
+        formToUpdate.setVisible(false);
+        formToUpdate.dispose();
+        GuiForm_PreferenceFrame.newForm(true);
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // System Functions
+    
+    private static void downloadSpecificMojangLWJGL(String destinationPath, String nativesFile, boolean forceDownload, GuiForm_UpdaterForm formToUpdate) throws IOException
+    {
+        File nativesDir = new File(destinationPath + File.separator + "natives");
+        if ( !forceDownload && ( nativesDir.exists() && nativesDir.isFile() && nativesDir.list().length <= 0 ) ) { return; }
+        
         System_LogWriter.write("UPDATER - Téléchargement des natives / " + nativesFile);
         byte[] downloadedData = downloadFile(nativesFile, formToUpdate, true, "");
-        writeByteArrayToFile(downloadedData, destinationPath + File.separator + nativesFile);
+
+        System_FileManager.writeByteArrayToFile(downloadedData, destinationPath + File.separator + nativesFile);
+
         System_LogWriter.write("UPDATER - Extraction des natives...");
         extractOSNatives(destinationPath, nativesFile);
     }
@@ -95,11 +188,9 @@ public class Updater_SystemFunctions
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // LWJGL Downloader
     
-    private static void downloadLWJGLfromMojang(GuiForm_UpdaterForm formToUpdate, String binDirPath, boolean forceDownload) throws IOException
+    private static void installLWJGLfromMojang(GuiForm_UpdaterForm formToUpdate, String binDirPath, boolean forceDownload) throws IOException
     {
-        String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
-        
-        for ( String actualFile : fileToDownload )
+        for ( String actualFile : System_MinecraftLoader.LWJGLJars )
         {
             System_LogWriter.write("UPDATER - Début du téléchargement de : " + actualFile);
 
@@ -109,18 +200,40 @@ public class Updater_SystemFunctions
             if ( verification.exists() && !forceDownload ) { continue; }
 
             byte[] downloadedData = downloadFile(actualFile, formToUpdate, true, "");
-            writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
+            System_FileManager.writeByteArrayToFile(downloadedData, binDirPath + File.separator + actualFile);
 
             System_LogWriter.write("UPDATER - Fin du téléchargement du fichier : " + actualFile);
         }
-        formToUpdate.updateStatus(0, nativesFile);
 
-        System_LogWriter.write("UPDATER - Téléchargement des natives...");
-        updateNatives(binDirPath, nativesFile, formToUpdate);
+        File nativesDir = new File(Main_RealLauncher.getNativesDirPath());
+        if ( forceDownload || !nativesDir.exists() || nativesDir.list().length != System_UserHomeDefiner.getNumberOfDefaultNativesFiles() )
+        {
+            System_LogWriter.write("UPDATER - Téléchargement des natives...");
+
+            String nativesFile = System_UserHomeDefiner.SystemOS + "_natives.jar";
+            formToUpdate.updateStatus(0, nativesFile);
+            downloadSpecificMojangLWJGL(binDirPath, nativesFile, forceDownload, formToUpdate);
+        } else { System_LogWriter.write("UPDATER - Skipping Natives Installation..."); }
     }
     
-    private static void downloadLWJGLfromServer(GuiForm_UpdaterForm formToUpdate, String binDirPath) throws IOException
+    private static void installLWJGLfromOfficialServer(GuiForm_UpdaterForm formToUpdate, String binDirPath, boolean forceDownload) throws IOException
     {
+        if ( !forceDownload )
+        {
+            boolean fileMissing = false;
+
+            File nativesDir = new File(Main_RealLauncher.getNativesDirPath());
+            if ( !nativesDir.exists() || nativesDir.list().length != System_UserHomeDefiner.getNumberOfDefaultNativesFiles() ) { fileMissing = true; }
+
+            for ( String actualFile : System_MinecraftLoader.LWJGLJars )
+            {
+                File verification = new File(binDirPath + File.separator + actualFile);
+                if ( !verification.exists() ) { fileMissing = true; }
+            }
+
+            if ( !fileMissing ) { return; }
+        }
+
         String LWJGLFileAddress = Preferences_ConfigLoader.CONFIG_LWJGLAddress;
         String LWJGLFileName = LWJGLFileAddress.substring(LWJGLFileAddress.lastIndexOf("/")+1, LWJGLFileAddress.length());
         
@@ -129,7 +242,7 @@ public class Updater_SystemFunctions
         formToUpdate.updateStatus(0, LWJGLFileName);
 
         byte[] downloadedData = downloadFile(LWJGLFileAddress, formToUpdate, false, "");
-        writeByteArrayToFile(downloadedData, binDirPath + File.separator + LWJGLFileName);
+        System_FileManager.writeByteArrayToFile(downloadedData, binDirPath + File.separator + LWJGLFileName);
 
         System_LogWriter.write("UPDATER - Fin du téléchargement des libraries LWJGL : " + LWJGLFileName);
         formToUpdate.updateStatus(0, "Extraction...");
@@ -143,10 +256,12 @@ public class Updater_SystemFunctions
     private static byte[] downloadFile(String fileToDownload, GuiForm_UpdaterForm formToUpdate, boolean useDefaultServer, String alternativeName) throws IOException
     {
         
-        String DownloadTicket = System_DataStub.static_getParameter("downloadTicket");
-        String Username = System_DataStub.static_getParameter("username");
+        // String DownloadTicket = System_DataStub.static_getParameter("downloadTicket");
+        // String Username = System_DataStub.static_getParameter("username");
         
-        String finalUrlAddress = useDefaultServer ? minecraftDownloadServer + fileToDownload + (( DownloadTicket.equals("0") ) ? ( "" ) : ( "?user=" + Username + "&ticket=" + DownloadTicket )) : fileToDownload;
+        //String finalUrlAddress = useDefaultServer ? minecraftDownloadServer + fileToDownload + (( DownloadTicket == null || DownloadTicket.equals("0") ) ? ( "" ) : ( "?user=" + Username + "&ticket=" + DownloadTicket )) : fileToDownload;
+        String finalUrlAddress = (useDefaultServer ? minecraftDownloadServer : "") + fileToDownload;
+
 
         URL fileUrl = new URL(finalUrlAddress);
         URLConnection fileConnection = fileUrl.openConnection();
@@ -228,7 +343,7 @@ public class Updater_SystemFunctions
         String LWJGLFilePath = outputPath + File.separator + nativesFile;
         ZipFile LWJGLZipFile = new ZipFile(LWJGLFilePath);
         
-        String basicDir = nativesFile.replace(".zip", "");
+        String basicDir = nativesFile.substring(0, nativesFile.length()-4);
         
         String nativesDir = basicDir + "/native/" + System_UserHomeDefiner.SystemOS;
         String jarDir = basicDir + "/jar";
@@ -248,7 +363,7 @@ public class Updater_SystemFunctions
         // Final Extract :
         
         // Jar Files Extract
-        for ( String actualJarFile : fileToDownload )
+        for ( String actualJarFile : System_MinecraftLoader.LWJGLJars )
         {
             String zipEntryName = jarDir + "/" + actualJarFile;
             System_LogWriter.write("UPDATER - LWJGL Décompression de : " + zipEntryName);
@@ -261,7 +376,7 @@ public class Updater_SystemFunctions
             int tempByte;
             while ( (tempByte=temporaryInputStream.read()) != -1 ) { temporaryByteArray.write(tempByte); }
             
-            writeByteArrayToFile(temporaryByteArray.toByteArray(), outputPath + "/" + actualJarFile);
+            System_FileManager.writeByteArrayToFile(temporaryByteArray.toByteArray(), outputPath + "/" + actualJarFile);
             
             temporaryInputStream.close();
         }
@@ -279,7 +394,7 @@ public class Updater_SystemFunctions
             
             String actualZipEntryName = actualZipEntry.toString();
             actualZipEntryName = actualZipEntryName.substring(actualZipEntryName.lastIndexOf("/")+1, actualZipEntryName.length());
-            writeByteArrayToFile(temporaryByteArray.toByteArray(), outputPath + "/natives/" + actualZipEntryName);
+            System_FileManager.writeByteArrayToFile(temporaryByteArray.toByteArray(), outputPath + "/natives/" + actualZipEntryName);
             
             temporaryInputStream.close();
         }
@@ -287,20 +402,6 @@ public class Updater_SystemFunctions
         // End Of Extraction - Delete LWJGL Archive
         LWJGLZipFile.close();
         System_FileManager.removeFile(LWJGLFilePath, true);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Writers
-
-    private static void writeByteArrayToFile(byte[] byteArray_File, String outputPath) throws IOException
-    {
-        System_FileManager.removeFile(outputPath, false);
-
-        File FileOutput = new File(outputPath);
-        OutputStream OutputStream_File = new FileOutputStream(FileOutput);
-        OutputStream_File.write(byteArray_File);
-
-        OutputStream_File.close();
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

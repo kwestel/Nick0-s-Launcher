@@ -11,48 +11,37 @@ public class Web_ClientServerProtocol
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // Connect to Minecraft Login Server
 
-    public static String connectToServerWithKey(String stringServerURL, String serverArguments, byte[] storedPublicKey)
+    public static String connectToServerWithKey(String stringServerURL, String serverArguments, byte[] storedPublicKey) throws IOException
     {
-        HttpsURLConnection connectionToServer = null;
-        try
-        {
-            URL serverURL = new URL(stringServerURL);
-            connectionToServer = (HttpsURLConnection)serverURL.openConnection();
+        URL serverURL = new URL(stringServerURL);
+        HttpsURLConnection connectionToServer = (HttpsURLConnection)serverURL.openConnection();
 
-            connectionToServer.setUseCaches(false);
-            connectionToServer.setDoInput(true);
-            connectionToServer.setDoOutput(true);
+        connectionToServer.setConnectTimeout(10000);
+        connectionToServer.setUseCaches(false);
+        connectionToServer.setDoInput(true);
+        connectionToServer.setDoOutput(true);
 
-            connectionToServer.connect();
+        connectionToServer.connect();
 
-            byte[] serverPublicKey = connectionToServer.getServerCertificates()[0].getPublicKey().getEncoded();
-            
-            if ( !Arrays.equals(serverPublicKey, storedPublicKey) )
-            {
-                System_ErrorHandler.handleError("La clef permettant une connexion sécurisée aux serveurs n'est pas valide.", true, true);
-            }
+        byte[] serverPublicKey = connectionToServer.getServerCertificates()[0].getPublicKey().getEncoded();
 
-            DataOutputStream serverOutputWriter = new DataOutputStream(connectionToServer.getOutputStream());
-            serverOutputWriter.writeBytes(serverArguments);
-            serverOutputWriter.flush();
-            serverOutputWriter.close();
+        if ( !Arrays.equals(serverPublicKey, storedPublicKey) ) { System_ErrorHandler.handleError("La clef permettant une connexion sécurisée aux serveurs n'est pas valide.", true, true); }
 
-            InputStream serverInputStream = connectionToServer.getInputStream();
-            BufferedReader serverBufferedReader = new BufferedReader(new InputStreamReader(serverInputStream));
+        DataOutputStream serverOutputWriter = new DataOutputStream(connectionToServer.getOutputStream());
+        serverOutputWriter.writeBytes(serverArguments);
+        serverOutputWriter.flush();
+        serverOutputWriter.close();
 
-            String response = serverBufferedReader.readLine();
+        InputStream serverInputStream = connectionToServer.getInputStream();
+        BufferedReader serverBufferedReader = new BufferedReader(new InputStreamReader(serverInputStream));
 
-            serverBufferedReader.close();
-            serverInputStream.close();
+        String response = serverBufferedReader.readLine();
 
-            return response;
-        }
-        catch ( Exception e )
-        {
-            System_ErrorHandler.handleException(e, true);
-            return null;
-        }
-        finally { if ( connectionToServer != null ) { connectionToServer.disconnect(); } }
+        serverBufferedReader.close();
+        serverInputStream.close();
+        connectionToServer.disconnect();
+
+        return response;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -32,9 +32,15 @@ public class System_UserHomeDefiner
         else if ( OS.contains("solaris") || OS.contains("sunos") ) { OSReturned = "solaris"; }
         else { System_ErrorHandler.handleError("Votre OS n'est pas supporté par ce launcher." +
         "Veuillez vous renseigner afin de savoir si une version compatible avec votre OS existe.\n\n" +
-        "Cordialement, Nicnl.\nnicnl25@gmail.com", true, true); }
+        "Cordialement, Nicnl.\n" + System_ErrorHandler.officialAddress, true, true); }
         
         return OSReturned;
+    }
+
+    public static int getNumberOfDefaultNativesFiles()
+    {
+        String systemOS = returnSystemOS();
+        return systemOS.equals("windows") ? 8 : systemOS.equals("linux") ? 6 : systemOS.equals("macosx") ? 3 : systemOS.equals("solaris") ? 4 : 0;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

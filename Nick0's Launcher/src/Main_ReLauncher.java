@@ -1,4 +1,6 @@
-import java.io.File;
+import javax.swing.*;
+import java.io.*;
+import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 
 public class Main_ReLauncher
@@ -7,7 +9,26 @@ public class Main_ReLauncher
 
     public static void main(String[] args)
     {
+        System_LogWriter.initializeMinecraftLogs();
+
+        try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
+        catch ( Exception e ) { System_ErrorHandler.handleException(e, false); }
+
         float allocatedMemory = Runtime.getRuntime().maxMemory() / 1024L / 1024L;
+
+        System_FileManager.createFolder(Main_RealLauncher.configFileDir);
+        File errorFile = new File(Main_RealLauncher.configFileDir + File.separator + "Nick0sLauncher.error");
+        if ( errorFile.exists() )
+        {
+            System_ErrorHandler.handleError("Lors de sa dernière éxécution,\nle launcher n'd pas démarré correctement.\n\nLes réglages RAM vont êtres ignorés.", false, true);
+            loadLauncher(false);
+            return;
+        }
+        else
+        {
+            try { if ( !errorFile.createNewFile() ) { System_ErrorHandler.handleError("Impossible de créer le fichier de vérification d'erreur !", false, true); } }
+            catch ( IOException e ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible de créer le fichier de vérification d'erreur !", false, true); }
+        }
         
         int memoryToApply;
         File configFile = new File(Main_RealLauncher.getConfigFilePath());
@@ -21,9 +42,9 @@ public class Main_ReLauncher
         {
             loadLauncher(false);
             return;
-        } // Premier démarrage
+        }
 
-        if ( allocatedMemory >= minimalAllocatedMemory && Preferences_ConfigFileWriter.getParameter("RamSelector").equals("false") ) { loadLauncher(false); }
+        if ( allocatedMemory >= minimalAllocatedMemory && !Preferences_ConfigFileWriter.getParameter("RamSelector").equals("true") ) { loadLauncher(false); }
         else { loadLauncher(memoryToApply); }
     }
 
@@ -35,7 +56,7 @@ public class Main_ReLauncher
 
         String[] newParameters = new String[]
         {
-            "java" + ( System_UserHomeDefiner.SystemOS.equals("macosx") ? "" : "w"),
+            "java" + ( System_UserHomeDefiner.SystemOS.equals("windows") ? "w" : ""),
             "-Xmx" + memory + "m",
             "-Dsun.java2d.noddraw=true",
             "-Dsun.java2d.d3d=false",
@@ -55,20 +76,21 @@ public class Main_ReLauncher
         {
             ProcessBuilder launcherProcessBuilder = new ProcessBuilder(launcherParameters);
             Process newProcess = launcherProcessBuilder.start();
+
             if ( newProcess == null ) { throw new Exception("75261350 !"); }
 
             System.exit(0);
         }
         catch ( Exception e )
         {
-            System_ErrorHandler.handleError("Une erreur est survenue lors de la définition de la ram !", false, true);
+            System_ErrorHandler.handleExceptionWithText(e, "Une erreur est survenue lors de la définition de la ram !", false, true);
             loadLauncher(false);
         }
     }
     
-    public static void loadLauncher(boolean hyperMode)
+    public static void loadLauncher(boolean recreateProcess)
     {
-        if ( !hyperMode ) { Main_RealLauncher.main(null); }
+        if ( !recreateProcess ) { Main_RealLauncher.main(null); }
         else
         {
             String pathToJar = null;
@@ -77,7 +99,7 @@ public class Main_ReLauncher
 
             String[] newParameters = new String[]
             {
-                "java" + ( System_UserHomeDefiner.SystemOS.equals("macosx") ? "" : "w"),
+                "java" + ( System_UserHomeDefiner.SystemOS.equals("windows") ? "w" : ""),
                 "-Dsun.java2d.noddraw=true",
                 "-Dsun.java2d.d3d=false",
                 "-Dsun.java2d.opengl=false",

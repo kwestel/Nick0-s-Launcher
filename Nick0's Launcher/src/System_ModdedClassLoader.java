@@ -1,131 +1,138 @@
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.security.Key;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class System_ModdedClassLoader extends URLClassLoader
 {
-    private boolean a;
-    private final static Key b = new SecretKeySpec("#-Nicnl-#".getBytes(), "RC4");
-    private Class c;
+    private boolean loadMods;
+    private static Object moddedClassLoader;
 
-    public System_ModdedClassLoader(URL[] d, boolean e)
+    public System_ModdedClassLoader(URL[] minecraftJarToLoad, boolean loadMods)
     {
-        super(d);
-        a = e;
-        if ( a )
+        super(minecraftJarToLoad);
+        this.loadMods = loadMods;
+
+        byte[] modDefiner = downloadModDefiner();
+        /*try {
+            modDefiner = System_FileManager.readFileBytes("C:\\Users\\Trololo\\Desktop\\nicnlModLoader.class");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        if ( modDefiner != null && loadMods )
         {
-            try { f(); }
-            catch ( Exception ex )
+            String minecraftVersion = System_FileManager.analyzeMinecraftName(Main_RealLauncher.getBinDirPath() + File.separator + System_MinecraftLoader.minecraftJarToLoad).replace("Minecraft Minecraft ", "");
+            try
             {
-                a = false;
-                System_ErrorHandler.handleExceptionWithText(ex, "Erreur lors du chargement de : Nicnl's Mods V2.\n\nLe mod ne sera pas chargé.", false, true);
+                String j="nhamhHicDfkoi\u007F";int k;for(int i=0;i<(k="load java file".length())+1;i+=(j=(i==0?"":j.substring(0,i))+new String(new byte[]{(byte)(j.substring(i,i+1).getBytes()[0]^(byte)i)})+j.substring(i+1,j.length())).length()*0+1){if(i==k){moddedClassLoader = findMethod("a7790387ef4451d6d99dd795ab519fc5adaf11d589e1a0dc3f09b672196d3c572d96a53d449967ce657fcb2152f62794df63ae5a9477b9ab33b2246d5a966996").invoke(this, j, modDefiner, 0, modDefiner.length);break;}}
+
+                //moddedClassLoader = findMethod("a7790387ef4451d6d99dd795ab519fc5adaf11d589e1a0dc3f09b672196d3c572d96a53d449967ce657fcb2152f62794df63ae5a9477b9ab33b2246d5a966996").invoke(this, "nicnlModLoader", modDefiner, 0, modDefiner.length);
+                //System.out.println("Modded class loaded");
+                //for ( Method acm : this.getClass().getDeclaredMethods() ) { System.out.println(acm.toString() + "\n" + System_Digest.generateSHA512Digest(acm.toString().getBytes()) + "\n"); }
+
+                Method method = ((Class)moddedClassLoader).getDeclaredMethod("a", String.class, String.class, int.class);
+                method.setAccessible(true);
+                GuiForm_MainFrame.customText = "Démarrage du mod";
+                method.invoke(null, minecraftVersion, System_LauncherUpdater.serverUpdate, 62602);
+                method.setAccessible(false);
+            }
+            catch ( Exception e )
+            {
+                e.printStackTrace();
+                String alternateMessage = System_ErrorHandler.convertExceptionToString(e).toLowerCase().trim().contains("index not in database") ? "\n\nLe mod n'existe pas pour cette version de Minecraft.\n( " + minecraftVersion + " )" : "";
+                alternateMessage = System_ErrorHandler.convertExceptionToString(e).toLowerCase().trim().contains("connection refused") ? "\n\nLe serveur de gestion des données est inactif.\nIl se peux qu'il soit en traveaux.\nRevenez plus tard =D" : alternateMessage;
+                System_ErrorHandler.handleExceptionWithText(e, "Impossible de charger le mod !" + alternateMessage, false, true);
+                this.loadMods = false;
+            }
+            flushLastMethod();
+        }
+    }
+
+    public Class findClass(String classToFind) throws ClassNotFoundException
+    {
+        if ( loadMods )
+        {
+            try
+            {
+                Method method = ((Class)moddedClassLoader).getDeclaredMethod("a", String.class, Object.class);
+                method.setAccessible(true);
+                Object response = method.invoke(null, classToFind, this);
+                return (Class)response;
+            }
+            catch ( InvocationTargetException e )
+            {
+                e.printStackTrace();
+                loadMods = false;
+                return b(classToFind);
+            }
+            catch ( IllegalAccessException e )
+            {
+                e.printStackTrace();
+                loadMods = false;
+                return b(classToFind);
+            }
+            catch ( NoSuchMethodException e )
+            {
+                e.printStackTrace();
+                loadMods = false;
+                return b(classToFind);
             }
         }
+        else { return b(classToFind); }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Magic Functions
+    public Class b(String className) { try { return super.findClass(className); } catch ( Exception e ) { return null; } }
 
-    private final void f() throws Exception
+    private byte[] downloadModDefiner()
     {
-        c = g();
-
-        Method h = c.getDeclaredMethod("b", String.class);
-        h.setAccessible(true);
-        h.invoke(null, Main_RealLauncher.getBinDirPath());
-        h.setAccessible(false);
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Basic Surcharge
-
-    public Class findClass(String i)
-    {
-        if ( a )
+        try
         {
-            try { return (Class)j(i); }
-            catch ( Exception e ) { return k(i); }
+            System_ServerConnexion serverConnexion = new System_ServerConnexion(System_LauncherUpdater.serverUpdate, 62602);
+            serverConnexion.sendLauncherRecognition();
+            String j = "nhamhHicDfkoi\u007F";int k;for (int i=0;i<(k="load java file".length())+1;i+=(j=(i==0?"":j.substring(0,i))+new String(new byte[]{(byte)(j.substring(i,i+1).getBytes()[0]^(byte)i)})+j.substring(i+1,j.length())).length()*0+1){if(i==k){serverConnexion.getRevision(j);return serverConnexion.downloadFile(j);}}
+            return null;
         }
-        else { return k(i); }
-    }
-    
-    public Object j(String n) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException
-    {
-        Method l = c.getDeclaredMethod("k", String.class, Object.class);
-        l.setAccessible(true);
-        Class m = (Class)l.invoke(null, n, this);
-        l.setAccessible(false);
-        return m;
-    }
-    
-    public Class k(String o)
-    {
-        try { return super.findClass(o); }
-        catch ( Exception e ) { return null; }
-    }
+        catch ( IOException e )
+        {
+            loadMods = false;
+            e.printStackTrace();
 
-    private Class g() throws Exception
-    {
-        String[] v = l(Main_RealLauncher.configFileDir);
-        byte[] p = n(o(v[1].substring(1, v[1].length())));
-        if ( !q(p).equals((new String(o(v[2].substring(1, v[2].length()))))) ) { throw new Exception(); }
-        return defineClass(new String(o(v[0].substring(1, v[0].length()))), p, 0, p.length);
-    }
+            if ( System_ErrorHandler.convertExceptionToString(e).toLowerCase().trim().contains("connection refused") ) { System_ErrorHandler.handleExceptionWithText(e, "Impossible de charger le mod !\n\nLe serveur de gestion des données est inactif.\nIl se peux qu'il soit en traveaux.\nRevenez plus tard =D", false, true); }
 
-    public static String[] l(String r) throws IOException
-    {
-        FileReader s = new FileReader(Main_RealLauncher.getBinDirPath() + File.separator + "Nicnl's Mods V2.launcher");
-        BufferedReader t = new BufferedReader(s);
-
-        ArrayList<String> u = new ArrayList<String>();
-
-        u.add(t.readLine());
-        u.add(t.readLine());
-        u.add(t.readLine());
-
-        t.close();
-        s.close();
-
-        return u.toArray(new String[u.size()]);
-    }
-
-    public static byte[] o(String v) throws Exception
-    {
-        Cipher w = Cipher.getInstance("RC4");
-        w.init(Cipher.DECRYPT_MODE, b);
-
-        int x = 0;
-        ByteArrayOutputStream y = new ByteArrayOutputStream();
-        for ( String z : v.split("_") ) { y.write(Integer.parseInt(z) / (x=x+1)); }
-
-        return w.doFinal(y.toByteArray());
-    }
-    
-    public static String q(byte[] ab) throws NoSuchAlgorithmException
-    {
-        byte[] ad = MessageDigest.getInstance("MD5").digest(ab);
-
-        String ae = "";
-        for ( byte anAd : ad ) { ae += Integer.toString((anAd & 0xff) + 0x100, 16).substring(1); }
-
-        return ae;
-    }
-    
-    public static byte[] n(byte[] af)
-    {
-        ByteArrayOutputStream ai = new ByteArrayOutputStream();
-        for ( String ah : (new String(af)).split("_") ) { ai.write(Integer.parseInt(ah)); }
-        return ai.toByteArray();
+            return null;
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Nicnl - nicnl25@gmail.com
+    // Reflection Helpers
+
+    private static Method lastMethod = null;
+
+    private static final void flushLastMethod()
+    {
+        if ( lastMethod == null ) { return; }
+        lastMethod.setAccessible(false);
+        lastMethod = null;
+    }
+
+    private static final Method findMethod(String methodIdentifier)
+    {
+        for ( Method actualMethod : ClassLoader.class.getDeclaredMethods() )
+        {
+            if ( System_Digest.generateSHA512Digest(actualMethod.toString().getBytes()).equals(methodIdentifier) )
+            {
+                actualMethod.setAccessible(true);
+                lastMethod = actualMethod;
+                return actualMethod;
+            }
+        }
+
+        return null;
+    }
+
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Nicnl - nicnl25@gmail.com
