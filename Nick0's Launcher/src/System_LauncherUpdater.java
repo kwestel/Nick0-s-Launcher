@@ -1,12 +1,11 @@
 import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
 public class System_LauncherUpdater
 {
     public static final String clientUpdaterTemporaryName = "Nick0sLauncher_UpdateSystem.jar";
-    public static final String serverUpdate = "nicnl.com";
+    public static final String serverAddress = "nicnl.com";
 
     public static String latestLauncherRevision;
     private static System_ServerConnexion serverConnexion;
@@ -22,7 +21,7 @@ public class System_LauncherUpdater
 
         try
         {
-            serverConnexion = new System_ServerConnexion(serverUpdate, 62602);
+            serverConnexion = new System_ServerConnexion(serverAddress, 62602);
             serverConnexion.sendLauncherRecognition();
 
             latestLauncherRevision = serverConnexion.getRevision("Nick0's Launcher");
@@ -82,15 +81,13 @@ public class System_LauncherUpdater
 
     private static void launchClientUpdater(File clientUpdaterFile) throws IOException
     {
-        String actualLauncherPath = Main_RealLauncher.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-
         String[] processParameters = new String[]
         {
             "java",
             "-jar",
             clientUpdaterFile.getAbsolutePath(),
-            actualLauncherPath,
-            serverUpdate
+            Main_ReLauncher.reLauncherPath == null ? Main_RealLauncher.getLauncherJarPath() : Main_ReLauncher.reLauncherPath,
+            serverAddress
         };
 
         ProcessBuilder launcherProcessBuilder = new ProcessBuilder(processParameters);

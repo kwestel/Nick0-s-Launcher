@@ -16,10 +16,7 @@ public class System_ResourceHelper
     {
         ArrayList<String> finalResourceList = new ArrayList<String>();
 
-        String originalLauncherJarPath = null;
-
-        try { originalLauncherJarPath = URLDecoder.decode(Main_RealLauncher.class.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF8"); }
-        catch ( UnsupportedEncodingException e ) { System_ErrorHandler.handleException(e, false); }
+        String originalLauncherJarPath = Main_RealLauncher.getLauncherJarPath();
 
         File classContainer = new File(originalLauncherJarPath);
         if ( classContainer.isFile() )

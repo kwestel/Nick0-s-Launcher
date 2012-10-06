@@ -637,8 +637,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
             if ( userResponse == 0 )
             {
-                if ( Preferences_ConfigLoader.CONFIG_ramSelector ) { Main_ReLauncher.main(null); }
-                else { Main_ReLauncher.loadLauncher(true); }
+                Main_ReLauncher.loadLauncher(true);
                 System.exit(0);
                 return;
             }

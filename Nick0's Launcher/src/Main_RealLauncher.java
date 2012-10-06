@@ -1,8 +1,11 @@
 import javax.swing.*;
+import javax.swing.text.JTextComponent;
 import java.applet.Applet;
 import java.io.File;
 import java.io.IOException;
-import java.net.URLClassLoader;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 
 public final class Main_RealLauncher
 {
@@ -17,6 +20,12 @@ public final class Main_RealLauncher
 
     public static void main(String[] args)
     {
+        System.out.println("Output test : " + System_FastRC4Encryption.encrypt("trololo salut omg lol!"));
+
+        Main_ReLauncher.loadedArgs = args;
+        if ( args != null && args.length > 0 && !args[0].trim().equals("") ) { Main_ReLauncher.reLauncherPath = args[0]; }
+        else { Main_ReLauncher.reLauncherPath = null; }
+
         System_LogWriter.initializeMinecraftLogs();
 
         System_LogWriter.write("Initialisation du launcher...");
@@ -50,24 +59,24 @@ public final class Main_RealLauncher
 
         while ( !GuiForm_MainFrame.formInitialized ) { }
         System_LogWriter.write("Décodage du mot de passe...");
-        loadPassword();
+        loadUsername();
 
         System_LogWriter.write("Launcher fonctionnel !");
     }
 
-    public static void startLogin(String username, String password)
+    public static void startLogin(String u, String p)
     {
-        if ( GuiForm_MainFrame.mainFrame.Field_UserName.getText().equals("") ) { return; }
+        if ( ((JTextComponent)GuiForm_MainFrame.mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).getText().equals("") ) { return; }
         else if ( GuiForm_MainFrame.mainFrame.Field_Password.getPassword().length == 0 && !GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { return; }
 
         GuiForm_MainFrame.disableLoginWindow(GuiForm_MainFrame.mainFrame.Check_Offline.isSelected());
 
         if ( !GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() )
         {
-            try { Web_MainTransaction.Main_OnlineLogin(username, password); }
+            try { Web_MainTransaction.Main_OnlineLogin(u, p); }
             catch ( IOException e ) { GuiForm_MainFrame.enableLoginWindow(); System_ErrorHandler.handleException(e, false); }
         }
-        else { Web_MainTransaction.Main_OfflineLogin(username); }
+        else { Web_MainTransaction.Main_OfflineLogin(u); }
     }
 
     private static String getHomeDir()
@@ -76,11 +85,11 @@ public final class Main_RealLauncher
         return loadedHomeDir.equals("") ? configFileDir : loadedHomeDir;
     }
 
-    public static String getB()
+    public static String gB()
     {
-        String tempPass = b;
+        String tP = b;
         b = null;
-        return tempPass;
+        return tP;
     }
 
     public static String getConfigFilePath() { return configFileDir + File.separator + "Nick0's_Launcher.mconf"; }
@@ -88,44 +97,130 @@ public final class Main_RealLauncher
     public static String getNativesDirPath() { return getBinDirPath() + File.separator + "natives"; }
     public static String getModsDirPath() { return getBinDirPath() + File.separator + "mods"; }
 
-    private static void loadPassword()
+    public static String getLauncherJarPath()
+    {
+        String pathToJar = null;
+        try { pathToJar = Main_ReLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath(); }
+        catch ( URISyntaxException e ) { System_ErrorHandler.handleException(e, true); }
+
+        try { return pathToJar == null ? null : URLDecoder.decode(pathToJar, "UTF8"); }
+        catch ( UnsupportedEncodingException e ) { return pathToJar; }
+    }
+
+    public static void loadUsername()
     {
         if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
         {
+            System_LogWriter.write("Chargement de l'username...");
+
+            Preferences_ConfigFileWriter.eraseParameter("EncP");
+            Preferences_ConfigFileWriter.eraseParameter("EncH");
+
+            String username = Preferences_ConfigFileWriter.getParameter("username");
+
+            if ( !username.equals("") )
+            {
+                String usernameList = Preferences_ConfigFileWriter.getParameter("UsernameList");
+
+                if ( usernameList != null && !usernameList.equals("") && usernameList.contains(System_StringEncrypter.uk) ) { GuiForm_MainFrame.setUsername(username, usernameList.split(System_StringEncrypter.uk)); }
+                else { GuiForm_MainFrame.setUsername(username); }
+
+                String offlineList = Preferences_ConfigFileWriter.getParameter("OfflineList");
+                if ( usernameList != null && !usernameList.equals("") && offlineList != null && !offlineList.equals("") )
+                {
+                    String[] splitUsernameList = usernameList.split(System_StringEncrypter.uk);
+                    if ( usernameList.contains(System_StringEncrypter.uk) && offlineList.contains(System_StringEncrypter.uk) )
+                    {
+                        int indexToReach = -1;
+                        for ( int i=0; i<splitUsernameList.length; i++ ) { if ( splitUsernameList[i].toLowerCase().trim().equals(username.toLowerCase().trim()) ) { indexToReach = i; } }
+                        if ( indexToReach != -1 )
+                        {
+                            final boolean offlineMode = offlineList.split(System_StringEncrypter.uk)[indexToReach].toLowerCase().trim().equals("true");
+                            SwingUtilities.invokeLater(new Runnable() { public void run() {
+                                GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
+                                GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
+                            } });
+                        }
+                    }
+                    else
+                    {
+                        if ( usernameList.toLowerCase().trim().equals(username.toLowerCase().trim()) )
+                        {
+                            boolean offlineMode = offlineList.toLowerCase().trim().equals("true");
+                            GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
+                            GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    public static void loadPassword(String username)
+    {
+        disablePassword();
+
+        if ( new File(Main_RealLauncher.getConfigFilePath()).exists() )
+        {
+            if ( username.toLowerCase().trim().equals("") ) { return; }
+
             System_LogWriter.write("Chargement des données de connexion...");
 
-            String UserName = Preferences_ConfigFileWriter.getParameter("username");
-            String EncP = Preferences_ConfigFileWriter.getParameter("EncP");
-            String EncH = Preferences_ConfigFileWriter.getParameter("EncH");
+            String Pe = Preferences_ConfigFileWriter.getParameter("EncP-" + username.replace("=", ""));
+            String He = Preferences_ConfigFileWriter.getParameter("EncH-" + username.replace("=", ""));
 
-            if ( !UserName.equals("") )
+            String usernameList = Preferences_ConfigFileWriter.getParameter("UsernameList");
+            String offlineList = Preferences_ConfigFileWriter.getParameter("OfflineList");
+
+            if ( usernameList != null && !usernameList.equals("") && offlineList != null && !offlineList.equals("") )
             {
-                System_LogWriter.write("Chargement de l'UserName...");
-
-                GuiForm_MainFrame.setUsername(UserName);
+                String[] splitUsernameList = usernameList.split(System_StringEncrypter.uk);
+                if ( usernameList.contains(System_StringEncrypter.uk) && offlineList.contains(System_StringEncrypter.uk) )
+                {
+                    int indexToReach = -1;
+                    for ( int i=0; i<splitUsernameList.length; i++ ) { if ( splitUsernameList[i].toLowerCase().trim().equals(username.toLowerCase().trim()) ) { indexToReach = i; } }
+                    if ( indexToReach != -1 )
+                    {
+                        final boolean offlineMode = offlineList.split(System_StringEncrypter.uk)[indexToReach].toLowerCase().trim().equals("true");
+                        SwingUtilities.invokeLater(new Runnable() { public void run() {
+                            GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
+                            GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
+                        } });
+                    }
+                }
+                else
+                {
+                    if ( usernameList.toLowerCase().trim().equals(username.toLowerCase().trim()) )
+                    {
+                        final boolean offlineMode = offlineList.toLowerCase().trim().equals("true");
+                        SwingUtilities.invokeLater(new Runnable() { public void run() {
+                            GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
+                            GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
+                        } });
+                    }
+                }
             }
 
-            if ( !EncP.equals("") && !EncH.equals("") )
+            if ( !Pe.equals("") && !He.equals("") )
             {
-                if ( Preferences_ConfigLoader.CONFIG_OfflineSelected ) { return; }
-
                 System_LogWriter.write("Décodage du mot de passe...");
 
-                String decodedPassword;
+                String dD;
                 String stringToHash;
                 try
                 {
-                    decodedPassword = System_StringEncrypter.E(EncP);
-                    stringToHash = System_Digest.generateSHA512Digest((System_Digest.generateSHA512Digest(EncP.toLowerCase().getBytes()) + System_Digest.generateSHA512Digest(decodedPassword.getBytes()).hashCode()).getBytes());
+                    dD = System_StringEncrypter.E(Pe);
+                    stringToHash = System_Digest.generateSHA512Digest((System_Digest.generateSHA512Digest(Pe.toLowerCase().getBytes()) + System_Digest.generateSHA512Digest(dD.getBytes()).hashCode()).getBytes());
                 }
-                catch ( Exception e ) { decodedPassword = null; stringToHash = null; }
+                catch ( Exception e ) { dD = null; stringToHash = null; }
 
-                if ( decodedPassword != null && stringToHash != null && stringToHash.toLowerCase().trim().equals(EncH.toLowerCase().trim()) )
+                if ( dD != null && stringToHash != null && stringToHash.toLowerCase().trim().equals(He.toLowerCase().trim()) )
                 {
                     System_LogWriter.write("Décodage validé !");
 
                     a = true;
-                    b = decodedPassword;
+                    b = dD;
 
                     while ( !GuiForm_MainFrame.formInitialized  ) { }
 
@@ -135,13 +230,37 @@ public final class Main_RealLauncher
                 }
                 else
                 {
-                    if ( Preferences_ConfigLoader.CONFIG_ShowErrorNotifications && Preferences_ConfigLoader.CONFIG_ShowTrayIcon && SystemTray_MinecraftIcon.trayIconInitialized ) { SystemTray_MinecraftIcon.displayErrorMessage("Erreur !", "Impossible de decrypter le mot de passe !"); }
+                    SystemTray_MinecraftIcon.displayErrorMessage("Erreur !", "Impossible de decrypter le mot de passe du compte \"" + username.trim() + "\" !");
+
+                    Preferences_ConfigFileWriter.eraseParameter("EncP-" + username.replace("=", ""));
+                    Preferences_ConfigFileWriter.eraseParameter("EncH-" + username.replace("=", ""));
+
+                    SwingUtilities.invokeLater(new Runnable() { public void run() { GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(false); } });
+
                     System_LogWriter.write("Password decrypting fail !");
                 }
+            }
+            else
+            {
+                Preferences_ConfigFileWriter.eraseParameter("EncP-" + username.replace("=", ""));
+                Preferences_ConfigFileWriter.eraseParameter("EncH-" + username.replace("=", ""));
+
+                SwingUtilities.invokeLater(new Runnable() { public void run() { GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(false); } });
             }
         }
 
         c = true;
+    }
+
+    public static void disablePassword()
+    {
+        gB();
+        a = false;
+        b = null;
+        GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(false);
+        GuiForm_MainFrame.mainFrame.ignoreNextPasswordEntry = true;
+        GuiForm_MainFrame.mainFrame.Field_Password.setText("");
+        GuiForm_MainFrame.mainFrame.ignoreNextPasswordEntry = false;
     }
 
     public static void startMinecraft()
@@ -168,9 +287,7 @@ public final class Main_RealLauncher
         GuiForm_GameFrame.newForm(true, System_DataStub.static_getParameter("username")).addMinecraftToFrame(minecraftInstance);
         GuiForm_GameFrame.gameFrame.setVisible(true);
 
-
         System_DataStub.setParameter("stand-alone", "true");
-
 
         minecraftInstance.setStub(new System_DataStub());
         minecraftInstance.setSize(GuiForm_GameFrame.gameFrame.getSize());
@@ -185,7 +302,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "27-B38";
+    private static final String LauncherRevision = "27-B50";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 
@@ -193,4 +310,7 @@ public final class Main_RealLauncher
     public static final int defaultWindowSizeY = 550;
 
     public static final String getDefaultWindowSize() { return defaultWindowSizeX + "," + defaultWindowSizeY; }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Nicnl - nicnl25@gmail.com
 }

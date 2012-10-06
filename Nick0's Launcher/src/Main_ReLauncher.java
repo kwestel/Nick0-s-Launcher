@@ -2,13 +2,21 @@ import javax.swing.*;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
+import java.net.URLDecoder;
 
 public class Main_ReLauncher
 {
     private static final int minimalAllocatedMemory = 512;
 
+    public static String[] loadedArgs;
+    public static String reLauncherPath;
+
     public static void main(String[] args)
     {
+        loadedArgs = args;
+        if ( args != null && args.length > 0 && !args[0].trim().equals("") ) { reLauncherPath = args[0]; }
+        else { reLauncherPath = null; }
+
         System_LogWriter.initializeMinecraftLogs();
 
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); }
@@ -50,9 +58,7 @@ public class Main_ReLauncher
 
     public static void loadLauncher(int memory)
     {
-        String pathToJar = null;
-        try { pathToJar = Main_ReLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath(); }
-        catch ( URISyntaxException e ) { System_ErrorHandler.handleException(e, true); }
+        String pathToJar = Main_RealLauncher.getLauncherJarPath();
 
         String[] newParameters = new String[]
         {
@@ -63,8 +69,9 @@ public class Main_ReLauncher
             "-Dsun.java2d.opengl=false",
             "-Dsun.java2d.pmoffscreen=false",
             "-classpath",
-            pathToJar,
-            "Main_RealLauncher"
+            reLauncherPath == null ? pathToJar : reLauncherPath,
+            reLauncherPath == null ? "Main_RealLauncher" : "Nick0sReLauncher",
+            reLauncherPath == null ? "" : "directLaunch"
         };
 
         loadLauncher(newParameters);
@@ -90,12 +97,10 @@ public class Main_ReLauncher
     
     public static void loadLauncher(boolean recreateProcess)
     {
-        if ( !recreateProcess ) { Main_RealLauncher.main(null); }
+        if ( !recreateProcess ) { Main_RealLauncher.main(loadedArgs); }
         else
         {
-            String pathToJar = null;
-            try { pathToJar = Main_ReLauncher.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath(); }
-            catch ( URISyntaxException e ) { System_ErrorHandler.handleException(e, true); }
+            String pathToJar = Main_RealLauncher.getLauncherJarPath();
 
             String[] newParameters = new String[]
             {
@@ -105,8 +110,9 @@ public class Main_ReLauncher
                 "-Dsun.java2d.opengl=false",
                 "-Dsun.java2d.pmoffscreen=false",
                 "-classpath",
-                pathToJar,
-                "Main_RealLauncher"
+                reLauncherPath == null ? pathToJar : reLauncherPath,
+                reLauncherPath == null ? "Main_RealLauncher" : "Nick0sReLauncher",
+                reLauncherPath == null ? "" : "directLaunch"
             };
 
             loadLauncher(newParameters);

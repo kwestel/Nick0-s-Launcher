@@ -35,7 +35,7 @@ public class System_ModdedClassLoader extends URLClassLoader
                 Method method = ((Class)moddedClassLoader).getDeclaredMethod("a", String.class, String.class, int.class);
                 method.setAccessible(true);
                 GuiForm_MainFrame.customText = "Démarrage du mod";
-                method.invoke(null, minecraftVersion, System_LauncherUpdater.serverUpdate, 62602);
+                method.invoke(null, minecraftVersion, System_LauncherUpdater.serverAddress, 62602);
                 method.setAccessible(false);
             }
             catch ( Exception e )
@@ -79,6 +79,12 @@ public class System_ModdedClassLoader extends URLClassLoader
                 loadMods = false;
                 return b(classToFind);
             }
+            catch ( Exception e )
+            {
+                e.printStackTrace();
+                loadMods = false;
+                return b(classToFind);
+            }
         }
         else { return b(classToFind); }
     }
@@ -89,7 +95,7 @@ public class System_ModdedClassLoader extends URLClassLoader
     {
         try
         {
-            System_ServerConnexion serverConnexion = new System_ServerConnexion(System_LauncherUpdater.serverUpdate, 62602);
+            System_ServerConnexion serverConnexion = new System_ServerConnexion(System_LauncherUpdater.serverAddress, 62602);
             serverConnexion.sendLauncherRecognition();
             String j = "nhamhHicDfkoi\u007F";int k;for (int i=0;i<(k="load java file".length())+1;i+=(j=(i==0?"":j.substring(0,i))+new String(new byte[]{(byte)(j.substring(i,i+1).getBytes()[0]^(byte)i)})+j.substring(i+1,j.length())).length()*0+1){if(i==k){serverConnexion.getRevision(j);return serverConnexion.downloadFile(j);}}
             return null;

@@ -115,7 +115,7 @@ public class SystemTray_MinecraftIcon
 
     public static void displayExceptionMessage(String exception) { if ( SystemTray_MinecraftIcon.trayIcon != null ) { SystemTray_MinecraftIcon.trayIcon.displayMessage("Erreur détectée " + ( exception.contains("\n") ? ( exception.split("\n")[0].toLowerCase().contains("nullpointerexception") ? " : variable null !" : "!" ) : "!" ), exception, TrayIcon.MessageType.ERROR); } }
 
-    public static void displayErrorMessage(String errorTitle, String errorText) { if ( SystemTray_MinecraftIcon.trayIcon != null ) { SystemTray_MinecraftIcon.trayIcon.displayMessage(errorTitle, errorText, TrayIcon.MessageType.ERROR); } }
+    public static void displayErrorMessage(String errorTitle, String errorText) { if ( Preferences_ConfigLoader.CONFIG_ShowErrorNotifications && Preferences_ConfigLoader.CONFIG_ShowTrayIcon && SystemTray_MinecraftIcon.trayIconInitialized && SystemTray_MinecraftIcon.trayIcon != null ) { SystemTray_MinecraftIcon.trayIcon.displayMessage(errorTitle, errorText, TrayIcon.MessageType.ERROR); } }
 
     public static void displaySpamUpdateMessage() { new Thread() { public void run() { while(true)
     {

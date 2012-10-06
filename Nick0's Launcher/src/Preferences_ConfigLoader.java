@@ -19,7 +19,6 @@ public class Preferences_ConfigLoader
     public static boolean CONFIG_erreurSonore = false;
     public static boolean CONFIG_RemoveMETAINF = false;
     public static boolean CONFIG_AutomaticJarRename = false;
-    public static boolean CONFIG_OfflineSelected = false;
     public static boolean CONFIG_ShowConsoleOnStartup = false;
     public static boolean CONFIG_ShowTrayIcon = true;
     public static boolean CONFIG_AutoLogin = false;
@@ -45,7 +44,6 @@ public class Preferences_ConfigLoader
         CONFIG_RemoveMETAINF = Preferences_ConfigFileWriter.getParameter("RemoveMETAINF").toLowerCase().equals("true");
         CONFIG_AutomaticJarRename = Preferences_ConfigFileWriter.getParameter("AutomaticRenameJar").toLowerCase().equals("true");
         CONFIG_ModsDisabled = Preferences_ConfigFileWriter.getParameter("DisabledMods");
-        CONFIG_OfflineSelected = Preferences_ConfigFileWriter.getParameter("OfflineSelected").toLowerCase().equals("true");
         CONFIG_ModifyWindowSize = Preferences_ConfigFileWriter.getParameter("GameSizeEnabled").toLowerCase().equals("true");
         CONFIG_ShowConsoleOnStartup = Preferences_ConfigFileWriter.getParameter("ShowConsoleOnStartup").toLowerCase().equals("true");
         CONFIG_ShowTrayIcon = Preferences_ConfigFileWriter.getParameter("ShowTrayIcon").toLowerCase().equals("true");

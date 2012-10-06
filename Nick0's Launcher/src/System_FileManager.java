@@ -173,7 +173,7 @@ public class System_FileManager
     public static void writeByteArrayToFile(byte[] byteArray_File, String outputPath) throws IOException { writeByteArrayToFile(byteArray_File, new File(outputPath)); }
     public static void writeByteArrayToFile(byte[] byteArray_File, File outputFile) throws IOException
     {
-        System_FileManager.removeFile(outputFile, false);
+        removeFile(outputFile, false);
         OutputStream OutputStream_File = new FileOutputStream(outputFile);
         OutputStream_File.write(byteArray_File);
 

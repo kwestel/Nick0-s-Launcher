@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -21,7 +22,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     public JLabel Label_Copyright;
     public JLabel Label_actualRam;
 
-    public JTextField Field_UserName;
+    public JComboBox ComboBox_UserName;
     public JPasswordField Field_Password;
 
     public GuiElement_JarSelector ComboBox_JarSelector;
@@ -30,9 +31,12 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
     private static boolean modsCanBeEnabled;
 
-    public boolean ignoreNextEntry = false;
+    public boolean ignoreNextPasswordEntry = false;
+    public boolean ignoreNextUsernameEntry = false;
+
     public static boolean formInitialized = false;
     private static boolean autoLoginStarted = false;
+    private static String lastUsernameSelected = null;
 
     public GuiForm_MainFrame()
     {
@@ -69,22 +73,27 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         mainPanel.setLayout(new GridBagLayout());
 
         GridBagConstraints gbc = new GridBagConstraints();
+
         if ( createPanel )
         {
-            Label_MainTitle = new JLabel("<html><b><u>Accès à votre compte minecraft :</u></b></html>");
+            Label_MainTitle = new JLabel("<html><b><u>Accès à votre compte Minecraft :</u></b></html>");
             Label_UsernameLabel = new JLabel("<html><b>Pseudo :</b></html>");
             Label_PASSLabel = new JLabel("<html><b>Mot de passe :</b></html>");
             Label_Copyright = new JLabel("<html><u>Nick0's Launcher - R" + Main_RealLauncher.getLauncherRevision() + " - By Nicnl</u></html>");
             Label_actualRam = new JLabel("<html><u>RAM allouée : " + ( Runtime.getRuntime().maxMemory() / 1024 / 1024 ) + " Mb" + "</u></html>");
-            Field_UserName = new JTextField(20);
+            ComboBox_UserName = new JComboBox();
             Field_Password = new JPasswordField(20);
             Button_ConnectButton = new GuiElement_Button("<html><b><span style='color:gray'>Connexion</span></b></html>");
             Button_PrefsButton = new GuiElement_Button("Réglages...");
             Check_Offline = new GuiElement_CheckBox("Offline mode");
             Check_SaveLogin = new GuiElement_CheckBox("Sauvegarder MDP");
 
+            ComboBox_UserName.setEditable(true);
+            ComboBox_UserName.setSelectedItem("");
+            ComboBox_UserName.addItem("Ajouter un nouveau compte...");
+
             if ( modsCanBeEnabled ) { Check_EnableMods = new GuiElement_CheckBox("Activer les mods"); }
-            Check_EnableNicnlMods = new GuiElement_CheckBox("Nicnl's Mods V2");
+            Check_EnableNicnlMods = new GuiElement_CheckBox("CnG Mods");
 
             if ( Preferences_ConfigLoader.CONFIG_jarSelector ) { ComboBox_JarSelector = new GuiElement_JarSelector(); }
             Button_ConnectButton.setEnabled(false);
@@ -102,7 +111,6 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
 
         Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft());
-        Check_Offline.setSelected(Check_Offline.isEnabled() && Preferences_ConfigLoader.CONFIG_OfflineSelected);
 
         Field_Password.setEnabled(!Check_Offline.isSelected());
         Check_SaveLogin.setEnabled(!Check_Offline.isSelected());
@@ -138,7 +146,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(3, 0, 3, 0);
-        mainPanel.add(Field_UserName, gbc);
+        mainPanel.add(ComboBox_UserName, gbc);
 
         // Label : Password
         gbc.gridx = 0;
@@ -257,11 +265,35 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         DocumentListener usernameListener = new DocumentListener()
         {
-            public void changedUpdate(DocumentEvent e) { verifyButtons(); }
-            public void removeUpdate(DocumentEvent e) { verifyButtons(); }
-            public void insertUpdate(DocumentEvent e) { verifyButtons(); }
+            public void changedUpdate(DocumentEvent e) { verifyButtons(); verifyUsernameRemoving(); }
+            public void removeUpdate(DocumentEvent e) { verifyButtons(); verifyUsernameRemoving(); }
+            public void insertUpdate(DocumentEvent e) { verifyButtons(); verifyUsernameRemoving(); }
         };
-        Field_UserName.getDocument().addDocumentListener(usernameListener);
+        ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getDocument().addDocumentListener(usernameListener);
+
+        ItemListener comboBoxListener = new ItemListener() {
+            public void itemStateChanged(ItemEvent e)
+            {
+                if ( e.getStateChange() == ItemEvent.SELECTED )
+                {
+                    ignoreNextUsernameEntry = true;
+
+                    if ( !((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText().equals("") ) { lastUsernameSelected = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText(); }
+
+                    if ( ComboBox_UserName.getSelectedItem().equals("Ajouter un nouveau compte...") )
+                    {
+                        SwingUtilities.invokeLater(new Runnable() { public void run() {
+                            ComboBox_UserName.setSelectedItem("");
+                            ((JTextComponent) ComboBox_UserName.getEditor().getEditorComponent()).setText("");
+                            ComboBox_UserName.getEditor().getEditorComponent().requestFocus();
+                        } });
+                        Main_RealLauncher.disablePassword();
+                    }
+                    else { Main_RealLauncher.loadPassword((String)ComboBox_UserName.getSelectedItem()); }
+                }
+            }
+        };
+        ComboBox_UserName.addItemListener(comboBoxListener);
 
         DocumentListener passwordListener = new DocumentListener()
         {
@@ -271,7 +303,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         };
         Field_Password.getDocument().addDocumentListener(passwordListener);
 
-        ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent arg0)
+        ActionListener loginListener = new ActionListener() { public void actionPerformed(ActionEvent e)
         {
             if ( autoLoginStarted )
             {
@@ -291,10 +323,10 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
             Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked = Check_EnableNicnlMods.isSelected();
 
-            new Thread() { public void run() { Main_RealLauncher.startLogin(Field_UserName.getText(), Main_RealLauncher.a ? Main_RealLauncher.getB() : ( new String(Field_Password.getPassword()) )); } }.start();
+            new Thread() { public void run() { Main_RealLauncher.startLogin(((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText(), Main_RealLauncher.a ? Main_RealLauncher.gB() : ( new String(Field_Password.getPassword()) )); } }.start();
         } };
         Field_Password.addActionListener(loginListener);
-        Field_UserName.addActionListener(loginListener);
+        ComboBox_UserName.getEditor().addActionListener(loginListener);
         Button_ConnectButton.addActionListener(loginListener);
 
         ActionListener preferencesListener = new ActionListener() { public void actionPerformed(ActionEvent e)
@@ -315,8 +347,6 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
             if ( Check_Offline.isSelected() ) { Field_Password.setText(""); }
             else { Button_ConnectButton.setEnabled(false); }
-
-            Preferences_ConfigLoader.CONFIG_OfflineSelected = Check_Offline.isSelected();
 
             verifyButtons();
         } };
@@ -340,17 +370,38 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     {
         autoLoginStarted = false;
 
-        if ( ( ( new String(Field_Password.getPassword()) ).equals("") && !Check_Offline.isSelected() ) || Field_UserName.getText().equals("") ) { Button_ConnectButton.setEnabled(false); }
+        if ( ( ( new String(Field_Password.getPassword()) ).equals("") && !Check_Offline.isSelected() ) || ComboBox_UserName.getEditor().getEditorComponent().equals("") ) { Button_ConnectButton.setEnabled(false); }
         else { Button_ConnectButton.setEnabled(true); }
 
         Button_ConnectButton.setText("<html><b><span style='color:" + (Button_ConnectButton.isEnabled() ? "black" : "gray") + "'>Connexion</span></b></html>");
     }
 
+    private void verifyUsernameRemoving()
+    {
+        SwingUtilities.invokeLater(new Runnable() { public void run() {
+            if ( ignoreNextUsernameEntry )
+            {
+                ignoreNextUsernameEntry = false;
+                return;
+            }
+
+            String typedUsername = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText();
+
+            if ( typedUsername.toLowerCase().trim().equals("") && lastUsernameSelected != null && !lastUsernameSelected.toLowerCase().trim().equals("") && !lastUsernameSelected.equals("Ajouter un nouveau compte...") )
+            {
+                System_MultiAccountHelper.eraseUsername(lastUsernameSelected);
+                Check_Offline.setSelected(false);
+                Check_SaveLogin.setSelected(false);
+                Main_RealLauncher.disablePassword();
+            }
+        } });
+    }
+
     private void passwordBoxChanged()
     {
-        if ( ignoreNextEntry )
+        if (ignoreNextPasswordEntry)
         {
-            ignoreNextEntry = false;
+            ignoreNextPasswordEntry = false;
             return;
         }
 
@@ -440,23 +491,29 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
     public static void setRandomPasswordString(final String randomPasswordString) { SwingUtilities.invokeLater(new Runnable() { public void run()
     {
-        mainFrame.ignoreNextEntry = true;
+        mainFrame.ignoreNextPasswordEntry = true;
         mainFrame.Field_Password.setText(randomPasswordString);
         mainFrame.Check_SaveLogin.setSelected(true);
 
         mainFrame.verifyButtons();
 
-        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && !Preferences_ConfigLoader.CONFIG_OfflineSelected ) { startAutoLogin(); }
+        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && !mainFrame.Check_Offline.isSelected() ) { startAutoLogin(); }
     } }); }
 
-    public static void setUsername(final String UserName) { SwingUtilities.invokeLater(new Runnable() { public void run()
+    public static void setUsername(final String username, final String... additionalUsernameList) { SwingUtilities.invokeLater(new Runnable() { public void run()
     {
-        mainFrame.Field_UserName.setText(UserName);
-        mainFrame.Field_UserName.setCaretPosition(UserName.length());
+        //((JTextComponent)mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).setText(username);
+
+        mainFrame.ComboBox_UserName.removeItem("Ajouter un nouveau compte...");
+        for ( String actualUsername : additionalUsernameList ) { mainFrame.ComboBox_UserName.addItem(actualUsername); }
+        mainFrame.ComboBox_UserName.addItem("Ajouter un nouveau compte...");
+
+        mainFrame.ComboBox_UserName.setSelectedItem(username);
+
+        ((JTextComponent)mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).setCaretPosition(username.length());
 
         mainFrame.verifyButtons();
-
-        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && Preferences_ConfigLoader.CONFIG_OfflineSelected ) { startAutoLogin(); }
+        if ( Preferences_ConfigLoader.CONFIG_AutoLogin && mainFrame.Check_Offline.isSelected() ) { startAutoLogin(); }
     } }); }
 
     private static void startAutoLogin() { new Thread() { public void run()
@@ -498,7 +555,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         {
             mainFrame.Button_ConnectButton.isEnabled(), mainFrame.Button_PrefsButton.isEnabled(), mainFrame.Check_Offline.isEnabled(),
             mainFrame.Check_SaveLogin.isEnabled(), (mainFrame.Check_EnableMods != null && mainFrame.Check_EnableMods.isEnabled()), (mainFrame.Check_EnableNicnlMods != null && mainFrame.Check_EnableNicnlMods.isEnabled()),
-            mainFrame.Field_UserName.isEnabled(), mainFrame.Field_Password.isEnabled(), (mainFrame.ComboBox_JarSelector != null && mainFrame.ComboBox_JarSelector.isEnabled())
+            mainFrame.ComboBox_UserName.isEnabled(), mainFrame.Field_Password.isEnabled(), (mainFrame.ComboBox_JarSelector != null && mainFrame.ComboBox_JarSelector.isEnabled())
         };
 
         mainFrame.Button_ConnectButton.setEnabled(false);
@@ -509,7 +566,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         if ( mainFrame.Check_EnableMods != null ) { mainFrame.Check_EnableMods.setEnabled(false); }
         if ( mainFrame.Check_EnableNicnlMods != null ) { mainFrame.Check_EnableNicnlMods.setEnabled(false); }
 
-        mainFrame.Field_UserName.setEnabled(false);
+        mainFrame.ComboBox_UserName.setEnabled(false);
         mainFrame.Field_Password.setEnabled(false);
         if ( mainFrame.ComboBox_JarSelector != null ) { mainFrame.ComboBox_JarSelector.setEnabled(false); }
 
@@ -543,7 +600,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         if ( mainFrame.Check_EnableMods != null ) { mainFrame.Check_EnableMods.setEnabled(savedGuiElementsStates[4]); }
         if ( mainFrame.Check_EnableNicnlMods != null ) { mainFrame.Check_EnableNicnlMods.setEnabled(savedGuiElementsStates[5]); }
 
-        mainFrame.Field_UserName.setEnabled(savedGuiElementsStates[6]);
+        mainFrame.ComboBox_UserName.setEnabled(savedGuiElementsStates[6]);
         mainFrame.Field_Password.setEnabled(savedGuiElementsStates[7]);
         if ( mainFrame.ComboBox_JarSelector != null ) { mainFrame.ComboBox_JarSelector.setEnabled(savedGuiElementsStates[8]); }
 

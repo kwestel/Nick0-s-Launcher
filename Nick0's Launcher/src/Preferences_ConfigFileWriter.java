@@ -1,3 +1,4 @@
+import javax.swing.text.JTextComponent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,9 +11,8 @@ public final class Preferences_ConfigFileWriter
     private static final String[] configurationParameters = new String[]
     {
         "Username",
+        "UsernameList",
         "Version=0",
-        "EncP",
-        "EncH",
 
         "DisableUpdates=false",
         "JarSelector=false",
@@ -23,8 +23,6 @@ public final class Preferences_ConfigFileWriter
         "LastJarSaved",
         "ModsButtonChecked=false",
         "NicnlModsButtonChecked=false",
-
-        "OfflineSelected=false",
 
         "LWJGLSelector=false",
         "LWJGLAddress",
@@ -55,14 +53,15 @@ public final class Preferences_ConfigFileWriter
     {
         loadConfigFile();
 
-        for ( String actualIndex : loadedFile )
+        for ( String actualLine : loadedFile )
         {
-            String[] splitString = actualIndex.split("=");
+            String parameterIndex = actualLine.contains("=") ? actualLine.substring(0, actualLine.indexOf("=")) : actualLine;
+
             try
             {
-                if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+                if ( parameterIndex.toLowerCase().trim().equals(index.toLowerCase().trim()) )
                 {
-                    if ( splitString.length > 1 ) { return splitString[1]; }
+                    if ( actualLine.length() - (index.length()+1) > 0 ) { return actualLine.substring(actualLine.indexOf("=") + 1, actualLine.length()); }
                     else { return ""; }
                 }
             }
@@ -72,14 +71,16 @@ public final class Preferences_ConfigFileWriter
         addDefaultParameterToIndex(index);
         loadConfigFile();
 
-        for ( String actualIndex : loadedFile )
+        for ( String actualLine : loadedFile )
         {
-            String[] splitString = actualIndex.split("=");
+            // String parameterIndex = actualLine.substring(0, actualLine.indexOf("="));
+            String parameterIndex = actualLine.contains("=") ? actualLine.substring(0, actualLine.indexOf("=")) : actualLine;
+
             try
             {
-                if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+                if ( parameterIndex.toLowerCase().trim().equals(index.toLowerCase().trim()) )
                 {
-                    if ( splitString.length > 1 ) { return splitString[1]; }
+                    if ( actualLine.length() - (index.length()+1) > 0 ) { return actualLine.substring(actualLine.indexOf("=") + 1, actualLine.length()); }
                     else { return ""; }
                 }
             }
@@ -92,55 +93,94 @@ public final class Preferences_ConfigFileWriter
     
     public static final void setParameter(String index, boolean data) { setParameter(index, data+""); }
     public static final void setParameter(String index, int data) { setParameter(index, data+""); }
-    
-    public static final void setParameter(String index, String data)
+
+    public static final void eraseParameter(String parameterIndex)
     {
         loadConfigFile();
 
         for ( int i=0; i<loadedFile.size(); i++ )
         {
-            String[] splitString = loadedFile.get(i).split("=");
-            if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+            String actualIndex = loadedFile.get(i).contains("=") ? loadedFile.get(i).substring(0, loadedFile.get(i).indexOf("=")) : loadedFile.get(i);
+
+            if ( parameterIndex.toLowerCase().trim().equals(actualIndex.toLowerCase().trim()) )
             {
-                loadedFile.set(i, index + "=" + data);
+                loadedFile.remove(i);
                 writeFile();
                 return;
             }
         }
+    }
+    
+    public static final void setParameter(String parameterIndex, String data)
+    {
+        if ( data.toLowerCase().trim().equals("") ) { eraseParameter(parameterIndex); return; }
 
-        addDefaultParameterToIndex(index);
         loadConfigFile();
 
         for ( int i=0; i<loadedFile.size(); i++ )
         {
-            String[] splitString = loadedFile.get(i).split("=");
-            if ( splitString[0].toLowerCase().equals(index.toLowerCase()) )
+            // String[] splitString = loadedFile.get(i).split("=");
+            String actualIndex = loadedFile.get(i).contains("=") ? loadedFile.get(i).substring(0, loadedFile.get(i).indexOf("=")) : loadedFile.get(i);
+
+            if ( parameterIndex.toLowerCase().trim().equals(actualIndex.toLowerCase().trim()) )
             {
-                loadedFile.set(i, index + "=" + data);
+                loadedFile.set(i, parameterIndex + "=" + data);
                 writeFile();
                 return;
             }
         }
 
-        System_ErrorHandler.handleError("Erreur lors de la définition de : " + index, false, true);
+        addDefaultParameterToIndex(parameterIndex);
+        loadConfigFile();
+
+        for ( int i=0; i<loadedFile.size(); i++ )
+        {
+            // String actualIndex = loadedFile.get(i).substring(0, loadedFile.get(i).indexOf("="));
+            String actualIndex = loadedFile.get(i).contains("=") ? loadedFile.get(i).substring(0, loadedFile.get(i).indexOf("=")) : loadedFile.get(i);
+
+            if ( parameterIndex.toLowerCase().trim().equals(actualIndex.toLowerCase().trim()) )
+            {
+                loadedFile.set(i, parameterIndex + "=" + data);
+                writeFile();
+                return;
+            }
+        }
+
+        System_ErrorHandler.handleError("Erreur lors de la définition de : " + parameterIndex, false, true);
     }
 
     public static void writeConfigFile(String encodedPassword, boolean writeLogin, boolean erasePassword, boolean offlineMode)
     {
-        if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("loginusr")); }
+        if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("loginusr")); System_MultiAccountHelper.saveUsername(System_DataStub.static_getParameter("loginusr"), offlineMode); }
         if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled && !offlineMode ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
-        
-        if ( !encodedPassword.equals("") && !erasePassword )
+
+        if ( !encodedPassword.equals("") && !erasePassword && !System_DataStub.static_getParameter("loginusr").equals("null") && System_DataStub.static_getParameter("loginusr") != null )
         {
-            boolean SaveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
-            setParameter("EncP", SaveLogin ? encodedPassword : "");
-            setParameter("EncH", SaveLogin ?d: "");
+            boolean saveLogin = ( GuiForm_MainFrame.mainFrame != null ) && GuiForm_MainFrame.mainFrame.Check_SaveLogin.isSelected();
+
+            if ( System_DataStub.static_getParameter("loginusr") != null && !System_DataStub.static_getParameter("loginusr").toLowerCase().trim().equals("") )
+            {
+                if ( saveLogin )
+                {
+                    setParameter("EncP-" + System_DataStub.static_getParameter("loginusr"), encodedPassword);
+                    setParameter("EncH-" + System_DataStub.static_getParameter("loginusr"), d);
+                }
+                else
+                {
+                    eraseParameter("EncP-" + System_DataStub.static_getParameter("loginusr"));
+                    eraseParameter("EncH-" + System_DataStub.static_getParameter("loginusr"));
+                }
+            }
+
+            // System.out.println("AAAAAAAAAAAAAAAAA : " + System_DataStub.static_getParameter("loginusr"));
         }
 
-        if ( erasePassword )
+        if ( erasePassword && !((JTextComponent)GuiForm_MainFrame.mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).getText().equals("") && ((JTextComponent)GuiForm_MainFrame.mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).getText() != null )
         {
-            setParameter("EncP", "");
-            setParameter("EncH", "");
+            eraseParameter("EncP-" + ((JTextComponent)GuiForm_MainFrame.mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).getText());
+            eraseParameter("EncH-" + ((JTextComponent) GuiForm_MainFrame.mainFrame.ComboBox_UserName.getEditor().getEditorComponent()).getText());
+
+            // System.out.println("BBBBBBBBBBBBBBBBBBBB : " + System_DataStub.static_getParameter("loginusr"));
         }
 
         setParameter("DisableUpdates", Preferences_ConfigLoader.CONFIG_updatesDisabled);
@@ -152,7 +192,6 @@ public final class Preferences_ConfigFileWriter
         if ( Preferences_ConfigLoader.CONFIG_SaveLastJar ) { setParameter("LastJarSaved", Preferences_ConfigLoader.CONFIG_LastJarSaved); }
         setParameter("ModsButtonChecked", Preferences_ConfigLoader.CONFIG_modsButtonChecked);
         setParameter("NicnlModsButtonChecked", Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
-        setParameter("OfflineSelected", Preferences_ConfigLoader.CONFIG_OfflineSelected);
     }
     
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -179,7 +218,7 @@ public final class Preferences_ConfigFileWriter
         if ( !reloadFile ) { return; }
         else { reloadFile = false; }
 
-        try { loadedFile = Preferences_ConfigFileWriter.loadFileRaw(Main_RealLauncher.getConfigFilePath()); }
+        try { loadedFile = loadFileRaw(Main_RealLauncher.getConfigFilePath()); }
         catch ( IOException e )
         {
             writeEmptyFile();
@@ -198,13 +237,15 @@ public final class Preferences_ConfigFileWriter
         writeFile();
     }
     
-    private static final void addDefaultParameterToIndex(String newParameter)
+    private static final void addDefaultParameterToIndex(String parameterIndex)
     {
-        for (String configurationParameter : configurationParameters)
+        for ( String configurationParameter : configurationParameters )
         {
-            String parameterName = configurationParameter.contains("=") ? configurationParameter.split("=")[0] : configurationParameter;
-            if ( parameterName.toLowerCase().trim().equals(newParameter.toLowerCase().trim()) ) { loadedFile.add(configurationParameter + (configurationParameter.contains("=") ? "" : "=")); break; }
+            String parameterName = configurationParameter.contains("=") ? configurationParameter.substring(0, configurationParameter.indexOf("=")) : configurationParameter;
+            if ( parameterName.toLowerCase().trim().equals(parameterIndex.toLowerCase().trim()) ) { loadedFile.add(configurationParameter + (configurationParameter.contains("=") ? "" : "=")); writeFile(); return; }
         }
+
+        loadedFile.add(parameterIndex + "=");
         writeFile();
     }
 
