@@ -17,10 +17,17 @@ public final class Main_RealLauncher
     public static boolean a = false;
     protected static String b;
     public static boolean c = false;
+    public static char d;
 
     public static void main(String[] args)
     {
-        System.out.println("Output test : " + System_FastRC4Encryption.encrypt("trololo salut omg lol!"));
+
+        String test = "1234567890°-*/+!:,µ£¨%*$^ù}^@`|]@`]@^#~#'";
+        for ( int i=0; i<test.length(); i++ )
+        {
+            String acs = test.substring(i, i+1);
+            System.out.println(acs + " => " + (acs.toCharArray()[0]+1-1) + " ==> " + ((char)(acs.toCharArray()[0]+1-1)));
+        }
 
         Main_ReLauncher.loadedArgs = args;
         if ( args != null && args.length > 0 && !args[0].trim().equals("") ) { Main_ReLauncher.reLauncherPath = args[0]; }
@@ -85,12 +92,7 @@ public final class Main_RealLauncher
         return loadedHomeDir.equals("") ? configFileDir : loadedHomeDir;
     }
 
-    public static String gB()
-    {
-        String tP = b;
-        b = null;
-        return tP;
-    }
+    public static String gB(){String tP=(b==null?null:b);b=null;return tP==null?null:System_StringEncrypter.E(tP.substring(1, tP.length()));}
 
     public static String getConfigFilePath() { return configFileDir + File.separator + "Nick0's_Launcher.mconf"; }
     public static String getBinDirPath() { return homeDir + File.separator + "bin"; }
@@ -210,8 +212,9 @@ public final class Main_RealLauncher
                 String stringToHash;
                 try
                 {
-                    dD = System_StringEncrypter.E(Pe);
-                    stringToHash = System_Digest.generateSHA512Digest((System_Digest.generateSHA512Digest(Pe.toLowerCase().getBytes()) + System_Digest.generateSHA512Digest(dD.getBytes()).hashCode()).getBytes());
+                    System.out.println(Pe);
+                    stringToHash = System_Digest.generateSHA512Digest((System_Digest.generateSHA512Digest(Pe.substring(1, Pe.length()).toLowerCase().getBytes()) + System_Digest.generateSHA512Digest(System_StringEncrypter.E(Pe.substring(1, Pe.length())).getBytes()).hashCode()).getBytes());
+                    dD = "";
                 }
                 catch ( Exception e ) { dD = null; stringToHash = null; }
 
@@ -220,11 +223,11 @@ public final class Main_RealLauncher
                     System_LogWriter.write("Décodage validé !");
 
                     a = true;
-                    b = dD;
+                    b = Pe;
 
                     while ( !GuiForm_MainFrame.formInitialized  ) { }
 
-                    GuiForm_MainFrame.setRandomPasswordString(System_StringEncrypter.J(b));
+                    GuiForm_MainFrame.setRandomPasswordString(System_StringEncrypter.J((int)Pe.substring(0, 1).toCharArray()[0]));
 
                     System_LogWriter.write("Décodage terminé !");
                 }
@@ -275,7 +278,7 @@ public final class Main_RealLauncher
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
 
         if ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_Offline != null && GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false, true); }
-        else { Preferences_ConfigFileWriter.writeConfigFile(System_StringEncrypter.B(), true, false, false); }
+        else { Preferences_ConfigFileWriter.writeConfigFile(d + System_StringEncrypter.B(), true, false, false); }
 
         System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
 
@@ -302,7 +305,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "27-B51";
+    private static final String LauncherRevision = "28";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 

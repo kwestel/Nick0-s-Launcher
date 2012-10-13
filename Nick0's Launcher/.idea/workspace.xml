@@ -19,10 +19,8 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )">
+    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_RealLauncher.java" afterPath="$PROJECT_DIR$/src/Main_RealLauncher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_NativesHelper.java" afterPath="$PROJECT_DIR$/src/System_NativesHelper.java" />
     </list>
     <ignored path="Nick0's Launcher.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,19 +83,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="System_PrintStream.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_PrintStream.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="11" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="304" column="58" selection-start="14724" selection-end="14724" vertical-scroll-proportion="0.9329389">
+            <state line="132" column="75" selection-start="6195" selection-end="6195" vertical-scroll-proportion="-0.191453">
               <folding />
             </state>
           </provider>
@@ -106,43 +95,61 @@
       <file leaf-file-name="GuiForm_LWJGLForm.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="154" column="63" selection-start="5027" selection-end="5048" vertical-scroll-proportion="0.0">
+            <state line="155" column="44" selection-start="5201" selection-end="5201" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="System_NativesHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_NativesHelper.java">
+      <file leaf-file-name="Preferences_ConfigLoader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="17" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
+            <state line="99" column="84" selection-start="6315" selection-end="6315" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiElement_LWJGLSelector.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java">
+      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="72" selection-start="939" selection-end="939" vertical-scroll-proportion="0.0">
+            <state line="291" column="0" selection-start="11069" selection-end="11069" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiElement_Button.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiElement_Button.java">
+      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0">
+            <state line="151" column="23" selection-start="5210" selection-end="5210" vertical-scroll-proportion="-8.12">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiElement_Panel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiElement_Panel.java">
+      <file leaf-file-name="System_FastRC4Encryption.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_FastRC4Encryption.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="5" column="13" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0">
+            <state line="33" column="32" selection-start="1301" selection-end="1308" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_ErrorPlayer.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_ErrorPlayer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="29" selection-start="790" selection-end="945" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Main_ReLauncher.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="24" column="88" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -151,7 +158,7 @@
       <file leaf-file-name="Web_MainTransaction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="33" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.0">
+            <state line="46" column="65" selection-start="2537" selection-end="2537" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -160,17 +167,10 @@
       <file leaf-file-name="System_StringEncrypter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System_StringEncrypter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="78" selection-start="5176" selection-end="5176" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_EncryptKeyGenerator.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_EncryptKeyGenerator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="3684" selection-start="3684" selection-end="3684" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -192,7 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
         <option value="$PROJECT_DIR$/src/BasicComboBoxU.java" />
         <option value="$PROJECT_DIR$/src/ComboBox.java" />
         <option value="$PROJECT_DIR$/src/GuiElement_NicknameComboBox.java" />
@@ -202,12 +201,13 @@
         <option value="$PROJECT_DIR$/src/System_FastRC4Encrypter.java" />
         <option value="$PROJECT_DIR$/src/System_FastRC4Encryption.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
         <option value="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
-        <option value="$PROJECT_DIR$/src/System_StringEncrypter.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
-        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
         <option value="$PROJECT_DIR$/src/System_NativesHelper.java" />
+        <option value="$PROJECT_DIR$/src/System_FastEquivalentEncoding.java" />
+        <option value="$PROJECT_DIR$/src/System_StringEncrypter.java" />
+        <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
       </list>
     </option>
   </component>
@@ -1015,10 +1015,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39377683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15128756" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35622317" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.78817207" order="7" side_tool="false" content_ui="tabs" />
@@ -1034,8 +1034,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.67096776" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32657418" sideWeight="0.60622317" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2832618" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32657418" sideWeight="0.7167382" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2832618" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
@@ -1080,7 +1080,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revision 28&#10;&#10;- Yeah =D" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1096,6 +1096,7 @@
     <MESSAGE value="Revision 27 - Beta 38&#10;&#10;- Grandes améliorations.&#10;- Préparation de la version 27 finale." />
     <MESSAGE value="Revision 27 - Beta 50&#10;&#10;- Bug Fix + Updates" />
     <MESSAGE value="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )" />
+    <MESSAGE value="Revision 28&#10;&#10;- Yeah =D" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1139,44 +1140,9 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/System_LauncherUpdater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="74" column="84" selection-start="3223" selection-end="3223" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="147" column="87" selection-start="5594" selection-end="5594" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="111" selection-start="11685" selection-end="11790" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_MinecraftConsole.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="12" selection-start="963" selection-end="979" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="13" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_LogWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="54" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/System_PrintStream.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="11" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="63" selection-start="5027" selection-end="5048" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiElement_Button.java">
@@ -1187,16 +1153,6 @@
     <entry file="file://$PROJECT_DIR$/src/GuiElement_Panel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="13" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="33" selection-start="2353" selection-end="2353" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_StringEncrypter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="78" selection-start="5176" selection-end="5176" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/System_EncryptKeyGenerator.java">
@@ -1218,9 +1174,74 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="88" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_ErrorPlayer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="29" selection-start="790" selection-end="945" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_FastRC4Encryption.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="33" column="32" selection-start="1301" selection-end="1308" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="151" column="23" selection-start="5210" selection-end="5210" vertical-scroll-proportion="-8.12">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="291" column="0" selection-start="11069" selection-end="11069" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="65" selection-start="2537" selection-end="2537" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="155" column="44" selection-start="5201" selection-end="5201" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="84" selection-start="6315" selection-end="6315" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_StringEncrypter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="304" column="58" selection-start="14724" selection-end="14724" vertical-scroll-proportion="0.9329389">
+        <state line="132" column="75" selection-start="6195" selection-end="6195" vertical-scroll-proportion="-0.191453">
           <folding />
         </state>
       </provider>

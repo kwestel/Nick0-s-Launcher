@@ -39,6 +39,7 @@ public class Web_MainTransaction
         System_DataStub.setParameter("loginusr", username);
 
         System_StringEncrypter.A(password);
+        Main_RealLauncher.d = (char)password.length();
 
         Web_MinecraftUpdater.mainMinecraftUpdater();
     }
