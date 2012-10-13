@@ -21,14 +21,6 @@ public final class Main_RealLauncher
 
     public static void main(String[] args)
     {
-
-        String test = "1234567890°-*/+!:,µ£¨%*$^ù}^@`|]@`]@^#~#'";
-        for ( int i=0; i<test.length(); i++ )
-        {
-            String acs = test.substring(i, i+1);
-            System.out.println(acs + " => " + (acs.toCharArray()[0]+1-1) + " ==> " + ((char)(acs.toCharArray()[0]+1-1)));
-        }
-
         Main_ReLauncher.loadedArgs = args;
         if ( args != null && args.length > 0 && !args[0].trim().equals("") ) { Main_ReLauncher.reLauncherPath = args[0]; }
         else { Main_ReLauncher.reLauncherPath = null; }
@@ -305,7 +297,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "28";
+    private static final String LauncherRevision = "29";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 
