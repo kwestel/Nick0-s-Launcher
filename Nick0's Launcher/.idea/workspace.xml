@@ -19,26 +19,10 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="Revision 27 - Beta 50&#10;&#10;- Grandes améliorations.&#10;- Préparation de la version 27 finale.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_FastRC4Encryption.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_MultiAccountHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+    <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" afterPath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_ReLauncher.java" afterPath="$PROJECT_DIR$/src/Main_ReLauncher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_RealLauncher.java" afterPath="$PROJECT_DIR$/src/Main_RealLauncher.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" afterPath="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" afterPath="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_FileManager.java" afterPath="$PROJECT_DIR$/src/System_FileManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_LauncherUpdater.java" afterPath="$PROJECT_DIR$/src/System_LauncherUpdater.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" afterPath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ResourceHelper.java" afterPath="$PROJECT_DIR$/src/System_ResourceHelper.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_StringEncrypter.java" afterPath="$PROJECT_DIR$/src/System_StringEncrypter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_NativesHelper.java" afterPath="$PROJECT_DIR$/src/System_NativesHelper.java" />
     </list>
     <ignored path="Nick0's Launcher.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,33 +85,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="GuiForm_MinecraftConsole.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiForm_MinecraftConsole.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="12" selection-start="963" selection-end="979" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_ErrorHandler.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_ErrorHandler.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="13" selection-start="93" selection-end="93" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_LogWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_LogWriter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="29" column="54" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="System_PrintStream.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/System_PrintStream.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,7 +97,34 @@
       <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="225" column="53" selection-start="10950" selection-end="10950" vertical-scroll-proportion="4.623549">
+            <state line="304" column="58" selection-start="14724" selection-end="14724" vertical-scroll-proportion="0.9329389">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiForm_LWJGLForm.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="154" column="63" selection-start="5027" selection-end="5048" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="System_NativesHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/System_NativesHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="27" column="17" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GuiElement_LWJGLSelector.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="72" selection-start="939" selection-end="939" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -208,7 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/System_FileManager.java" />
         <option value="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
         <option value="$PROJECT_DIR$/src/BasicComboBoxU.java" />
         <option value="$PROJECT_DIR$/src/ComboBox.java" />
@@ -222,8 +205,9 @@
         <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
         <option value="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
         <option value="$PROJECT_DIR$/src/System_StringEncrypter.java" />
-        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
         <option value="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
+        <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+        <option value="$PROJECT_DIR$/src/System_NativesHelper.java" />
       </list>
     </option>
   </component>
@@ -235,10 +219,10 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1912" />
+    <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
-    <option name="height" value="1092" />
+    <option name="height" value="1066" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -638,30 +622,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Nick0's Launcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Nick0's Launcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -696,22 +656,46 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="376" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="384" />
-    <property name="project.structure.proportion" value="0.15" />
     <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="384" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="383" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
+    <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="383" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="386" />
@@ -728,19 +712,19 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="options.lastSelected" value="preferences.sourceCode.Java" />
-    <property name="project.structure.side.proportion" value="0.2" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="last.edited.regexp" value="Minecraft Minecraft Beta 1.2" />
-    <property name="dynamic.classpath" value="false" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -1030,12 +1014,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-8" width="1936" height="1092" extended-state="0" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="7" />
+    <editor active="false" />
     <layout>
       <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39462367" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.39377683" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35622317" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.78817207" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39892474" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1049,15 +1034,14 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.67096776" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32817504" sideWeight="0.7160752" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28392485" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32657418" sideWeight="0.60622317" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2832618" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.35654885" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39914164" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1096,7 +1080,7 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
     <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revision 27 - Beta 38&#10;&#10;- Grandes améliorations.&#10;- Préparation de la version 27 finale." />
+    <option name="LAST_COMMIT_MESSAGE" value="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1110,6 +1094,8 @@
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
     <MESSAGE value="Revision 27 - Beta 38&#10;&#10;- Grandes améliorations.&#10;- Préparation de la version 27 finale." />
+    <MESSAGE value="Revision 27 - Beta 50&#10;&#10;- Bug Fix + Updates" />
+    <MESSAGE value="Revision 27 - Beta 51&#10;&#10;- Bug Fix ( LWJGL Selector )" />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />
@@ -1153,16 +1139,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="44" selection-start="1109" selection-end="1109" vertical-scroll-proportion="0.35303515" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_UserHomeDefiner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="28" selection-start="207" selection-end="238" vertical-scroll-proportion="0.24440895" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/System_LauncherUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="84" selection-start="3223" selection-end="3223" vertical-scroll-proportion="0.0" />
@@ -1171,11 +1147,6 @@
     <entry file="file://$PROJECT_DIR$/src/System_FileManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="147" column="87" selection-start="5594" selection-end="5594" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="84" column="53" selection-start="2553" selection-end="2553" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
@@ -1196,6 +1167,16 @@
     <entry file="file://$PROJECT_DIR$/src/System_LogWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="29" column="54" selection-start="919" selection-end="919" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_PrintStream.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="11" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="154" column="63" selection-start="5027" selection-end="5048" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiElement_Button.java">
@@ -1223,16 +1204,23 @@
         <state line="0" column="3684" selection-start="3684" selection-end="3684" vertical-scroll-proportion="-0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_PrintStream.java">
+    <entry file="file://$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="11" selection-start="179" selection-end="179" vertical-scroll-proportion="0.0">
+        <state line="25" column="72" selection-start="939" selection-end="939" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/System_NativesHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="17" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="225" column="53" selection-start="10950" selection-end="10950" vertical-scroll-proportion="4.623549">
+        <state line="304" column="58" selection-start="14724" selection-end="14724" vertical-scroll-proportion="0.9329389">
           <folding />
         </state>
       </provider>

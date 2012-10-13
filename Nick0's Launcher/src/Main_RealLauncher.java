@@ -302,7 +302,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "27-B50";
+    private static final String LauncherRevision = "27-B51";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 
