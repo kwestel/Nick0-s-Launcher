@@ -163,7 +163,7 @@ public final class Preferences_ConfigFileWriter
                 if ( saveLogin )
                 {
                     setParameter("EncP-" + System_DataStub.static_getParameter("loginusr"), encodedPassword);
-                    setParameter("EncH-" + System_DataStub.static_getParameter("loginusr"), d);
+                    setParameter("EncH-" + System_DataStub.static_getParameter("loginusr"), d + "-" + System_FastRC4Encryption.encrypt(((int)Main_RealLauncher.d)+""));
                 }
                 else
                 {

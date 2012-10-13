@@ -204,13 +204,12 @@ public final class Main_RealLauncher
                 String stringToHash;
                 try
                 {
-                    System.out.println(Pe);
                     stringToHash = System_Digest.generateSHA512Digest((System_Digest.generateSHA512Digest(Pe.substring(1, Pe.length()).toLowerCase().getBytes()) + System_Digest.generateSHA512Digest(System_StringEncrypter.E(Pe.substring(1, Pe.length())).getBytes()).hashCode()).getBytes());
                     dD = "";
                 }
                 catch ( Exception e ) { dD = null; stringToHash = null; }
 
-                if ( dD != null && stringToHash != null && stringToHash.toLowerCase().trim().equals(He.toLowerCase().trim()) )
+                if ( dD != null && stringToHash != null && stringToHash.toLowerCase().trim().equals(He.split("-")[0].toLowerCase().trim()) )
                 {
                     System_LogWriter.write("Décodage validé !");
 
@@ -219,7 +218,8 @@ public final class Main_RealLauncher
 
                     while ( !GuiForm_MainFrame.formInitialized  ) { }
 
-                    GuiForm_MainFrame.setRandomPasswordString(System_StringEncrypter.J((int)Pe.substring(0, 1).toCharArray()[0]));
+                    try { GuiForm_MainFrame.setRandomPasswordString(System_StringEncrypter.J(Integer.parseInt(System_FastRC4Encryption.decrypt(He.split("-")[1])))); }
+                    catch ( NumberFormatException e ) { System_ErrorHandler.handleException(e, false); }
 
                     System_LogWriter.write("Décodage terminé !");
                 }
@@ -270,7 +270,7 @@ public final class Main_RealLauncher
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
 
         if ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_Offline != null && GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false, true); }
-        else { Preferences_ConfigFileWriter.writeConfigFile(d + System_StringEncrypter.B(), true, false, false); }
+        else { Preferences_ConfigFileWriter.writeConfigFile("@" + System_StringEncrypter.B(), true, false, false); }
 
         System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
 
@@ -297,7 +297,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "29";
+    private static final String LauncherRevision = "30";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 
