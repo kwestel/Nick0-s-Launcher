@@ -16,7 +16,19 @@ public class System_MultiAccountHelper
         }
         else if ( usernameList.contains(System_StringEncrypter.uk) )
         {
-            for ( String actualUsername : usernameList.split(System_StringEncrypter.uk) ) { if ( actualUsername.toLowerCase().trim().equals(username.toLowerCase().trim()) ) { return; } }
+            String[] splitOfflineList = offlineList.split(System_StringEncrypter.uk);
+            String[] splitUsernameList = usernameList.split(System_StringEncrypter.uk);
+
+            for ( String actualUsername : splitUsernameList ) { if ( actualUsername.toLowerCase().trim().equals(username.toLowerCase().trim()) )
+            {
+                String newOfflineList = "";
+
+                for (int i=0; i<splitOfflineList.length; i++) { newOfflineList += (username.toLowerCase().trim().equals(splitUsernameList[i].toLowerCase().trim()) ? offlineMode : splitOfflineList[i]) + (i==(splitOfflineList.length-1) ? "" : System_StringEncrypter.uk); }
+                Preferences_ConfigFileWriter.setParameter("OfflineList", newOfflineList);
+
+                return;
+            } }
+
             Preferences_ConfigFileWriter.setParameter("UsernameList", usernameList + System_StringEncrypter.uk + username);
             Preferences_ConfigFileWriter.setParameter("OfflineList", offlineList + System_StringEncrypter.uk + offlineMode);
         }
@@ -27,6 +39,7 @@ public class System_MultiAccountHelper
                 Preferences_ConfigFileWriter.setParameter("UsernameList", usernameList + System_StringEncrypter.uk + username);
                 Preferences_ConfigFileWriter.setParameter("OfflineList", offlineList + System_StringEncrypter.uk + offlineMode);
             }
+            else { Preferences_ConfigFileWriter.setParameter("OfflineList", offlineMode); }
         }
     }
 

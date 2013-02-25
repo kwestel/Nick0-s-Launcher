@@ -20,13 +20,139 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\production\Nick0's Launcher\Main_RealLauncher.class" afterPath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\out\production\Nick0's Launcher\Main_RealLauncher.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiForm_Console.form" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/GuiForm_Console.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/JRVME_ClassScope.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/JRVME_Helper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/JRVME_System.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/OverlaySample.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_RegexHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/System_UpdaterHelper.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Web_AMUSUpdater.java" />
+      <change type="DELETED" beforePath="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\GuiForm_MinecraftConsole.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" afterPath="$PROJECT_DIR$/src/DATA_MinecraftPublicKey.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_AlternativeJarSelector.java" afterPath="$PROJECT_DIR$/src/GuiElement_AlternativeJarSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_BaseComboBox.java" afterPath="$PROJECT_DIR$/src/GuiElement_BaseComboBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_Button.java" afterPath="$PROJECT_DIR$/src/GuiElement_Button.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_CheckBox.java" afterPath="$PROJECT_DIR$/src/GuiElement_CheckBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_JTable.java" afterPath="$PROJECT_DIR$/src/GuiElement_JTable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_JarSelector.java" afterPath="$PROJECT_DIR$/src/GuiElement_JarSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java" afterPath="$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiElement_Panel.java" afterPath="$PROJECT_DIR$/src/GuiElement_Panel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiExtend_JFrame.java" afterPath="$PROJECT_DIR$/src/GuiExtend_JFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" afterPath="$PROJECT_DIR$/src/GuiForm_AlternativeJar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_GameFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_InstallNewMod.java" afterPath="$PROJECT_DIR$/src/GuiForm_InstallNewMod.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" afterPath="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_ModsSelector.java" afterPath="$PROJECT_DIR$/src/GuiForm_ModsSelector.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" afterPath="$PROJECT_DIR$/src/GuiForm_PreferenceFrame.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" afterPath="$PROJECT_DIR$/src/GuiForm_UpdaterForm.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_ReLauncher.java" afterPath="$PROJECT_DIR$/src/Main_ReLauncher.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main_RealLauncher.java" afterPath="$PROJECT_DIR$/src/Main_RealLauncher.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Nick0's Launcher.iml" afterPath="$PROJECT_DIR$/Nick0's Launcher.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Nick0_s_Launcher_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Nick0_s_Launcher_jar.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" afterPath="$PROJECT_DIR$/src/Preferences_ConfigLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" afterPath="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_AES.java" afterPath="$PROJECT_DIR$/src/System_AES.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_AlternativeJar.java" afterPath="$PROJECT_DIR$/src/System_AlternativeJar.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_DataInputStream.java" afterPath="$PROJECT_DIR$/src/System_DataInputStream.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_DataOutputStream.java" afterPath="$PROJECT_DIR$/src/System_DataOutputStream.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_DataStub.java" afterPath="$PROJECT_DIR$/src/System_DataStub.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_Digest.java" afterPath="$PROJECT_DIR$/src/System_Digest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" afterPath="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ErrorHandler.java" afterPath="$PROJECT_DIR$/src/System_ErrorHandler.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ErrorPlayer.java" afterPath="$PROJECT_DIR$/src/System_ErrorPlayer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_FastRC4Encryption.java" afterPath="$PROJECT_DIR$/src/System_FastRC4Encryption.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_FileManager.java" afterPath="$PROJECT_DIR$/src/System_FileManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_JarSelectorFunctions.java" afterPath="$PROJECT_DIR$/src/System_JarSelectorFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_LauncherUpdater.java" afterPath="$PROJECT_DIR$/src/System_LauncherUpdater.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_LogWriter.java" afterPath="$PROJECT_DIR$/src/System_LogWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_MessageBox.java" afterPath="$PROJECT_DIR$/src/System_MessageBox.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_MinecraftLoader.java" afterPath="$PROJECT_DIR$/src/System_MinecraftLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" afterPath="$PROJECT_DIR$/src/System_ModdedClassLoader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_Mods.java" afterPath="$PROJECT_DIR$/src/System_Mods.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_MultiAccountHelper.java" afterPath="$PROJECT_DIR$/src/System_MultiAccountHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_NativesHelper.java" afterPath="$PROJECT_DIR$/src/System_NativesHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_PrintStream.java" afterPath="$PROJECT_DIR$/src/System_PrintStream.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_Reflection.java" afterPath="$PROJECT_DIR$/src/System_Reflection.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ResourceHelper.java" afterPath="$PROJECT_DIR$/src/System_ResourceHelper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ScreenResolution.java" afterPath="$PROJECT_DIR$/src/System_ScreenResolution.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_ServerConnexion.java" afterPath="$PROJECT_DIR$/src/System_ServerConnexion.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_StringEncrypter.java" afterPath="$PROJECT_DIR$/src/System_StringEncrypter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/System_UserHomeDefiner.java" afterPath="$PROJECT_DIR$/src/System_UserHomeDefiner.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Trololo.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Updater_SystemFunctions.java" afterPath="$PROJECT_DIR$/src/Updater_SystemFunctions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" afterPath="$PROJECT_DIR$/src/Web_ClientServerProtocol.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_MainTransaction.java" afterPath="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" afterPath="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" afterPath="$PROJECT_DIR$/.idea/codeStyleSettings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Nick0's Launcher.iws" />
     <ignored path=".idea/workspace.xml" />
+    <file path="/Dummy.txt" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361807854809" ignored="false" />
+    <file path="/a.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361061202430" ignored="false" />
+    <file path="/System_Mods.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1360963246552" ignored="false" />
+    <file path="/a.dummy" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361649940990" ignored="false" />
+    <file path="/System_LauncherUpdater.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361104233455" ignored="false" />
+    <file path="/GuiForm_MinecraftConsole.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361029515484" ignored="false" />
+    <file path="/Main_RealLauncher.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361070907594" ignored="false" />
+    <file path="/Preferences_ConfigFileWriter.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361070896761" ignored="false" />
+    <file path="/System_MultiAccountHelper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361035215862" ignored="false" />
+    <file path="/GuiForm_MainFrame.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361068562439" ignored="false" />
+    <file path="/System_RegexHelper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361042852427" ignored="false" />
+    <file path="/Web_MainTransaction.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361070239804" ignored="false" />
+    <file path="/sample.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361061315446" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/MainTest.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361061778998" ignored="false" />
+    <file path="/MainTest.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063618748" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/MinecraftVersionDeterminer_Main.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361064066333" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/Mode1.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063453629" ignored="false" />
+    <file path="/Mode1.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063258211" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/Configuration.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361062628759" ignored="false" />
+    <file path="/Configuration.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361061846704" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/System_Helper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063061439" ignored="false" />
+    <file path="/fragment.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361643095689" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled1/src/Mode2.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063453629" ignored="false" />
+    <file path="/System_Helper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063061057" ignored="false" />
+    <file path="/Mode2.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361063201592" ignored="false" />
+    <file path="E:/Users/Trololo/IdeaProjects/Nick0sLauncher_ServerUpdater_V2/src/Main_Server.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361065508904" ignored="false" />
+    <file path="E:/Users/Trololo/IdeaProjects/Nick0sLauncher_ServerUpdater_V2/src/Connexion_ConnexionToClient.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361064525385" ignored="false" />
+    <file path="/Connexion_ConnexionToClient.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361064525031" ignored="false" />
+    <file path="E:/Users/Trololo/IdeaProjects/Nick0sLauncher_ServerUpdater_V2/src/Container_ServerData.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361064796630" ignored="false" />
+    <file path="/Container_ServerData.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361064551152" ignored="false" />
+    <file path="E:/Users/Trololo/IdeaProjects/Nick0sLauncher_ServerUpdater_V2/src/Container_LatestMinecraftVersion.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361107137251" ignored="false" />
+    <file path="/Container_LatestMinecraftVersion.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361107086523" ignored="false" />
+    <file path="/Main_Server.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361065508368" ignored="false" />
+    <file path="/GuiForm_PreferenceFrame.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361067333540" ignored="false" />
+    <file path="/System_UpdaterHelper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361070384703" ignored="false" />
+    <file path="/Web_MinecraftUpdater.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361104152914" ignored="false" />
+    <file path="/Web_AMUSUpdater.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361104309609" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/JavaReflectionVMExplorer/src/JRVME_ClassLoader.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361135665975" ignored="false" />
+    <file path="/JRVME_ClassLoader.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361135661971" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/JavaReflectionVMExplorer/src/JRVME_Main.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361140970155" ignored="false" />
+    <file path="/JRVME_Main.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361140970155" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/JavaReflectionVMExplorer/src/ClassScope.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361137691319" ignored="false" />
+    <file path="/JRVME_System.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361651672425" ignored="false" />
+    <file path="/JRVME_Helper.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361651579610" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled/src/Main.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361647359473" ignored="false" />
+    <file path="/Main.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361647456867" ignored="false" />
+    <file path="$USER_HOME$/IdeaProjects/untitled/src/MainClass.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361647457308" ignored="false" />
+    <file path="/*.regexp" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361649935975" ignored="false" />
+    <file path="/GuiForm_GameFrame.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361813175439" ignored="false" />
+    <file path="/GuiElement_Applet.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361794341425" ignored="false" />
+    <file path="/OverlaySampleAlignment0.java" changelist="7e663cdd-390b-4a78-b4af-12a7edbdf7b5" time="1361808485024" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +162,8 @@
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="Commander">
     <leftPanel />
-    <rightPanel />
-    <splitter proportion="0.5" />
+    <rightPanel class="GuiElement_LWJGLSelector" />
+    <splitter proportion="0.45883942" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -45,8 +171,14 @@
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
   </component>
+  <component name="DatabaseView">
+    <flatten value="false" />
+    <groupTables value="false" />
+    <sortChildren value="false" />
+  </component>
   <component name="DebuggerManager">
-    <breakpoint_any>
+    <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
+    <breakpoint_any default_suspend_policy="SuspendAll" default_condition_enabled="true">
       <breakpoint>
         <option name="NOTIFY_CAUGHT" value="true" />
         <option name="NOTIFY_UNCAUGHT" value="true" />
@@ -54,6 +186,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -69,6 +202,7 @@
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
         <option name="SUSPEND_POLICY" value="SuspendAll" />
+        <option name="SUSPEND" value="true" />
         <option name="COUNT_FILTER_ENABLED" value="false" />
         <option name="COUNT_FILTER" value="0" />
         <option name="CONDITION_ENABLED" value="false" />
@@ -81,80 +215,54 @@
     <breakpoint_rules />
     <ui_properties />
   </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="Nick0's Launcher" />
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
+      <file leaf-file-name="JRVME_System.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JRVME_System.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="272" column="62" selection-start="13775" selection-end="13775" vertical-scroll-proportion="0.24141876">
+            <state line="35" column="10" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#4088#4096#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences_ConfigLoader.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
+      <file leaf-file-name="Main_RealLauncher.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="99" column="84" selection-start="6315" selection-end="6315" vertical-scroll-proportion="0.0">
+            <state line="312" column="54" selection-start="15355" selection-end="15355" vertical-scroll-proportion="0.8405573">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GuiForm_MainFrame.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
+      <file leaf-file-name="GuiForm_GameFrame.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="291" column="0" selection-start="11069" selection-end="11069" vertical-scroll-proportion="0.0">
+            <state line="48" column="57" selection-start="1419" selection-end="1419" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Preferences_ConfigFileWriter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+      <file leaf-file-name="Web_ClientServerProtocol.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web_ClientServerProtocol.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="165" column="93" selection-start="6449" selection-end="6449" vertical-scroll-proportion="0.0">
+            <state line="8" column="13" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="System_MultiAccountHelper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_MultiAccountHelper.java">
+      <file leaf-file-name="Web_MinecraftUpdater.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="57" column="89" selection-start="2938" selection-end="2938" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_FastRC4Encryption.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_FastRC4Encryption.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="115" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="System_ErrorPlayer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_ErrorPlayer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="29" selection-start="790" selection-end="945" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main_ReLauncher.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="88" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0">
+            <state line="3" column="13" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -163,16 +271,43 @@
       <file leaf-file-name="Web_MainTransaction.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="46" column="65" selection-start="2537" selection-end="2537" vertical-scroll-proportion="0.0">
+            <state line="30" column="96" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="System_StringEncrypter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/System_StringEncrypter.java">
+      <file leaf-file-name="JRVME_ClassScope.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JRVME_ClassScope.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="21" column="22" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JRVME_Helper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JRVME_Helper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="144" column="52" selection-start="5776" selection-end="5776" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OverlaySample.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/OverlaySample.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="0" selection-start="441" selection-end="744" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Component.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/awt/Component.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="614" column="30" selection-start="18586" selection-end="18586" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -186,33 +321,45 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
-    <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
-    <option name="UPDATE_CHANGES_POLICY" value="STASH" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="GitLogSettings">
     <option name="myStructureFilterPaths" />
+    <option name="myDateState">
+      <MyDateState />
+    </option>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="expandStates">
+      <map>
+        <entry key="Nick0's Launcher" value="true" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/BasicComboBoxU.java" />
-        <option value="$PROJECT_DIR$/src/ComboBox.java" />
-        <option value="$PROJECT_DIR$/src/GuiElement_NicknameComboBox.java" />
-        <option value="$PROJECT_DIR$/src/SystemTray_MinecraftIcon.java" />
-        <option value="$PROJECT_DIR$/src/System_MultiAccountHelper.java" />
-        <option value="$PROJECT_DIR$/src/System_FastRC4Encrypter.java" />
-        <option value="$PROJECT_DIR$/src/System_FastRC4Encryption.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
-        <option value="$PROJECT_DIR$/src/System_EncryptKeyGenerator.java" />
-        <option value="$PROJECT_DIR$/src/GuiForm_LWJGLForm.java" />
-        <option value="$PROJECT_DIR$/src/System_NativesHelper.java" />
-        <option value="$PROJECT_DIR$/src/System_FastEquivalentEncoding.java" />
-        <option value="$PROJECT_DIR$/src/System_StringEncrypter.java" />
-        <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+        <option value="$PROJECT_DIR$/src/System_UpdaterHelper.java" />
+        <option value="$PROJECT_DIR$/src/Web_MinecraftUpdater.java" />
+        <option value="$PROJECT_DIR$/src/System_LauncherUpdater.java" />
+        <option value="$PROJECT_DIR$/src/Web_AMUSUpdater.java" />
         <option value="$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_Console.java" />
+        <option value="$PROJECT_DIR$/src/JRVME_Helper.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_MainFrame.java" />
+        <option value="$PROJECT_DIR$/src/GuiElement_Applet.java" />
+        <option value="$PROJECT_DIR$/src/OverlaySample.java" />
+        <option value="$PROJECT_DIR$/src/OverlaySampleAlignement0.java" />
+        <option value="$PROJECT_DIR$/src/OverlaySampleAlignment0.java" />
+        <option value="$PROJECT_DIR$/src/Web_MainTransaction.java" />
+        <option value="$PROJECT_DIR$/src/JRVME_System.java" />
+        <option value="$PROJECT_DIR$/src/GuiForm_GameFrame.java" />
         <option value="$PROJECT_DIR$/src/Main_RealLauncher.java" />
       </list>
     </option>
+  </component>
+  <component name="MavenProjectNavigator">
+    <treeState />
   </component>
   <component name="MavenRunner">
     <option name="jreName" value="#JAVA_INTERNAL" />
@@ -222,10 +369,10 @@
     <option name="LAST_EDITED_TAB_NAME" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1066" />
+    <option name="x" value="1916" />
+    <option name="y" value="-4" />
+    <option name="width" value="1928" />
+    <option name="height" value="1088" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -625,16 +772,12 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
           <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Nick0's Launcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Nick0's Launcher" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -673,12 +816,16 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Project Files">
+      <pane id="PackagesPane">
+        <subPane>
           <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Nick0's Launcher" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -688,22 +835,23 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="376" />
-    <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="360" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="367" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="384" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
-    <property name="recentsLimit" value="5" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="383" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="recentsLimit" value="5" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
+    <property name="last_opened_file_path" value="E:/Users/Trololo/IdeaProjects/AutomatedCalculation" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="386" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="370" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="696" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="698" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth3" value="747" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth2" value="384" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth1" value="381" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="nick0's_launcher" />
@@ -715,19 +863,19 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
-    <property name="options.lastSelected" value="preferences.sourceCode.Java" />
-    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
+    <property name="options.lastSelected" value="vcs.Git" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="last.edited.regexp" value="Minecraft Minecraft Beta 1.2" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.searchVisible" value="true" />
+    <property name="last.edited.regexp" value="[ForceUsername=qsdqsdqsdqsd]" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -745,44 +893,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src\backgrounds" />
       <recent name="C:\Users\Trololo\Nick0's Launcher\Nick0's Launcher\src" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main_ReLauncher">
-    <configuration default="false" name="SmoothMoveExample" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="SmoothMoveExample" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Nick0's Launcher" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="System_JarSelectorFunctions" type="Application" factoryName="Application" temporary="true">
-      <extension name="coverage" enabled="false" merge="false" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="System_JarSelectorFunctions" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Nick0's Launcher" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="System_EncryptKeyGenerator" type="Application" factoryName="Application" temporary="true">
       <extension name="coverage" enabled="false" merge="false" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="System_EncryptKeyGenerator" />
@@ -834,27 +949,60 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="OverlaySample" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="OverlaySample" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Nick0's Launcher" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="OverlaySampleAlignment0" type="Application" factoryName="Application" temporary="true">
+      <extension name="coverage" enabled="false" merge="false" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="OverlaySampleAlignment0" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="Nick0's Launcher" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
       <option name="USE_SOCKET_TRANSPORT" value="true" />
       <option name="SERVER_MODE" value="false" />
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="PhingTarget" enabled="false" />
-      </method>
+      <method />
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" adl_options="" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" browser_family="FIREFOX" class_name="" debugger_sdk="Module SDK" html_or_swf_file_path="" launcher_type="OSDefault" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" player_path="FlashPlayer.exe" port="0" run_mode="HtmlOrSwfFile" run_trusted="true" scope="Class" socket_policy_port="0" url_to_launch="http://">
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="PhingTarget" enabled="false" />
-      </method>
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" appDescriptorForEmulator="Android" class_name="" emulatorAdlOptions="" method_name="" output_log_level="null" package_name="" scope="Class">
+      <option name="BCName" value="" />
+      <option name="launcherParameters">
+        <LauncherParameters>
+          <option name="browserFamily" value="FIREFOX" />
+          <option name="launcherType" value="OSDefault" />
+          <option name="playerPath" value="FlashPlayerDebugger.exe" />
+        </LauncherParameters>
+      </option>
+      <option name="moduleName" value="" />
+      <option name="trusted" value="true" />
+      <method />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
@@ -867,13 +1015,7 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="PhingTarget" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" runner="idea" />
@@ -888,13 +1030,7 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="PhingTarget" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" runner="idea" />
@@ -915,13 +1051,7 @@
       </option>
       <envs />
       <patterns />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-        <option name="PhingTarget" enabled="false" />
-      </method>
+      <method />
     </configuration>
     <configuration default="false" name="Main_ReLauncher" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -947,13 +1077,19 @@
       <method />
     </configuration>
     <list size="6">
-      <item index="0" class="java.lang.String" itemvalue="Application.SmoothMoveExample" />
-      <item index="1" class="java.lang.String" itemvalue="Application.System_JarSelectorFunctions" />
-      <item index="2" class="java.lang.String" itemvalue="Application.System_EncryptKeyGenerator" />
-      <item index="3" class="java.lang.String" itemvalue="Application.WindowsLookAndFeelDemo" />
-      <item index="4" class="java.lang.String" itemvalue="Application.ComboBox" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Main_ReLauncher" />
+      <item index="0" class="java.lang.String" itemvalue="Application.Main_ReLauncher" />
+      <item index="1" class="java.lang.String" itemvalue="Application.System_EncryptKeyGenerator" />
+      <item index="2" class="java.lang.String" itemvalue="Application.WindowsLookAndFeelDemo" />
+      <item index="3" class="java.lang.String" itemvalue="Application.ComboBox" />
+      <item index="4" class="java.lang.String" itemvalue="Application.OverlaySample" />
+      <item index="5" class="java.lang.String" itemvalue="Application.OverlaySampleAlignment0" />
     </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Application.OverlaySampleAlignment0" />
+        <item index="1" class="java.lang.String" itemvalue="Application.OverlaySample" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -965,7 +1101,7 @@
       <AnalysisUIOptions />
     </option>
   </component>
-  <component name="SvnConfiguration" maxAnnotateRevisions="500">
+  <component name="SvnConfiguration" maxAnnotateRevisions="500" myUseAcceleration="nothing" myAutoUpdateAfterCommit="false" cleanupOnStartRun="false">
     <option name="USER" value="" />
     <option name="PASSWORD" value="" />
     <option name="mySSHConnectionTimeout" value="30000" />
@@ -980,6 +1116,7 @@
     <option name="IGNORE_SPACES_IN_ANNOTATE" value="true" />
     <option name="SHOW_MERGE_SOURCES_IN_ANNOTATE" value="true" />
     <option name="FORCE_UPDATE" value="false" />
+    <option name="IGNORE_EXTERNALS" value="false" />
     <configuration useDefault="true">C:\Users\Trololo\AppData\Roaming\Subversion</configuration>
     <myIsUseDefaultProxy>false</myIsUseDefaultProxy>
   </component>
@@ -1017,34 +1154,37 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="0" />
-    <editor active="true" />
+    <frame x="1916" y="-4" width="1928" height="1088" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15128756" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.78817207" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39892474" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1512247" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.62406814" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.62406814" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2497332" sideWeight="0.62406814" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39713973" sideWeight="0.49791232" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27419356" sideWeight="0.24386339" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19210246" sideWeight="0.2172043" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32903227" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25751072" sideWeight="0.4203125" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24642465" sideWeight="0.5779082" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1638207" sideWeight="0.37380192" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.62406814" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32893288" sideWeight="0.49786553" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24532454" sideWeight="0.41835645" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31875" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19263607" sideWeight="0.1860215" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.67096776" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1782284" sideWeight="0.7167382" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2832618" sideWeight="0.7524013" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32977587" sideWeight="0.62406814" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39967984" sideWeight="0.62406814" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1638207" sideWeight="0.75186366" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24813631" sideWeight="0.74919957" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="IntelliGuard" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Phing Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="8" side_tool="false" content_ui="combo" />
+      <window_info id="Data Sources" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35622317" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3751375" sideWeight="0.57916665" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Colour Chooser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39914164" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1071,7 +1211,6 @@
     <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
     <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
     <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
-    <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
@@ -1081,8 +1220,13 @@
     <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
     <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="CREATE_PATCH_EXPAND_DETAILS_DEFAULT" value="true" />
+    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
+    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
+    <option name="LIMIT_HISTORY" value="true" />
+    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
     <option name="LAST_COMMIT_MESSAGE" value="Revision 29&#10;&#10;- Correction d'un bout de code à la con" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -1144,95 +1288,117 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GuiElement_Button.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/lang/System.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="36" selection-end="36" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiElement_Panel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="13" selection-start="113" selection-end="113" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_EncryptKeyGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="3684" selection-start="3684" selection-end="3684" vertical-scroll-proportion="-0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiElement_LWJGLSelector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="72" selection-start="939" selection-end="939" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_NativesHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="17" selection-start="1078" selection-end="1078" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GuiForm_LWJGLForm.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="155" column="44" selection-start="5201" selection-end="5201" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="99" column="84" selection-start="6315" selection-end="6315" vertical-scroll-proportion="0.0" />
+        <state line="54" column="16" selection-start="1216" selection-end="1216" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GuiForm_MainFrame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="291" column="0" selection-start="11069" selection-end="11069" vertical-scroll-proportion="0.0">
+        <state line="405" column="40" selection-start="16941" selection-end="16941" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Preferences_ConfigFileWriter.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/applet/Applet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="165" column="93" selection-start="6449" selection-end="6449" vertical-scroll-proportion="0.0">
+        <state line="64" column="11" selection-start="1505" selection-end="1505" vertical-scroll-proportion="-0.29538462">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_MultiAccountHelper.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/io/Serializable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="89" selection-start="2938" selection-end="2938" vertical-scroll-proportion="0.0">
+        <state line="168" column="17" selection-start="7581" selection-end="7581" vertical-scroll-proportion="0.7907692">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_FastRC4Encryption.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/lang/Throwable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="115" selection-start="1589" selection-end="1589" vertical-scroll-proportion="0.0">
+        <state line="113" column="40" selection-start="5064" selection-end="5064" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_ErrorPlayer.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/javax/swing/JComponent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="29" selection-start="790" selection-end="945" vertical-scroll-proportion="0.0" />
+        <state line="1914" column="16" selection-start="71660" selection-end="71660" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main_ReLauncher.java">
+    <entry file="jar://C:/Program Files/Java/jdk1.7.0_15/src.zip!/java/awt/Component.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="88" selection-start="835" selection-end="835" vertical-scroll-proportion="0.0" />
+        <state line="614" column="30" selection-start="18586" selection-end="18586" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OverlaySample.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="0" selection-start="441" selection-end="744" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_ClientServerProtocol.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="13" selection-start="213" selection-end="213" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Web_MinecraftUpdater.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="13" selection-start="54" selection-end="54" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Web_MainTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="65" selection-start="2537" selection-end="2537" vertical-scroll-proportion="0.0" />
+        <state line="30" column="96" selection-start="1902" selection-end="1902" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/System_StringEncrypter.java">
+    <entry file="file://$PROJECT_DIR$/src/JRVME_ClassScope.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" />
+        <state line="21" column="22" selection-start="732" selection-end="732" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JRVME_Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="144" column="52" selection-start="5776" selection-end="5776" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JRVME_System.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="35" column="10" selection-start="1505" selection-end="1505" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#4088#4096#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GuiForm_GameFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="48" column="57" selection-start="1419" selection-end="1419" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main_RealLauncher.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="272" column="62" selection-start="13775" selection-end="13775" vertical-scroll-proportion="0.24141876">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="312" column="54" selection-start="15355" selection-end="15355" vertical-scroll-proportion="0.8405573">
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1315,7 +1481,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>jinput</last-edited>
+          <last-edited>light_jl1.0.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

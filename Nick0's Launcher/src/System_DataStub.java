@@ -24,7 +24,7 @@ public class System_DataStub extends Applet implements AppletStub
     // Static Function - Data Arrays
 
     private static String[] MCParameters_Index = new String[]
-    { "username", "loginusr", "sessionid", "fullscreen", "mppass", "server", "port", "stand-alone", "latestVersion", "downloadTicket", "loadmap_id", "loadmap_user" };
+    { "username", "loginusr", "sessionid", "fullscreen", "mppass", "server", "port", "stand-alone", "latestVersion", "downloadTicket", "loadmap_id", "loadmap_user", "AMUSVersion" };
     private static String[] MCParameters_Values = new String[MCParameters_Index.length];
     
     private static int getIndexValue(String index)

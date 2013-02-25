@@ -145,7 +145,7 @@ public class System_FileManager
     {
         String minecraftClassAsString = new String(minecraftBytes);
 
-        Pattern pattern = Pattern.compile("(Minecraft Minecraft )(.* {0,2})(\\d\\.{0,5})(\\d)");
+        Pattern pattern = Pattern.compile("(Minecraft Minecraft )((.*){0,2})((\\d\\.){0,5})(\\d)");
         Matcher matcher = pattern.matcher(minecraftClassAsString);
 
         return ( matcher.find() ) ? matcher.group() : null;

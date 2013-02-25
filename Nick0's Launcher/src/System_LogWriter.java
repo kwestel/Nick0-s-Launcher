@@ -72,7 +72,7 @@ public class System_LogWriter
         firstVerification();
         if ( Preferences_ConfigLoader.CONFIG_ShowErrorNotifications && Preferences_ConfigLoader.CONFIG_ShowTrayIcon && errorMode ) { addExceptionToList(text); }
         (errorMode ? consoleErrorPrintStream : consolePrintStream).println(text);
-        GuiForm_MinecraftConsole.updateTextPane(text);
+        GuiForm_Console.updateConsoleContent(text);
 
         if ( LogsEnabled )
         {

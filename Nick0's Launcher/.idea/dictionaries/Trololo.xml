@@ -7,6 +7,7 @@
       <w>activer</w>
       <w>addresse</w>
       <w>adresse</w>
+      <w>affiche</w>
       <w>afficher</w>
       <w>afin</w>
       <w>ajout</w>
@@ -15,6 +16,7 @@
       <w>alternatifs</w>
       <w>anciennes</w>
       <w>apparaitre</w>
+      <w>apparemment</w>
       <w>appelées</w>
       <w>applet's</w>
       <w>arkador</w>
@@ -35,6 +37,7 @@
       <w>besoin</w>
       <w>bidouille</w>
       <w>bien</w>
+      <w>bienvenue</w>
       <w>bogue</w>
       <w>boulet</w>
       <w>bouton</w>
@@ -61,6 +64,7 @@
       <w>conseillée</w>
       <w>contacter</w>
       <w>contactez</w>
+      <w>contacté</w>
       <w>contenu</w>
       <w>continuer</w>
       <w>copie</w>
@@ -120,9 +124,11 @@
       <w>déplacer</w>
       <w>déposer</w>
       <w>déposez</w>
+      <w>dérangement</w>
       <w>désactiver</w>
       <w>désactivées</w>
       <w>désagrément</w>
+      <w>désolé</w>
       <w>désolés</w>
       <w>détectée</w>
       <w>effectifs</w>
@@ -130,6 +136,7 @@
       <w>encrypter</w>
       <w>encrypté</w>
       <w>enregistré</w>
+      <w>ensuite</w>
       <w>entrée</w>
       <w>erreur</w>
       <w>erreurs</w>
@@ -145,6 +152,7 @@
       <w>fois</w>
       <w>fonction</w>
       <w>fonctionalité</w>
+      <w>fonctionalitées</w>
       <w>fonctionnel</w>
       <w>fonctionnera</w>
       <w>forcer</w>
@@ -164,6 +172,7 @@
       <w>indisponible</w>
       <w>inexistant</w>
       <w>informatique</w>
+      <w>innatendue</w>
       <w>instable</w>
       <w>installe</w>
       <w>installé</w>
@@ -176,16 +185,22 @@
       <w>jeux</w>
       <w>jinput</w>
       <w>jour</w>
+      <w>jrvme</w>
       <w>l'emplacement</w>
       <w>l'icône</w>
       <w>l'id</w>
+      <w>l'initialiser</w>
       <w>l'installer</w>
+      <w>l'instant</w>
       <w>l'interface</w>
       <w>l'ont</w>
       <w>l'os</w>
       <w>l'username</w>
       <w>l'écriture</w>
+      <w>l'éxécution</w>
       <w>lancement</w>
+      <w>lancez</w>
+      <w>lancé</w>
       <w>largeur</w>
       <w>lfrom</w>
       <w>librarypath</w>
@@ -239,6 +254,7 @@
       <w>permettant</w>
       <w>personnes</w>
       <w>peuvent</w>
+      <w>peux</w>
       <w>plein</w>
       <w>pmoffscreen</w>
       <w>pouvez</w>
@@ -248,6 +264,7 @@
       <w>problème</w>
       <w>prochaine</w>
       <w>produite</w>
+      <w>projet</w>
       <w>provenant</w>
       <w>préférences</w>
       <w>préparation</w>
@@ -258,7 +275,9 @@
       <w>qu'après</w>
       <w>qu'avec</w>
       <w>qu'est</w>
+      <w>qu'il</w>
       <w>qu'une</w>
+      <w>quête</w>
       <w>randomizer</w>
       <w>rapidement</w>
       <w>rechargement</w>
@@ -277,6 +296,7 @@
       <w>risquée</w>
       <w>récentes</w>
       <w>récupération</w>
+      <w>récupérer</w>
       <w>réglages</w>
       <w>réinstallation</w>
       <w>réinstaller</w>
@@ -291,8 +311,10 @@
       <w>sera</w>
       <w>serez</w>
       <w>seront</w>
+      <w>serveur</w>
       <w>serveurs</w>
       <w>sessionid</w>
+      <w>simplement</w>
       <w>skippé</w>
       <w>soit</w>
       <w>sommes</w>
@@ -312,6 +334,7 @@
       <w>sécurisée</w>
       <w>sélectionné</w>
       <w>taille</w>
+      <w>tapez</w>
       <w>temporairement</w>
       <w>terminé</w>
       <w>texte</w>
@@ -341,6 +364,7 @@
       <w>votre</w>
       <w>voulez</w>
       <w>vous</w>
+      <w>vénérable</w>
       <w>vérification</w>
       <w>vérifiez</w>
       <w>yyyy</w>

@@ -38,6 +38,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
     public GuiElement_CheckBox CheckBox_AutoLogin;
     public GuiElement_CheckBox CheckBox_AutoUpdate;
     public GuiElement_CheckBox CheckBox_ShowErrorNotifications;
+    public GuiElement_CheckBox CheckBox_AlternativeMinecraftUpdateServer;
 
     public JSpinner Field_ModifySizeX;
     public JSpinner Field_ModifySizeY;
@@ -386,7 +387,9 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_ShowTrayIcon = new GuiElement_CheckBox("Afficher l'icône du Launcher dans la zone de notifications");
         CheckBox_ShowConsoleOnStartup = new GuiElement_CheckBox("Afficher automatiquement la console au démarrage de Minecraft");
         CheckBox_ShowErrorNotifications = new GuiElement_CheckBox("Afficher les erreurs de Minecraft dans l'icône de notifications");
+        CheckBox_AlternativeMinecraftUpdateServer = new GuiElement_CheckBox("Alternative Minecraft Update Server - ( Uniquement pour le mode \"offline\" )");
         CheckBox_AutoLogin = new GuiElement_CheckBox("Se conneter automatiquement à Minecraft ( Auto-Login )");
+
         // Label : Main Title
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -451,6 +454,14 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         gbc.insets = new Insets(0, 0, 0, 0);
         otherPanel.add(CheckBox_AutoLogin, gbc);
 
+        // Checkbox : Auto Login
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        otherPanel.add(CheckBox_AlternativeMinecraftUpdateServer, gbc);
+
         return otherPanel;
     }
 
@@ -488,6 +499,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_AutoLogin.setSelected(Preferences_ConfigLoader.CONFIG_AutoLogin);
         CheckBox_AutoUpdate.setSelected(Preferences_ConfigLoader.CONFIG_AutoUpdate);
         CheckBox_ShowErrorNotifications.setSelected(Preferences_ConfigLoader.CONFIG_ShowErrorNotifications);
+        CheckBox_AlternativeMinecraftUpdateServer.setSelected(Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer);
     }
 
     private void addActionsListeners()
@@ -664,6 +676,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigLoader.CONFIG_AutoLogin = CheckBox_AutoLogin.isSelected();
         Preferences_ConfigLoader.CONFIG_AutoUpdate = CheckBox_AutoUpdate.isSelected();
         Preferences_ConfigLoader.CONFIG_ShowErrorNotifications = CheckBox_ShowErrorNotifications.isSelected();
+        Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer = CheckBox_AlternativeMinecraftUpdateServer.isSelected();
 
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )

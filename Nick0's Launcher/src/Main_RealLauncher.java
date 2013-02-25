@@ -38,6 +38,7 @@ public final class Main_RealLauncher
         System_LogWriter.write("Mise en place des variables système...");
         homeDir = getHomeDir();
         System_DataStub.setParameter("latestVersion", "0");
+        System_DataStub.setParameter("AMUSVersion", null);
 
         System_LogWriter.write("Vérification des dossiers d'installation...");
         System_FileManager.createFolder(configFileDir);
@@ -49,6 +50,9 @@ public final class Main_RealLauncher
 
         System_LogWriter.write("Initialisation de la TrayIcon...");
         SystemTray_MinecraftIcon.enableTrayIcon();
+
+        System_LogWriter.write("Initialisation de la console...");
+        GuiForm_Console.verifyAndInitializeConsole();
 
         System_LogWriter.write("Initialisation de la fenêtre principale...");
         GuiForm_MainFrame.newForm(true);
@@ -70,12 +74,12 @@ public final class Main_RealLauncher
 
         GuiForm_MainFrame.disableLoginWindow(GuiForm_MainFrame.mainFrame.Check_Offline.isSelected());
 
-        if ( !GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() )
+        if ( GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() || Web_MainTransaction.forceSessionID != null ) { Web_MainTransaction.Main_OfflineLogin(u); }
+        else
         {
             try { Web_MainTransaction.Main_OnlineLogin(u, p); }
             catch ( IOException e ) { GuiForm_MainFrame.enableLoginWindow(); System_ErrorHandler.handleException(e, false); }
         }
-        else { Web_MainTransaction.Main_OfflineLogin(u); }
     }
 
     private static String getHomeDir()
@@ -84,7 +88,7 @@ public final class Main_RealLauncher
         return loadedHomeDir.equals("") ? configFileDir : loadedHomeDir;
     }
 
-    public static String gB(){String tP=(b==null?null:b);b=null;return tP==null?null:System_StringEncrypter.E(tP.substring(1, tP.length()));}
+    public static String gB(){String tP=(b==null?null:b);b=null;return tP==null?null:System_StringEncrypter.E(tP.substring(1,tP.length()));}
 
     public static String getConfigFilePath() { return configFileDir + File.separator + "Nick0's_Launcher.mconf"; }
     public static String getBinDirPath() { return homeDir + File.separator + "bin"; }
@@ -177,10 +181,13 @@ public final class Main_RealLauncher
                     if ( indexToReach != -1 )
                     {
                         final boolean offlineMode = offlineList.split(System_StringEncrypter.uk)[indexToReach].toLowerCase().trim().equals("true");
+
                         SwingUtilities.invokeLater(new Runnable() { public void run() {
                             GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
                             GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
                         } });
+
+                        if ( offlineMode ) { return; }
                     }
                 }
                 else
@@ -188,10 +195,13 @@ public final class Main_RealLauncher
                     if ( usernameList.toLowerCase().trim().equals(username.toLowerCase().trim()) )
                     {
                         final boolean offlineMode = offlineList.toLowerCase().trim().equals("true");
+
                         SwingUtilities.invokeLater(new Runnable() { public void run() {
                             GuiForm_MainFrame.mainFrame.Check_Offline.setSelected(offlineMode);
                             GuiForm_MainFrame.mainFrame.Check_SaveLogin.setSelected(!offlineMode);
                         } });
+
+                        if ( offlineMode ) { return; }
                     }
                 }
             }
@@ -269,8 +279,11 @@ public final class Main_RealLauncher
         String TempSelectedItem = Preferences_ConfigLoader.CONFIG_SaveLastJar ? GuiForm_MainFrame.mainFrame.ComboBox_JarSelector.getSelection() : null;
         Preferences_ConfigLoader.CONFIG_LastJarSaved = ( TempSelectedItem == null ) ? "" : TempSelectedItem;
 
-        if ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_Offline != null && GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false, true); }
-        else { Preferences_ConfigFileWriter.writeConfigFile("@" + System_StringEncrypter.B(), true, false, false); }
+        if ( Web_MainTransaction.forceSessionID == null )
+        {
+            if ( GuiForm_MainFrame.mainFrame != null && GuiForm_MainFrame.mainFrame.Check_Offline != null && GuiForm_MainFrame.mainFrame.Check_Offline.isSelected() ) { Preferences_ConfigFileWriter.writeConfigFile("", true, false, true); }
+            else { Preferences_ConfigFileWriter.writeConfigFile("@" + System_StringEncrypter.B(), true, false, false); }
+        }
 
         System_LogWriter.write("Initialisation de minecraft !\n\n_____________________________________\n");
 
@@ -297,7 +310,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "30";
+    private static final String LauncherRevision = "35";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 

@@ -89,7 +89,7 @@ public class SystemTray_MinecraftIcon
         ItemListener hideMinecraftListener = new ItemListener() { public void itemStateChanged(ItemEvent e) { if ( GuiForm_GameFrame.gameFrame != null ) { GuiForm_GameFrame.gameFrame.setVisible(!GuiForm_GameFrame.gameFrame.isVisible()); } } };
         CheckBox_hideMinecraft.addItemListener(hideMinecraftListener);
 
-        ItemListener displayConsoleListener = new ItemListener() { public void itemStateChanged(ItemEvent e) { { GuiForm_MinecraftConsole.minecraftConsole.setVisible(!GuiForm_MinecraftConsole.minecraftConsole.isVisible()); } } };
+        ItemListener displayConsoleListener = new ItemListener() { public void itemStateChanged(ItemEvent e) { { GuiForm_Console.rawJavaFrame.setVisible(!GuiForm_Console.rawJavaFrame.isVisible()); } } };
         CheckBox_displayConsole.addItemListener(displayConsoleListener);
 
         //ActionListener restartMinecraftListener = new ActionListener() { public void actionPerformed(ActionEvent e) { Main_RealLauncher.restartMinecraft(); } };

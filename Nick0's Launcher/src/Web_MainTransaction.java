@@ -4,6 +4,9 @@ import java.net.URLEncoder;
 public class Web_MainTransaction
 {
 
+    public static String forceUsername = null;
+    public static String forceSessionID = null;
+
     public static void Main_OnlineLogin(String username, String password) throws IOException
     {
         String serverArgs = "user=" + URLEncoder.encode(username, "UTF-8") + "&password=" + URLEncoder.encode(password, "UTF-8") + "&version=" + 1337; // For you, notch ;)
@@ -31,10 +34,10 @@ public class Web_MainTransaction
 
         System_DataStub.setParameter("latestVersion", serverResults[0].trim());
         System_DataStub.setParameter("downloadTicket", serverResults[1].trim());
-        System_DataStub.setParameter("username", serverResults[2].trim());
+        System_DataStub.setParameter("username", ((forceUsername == null) ? serverResults[2].trim() : forceUsername));
         System_DataStub.setParameter("sessionid", serverResults[3].trim());
 
-        System_LogWriter.write("Minecraft SessionID : " + serverResults[3].trim());
+        // System_LogWriter.write("Minecraft SessionID : " + serverResults[3].trim());
 
         System_DataStub.setParameter("loginusr", username);
 
@@ -46,13 +49,18 @@ public class Web_MainTransaction
 
     public static void Main_OfflineLogin(String username)
     {
-        System_DataStub.setParameter("username", username);
-        System_DataStub.setParameter("downloadTicket", "0");
+        System_DataStub.setParameter("username", ((forceUsername == null) ? username : forceUsername));
+        System_DataStub.setParameter("downloadTicket", (forceSessionID == null ? "" : forceSessionID));
         System_DataStub.setParameter("sessionid", "0");
 
         System_DataStub.setParameter("loginusr", username);
 
-        Web_MinecraftUpdater.mainOfflineUpdater();
+        if ( Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer )
+        {
+            System_DataStub.setParameter("AMUSVersion", System_LauncherUpdater.getAMUS());
+            Web_AMUSUpdater.mainMinecraftUpdater();
+        }
+        else { Web_MinecraftUpdater.mainOfflineUpdater(); }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

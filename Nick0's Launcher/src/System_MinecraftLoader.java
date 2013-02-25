@@ -6,10 +6,10 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class System_MinecraftLoader extends ClassLoader
+public class System_MinecraftLoader
 {
 
-    private static URLClassLoader MC_ClassLoader;
+    public static URLClassLoader MC_ClassLoader;
 
     public static String minecraftJarToLoad = "minecraft.jar";
     public static final String[] LWJGLJars = new String[] { "lwjgl.jar", "jinput.jar", "lwjgl_util.jar" };
@@ -27,6 +27,7 @@ public class System_MinecraftLoader extends ClassLoader
         MC_ClassLoader = new System_ModdedClassLoader(urlList, LoadNicnlMod);
 
         System.setProperty("org.lwjgl.librarypath", Main_RealLauncher.getNativesDirPath());
+        //System.setProperty("java.library.path", Main_RealLauncher.getNativesDirPath());
         System.setProperty("net.java.games.input.librarypath", Main_RealLauncher.getNativesDirPath());
     }
 

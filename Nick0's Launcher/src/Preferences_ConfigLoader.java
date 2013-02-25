@@ -24,6 +24,7 @@ public class Preferences_ConfigLoader
     public static boolean CONFIG_AutoLogin = false;
     public static boolean CONFIG_AutoUpdate = false;
     public static boolean CONFIG_ShowErrorNotifications = false;
+    public static boolean CONFIG_AlternativeMinecraftUpdateServer = false;
 
 
     public static void SYSTEM_LoadPreferences()
@@ -50,6 +51,7 @@ public class Preferences_ConfigLoader
         CONFIG_AutoLogin = Preferences_ConfigFileWriter.getParameter("AutoLogin").toLowerCase().equals("true");
         CONFIG_AutoUpdate = Preferences_ConfigFileWriter.getParameter("AutoUpdate").toLowerCase().equals("true");
         CONFIG_ShowErrorNotifications = Preferences_ConfigFileWriter.getParameter("ShowErrorNotifications").toLowerCase().equals("true");
+        CONFIG_AlternativeMinecraftUpdateServer = Preferences_ConfigFileWriter.getParameter("AlternativeMinecraftUpdateServer").toLowerCase().equals("true");
 
         try
         {
@@ -86,6 +88,7 @@ public class Preferences_ConfigLoader
         Preferences_ConfigFileWriter.setParameter("AutoLogin", CONFIG_AutoLogin);
         Preferences_ConfigFileWriter.setParameter("AutoUpdate", CONFIG_AutoUpdate);
         Preferences_ConfigFileWriter.setParameter("ShowErrorNotifications", CONFIG_ShowErrorNotifications);
+        Preferences_ConfigFileWriter.setParameter("AlternativeMinecraftUpdateServer", CONFIG_AlternativeMinecraftUpdateServer);
 
         if ( !CONFIG_LWJGLSelector ) { Preferences_ConfigFileWriter.setParameter("LWJGLAddress", ""); }
 

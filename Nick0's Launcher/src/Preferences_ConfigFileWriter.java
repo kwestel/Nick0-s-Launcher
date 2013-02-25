@@ -13,6 +13,7 @@ public final class Preferences_ConfigFileWriter
         "Username",
         "UsernameList",
         "Version=0",
+        "AMUSVersion=",
 
         "DisableUpdates=false",
         "JarSelector=false",
@@ -41,7 +42,8 @@ public final class Preferences_ConfigFileWriter
         "ShowTrayIcon=true",
         "AutoLogin=false",
         "AutoUpdate=false",
-        "ShowErrorNotifications=true"
+        "ShowErrorNotifications=true",
+        "AlternativeMinecraftUpdateServer=true"
     };
 
     public static String d;
@@ -68,27 +70,7 @@ public final class Preferences_ConfigFileWriter
             catch ( Exception e ) { return ""; }
         }
 
-        addDefaultParameterToIndex(index);
-        loadConfigFile();
-
-        for ( String actualLine : loadedFile )
-        {
-            // String parameterIndex = actualLine.substring(0, actualLine.indexOf("="));
-            String parameterIndex = actualLine.contains("=") ? actualLine.substring(0, actualLine.indexOf("=")) : actualLine;
-
-            try
-            {
-                if ( parameterIndex.toLowerCase().trim().equals(index.toLowerCase().trim()) )
-                {
-                    if ( actualLine.length() - (index.length()+1) > 0 ) { return actualLine.substring(actualLine.indexOf("=") + 1, actualLine.length()); }
-                    else { return ""; }
-                }
-            }
-            catch ( Exception e ) { return ""; }
-        }
-
-        System_ErrorHandler.handleError("Erreur lors de la récupération de : " + index, false, true);
-        return null;
+        return getDefaultParameterFromIndex(index);
     }
     
     public static final void setParameter(String index, boolean data) { setParameter(index, data+""); }
@@ -153,6 +135,7 @@ public final class Preferences_ConfigFileWriter
     {
         if ( writeLogin ) { setParameter("Username", System_DataStub.static_getParameter("loginusr")); System_MultiAccountHelper.saveUsername(System_DataStub.static_getParameter("loginusr"), offlineMode); }
         if ( !Preferences_ConfigLoader.CONFIG_updatesDisabled && !offlineMode ) { setParameter("Version", System_DataStub.static_getParameter("latestVersion")); }
+        if ( Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer && offlineMode && System_DataStub.static_getParameter("AMUSVersion") != null) { setParameter("AMUSVersion", System_DataStub.static_getParameter("AMUSVersion")); }
 
         if ( !encodedPassword.equals("") && !erasePassword && !System_DataStub.static_getParameter("loginusr").equals("null") && System_DataStub.static_getParameter("loginusr") != null )
         {
@@ -247,6 +230,21 @@ public final class Preferences_ConfigFileWriter
 
         loadedFile.add(parameterIndex + "=");
         writeFile();
+    }
+
+    private static final String getDefaultParameterFromIndex(String parameterIndex)
+    {
+        for ( String configurationParameter : configurationParameters )
+        {
+            String parameterName = configurationParameter.contains("=") ? configurationParameter.substring(0, configurationParameter.indexOf("=")) : configurationParameter;
+            if ( parameterName.toLowerCase().trim().equals(parameterIndex.toLowerCase().trim()) )
+            {
+                if ( configurationParameter.contains("=") ) { return configurationParameter.substring(configurationParameter.indexOf("=")+1, configurationParameter.length()); }
+                else { break; }
+            }
+        }
+
+        return "";
     }
 
     private static final void writeFile()

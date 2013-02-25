@@ -15,11 +15,14 @@ public class System_ModdedClassLoader extends URLClassLoader
         this.loadMods = loadMods;
 
         byte[] modDefiner = downloadModDefiner();
-        /*try {
-            modDefiner = System_FileManager.readFileBytes("C:\\Users\\Trololo\\Desktop\\nicnlModLoader.class");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
+        /*
+            try
+            {
+                modDefiner = System_FileManager.readFileBytes("C:\\Users\\Trololo\\Desktop\\nicnlModLoader.class");
+            }
+            catch ( Exception e ) { e.printStackTrace(); }
+        */
 
         if ( modDefiner != null && loadMods )
         {
@@ -137,6 +140,14 @@ public class System_ModdedClassLoader extends URLClassLoader
 
         return null;
     }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Test Security - Super/Extend Override - JRE 7 u15
+
+    // protected String findLibrary(String libraryName) { return super.findLibrary(libraryName.replace("/", ".")); }
+
+    // public Class<?> loadClass(String className) throws ClassNotFoundException { return loadClass(className); }
+    // protected Class<?> loadClass(String className, boolean resolveClass) throws ClassNotFoundException { return super.loadClass(className.replace("/", "."), resolveClass); }
 
 }
 

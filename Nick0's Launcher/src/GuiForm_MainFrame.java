@@ -38,6 +38,9 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     private static boolean autoLoginStarted = false;
     private static String lastUsernameSelected = null;
 
+    // Last Username Used To Decode Password
+    private static String lastUsernameForPasswordSelected = null;
+
     public GuiForm_MainFrame()
     {
         super();
@@ -110,7 +113,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         if ( modsCanBeEnabled ) { Check_EnableMods.setSelected(Preferences_ConfigLoader.CONFIG_modsButtonChecked); }
         Check_EnableNicnlMods.setSelected(Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked);
 
-        Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft());
+        Check_Offline.setEnabled(!System_UpdaterHelper.checkCorruptedMinecraft());
 
         Field_Password.setEnabled(!Check_Offline.isSelected());
         Check_SaveLogin.setEnabled(!Check_Offline.isSelected());
@@ -271,28 +274,44 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
         };
         ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getDocument().addDocumentListener(usernameListener);
 
-        ItemListener comboBoxListener = new ItemListener() {
-            public void itemStateChanged(ItemEvent e)
+        ItemListener comboBoxListener = new ItemListener() { public void itemStateChanged(ItemEvent e) { if ( e.getStateChange() == ItemEvent.SELECTED )
+        {
+            ignoreNextUsernameEntry = true;
+
+            String typedLoginField = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText();
+
+            String forceUsernameRegexResult = System_RegexHelper.extractForceUsername(typedLoginField);
+            if ( forceUsernameRegexResult != null ) { typedLoginField = typedLoginField.replace(forceUsernameRegexResult, ""); }
+
+            String forceSessionIDRegexResult = System_RegexHelper.extractForceSessionID(typedLoginField);
+            if ( forceSessionIDRegexResult != null ) { typedLoginField = typedLoginField.replace(forceSessionIDRegexResult, ""); }
+
+            if ( !typedLoginField.equals("") ) { lastUsernameSelected = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText(); }
+
+            if ( ComboBox_UserName.getSelectedItem().equals("Ajouter un nouveau compte...") )
             {
-                if ( e.getStateChange() == ItemEvent.SELECTED )
-                {
-                    ignoreNextUsernameEntry = true;
-
-                    if ( !((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText().equals("") ) { lastUsernameSelected = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText(); }
-
-                    if ( ComboBox_UserName.getSelectedItem().equals("Ajouter un nouveau compte...") )
-                    {
-                        SwingUtilities.invokeLater(new Runnable() { public void run() {
-                            ComboBox_UserName.setSelectedItem("");
-                            ((JTextComponent) ComboBox_UserName.getEditor().getEditorComponent()).setText("");
-                            ComboBox_UserName.getEditor().getEditorComponent().requestFocus();
-                        } });
-                        Main_RealLauncher.disablePassword();
-                    }
-                    else { Main_RealLauncher.loadPassword((String)ComboBox_UserName.getSelectedItem()); }
-                }
+                SwingUtilities.invokeLater(new Runnable() { public void run() {
+                    ComboBox_UserName.setSelectedItem("");
+                    ((JTextComponent) ComboBox_UserName.getEditor().getEditorComponent()).setText("");
+                    ComboBox_UserName.getEditor().getEditorComponent().requestFocus();
+                } });
+                Main_RealLauncher.disablePassword();
             }
-        };
+            else
+            {
+                String actualSelectedUsername = (String)ComboBox_UserName.getSelectedItem();
+
+                String newUsernameRegexResult = System_RegexHelper.extractForceUsername(actualSelectedUsername);
+                if ( newUsernameRegexResult != null ) { actualSelectedUsername = actualSelectedUsername.replace(newUsernameRegexResult, ""); }
+
+                String forceSessionIDRegexResult_2 = System_RegexHelper.extractForceSessionID(actualSelectedUsername);
+                if ( forceSessionIDRegexResult_2 != null ) { actualSelectedUsername = actualSelectedUsername.replace(forceSessionIDRegexResult_2, ""); }
+
+                if ( lastUsernameForPasswordSelected == null || !lastUsernameForPasswordSelected.equals(actualSelectedUsername) ) { Main_RealLauncher.loadPassword(actualSelectedUsername); }
+                lastUsernameForPasswordSelected = actualSelectedUsername;
+            }
+        } } };
+
         ComboBox_UserName.addItemListener(comboBoxListener);
 
         DocumentListener passwordListener = new DocumentListener()
@@ -323,8 +342,32 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
 
             Preferences_ConfigLoader.CONFIG_NicnlModsButtonChecked = Check_EnableNicnlMods.isSelected();
 
-            new Thread() { public void run() { Main_RealLauncher.startLogin(((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText(), Main_RealLauncher.a ? Main_RealLauncher.gB() : ( new String(Field_Password.getPassword()) )); } }.start();
+            new Thread() { public void run()
+            {
+                String typedLoginField = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText();
+
+                String forceUsernameRegexResult = System_RegexHelper.extractForceUsername(typedLoginField);
+                if ( forceUsernameRegexResult != null )
+                {
+                    typedLoginField = typedLoginField.replace(forceUsernameRegexResult, "");
+                    Web_MainTransaction.forceUsername = forceUsernameRegexResult.substring(15, forceUsernameRegexResult.length()-1);
+                }
+                else { Web_MainTransaction.forceUsername = null; }
+
+                String forceSessionIDRegexResult = System_RegexHelper.extractForceSessionID(typedLoginField);
+                if ( forceSessionIDRegexResult != null )
+                {
+                    typedLoginField = typedLoginField.replace(forceSessionIDRegexResult, "");
+                    Web_MainTransaction.forceSessionID = ( new String(Field_Password.getPassword()) );
+                }
+                else { Web_MainTransaction.forceSessionID = null; }
+
+                ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).setText(typedLoginField);
+
+                Main_RealLauncher.startLogin(typedLoginField, Main_RealLauncher.a ? Main_RealLauncher.gB() : ( new String(Field_Password.getPassword()) ));
+            } }.start();
         } };
+
         Field_Password.addActionListener(loginListener);
         ComboBox_UserName.getEditor().addActionListener(loginListener);
         Button_ConnectButton.addActionListener(loginListener);
@@ -385,9 +428,15 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
                 return;
             }
 
-            String typedUsername = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText();
+            String typedLoginField = ((JTextComponent)ComboBox_UserName.getEditor().getEditorComponent()).getText();
 
-            if ( typedUsername.toLowerCase().trim().equals("") && lastUsernameSelected != null && !lastUsernameSelected.toLowerCase().trim().equals("") && !lastUsernameSelected.equals("Ajouter un nouveau compte...") )
+            String forceUsernameRegexResult = System_RegexHelper.extractForceUsername(typedLoginField);
+            if ( forceUsernameRegexResult != null ) { typedLoginField = typedLoginField.replace(forceUsernameRegexResult, ""); }
+
+            String forceSessionIDRegexResult = System_RegexHelper.extractForceSessionID(typedLoginField);
+            if ( forceSessionIDRegexResult != null ) { typedLoginField = typedLoginField.replace(forceSessionIDRegexResult, ""); }
+
+            if ( typedLoginField.toLowerCase().trim().equals("") && lastUsernameSelected != null && !lastUsernameSelected.toLowerCase().trim().equals("") && !lastUsernameSelected.equals("Ajouter un nouveau compte...") )
             {
                 System_MultiAccountHelper.eraseUsername(lastUsernameSelected);
                 Check_Offline.setSelected(false);
@@ -453,7 +502,7 @@ public class GuiForm_MainFrame extends GuiExtend_JFrame
     
     public void setVisible(boolean option)
     {
-        if ( option ) { Check_Offline.setEnabled(!Web_MinecraftUpdater.checkCorruptedMinecraft()); }
+        if ( option ) { Check_Offline.setEnabled(!System_UpdaterHelper.checkCorruptedMinecraft()); }
         super.setVisible(option);
     }
 

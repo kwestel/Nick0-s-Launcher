@@ -48,12 +48,26 @@ public class System_LauncherUpdater
                 else { displayUpdateConfirmationWindow(); }
             }
             else { System_LogWriter.write("Launcher Is Up To Date ! [" + latestLauncherRevision + "]"); }
+
+            serverConnexion.closeConnexions();
         }
-        catch ( IOException e ) { System_ErrorHandler.handleExceptionWithText(e, "Une erreur est survenue dans le thread de mise à jour !", false, true); }
+        catch ( IOException e )
+        {
+            if ( serverConnexion != null ) { serverConnexion.closeConnexions(); }
+
+            if ( SystemTray_MinecraftIcon.trayIconInitialized )
+            {
+                SystemTray_MinecraftIcon.displayErrorMessage("Erreur !", "Le serveur de mise à jour n'a pas pu être contacté.\nIl se peux qu'il soit en maintenance, ou que le projet de ce launcher soit mort.\n\nDésolé du dérangement.");
+            }
+            else { System_ErrorHandler.handleExceptionWithText(e, "Le serveur de mise à jour n'a pas pu être contacté.\nIl se peux qu'il soit en maintenance, ou que le projet de ce launcher soit mort.\n\n Désolé du dérangement.", false, true); }
+        }
     }
 
     public static void displayUpdateConfirmationWindow() throws IOException
     {
+        serverConnexion = new System_ServerConnexion(serverAddress, 62602);
+        serverConnexion.sendLauncherRecognition();
+
         String tempText = "Une mise à jour du launcher est disponible !\n" +
         "[Revision : " + latestLauncherRevision + "]\n\n" +
         "Voulez vous mettre à jour le launcher maintenant ?";
@@ -67,16 +81,41 @@ public class System_LauncherUpdater
         }
 
         if ( serverConnexion != null ) { serverConnexion.closeConnexions(); }
+
+        serverConnexion.closeConnexions();
     }
 
     private static File downloadClientUpdater(System_ServerConnexion serverConnexion) throws IOException
     {
+        serverConnexion = new System_ServerConnexion(serverAddress, 62602);
+        serverConnexion.sendLauncherRecognition();
+
         byte[] updateSystemData = serverConnexion.downloadFile("Update System");
 
         File updateSystemFile = new File(Main_RealLauncher.configFileDir + File.separator + clientUpdaterTemporaryName);
         System_FileManager.writeByteArrayToFile(updateSystemData, updateSystemFile);
 
+        serverConnexion.closeConnexions();
+
         return updateSystemFile;
+    }
+
+    public static String getAMUS()
+    {
+        try
+        {
+            serverConnexion = new System_ServerConnexion(serverAddress, 62602);
+            serverConnexion.sendLauncherRecognition();
+
+            String AMUS = serverConnexion.getRevision("LatestMinecraftVersion");
+
+            serverConnexion.closeConnexions();
+
+            if ( AMUS.equals("[ERROR]") ) { throw new Exception("Unknown Server Error"); }
+
+            return AMUS.replace("Minecraft Minecraft ", "").trim();
+        }
+        catch ( Exception e ) { return null; }
     }
 
     private static void launchClientUpdater(File clientUpdaterFile) throws IOException

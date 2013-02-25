@@ -108,7 +108,12 @@ public class System_Mods
         ArrayList<String[]> finalData_Array = new ArrayList<String[]>();
 
         File modsDir = new File(Main_RealLauncher.getModsDirPath());
-        for ( String actualModsDir : modsDir.list() )
+
+        String[] fileList = modsDir.list();
+
+        if ( fileList == null ) { return new String[0][0]; }
+
+        for ( String actualModsDir : fileList )
         {
             Pattern p = Pattern.compile("((\\d.{0,5})(\\d))");
             Matcher m = p.matcher(actualModsDir);
