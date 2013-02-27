@@ -15,6 +15,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
     public JLabel Label_ActualHomeDir;
     public JLabel Label_LWJGL;
     public JLabel Label_ModifySize;
+    public JLabel Label_AdvancedFrame;
     public JLabel Label_LabelSizeX;
     public JLabel Label_LabelSizeY;
 
@@ -31,6 +32,10 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
     public GuiElement_CheckBox CheckBox_SaveLastJar;
     public GuiElement_CheckBox CheckBox_LWJGLSelector;
     public GuiElement_CheckBox CheckBox_ModifySize;
+    public GuiElement_CheckBox CheckBox_DisableEnhancedFrame;
+    public GuiElement_CheckBox CheckBox_EnhancedFrame_RoundCorners;
+    public GuiElement_CheckBox CheckBox_EnhancedFrame_MaxiMiniButtons;
+    public GuiElement_CheckBox CheckBox_EnhancedFrame_ResizeBorders;
     public GuiElement_CheckBox CheckBox_ErreurSonore;
     public GuiElement_CheckBox CheckBox_AutomaticJarRename;
     public GuiElement_CheckBox CheckBox_ShowTrayIcon;
@@ -80,7 +85,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         tabPane.addTab("Mises à Jour", null, createUpdatePane(), "Préférences de de mises à jour...");
         tabPane.addTab("Dossier d'Installation", null, createInstallationPathPanel(), "Déplacer le dossier d'installation de Minecraft...");
         tabPane.addTab("Avancé", null, createAdvancedPanel(), "Réglages avancés...");
-        tabPane.addTab("Fenêtre", null, createWindowSizePanel(), "Réglages de la fenêtre de jeu...");
+        tabPane.addTab("Fenêtre", null, createWindowPropertiesPanel(), "Réglages de la fenêtre de jeu...");
         tabPane.addTab("Versions alternatives", null, null, "Téléchargez des versions alternatives de Minecraft...");
         tabPane.addTab("Mods Selector", null, null, "Selecteur de mods...");
         tabPane.addTab("Autre", null, createOtherPanel(), "Tout le reste :D'");
@@ -293,7 +298,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         return advancedPanel;
     }
 
-    private JPanel createWindowSizePanel()
+    private JPanel createWindowPropertiesPanel()
     {
         JPanel windowSizePanel = new GuiElement_Panel("prefs.jpg");
 
@@ -305,7 +310,12 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
 
         JLabel mainTitle = new JLabel("<html><h1><b><u>Nick0's Launcher - Fenêtre de jeu</u></b></h1></html>");
         Label_ModifySize = new JLabel("<html><u><b>- Taille de la fenêtre de Minecraft :</b></u></html>");
+        Label_AdvancedFrame = new JLabel("<html><u><b>- Fenêtre de jeu avancée :</b></u></html>");
         CheckBox_ModifySize = new GuiElement_CheckBox("Modifier la taille de la fenêtre");
+        CheckBox_DisableEnhancedFrame = new GuiElement_CheckBox("Afficher la fenêtre de jeu d'origine");
+        CheckBox_EnhancedFrame_RoundCorners = new GuiElement_CheckBox("Coins arrondis");
+        CheckBox_EnhancedFrame_MaxiMiniButtons = new GuiElement_CheckBox("Afficher les boutons de minimisation/maximisation");
+        CheckBox_EnhancedFrame_ResizeBorders = new GuiElement_CheckBox("Afficher les bordures de redimensionnement");
         Label_LabelSizeX = new JLabel("Largeur : ");
         Label_LabelSizeY = new JLabel("Hauteur : ");
         Field_ModifySizeX = new JSpinner();
@@ -367,6 +377,46 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         gbc.insets = new Insets(0, 0, 0, 0);
         windowSizePanel.add(Field_ModifySizeY, gbc);
 
+        // Label : Advanced Frame
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(20, 0, 10, 0);
+        windowSizePanel.add(Label_AdvancedFrame, gbc);
+
+        // Checkbox : Disable Enhanced Frame
+        gbc.gridx = 0;
+        gbc.gridy = 6;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        windowSizePanel.add(CheckBox_DisableEnhancedFrame, gbc);
+
+        // Checkbox : Enhanced Frame - Enable Round Corners
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        windowSizePanel.add(CheckBox_EnhancedFrame_RoundCorners, gbc);
+
+        // Checkbox : Enhanced Frame - Enable Maximize & Minimize Buttons
+        gbc.gridx = 0;
+        gbc.gridy = 8;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        windowSizePanel.add(CheckBox_EnhancedFrame_MaxiMiniButtons, gbc);
+
+        // Checkbox : Enhanced Frame - Enable Resizing Borders
+        gbc.gridx = 0;
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.LINE_START;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        windowSizePanel.add(CheckBox_EnhancedFrame_ResizeBorders, gbc);
+
         return windowSizePanel;
     }
 
@@ -388,7 +438,7 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_ShowConsoleOnStartup = new GuiElement_CheckBox("Afficher automatiquement la console au démarrage de Minecraft");
         CheckBox_ShowErrorNotifications = new GuiElement_CheckBox("Afficher les erreurs de Minecraft dans l'icône de notifications");
         CheckBox_AlternativeMinecraftUpdateServer = new GuiElement_CheckBox("Alternative Minecraft Update Server - ( Uniquement pour le mode \"offline\" )");
-        CheckBox_AutoLogin = new GuiElement_CheckBox("Se conneter automatiquement à Minecraft ( Auto-Login )");
+        CheckBox_AutoLogin = new GuiElement_CheckBox("Se connecter automatiquement à Minecraft ( Auto-Login )");
 
         // Label : Main Title
         gbc.gridx = 0;
@@ -500,6 +550,14 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         CheckBox_AutoUpdate.setSelected(Preferences_ConfigLoader.CONFIG_AutoUpdate);
         CheckBox_ShowErrorNotifications.setSelected(Preferences_ConfigLoader.CONFIG_ShowErrorNotifications);
         CheckBox_AlternativeMinecraftUpdateServer.setSelected(Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer);
+
+        CheckBox_DisableEnhancedFrame.setSelected(Preferences_ConfigLoader.CONFIG_DisableEnhancedFrame);
+        CheckBox_EnhancedFrame_RoundCorners.setSelected(Preferences_ConfigLoader.CONFIG_EnhancedFrame_RoundCorners);
+        CheckBox_EnhancedFrame_MaxiMiniButtons.setSelected(Preferences_ConfigLoader.CONFIG_EnhancedFrame_MaxiMiniButtons);
+        CheckBox_EnhancedFrame_ResizeBorders.setSelected(Preferences_ConfigLoader.CONFIG_EnhancedFrame_ResizeBorders);
+        CheckBox_EnhancedFrame_RoundCorners.setEnabled(!Preferences_ConfigLoader.CONFIG_DisableEnhancedFrame);
+        CheckBox_EnhancedFrame_MaxiMiniButtons.setEnabled(!Preferences_ConfigLoader.CONFIG_DisableEnhancedFrame);
+        CheckBox_EnhancedFrame_ResizeBorders.setEnabled(!Preferences_ConfigLoader.CONFIG_DisableEnhancedFrame);
     }
 
     private void addActionsListeners()
@@ -625,6 +683,23 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         } };
         ((JTabbedPane)getContentPane()).addChangeListener(changeListener);
 
+        ItemListener disableEnhancedFrameListener = new ItemListener() { public void itemStateChanged(ItemEvent e)
+        {
+            boolean selected = CheckBox_DisableEnhancedFrame.isSelected();
+
+            CheckBox_EnhancedFrame_RoundCorners.setEnabled(!selected);
+            CheckBox_EnhancedFrame_MaxiMiniButtons.setEnabled(!selected);
+            CheckBox_EnhancedFrame_ResizeBorders.setEnabled(!selected);
+
+            if ( selected )
+            {
+                CheckBox_EnhancedFrame_RoundCorners.setSelected(false);
+                CheckBox_EnhancedFrame_MaxiMiniButtons.setSelected(false);
+                CheckBox_EnhancedFrame_ResizeBorders.setSelected(false);
+            }
+        } };
+        CheckBox_DisableEnhancedFrame.addItemListener(disableEnhancedFrameListener);
+
         WindowListener formListener = new WindowAdapter() { public void windowClosing(WindowEvent e) { onClose(); } };
         addWindowListener(formListener);
     }
@@ -677,6 +752,11 @@ public class GuiForm_PreferenceFrame extends GuiExtend_JFrame
         Preferences_ConfigLoader.CONFIG_AutoUpdate = CheckBox_AutoUpdate.isSelected();
         Preferences_ConfigLoader.CONFIG_ShowErrorNotifications = CheckBox_ShowErrorNotifications.isSelected();
         Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer = CheckBox_AlternativeMinecraftUpdateServer.isSelected();
+
+        Preferences_ConfigLoader.CONFIG_DisableEnhancedFrame = CheckBox_DisableEnhancedFrame.isSelected();
+        Preferences_ConfigLoader.CONFIG_EnhancedFrame_RoundCorners = CheckBox_EnhancedFrame_RoundCorners.isSelected();
+        Preferences_ConfigLoader.CONFIG_EnhancedFrame_MaxiMiniButtons = CheckBox_EnhancedFrame_MaxiMiniButtons.isSelected();
+        Preferences_ConfigLoader.CONFIG_EnhancedFrame_ResizeBorders = CheckBox_EnhancedFrame_ResizeBorders.isSelected();
 
         try { Preferences_ConfigLoader.CONFIG_selectedRam = Integer.parseInt(Field_RAMEntry.getValue().toString()); }
         catch ( NumberFormatException e )

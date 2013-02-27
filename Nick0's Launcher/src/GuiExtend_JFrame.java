@@ -7,11 +7,13 @@ public class GuiExtend_JFrame extends JFrame
 
     public boolean setSizeModified = true;
 
+    /*
     GuiExtend_JFrame(String windowTitle)
     {
         this();
         setTitle(windowTitle);
     }
+    */
 
     GuiExtend_JFrame()
     {
@@ -29,8 +31,9 @@ public class GuiExtend_JFrame extends JFrame
 
     public void setSize(int width, int height)
     {
-        if ( setSizeModified && System_UserHomeDefiner.SystemOS.equals("macosx") ) { super.setSize((int)(width * 1.25D), (int)(height * 1.25D)); }
-        else { super.setSize(width, height); }
+        // if ( setSizeModified && System_UserHomeDefiner.SystemOS.equals("macosx") ) { super.setSize((int)(width * 1.25D), (int)(height * 1.25D)); }
+        // else { super.setSize(width, height); }
+        super.setSize(width, height);
     }
 
     public void setSize(double width, double height) { setSize((int)width, (int)height); }

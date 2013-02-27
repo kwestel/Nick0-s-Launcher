@@ -310,7 +310,7 @@ public final class Main_RealLauncher
         catch ( Exception e ) { System_ErrorHandler.handleMinecraftLoadingException(e); }
     }
 
-    private static final String LauncherRevision = "35";
+    private static final String LauncherRevision = "36";
 
     public static final String getLauncherRevision() { return LauncherRevision; }
 

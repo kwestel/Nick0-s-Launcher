@@ -57,7 +57,7 @@ public class Web_MainTransaction
 
         if ( Preferences_ConfigLoader.CONFIG_AlternativeMinecraftUpdateServer )
         {
-            System_DataStub.setParameter("AMUSVersion", System_LauncherUpdater.getAMUS());
+            // System_ErrorHandler.handleError("LOL BITE : " + System_DataStub.static_getParameter("AMUSVersion"), false, false);
             Web_AMUSUpdater.mainMinecraftUpdater();
         }
         else { Web_MinecraftUpdater.mainOfflineUpdater(); }

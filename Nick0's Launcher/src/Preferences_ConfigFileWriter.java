@@ -43,7 +43,12 @@ public final class Preferences_ConfigFileWriter
         "AutoLogin=false",
         "AutoUpdate=false",
         "ShowErrorNotifications=true",
-        "AlternativeMinecraftUpdateServer=true"
+        "AlternativeMinecraftUpdateServer=true",
+
+        "DisableEnhancedFrame=false",
+        "EnhancedFrame_RoundCorners=true",
+        "EnhancedFrame_MaxiMiniButtons=true",
+        "EnhancedFrame_ResizeBorders=true"
     };
 
     public static String d;

@@ -19,8 +19,10 @@ public class Web_AMUSUpdater
     private static void Updater_ConfigFileExists()
     {
         String localVersion = Preferences_ConfigFileWriter.getParameter("AMUSVersion");
-        String AMUSVersion = System_DataStub.static_getParameter("AMUSVersion");
+        String AMUSVersion = System_LauncherUpdater.getAMUS();//System_DataStub.static_getParameter("AMUSVersion");
         boolean needToUpdate = !localVersion.equals(AMUSVersion) && !Preferences_ConfigLoader.CONFIG_updatesDisabled;
+
+        System_DataStub.setParameter("AMUSVersion", AMUSVersion);
 
         System_LogWriter.write(needToUpdate ? "A.M.U.S - Une mise à jour de Minecraft disponible ! ( Version : " + AMUSVersion + " )" : "A.M.U.S - Minecraft est à jour. ( Version : " + AMUSVersion + " )");
 

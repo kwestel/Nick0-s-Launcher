@@ -26,6 +26,11 @@ public class Preferences_ConfigLoader
     public static boolean CONFIG_ShowErrorNotifications = false;
     public static boolean CONFIG_AlternativeMinecraftUpdateServer = false;
 
+    public static boolean CONFIG_DisableEnhancedFrame = false;
+    public static boolean CONFIG_EnhancedFrame_RoundCorners = true;
+    public static boolean CONFIG_EnhancedFrame_MaxiMiniButtons = true;
+    public static boolean CONFIG_EnhancedFrame_ResizeBorders = true;
+
 
     public static void SYSTEM_LoadPreferences()
     {
@@ -52,6 +57,11 @@ public class Preferences_ConfigLoader
         CONFIG_AutoUpdate = Preferences_ConfigFileWriter.getParameter("AutoUpdate").toLowerCase().equals("true");
         CONFIG_ShowErrorNotifications = Preferences_ConfigFileWriter.getParameter("ShowErrorNotifications").toLowerCase().equals("true");
         CONFIG_AlternativeMinecraftUpdateServer = Preferences_ConfigFileWriter.getParameter("AlternativeMinecraftUpdateServer").toLowerCase().equals("true");
+
+        CONFIG_DisableEnhancedFrame = Preferences_ConfigFileWriter.getParameter("DisableEnhancedFrame").toLowerCase().equals("true");
+        CONFIG_EnhancedFrame_RoundCorners = Preferences_ConfigFileWriter.getParameter("EnhancedFrame_RoundCorners").toLowerCase().equals("true");
+        CONFIG_EnhancedFrame_MaxiMiniButtons = Preferences_ConfigFileWriter.getParameter("EnhancedFrame_MaxiMiniButtons").toLowerCase().equals("true");
+        CONFIG_EnhancedFrame_ResizeBorders = Preferences_ConfigFileWriter.getParameter("EnhancedFrame_ResizeBorders").toLowerCase().equals("true");
 
         try
         {
@@ -90,10 +100,14 @@ public class Preferences_ConfigLoader
         Preferences_ConfigFileWriter.setParameter("ShowErrorNotifications", CONFIG_ShowErrorNotifications);
         Preferences_ConfigFileWriter.setParameter("AlternativeMinecraftUpdateServer", CONFIG_AlternativeMinecraftUpdateServer);
 
+        Preferences_ConfigFileWriter.setParameter("DisableEnhancedFrame", CONFIG_DisableEnhancedFrame);
+        Preferences_ConfigFileWriter.setParameter("EnhancedFrame_RoundCorners", CONFIG_EnhancedFrame_RoundCorners);
+        Preferences_ConfigFileWriter.setParameter("EnhancedFrame_MaxiMiniButtons", CONFIG_EnhancedFrame_MaxiMiniButtons);
+        Preferences_ConfigFileWriter.setParameter("EnhancedFrame_ResizeBorders", CONFIG_EnhancedFrame_ResizeBorders);
+
         if ( !CONFIG_LWJGLSelector ) { Preferences_ConfigFileWriter.setParameter("LWJGLAddress", ""); }
 
         Preferences_ConfigFileWriter.setParameter("GameSizeEnabled", CONFIG_ModifyWindowSize);
-
         Preferences_ConfigFileWriter.setParameter("GameSizeXY", CONFIG_WindowSize);
     }
 
